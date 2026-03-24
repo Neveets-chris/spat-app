@@ -7,9 +7,9 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-scripts": "5.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "^5.0.1",
     "three": "^0.183.2",
     "web-vitals": "^2.1.4"
   },
@@ -38,8 +38,13 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
     "autoprefixer": "^10.4.27",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.19"
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2"
+  },
+  "overrides": {
+    "rimraf": "^4.0.0",
+    "q": "npm:bluebird@3.7.2"
   }
 }

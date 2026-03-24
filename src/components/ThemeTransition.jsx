@@ -29,7 +29,7 @@ export default function ThemeTransition({ darkMode, trigger }) {
       wave.style.opacity = "0";
     }, 800);
 
-  }, [trigger]);
+  }, [trigger,darkMode]);
 
   return (
     <div

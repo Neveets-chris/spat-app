@@ -111,7 +111,7 @@ export function BoutonSupprimer({ onClick }) {
 
 // ── Bouton Ajouter ────────────────────────────────────────────────────────────
 export function BoutonAjouter({ onClick, texte = "Ajouter" }) {
-  const [success, setSuccess] = useState(false);
+  const [success] = useState(false);
 
   const handleClick = () => {
     onClick();
