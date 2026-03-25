@@ -8,7 +8,7 @@ const STATS = [
 ];
 
 const DEPENSES = [
-  { mois: "Oct", montant: 1200000 },
+  { mois: "Oct", montant: 1200 },
   { mois: "Nov", montant: 850000  },
   { mois: "Déc", montant: 1600000 },
   { mois: "Jan", montant: 950000  },
