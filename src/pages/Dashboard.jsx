@@ -1,7 +1,7 @@
 import StatutBadge from "../components/StatutBadge";
 
 const STATS = [
-  { label: "Logements disponibles", value: 14, total: 42, couleur: "border-l-emerald-500", texte: "text-emerald-400", icon: "🏠" },
+  { label: "Logements disponibles", value: 69, total: 42, couleur: "border-l-emerald-500", texte: "text-emerald-400", icon: "🏠" },
   { label: "Logements occupés",     value: 24, total: 42, couleur: "border-l-blue-400",    texte: "text-blue-400",    icon: "👥" },
   { label: "En maintenance",        value: 4,  total: 42, couleur: "border-l-amber-400",   texte: "text-amber-400",   icon: "🔧" },
   { label: "Demandes en attente",   value: 7,  total: 7,  couleur: "border-l-rose-400",    texte: "text-rose-400",    icon: "📋" },
