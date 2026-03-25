@@ -96,7 +96,9 @@ export default function Dashboard() {
             className={`bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-800 border-l-4 ${s.couleur} shadow-sm`}
           >
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xl">{s.icon}</span>
+              <span className="text-xl">
+                <s.icon className="w-6 h-6" />
+              </span>
               <span className="text-xs text-gray-400 dark:text-gray-500">
                 {s.total !== s.value ? `/ ${s.total}` : "total"}
               </span>
