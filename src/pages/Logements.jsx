@@ -1,5 +1,6 @@
 import { useState } from "react";
 import StatutBadge from "../components/StatutBadge";
+import { SquarePen } from "lucide-react";
 
 const LOGEMENTS = [
   { id: "LOG-001", type: "F3",    localisation: "Résidence A – Bât. 1", statut: "Occupé",      occupants: ["RABE Jean", "SOLA Marie"], capacite: 3, superficie: 65 },
@@ -285,7 +286,9 @@ export default function Logements() {
                 </button>
                 <button onClick={() => setFormData(l)}
                   className="flex-1 text-xs bg-[#0F2D56]/10 dark:bg-gray-700 text-[#0F2D56] dark:text-gray-300 py-1.5 rounded-lg hover:bg-[#0F2D56]/20 transition">
-                  ✏ Modifier
+                  
+                    <SquarePen className=" w-4 h-4"/>
+                  Modifier
                 </button>
                 <button onClick={() => handleDelete(l.id)}
                   className="text-xs bg-rose-50 dark:bg-rose-900/20 text-rose-500 px-3 py-1.5 rounded-lg hover:bg-rose-100 transition">
