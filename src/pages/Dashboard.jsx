@@ -1,5 +1,5 @@
 import StatutBadge from "../components/StatutBadge";
-import { House,Building2,Hammer,Hourglass } from "lucide-react";
+import { House,Building,Hammer,Hourglass } from "lucide-react";
 
 const STATS = [
   {
@@ -16,7 +16,7 @@ const STATS = [
     total: 42,
     couleur: "border-l-blue-400",
     texte: "text-blue-400",
-    icon: Building2,
+    icon: Building,
   },
   {
     label: "En maintenance",
