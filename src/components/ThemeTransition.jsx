@@ -10,7 +10,7 @@ export default function ThemeTransition({ darkMode, trigger }) {
 
     // Couleur de la vague selon le mode qui arrive
     wave.style.background = darkMode
-      ? "linear-gradient(90deg, blue 0%, rgba(10,22,40,0.6) 50%, blue 100%)"
+      ? "linear-gradient(90deg, transparent 0%, rgba(10,22,40,0.6) 50%, transparent 100%)"
       : "linear-gradient(90deg, transparent 0%, rgba(242,242,240,0.7) 50%, transparent 100%)"
 
     // Remet la vague à gauche
