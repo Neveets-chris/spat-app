@@ -1,5 +1,5 @@
 import StatutBadge from "../components/StatutBadge";
-import { House } from "lucide-react";
+import { House,Building2,Hammer,Hourglass } from "lucide-react";
 
 const STATS = [
   {
@@ -16,7 +16,7 @@ const STATS = [
     total: 42,
     couleur: "border-l-blue-400",
     texte: "text-blue-400",
-    icon: "👥",
+    icon: Building2,
   },
   {
     label: "En maintenance",
@@ -24,7 +24,7 @@ const STATS = [
     total: 42,
     couleur: "border-l-amber-400",
     texte: "text-amber-400",
-    icon: "🔧",
+    icon:Hammer,
   },
   {
     label: "Demandes en attente",
@@ -32,7 +32,7 @@ const STATS = [
     total: 7,
     couleur: "border-l-rose-400",
     texte: "text-rose-400",
-    icon: "📋",
+    icon: Hourglass,
   },
 ];
 
@@ -97,7 +97,7 @@ export default function Dashboard() {
           >
             <div className="flex items-center justify-between mb-3">
               <span className="text-xl">
-                <s.icon className="w-6 h-6" />
+                <s.icon className={`w-6 h-6 ${s.texte}` } />
               </span>
               <span className="text-xs text-gray-400 dark:text-gray-500">
                 {s.total !== s.value ? `/ ${s.total}` : "total"}
