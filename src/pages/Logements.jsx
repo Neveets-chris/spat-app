@@ -426,8 +426,7 @@ export default function Logements() {
                   onClick={() => setFormData(l)}
                   className="flex-1 text-xs bg-[#0F2D56]/10 dark:bg-gray-700 text-[#0F2D56] dark:text-gray-300 py-1.5 rounded-lg hover:bg-[#0F2D56]/20 transition"
                 >
-                  <SquarePen className=" w-4 h-4 flex"  />
-                  Modifier
+                  <SquarePen className=" w-4 h-4 flex"  />Modifier
                 </button>
                 <button
                   onClick={() => handleDelete(l.id)}
