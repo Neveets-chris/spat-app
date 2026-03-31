@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useApp } from "../context/AppContext";
 import StatutBadge from "../components/StatutBadge";
 import { BoutonSupprimer, BoutonModifier, BoutonDetail } from "../components/BoutonsAction";
-import { Info ,CircleCheck ,PencilRuler ,MapPin ,Trash2 } from "lucide-react";
+import { Info ,CircleCheck ,PencilRuler ,MapPin } from "lucide-react";
 
 const FILTRES = ["Tous", "Disponible", "Occupé", "Maintenance"];
 
@@ -213,7 +213,7 @@ export default function Logements() {
                   </div>
                   <StatutBadge statut={l.statut} />
                 </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1 flex items-center"><MapPin className="w-4 h-4 text-red-500"/>{l.localisation}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1 "><MapPin className="w-4 h-4 text-red-500"/>{l.localisation}</p>
                 <p className="text-xs text-gray-400 mb-3 flex items-center"> <PencilRuler className="w-4 h-4 text-yellow-500"/>{l.superficie} m²</p>
                 <div className="border-t border-[#E0DDD7] dark:border-gray-700 pt-3">
                   <div className="flex justify-between text-xs text-gray-400 mb-1.5">
