@@ -53,7 +53,7 @@ export default function App() {
 
       {/* Vague de transition */}
       <ThemeTransition darkMode={darkMode} trigger={trigger} />
-
+      
       <Sidebar page={page} setPage={setPage} open={sidebarOpen} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header

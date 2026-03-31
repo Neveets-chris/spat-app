@@ -1,3 +1,4 @@
+import { Bell } from "lucide-react";
 import ToggleTheme from "./ToggleTheme";
 export default function Header({ titre, setSidebarOpen, sidebarOpen, nbNotifs, darkMode, setDarkMode }) {
   return (
@@ -32,7 +33,7 @@ export default function Header({ titre, setSidebarOpen, sidebarOpen, nbNotifs, d
         {/* Cloche */}
         <div className="relative">
           <button className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-sm transition">
-            🔔
+            
           </button>
           {nbNotifs > 0 && (
             <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#C9A84C] text-white text-xs rounded-full flex items-center justify-center font-bold">
