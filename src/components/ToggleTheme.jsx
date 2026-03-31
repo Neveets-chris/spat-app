@@ -13,7 +13,7 @@ export default function ToggleTheme({ darkMode, setDarkMode }) {
       <div className="hover-zone bt-5"></div>
       <div className="hover-zone bt-6"></div>
       <button
-        className={`toggle-btn ${darkMode ? "mode-clair" : "mode-sombre"}`}
+        className={`toggle-btn ${darkMode ? "mode-clair" : "mode-sombre"} `}
       >
         <span className="emoji-actuel">{actuel}</span>
         <span className="emoji-suivant">{suivant}</span>
