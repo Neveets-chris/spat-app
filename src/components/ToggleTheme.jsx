@@ -1,8 +1,9 @@
 import "../toggle.css";
+import { SunMedium ,Moon } from "lucide-react";
 
 export default function ToggleTheme({ darkMode, setDarkMode }) {
-  const actuel = darkMode ? "🌙" : "☀️";
-  const suivant = darkMode ? "☀️" : "🌙";
+  const Actuel = darkMode ? Moon  : SunMedium;
+  const Suivant = darkMode ? SunMedium :Moon;
 
   return (
     <div className="container-button" onClick={() => setDarkMode(!darkMode)}>
@@ -15,8 +16,8 @@ export default function ToggleTheme({ darkMode, setDarkMode }) {
       <button
         className={`toggle-btn ${darkMode ? "mode-clair" : "mode-sombre"}`}
       >
-        <span className="emoji-actuel">{actuel}</span>
-        <span className="emoji-suivant">{suivant}</span>
+        <span className="emoji-actuel"><Actuel className="text-yellow-400 " /></span>
+        <span className="emoji-suivant"><Suivant className="text-white"/></span>
       </button>
     </div>
   );

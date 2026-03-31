@@ -1,14 +1,14 @@
-//import { LayoutDashboard , Building2,UsersRound,KeyRound,BrickWall,Wallet} from "lucide-react";
+import { BrickWall, Building2, KeyRound, LayoutDashboard, UsersRound, Wallet } from "lucide-react";
 
 //import { useState } from "react";
 
 const NAV_ITEMS = [
-  { id: "dashboard",    label: "Tableau de bord", icon: "⊞" },
-  { id: "logements",    label: "Logements",        icon: "🏠" },
-  { id: "employes",     label: "Employés",          icon: "👤" },
-  { id: "attributions", label: "Attributions",      icon: "🔑" },
-  { id: "materiaux",    label: "Matériaux",         icon: "📦" },
-  { id: "depenses",     label: "Dépenses",          icon: "💰" },
+  { id: "dashboard",    label: "Tableau de bord", icon: LayoutDashboard },
+  { id: "logements",    label: "Logements",        icon: Building2},
+  { id: "employes",     label: "Employés",          icon: UsersRound},
+  { id: "attributions", label: "Attributions",      icon: KeyRound },
+  { id: "materiaux",    label: "Matériaux",         icon: BrickWall },
+  { id: "depenses",     label: "Dépenses",          icon: Wallet},
 ];
 
 export default function Sidebar({ page, setPage, open, onClose }) {
@@ -54,7 +54,7 @@ export default function Sidebar({ page, setPage, open, onClose }) {
                   : "text-gray-400 dark:text-gray-400 hover:text-white dark:hover:text-white inline-block transition-transform duration-300 hover:scale-125 hover:translate-y-1"
               }`}
             >
-              <span className="text-base shrink-0">{item.icon}</span>
+              <span className="text-base shrink-0"><item.icon className="w-4 h-4"/></span>
               <span className={`truncate transition-all duration-300 ${open ? "opacity-100" : "opacity-0 w-0 md:hidden"}`}>
                 {item.label}
               </span>
