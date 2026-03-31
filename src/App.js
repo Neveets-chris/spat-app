@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Dashboard from "./pages/Dashboard";
@@ -7,6 +7,7 @@ import Employes from "./pages/Employes";
 import Attributions from "./pages/Attributions";
 import Materiaux from "./pages/Materiaux";
 import Depenses from "./pages/Depense";
+import PageWrapper from "./components/PageWrapper";
 import ThemeTransition from "./components/ThemeTransition";
 
 const TITRES = {
@@ -19,13 +20,13 @@ const TITRES = {
 };
 
 export default function App() {
-  const [page, setPage]             = useState("dashboard");
+  const [page, setPage]               = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [darkMode, setDarkMode]     = useState(false);
-  const [trigger, setTrigger]       = useState(0);
+  const [darkMode, setDarkMode]       = useState(false);
+  const [trigger, setTrigger]         = useState(0);
 
   const handleToggleDark = (val) => {
-    setTrigger(t => t + 1); // déclenche l'animation
+    setTrigger(t => t + 1);
     setTimeout(() => {
       setDarkMode(val);
       if (val) {
@@ -33,28 +34,29 @@ export default function App() {
       } else {
         document.documentElement.classList.remove("dark");
       }
-    }, 350); // change le thème au milieu de l'animation
+    }, 350);
   };
 
   const renderPage = () => {
-    switch (page) {
-      case "dashboard":    return <Dashboard />;
-      case "logements":    return <Logements />;
-      case "employes":     return <Employes />;
-      case "attributions": return <Attributions />;
-      case "materiaux":    return <Materiaux />;
-      case "depenses":     return <Depenses />;
-      default:             return <Dashboard />;
-    }
+    const pages = {
+      dashboard:    <Dashboard />,
+      logements:    <Logements />,
+      employes:     <Employes />,
+      attributions: <Attributions />,
+      materiaux:    <Materiaux />,
+      depenses:     <Depenses />,
+    };
+    return (
+      <PageWrapper key={page}>
+        {pages[page] || <Dashboard />}
+      </PageWrapper>
+    );
   };
 
   return (
-   <div className="flex h-screen bg-[#EDEBE6] dark:bg-gray-950 overflow-hidden transition-colors duration-300">
-
-      {/* Vague de transition */}
+    <div className="flex h-screen bg-[#EDEBE6] dark:bg-gray-950 overflow-hidden transition-colors duration-300">
       <ThemeTransition darkMode={darkMode} trigger={trigger} />
-      
-      <Sidebar page={page} setPage={setPage} open={sidebarOpen} />
+      <Sidebar page={page} setPage={setPage} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header
           titre={TITRES[page]}
