@@ -99,7 +99,7 @@ export default function Header({ titre, setSidebarOpen, sidebarOpen, nbNotifs, d
       </div>
 
       {/* Droite */}
-      <div className="flex items-center gap-2 md:gap-3"> </div>
+      <div className="flex items-center gap-2 md:gap-3"> 
 
         {/* Date */}
         <span className="text-xs text-white/50 hidden lg:block">
@@ -175,7 +175,7 @@ export default function Header({ titre, setSidebarOpen, sidebarOpen, nbNotifs, d
                     </div>
                   ))
                 )}
-              </div>
+                </div>
 
               {/* Pied */}
               <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
@@ -186,6 +186,7 @@ export default function Header({ titre, setSidebarOpen, sidebarOpen, nbNotifs, d
             </div>
           )}
         </div>
+      </div>
       </div>
     </header>
   );
