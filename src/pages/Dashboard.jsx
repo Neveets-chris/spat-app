@@ -3,7 +3,7 @@ import { House,Building,Hammer,Hourglass } from "lucide-react";
 import { useApp } from "../context/AppContext";
 
 export default function Dashboard() {
-  const { stats, logements, depenses, materiaux, attributions } = useApp();
+  const { stats, depenses, materiaux } = useApp();
 
   const depEnAttente = depenses.filter(d => d.statut === "En attente");
   const alertesStock = materiaux.filter(m => m.stock <= m.seuil);
