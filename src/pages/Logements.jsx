@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useApp } from "../context/AppContext";
 import StatutBadge from "../components/StatutBadge";
 import { BoutonSupprimer, BoutonModifier, BoutonDetail } from "../components/BoutonsAction";
+import { Info ,CircleCheck ,PencilRuler ,MapPin} from "lucide-react";
 
 const FILTRES = ["Tous", "Disponible", "Occupé", "Maintenance"];
 
@@ -212,8 +213,8 @@ export default function Logements() {
                   </div>
                   <StatutBadge statut={l.statut} />
                 </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">📍 {l.localisation}</p>
-                <p className="text-xs text-gray-400 mb-3">📐 {l.superficie} m²</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1 flex items-center"><MapPin className="w-4 h-4 text-red-500"/>{l.localisation}</p>
+                <p className="text-xs text-gray-400 mb-3 flex items-center"> <PencilRuler className="w-4 h-4 text-yellow-500"/>{l.superficie} m²</p>
                 <div className="border-t border-[#E0DDD7] dark:border-gray-700 pt-3">
                   <div className="flex justify-between text-xs text-gray-400 mb-1.5">
                     <span>Occupants</span>
@@ -233,12 +234,12 @@ export default function Logements() {
                 </div>
                 <div className="flex gap-2 mt-3">
                   <button onClick={() => setDetail(l)}
-                    className="flex-1 text-xs border border-[#E0DDD7] dark:border-gray-700 text-gray-500 py-1.5 rounded-lg hover:bg-[#E0DDD7]/50 transition">
-                    👁 Détail
+                    className="flex-1 text-xs border border-[#E0DDD7] dark:border-gray-700 text-gray-500 py-1.5 rounded-lg hover:bg-blue-200 transition flex items-center justify-center gap-2" >
+                    <Info className="w-4 h-4 "/>  Detail
                   </button>
                   <button onClick={() => setFormData(l)}
-                    className="flex-1 text-xs bg-[#0F2D56]/10 dark:bg-gray-700 text-[#0F2D56] dark:text-gray-300 py-1.5 rounded-lg hover:bg-[#0F2D56]/20 transition">
-                    ✏ Modifier
+                    className="flex-1 text-xs bg-[#0F2D56]/10 dark:bg-gray-700 text-[#0F2D56] dark:text-gray-300 py-1.5 rounded-lg hover:bg-green-200 transition flex items-center justify-center gap-2">
+                      <CircleCheck className="w-4 h-4"/> Modification
                   </button>
                   <BoutonSupprimer onClick={() => supprimerLogement(l.id)} />
                 </div>

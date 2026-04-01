@@ -1,6 +1,8 @@
+
 import { useState, useEffect, useRef } from "react";
 import { useApp } from "../context/AppContext";
 import ToggleTheme from "./ToggleTheme";
+import { Bell  } from "lucide-react";
 
 function timeAgo() {
   const mins = Math.floor(Math.random() * 59) + 1;
@@ -117,7 +119,11 @@ export default function Header({
       </div>
 
       {/* Droite */}
+
+      <div className="flex items-center gap-2 md:gap-3"> 
+
       <div className="flex items-center gap-2 md:gap-3">
+
         {/* Date */}
         <span className="text-xs text-white/50 hidden lg:block">
           {new Date().toLocaleDateString("fr-MG", {
@@ -130,13 +136,18 @@ export default function Header({
         {/* Toggle */}
         <ToggleTheme darkMode={darkMode} setDarkMode={setDarkMode} />
 
+        {/* Cloche */}
+        <div className="relative">
+          {/* <button className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-sm transition">  */}
+            
         {/* Cloche + Dropdown */}
         <div className="relative" ref={ref}>
           <button
             onClick={() => setOpen(!open)}
             className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-sm transition"
           >
-            🔔
+            <Bell className="w-8 h-8 text-yellow-400"/>
+
           </button>
           {nonLues > 0 && (
             <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#C9A84C] text-white text-xs rounded-full flex items-center justify-center font-bold">
@@ -201,7 +212,7 @@ export default function Header({
                     </div>
                   ))
                 )}
-              </div>
+                </div>
 
               {/* Pied */}
               <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
@@ -213,6 +224,9 @@ export default function Header({
             </div>
           )}
         </div>
+      </div>
+      </div>
+      
       </div>
     </header>
   );
