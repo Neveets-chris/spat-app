@@ -61,49 +61,229 @@ const LOGEMENTS_INIT = [
 
 const DEPARTEMENTS_INIT = [
   {
-    id: "DEP-001", code: "DSIA", nom: "DSIA",
-    fullName: "Direction Système d'Information et Audit",
-    iconIdx: 0, colorIdx: 0,
-    services: [
-      { id: "SRV-001", name: "Contrôle de gestion", chef: "Marie Dupont",
-        employes: [{ id:"EMP-001", prenom:"Jean",  nom:"Randria", matricule:"MAT-001", categorie:"Cadre moyen",     anciennete:5, situation:"Marié",       nb_enfants:2 }] },
-      { id: "SRV-002", name: "Audit",                   chef: "Paul Rabe",   employes: [] },
-      { id: "SRV-003", name: "Organisation",            chef: "Sara Mbola",  employes: [] },
-      { id: "SRV-004", name: "Informatique et télécom", chef: "Luc Andria",
-        employes: [{ id:"EMP-002", prenom:"Alice", nom:"Ratovo", matricule:"MAT-002", categorie:"Cadre supérieur", anciennete:8, situation:"Célibataire", nb_enfants:0 }] },
+    id: "DEP-001",
+    nom: "Informatique",
+    chef: "RAKOTO Herizo",
+    logement: "LOG-001",
+    employes: [
+      {
+        id: "EMP-001",
+        matricule: "MAT-001",
+        nom: "RAKOTO",
+        prenom: "Herizo",
+        categorie: "Cadre moyen",
+        anciennete: 5,
+        situation: "Marié",
+        nb_enfants: 2,
+      },
+      {
+        id: "EMP-002",
+        matricule: "MAT-002",
+        nom: "SOLO",
+        prenom: "Nirina",
+        categorie: "Agent maîtrise",
+        anciennete: 3,
+        situation: "Célibataire",
+        nb_enfants: 0,
+      },
+      {
+        id: "EMP-003",
+        matricule: "MAT-003",
+        nom: "FARA",
+        prenom: "Tiana",
+        categorie: "Agent exécution",
+        anciennete: 2,
+        situation: "Marié",
+        nb_enfants: 1,
+      },
     ],
   },
   {
-    id: "DEP-002", code: "DRH", nom: "DRH",
-    fullName: "Direction des Ressources Humaines",
-    iconIdx: 1, colorIdx: 1,
-    services: [
-      { id: "SRV-005", name: "Développement des RH",       chef: "Emma Razaf",  employes: [] },
-      { id: "SRV-006", name: "Administration et Paie",     chef: "Noël Ravelo", employes: [] },
-      { id: "SRV-007", name: "Centre de perfectionnement", chef: "Haja Tsirim", employes: [] },
-      { id: "SRV-008", name: "Médecine et pharmacie",      chef: "Dr. Koto",    employes: [] },
+    id: "DEP-002",
+    nom: "Finance",
+    chef: "VOLA Tantely",
+    logement: "LOG-003",
+    employes: [
+      {
+        id: "EMP-004",
+        matricule: "MAT-004",
+        nom: "VOLA",
+        prenom: "Tantely",
+        categorie: "Cadre supérieur",
+        anciennete: 10,
+        situation: "Marié",
+        nb_enfants: 3,
+      },
+      {
+        id: "EMP-005",
+        matricule: "MAT-005",
+        nom: "HARY",
+        prenom: "Fenitra",
+        categorie: "Agent exécution",
+        anciennete: 1,
+        situation: "Célibataire",
+        nb_enfants: 0,
+      },
     ],
   },
   {
-    id: "DEP-003", code: "DAF", nom: "DAF",
-    fullName: "Direction Administrative et Financière",
-    iconIdx: 2, colorIdx: 2,
-    services: [
-      { id: "SRV-009", name: "Finances",     chef: "René Raham", employes: [] },
-      { id: "SRV-010", name: "Recouvrement", chef: "Nivo Andr",  employes: [] },
-      { id: "SRV-011", name: "Comptabilité", chef: "Aina Rado",  employes: [] },
-      { id: "SRV-012", name: "Fiscalité",    chef: "Fara Toto",  employes: [] },
+    id: "DEP-003",
+    nom: "RH",
+    chef: "RABE Jean",
+    logement: "LOG-001",
+    employes: [
+      {
+        id: "EMP-006",
+        matricule: "MAT-006",
+        nom: "RABE",
+        prenom: "Jean",
+        categorie: "Cadre moyen",
+        anciennete: 7,
+        situation: "Marié",
+        nb_enfants: 1,
+      },
+      {
+        id: "EMP-007",
+        matricule: "MAT-007",
+        nom: "NIRY",
+        prenom: "Zo",
+        categorie: "Agent maîtrise",
+        anciennete: 4,
+        situation: "Marié",
+        nb_enfants: 2,
+      },
     ],
   },
   {
-    id: "DEP-004", code: "DT", nom: "DT",
-    fullName: "Direction Technique",
-    iconIdx: 5, colorIdx: 5,
-    services: [
-      { id: "SRV-013", name: "Maintenances",              chef: "Ing. Fara",  employes: [] },
-      { id: "SRV-014", name: "Travaux neufs",              chef: "Arch. Rado", employes: [] },
-      { id: "SRV-015", name: "Études et planification",    chef: "Ing. Meva",  employes: [] },
-      { id: "SRV-016", name: "Installations spécialisées", chef: "Tech. Bodo", employes: [] },
+    id: "DEP-004",
+    nom: "Technique",
+    chef: "ANDO Paul",
+    logement: "LOG-006",
+    employes: [
+      {
+        id: "EMP-008",
+        matricule: "MAT-008",
+        nom: "ANDO",
+        prenom: "Paul",
+        categorie: "Cadre supérieur",
+        anciennete: 8,
+        situation: "Marié",
+        nb_enfants: 2,
+      },
+      {
+        id: "EMP-009",
+        matricule: "MAT-009",
+        nom: "RAVA",
+        prenom: "Luc",
+        categorie: "Agent maîtrise",
+        anciennete: 3,
+        situation: "Célibataire",
+        nb_enfants: 0,
+      },
+      {
+        id: "EMP-010",
+        matricule: "MAT-010",
+        nom: "TINA",
+        prenom: "Rosa",
+        categorie: "Agent exécution",
+        anciennete: 2,
+        situation: "Marié",
+        nb_enfants: 1,
+      },
+    ],
+  },
+  {
+    id: "DEP-005",
+    nom: "Logistique",
+    chef: "SOLA Marie",
+    logement: null,
+    employes: [
+      {
+        id: "EMP-011",
+        matricule: "MAT-011",
+        nom: "SOLA",
+        prenom: "Marie",
+        categorie: "Cadre moyen",
+        anciennete: 6,
+        situation: "Marié",
+        nb_enfants: 2,
+      },
+      {
+        id: "EMP-012",
+        matricule: "MAT-012",
+        nom: "KOTO",
+        prenom: "Brice",
+        categorie: "Agent exécution",
+        anciennete: 1,
+        situation: "Célibataire",
+        nb_enfants: 0,
+      },
+    ],
+  },
+  {
+    id: "DEP-006",
+    nom: "Administration",
+    chef: "ZARA Mamy",
+    logement: "LOG-002",
+    employes: [
+      {
+        id: "EMP-013",
+        matricule: "MAT-013",
+        nom: "ZARA",
+        prenom: "Mamy",
+        categorie: "Cadre supérieur",
+        anciennete: 12,
+        situation: "Marié",
+        nb_enfants: 4,
+      },
+      {
+        id: "EMP-014",
+        matricule: "MAT-014",
+        nom: "DINA",
+        prenom: "Lova",
+        categorie: "Agent maîtrise",
+        anciennete: 5,
+        situation: "Célibataire",
+        nb_enfants: 0,
+      },
+    ],
+  },
+  {
+    id: "DEP-007",
+    nom: "Sécurité",
+    chef: "MIKA Tsiry",
+    logement: null,
+    employes: [
+      {
+        id: "EMP-015",
+        matricule: "MAT-015",
+        nom: "MIKA",
+        prenom: "Tsiry",
+        categorie: "Cadre moyen",
+        anciennete: 4,
+        situation: "Marié",
+        nb_enfants: 1,
+      },
+      {
+        id: "EMP-016",
+        matricule: "MAT-016",
+        nom: "FIDY",
+        prenom: "Aina",
+        categorie: "Agent exécution",
+        anciennete: 2,
+        situation: "Célibataire",
+        nb_enfants: 0,
+      },
+      {
+        id: "EMP-017",
+        matricule: "MAT-017",
+        nom: "LAZA",
+        prenom: "Haja",
+        categorie: "Agent exécution",
+        anciennete: 1,
+        situation: "Marié",
+        nb_enfants: 1,
+      },
     ],
   },
 ];
@@ -359,95 +539,43 @@ export function AppProvider({ children }) {
   const supprimerLogement = (id) =>
     setLogements((prev) => prev.filter((x) => x.id !== id));
 
-// ── Actions Départements ──────────────────────────────────────────────────────
-const ajouterDepartement = (d) => {
-  const newDep = {
-    ...d,
-    id:       genId("DEP", departements),
-    services: [],
+  // ── Actions Départements ──────────────────────────────────────────────────
+  const ajouterDepartement = (d) =>
+    setDepartements((prev) => [
+      ...prev,
+      { ...d, id: genId("DEP", prev), employes: [] },
+    ]);
+  const modifierDepartement = (d) =>
+    setDepartements((prev) =>
+      prev.map((x) => (x.id === d.id ? { ...x, ...d } : x)),
+    );
+  const supprimerDepartement = (id) =>
+    setDepartements((prev) => prev.filter((x) => x.id !== id));
+  const ajouterEmploye = (depId, emp) => {
+    setDepartements((prev) =>
+      prev.map((d) => {
+        if (d.id !== depId) return d;
+        const newId = genId(
+          "EMP",
+          d.employes.map((e) => ({ id: e.id })),
+        );
+        const mat = `MAT-${String(d.employes.length + 1).padStart(3, "0")}`;
+        return {
+          ...d,
+          employes: [...d.employes, { ...emp, id: newId, matricule: mat }],
+        };
+      }),
+    );
   };
-  setDepartements(prev => [...prev, newDep]);
-  // Crée automatiquement une attribution pour ce nouveau département
-  const newAtt = {
-    id:          genId("ATT", attributions),
-    departement: d.nom,
-    logement:    null,
-    date_debut:  new Date().toISOString().split("T")[0],
-    date_fin:    null,
-    statut:      "Disponible",
-    occupants:   [],
-    observations: "Attribution automatique à la création",
+  const supprimerEmploye = (depId, empId) => {
+    setDepartements((prev) =>
+      prev.map((d) =>
+        d.id === depId
+          ? { ...d, employes: d.employes.filter((e) => e.id !== empId) }
+          : d,
+      ),
+    );
   };
-  setAttributions(prev => [...prev, newAtt]);
-};
-
-const modifierDepartement = (d) => {
-  setDepartements(prev => prev.map(x => x.id === d.id ? { ...x, ...d } : x));
-  // Met à jour le nom dans les attributions
-  setAttributions(prev => prev.map(a =>
-    a.departement === departements.find(x => x.id === d.id)?.nom
-      ? { ...a, departement: d.nom }
-      : a
-  ));
-};
-
-const supprimerDepartement = (id) => {
-  const dep = departements.find(d => d.id === id);
-  setDepartements(prev => prev.filter(x => x.id !== id));
-  if (dep) setAttributions(prev => prev.filter(a => a.departement !== dep.nom));
-};
-
-const ajouterService = (depId, service) => {
-  setDepartements(prev => prev.map(d => {
-    if (d.id !== depId) return d;
-    const newSrv = { ...service, id: `SRV-${Date.now()}`, employes: [] };
-    return { ...d, services: [...d.services, newSrv] };
-  }));
-};
-
-const modifierService = (depId, service) => {
-  setDepartements(prev => prev.map(d =>
-    d.id !== depId ? d : { ...d, services: d.services.map(s => s.id === service.id ? { ...s, ...service } : s) }
-  ));
-};
-
-const supprimerService = (depId, serviceId) => {
-  setDepartements(prev => prev.map(d =>
-    d.id !== depId ? d : { ...d, services: d.services.filter(s => s.id !== serviceId) }
-  ));
-};
-
-const ajouterEmployeService = (depId, serviceId, emp) => {
-  const dep = departements.find(d => d.id === depId);
-  const matricule = `MAT-${String(Date.now()).slice(-5)}`;
-  setDepartements(prev => prev.map(d =>
-    d.id !== depId ? d : {
-      ...d,
-      services: d.services.map(s =>
-        s.id !== serviceId ? s : { ...s, employes: [...s.employes, { ...emp, id: `EMP-${Date.now()}`, matricule }] }
-      )
-    }
-  ));
-  // Ajoute l'employé dans l'attribution du département
-  if (dep) {
-    setAttributions(prev => prev.map(a =>
-      a.departement === dep.nom
-        ? { ...a, statut: "Occupé", occupants: [...a.occupants, `${emp.prenom} ${emp.nom}`] }
-        : a
-    ));
-  }
-};
-
-const supprimerEmployeService = (depId, serviceId, empId) => {
-  setDepartements(prev => prev.map(d =>
-    d.id !== depId ? d : {
-      ...d,
-      services: d.services.map(s =>
-        s.id !== serviceId ? s : { ...s, employes: s.employes.filter(e => e.id !== empId) }
-      )
-    }
-  ));
-};
 
   // ── Actions Attributions ──────────────────────────────────────────────────
   const ajouterAttribution = (a) => {
@@ -596,9 +724,11 @@ const supprimerEmployeService = (depId, serviceId, empId) => {
         modifierLogement,
         supprimerLogement,
         // Actions départements
-ajouterDepartement, modifierDepartement, supprimerDepartement,
-ajouterService, modifierService, supprimerService,
-ajouterEmployeService, supprimerEmployeService,
+        ajouterDepartement,
+        modifierDepartement,
+        supprimerDepartement,
+        ajouterEmploye,
+        supprimerEmploye,
         // Actions attributions
         ajouterAttribution,
         modifierAttribution,
