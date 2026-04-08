@@ -1,102 +1,131 @@
 import { useState } from "react";
-import { useApp } from "../context/AppContext";
-import StatutBadge from "../components/StatutBadge";
-import { BoutonSupprimer, BoutonModifier, BoutonDetail, BoutonAjouter, MessageEnvoye, useSuccessMessage } from "../components/BoutonsAction";
+import {
+  BarChart2, User, HandCoins, Scale, Anchor, Wrench, Landmark,
+  ChevronDown, Pencil, Plus, Trash2, Search, Layers, X, Check,
+} from "lucide-react";
 
-const DEP_ICONS  = { Informatique:"💻", Finance:"💰", RH:"👥", Technique:"🔧", Logistique:"📦", Administration:"🏛", Sécurité:"🔒" };
-const DEP_COLORS = { Informatique:"bg-blue-500", Finance:"bg-emerald-500", RH:"bg-purple-500", Technique:"bg-amber-500", Logistique:"bg-teal-500", Administration:"bg-rose-500", Sécurité:"bg-gray-600" };
+const ICON_OPTIONS = [
+  { label: "BarChart2", Icon: BarChart2 },
+  { label: "User", Icon: User },
+  { label: "Handcoins", Icon: HandCoins},
+  { label: "Scale", Icon: Scale },
+  { label: "Anchor", Icon: Anchor },
+  { label: "Wrench", Icon: Wrench },
+  { label: "Landmark", Icon: Landmark},
+];
 
-function Avatar({ nom, prenom, size = "md" }) {
-  const initiales = `${prenom[0]}${nom[0]}`;
-  const colors = ["bg-blue-500","bg-emerald-500","bg-amber-500","bg-rose-500","bg-purple-500","bg-teal-500"];
-  const color  = colors[(nom.charCodeAt(0) + prenom.charCodeAt(0)) % colors.length];
-  const sz     = size === "lg" ? "w-12 h-12 text-base" : size === "sm" ? "w-7 h-7 text-xs" : "w-9 h-9 text-sm";
-  return <div className={`${sz} ${color} rounded-full flex items-center justify-center text-white font-black shrink-0`}>{initiales}</div>;
-}
+const COLOR_OPTIONS = [
+  { color: "#dbeafe", iconColor: "#1e40af" },
+  { color: "#ede9fe", iconColor: "#5b21b6" },
+  { color: "#d1fae5", iconColor: "#065f46" },
+  { color: "#fef3c7", iconColor: "#92400e" },
+  { color: "#cffafe", iconColor: "#0e7490" },
+  { color: "#fee2e2", iconColor: "#991b1b" },
+  { color: "#fce7f3", iconColor: "#9d174d" },
+];
 
-function CategorieBadge({ categorie }) {
-  const styles = {
-    "Cadre supérieur": "bg-purple-100 text-purple-700 border border-purple-200",
-    "Cadre moyen":     "bg-blue-100 text-blue-700 border border-blue-200",
-    "Agent maîtrise":  "bg-amber-100 text-amber-700 border border-amber-200",
-    "Agent exécution": "bg-gray-100 text-gray-600 border border-gray-200",
-  };
-  return <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${styles[categorie] || "bg-gray-100 text-gray-600"}`}>{categorie}</span>;
-}
+const INITIAL_DEPARTMENTS = [
+  {
+    code: "DSIA", name: "DSIA",
+    fullName: "Direction Système d'Information et Audit",
+    Icon: BarChart2, color: "#dbeafe", iconColor: "#1e40af",
+    services: ["Contrôle de gestion", "Audit", "Organisation", "Informatique et télécom"],
+  },
+  {
+    code: "DRH", name: "DRH",
+    fullName: "Direction des Ressources Humaines",
+    Icon: User, color: "#ede9fe", iconColor: "#5b21b6",
+    services: ["Département Développement des RH", "Département Administration et Paie", "Centre de perfectionnement et Appui RH", "Département Médecine et pharmacie"],
+  },
+  {
+    code: "DAF", name: "DAF",
+    fullName: "Direction Administrative et Financière",
+    Icon: HandCoins, color: "#d1fae5", iconColor: "#065f46",
+    services: ["Finances", "Recouvrement", "Comptabilité", "Comptabilité en devises et suivi de projets", "Fiscalité"],
+  },
+  {
+    code: "DAJPP", name: "DAJPP",
+    fullName: "Direction des Affaires Juridiques et du Patrimoine Portuaire",
+    Icon: Scale, color: "#fef3c7", iconColor: "#92400e",
+    services: ["Contrats et Patrimoine Portuaire", "Analyse économique et expansion", "Contentieux", "Facturation"],
+  },
+  {
+    code: "CAP", name: "Direction CAP",
+    fullName: "Direction Capitainerie et Affaires Portuaires",
+    Icon: Anchor, color: "#cffafe", iconColor: "#0e7490",
+    services: ["Trafic maritime", "Police portuaire", "Sécurité espace maritime, secours et intervention", "Armement"],
+  },
+  {
+    code: "DT", name: "DT",
+    fullName: "Direction Technique",
+    Icon: Wrench, color: "#fee2e2", iconColor: "#991b1b",
+    services: ["Maintenances", "Travaux neufs", "Études et planification", "Installation et matériels spécialisés"],
+  },
+  {
+    code: "DAGE", name: "DAGE",
+    fullName: "Direction Administration Générale et Engagement",
+    Icon: Landmark, color: "#fce7f3", iconColor: "#9d174d",
+    services: ["Marketing et Développement", "HST E", "Engagement social (RSE)", "CSCS, Com interne et relations avec les organisations"],
+  },
+];
 
-function ModalDetailEmploye({ employe, depNom, logement, onClose }) {
-  if (!employe) return null;
+/* ─── Modal ─────────────────────────────────────────────────────────── */
+function Modal({ title, onClose, onConfirm, children, confirmLabel = "Ajouter", confirmDisabled = false }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      <div className="bg-[#F7F5F0] dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md p-6 border border-[#E0DDD7] dark:border-gray-700">
-        <div className="flex justify-between items-start mb-5">
-          <div className="flex items-center gap-4">
-            <Avatar nom={employe.nom} prenom={employe.prenom} size="lg" />
-            <div>
-              <p className="font-mono text-xs text-gray-400">{employe.matricule}</p>
-              <h2 className="text-xl font-black text-[#0F2D56] dark:text-white">{employe.prenom} {employe.nom}</h2>
-              <CategorieBadge categorie={employe.categorie} />
-            </div>
-          </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+    <div
+      style={{
+        position: "fixed", inset: 0, zIndex: 1000,
+        background: "rgba(0,0,0,0.35)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "16px",
+      }}
+      onClick={onClose}
+    >
+      <div
+        style={{
+          background: "#ffffff", borderRadius: "16px",
+          width: "100%", maxWidth: "440px",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.18)",
+          overflow: "hidden",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Modal header */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 20px 14px" }}>
+          <span style={{ fontSize: "16px", fontWeight: "700", color: "#111827" }}>{title}</span>
+          <button
+            onClick={onClose}
+            style={{ background: "#f3f4f6", border: "none", borderRadius: "7px", width: "30px", height: "30px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#6b7280" }}
+          >
+            <X size={15} />
+          </button>
         </div>
-        <div className="space-y-0 text-sm">
-          {[
-            ["Département",     depNom],
-            ["Ancienneté",      `${employe.anciennete} ans`],
-            ["Situation",       employe.situation],
-            ["Enfants",         employe.nb_enfants],
-            ["Logement équipe", logement || "Non attribué"],
-          ].map(([label, val]) => (
-            <div key={label} className="flex justify-between py-2.5 border-b border-[#E0DDD7] dark:border-gray-700">
-              <span className="text-gray-400">{label}</span>
-              <span className={`font-semibold ${val === "Non attribué" ? "text-rose-400" : "text-[#0F2D56] dark:text-gray-200"}`}>{val}</span>
-            </div>
-          ))}
-          <div className="flex justify-between py-2.5">
-            <span className="text-gray-400">Éligibilité</span>
-            <StatutBadge statut={employe.anciennete >= 2 ? "Disponible" : "En attente"} />
-          </div>
-        </div>
-        <button onClick={onClose} className="mt-6 w-full py-2 bg-[#0F2D56] dark:bg-gray-700 text-white rounded-xl font-semibold hover:bg-[#1a3f75] transition">Fermer</button>
-      </div>
-    </div>
-  );
-}
 
-function ModalFormDep({ dep, logements, onClose, onSave }) {
-  const [form, setForm] = useState(dep || { nom: "", chef: "", logement: null, employes: [] });
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      <div className="bg-[#F7F5F0] dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md p-6 border border-[#E0DDD7] dark:border-gray-700">
-        <div className="flex justify-between items-center mb-5">
-          <h2 className="text-lg font-black text-[#0F2D56] dark:text-white">{dep ? "Modifier le département" : "Ajouter un département"}</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+        <div style={{ padding: "0 20px 20px", display: "flex", flexDirection: "column", gap: "14px" }}>
+          {children}
         </div>
-        <div className="space-y-3">
-          <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Nom</label>
-            <input value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })}
-              className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
-          </div>
-          <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Chef</label>
-            <input value={form.chef} onChange={e => setForm({ ...form, chef: e.target.value })}
-              className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
-          </div>
-          <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Logement attribué</label>
-            <select value={form.logement || ""} onChange={e => setForm({ ...form, logement: e.target.value || null })}
-              className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]">
-              <option value="">Aucun</option>
-              {logements.map(l => <option key={l.id} value={l.id}>{l.id} — {l.type}</option>)}
-            </select>
-          </div>
-        </div>
-        <div className="flex gap-3 mt-6">
-          <button onClick={onClose} className="flex-1 py-2 border border-[#E0DDD7] dark:border-gray-700 text-gray-500 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition text-sm">Annuler</button>
-          <button onClick={() => { onSave(form); onClose(); }} className="flex-1 py-2 bg-[#0F2D56] text-white rounded-xl font-semibold hover:bg-[#1a3f75] transition text-sm">
-            {dep ? "Enregistrer" : "Ajouter"}
+
+        {/* Footer */}
+        <div style={{ display: "flex", gap: "8px", padding: "14px 20px", borderTop: "1px solid #f3f4f6", justifyContent: "flex-end" }}>
+          <button
+            onClick={onClose}
+            style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid #e5e7eb", background: "#ffffff", color: "#374151", fontSize: "13px", fontWeight: "500", cursor: "pointer" }}
+          >
+            Annuler
+          </button>
+          <button
+            onClick={onConfirm}
+            disabled={confirmDisabled}
+            style={{
+              padding: "8px 18px", borderRadius: "8px", border: "none",
+              background: confirmDisabled ? "#d1d5db" : "#1e40af",
+              color: "#ffffff", fontSize: "13px", fontWeight: "600",
+              cursor: confirmDisabled ? "not-allowed" : "pointer",
+              display: "flex", alignItems: "center", gap: "6px",
+            }}
+          >
+            <Check size={13} />
+            {confirmLabel}
           </button>
         </div>
       </div>
@@ -104,194 +133,323 @@ function ModalFormDep({ dep, logements, onClose, onSave }) {
   );
 }
 
-function ModalFormEmploye({ depNom, onClose, onSave }) {
-  const [form, setForm] = useState({ nom: "", prenom: "", categorie: "Agent exécution", anciennete: 0, situation: "Célibataire", nb_enfants: 0 });
+function InputField({ label, value, onChange, placeholder }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      <div className="bg-[#F7F5F0] dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md p-6 border border-[#E0DDD7] dark:border-gray-700 max-h-[90vh] overflow-y-auto">
-        <div className="flex justify-between items-center mb-2">
-          <div>
-            <h2 className="text-lg font-black text-[#0F2D56] dark:text-white">Ajouter un employé</h2>
-            <p className="text-xs text-gray-400">Département : {depNom}</p>
-          </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+    <div>
+      <label style={{ fontSize: "12px", fontWeight: "600", color: "#374151", display: "block", marginBottom: "6px" }}>
+        {label}
+      </label>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        style={{
+          width: "100%", padding: "9px 12px", borderRadius: "8px",
+          border: "1px solid #e5e7eb", fontSize: "13px",
+          color: "#111827", outline: "none", boxSizing: "border-box",
+          fontFamily: "'Segoe UI', sans-serif",
+        }}
+        onFocus={(e) => (e.target.style.borderColor = "#1e40af")}
+        onBlur={(e) => (e.target.style.borderColor = "#e5e7eb")}
+      />
+    </div>
+  );
+}
+
+/* ─── Department Card ────────────────────────────────────────────────── */
+function DepartmentCard({ dept, onAddService }) {
+  const [open, setOpen] = useState(false);
+  const { Icon } = dept;
+
+  return (
+    <div
+      style={{
+        background: "#ffffff", border: "1px solid #e5e7eb", borderRadius: "14px",
+        overflow: "hidden",
+        boxShadow: open ? "0 4px 20px rgba(0,0,0,0.07)" : "0 1px 4px rgba(0,0,0,0.04)",
+        transition: "box-shadow 0.25s ease",
+      }}
+    >
+      {/* Header */}
+      <div
+        onClick={() => setOpen((v) => !v)}
+        style={{
+          display: "flex", alignItems: "center", gap: "14px",
+          padding: "14px 18px", cursor: "pointer", userSelect: "none",
+          background: open ? "#fafafa" : "#ffffff", transition: "background 0.2s",
+        }}
+      >
+        <div style={{ width: "44px", height: "44px", borderRadius: "11px", background: dept.color, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <Icon size={20} color={dept.iconColor} strokeWidth={1.8} />
         </div>
-        <div className="space-y-3 mt-4">
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Prénom</label>
-              <input value={form.prenom} onChange={e => setForm({ ...form, prenom: e.target.value })}
-                className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
-            </div>
-            <div>
-              <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Nom</label>
-              <input value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })}
-                className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
-            </div>
+
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+            <span style={{ fontSize: "15px", fontWeight: "700", color: "#111827" }}>{dept.name}</span>
+            <span style={{ fontSize: "11px", fontWeight: "600", color: dept.iconColor, background: dept.color, padding: "2px 8px", borderRadius: "20px" }}>
+              {dept.services.length} services
+            </span>
           </div>
-          <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Catégorie</label>
-            <select value={form.categorie} onChange={e => setForm({ ...form, categorie: e.target.value })}
-              className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]">
-              {["Cadre supérieur","Cadre moyen","Agent maîtrise","Agent exécution"].map(c => <option key={c}>{c}</option>)}
-            </select>
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Ancienneté</label>
-              <input type="number" value={form.anciennete} onChange={e => setForm({ ...form, anciennete: Number(e.target.value) })}
-                className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
-            </div>
-            <div>
-              <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Nb enfants</label>
-              <input type="number" value={form.nb_enfants} onChange={e => setForm({ ...form, nb_enfants: Number(e.target.value) })}
-                className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
-            </div>
-          </div>
-          <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Situation</label>
-            <select value={form.situation} onChange={e => setForm({ ...form, situation: e.target.value })}
-              className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]">
-              {["Célibataire","Marié","Divorcé","Veuf"].map(s => <option key={s}>{s}</option>)}
-            </select>
+          <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "2px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            {dept.fullName}
           </div>
         </div>
-        <div className="flex gap-3 mt-6">
-          <button onClick={onClose} className="flex-1 py-2 border border-[#E0DDD7] dark:border-gray-700 text-gray-500 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition text-sm">Annuler</button>
-          <button onClick={() => { if (!form.nom || !form.prenom) return alert("Nom et prénom requis"); onSave(form); onClose(); }}
-            className="flex-1 py-2 bg-[#0F2D56] text-white rounded-xl font-semibold hover:bg-[#1a3f75] transition text-sm">Ajouter</button>
+
+        {/* Actions */}
+        <div style={{ display: "flex", alignItems: "center", gap: "6px", flexShrink: 0 }} onClick={(e) => e.stopPropagation()}>
+          <button title="Modifier" style={{ width: "30px", height: "30px", borderRadius: "7px", border: "none", cursor: "pointer", background: "#d1fae5", color: "#065f46", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <Pencil size={13} strokeWidth={2} />
+          </button>
+          <button
+            title="Ajouter un service"
+            onClick={() => onAddService(dept.code)}
+            style={{ width: "30px", height: "30px", borderRadius: "7px", border: "none", cursor: "pointer", background: "#dbeafe", color: "#1e40af", display: "flex", alignItems: "center", justifyContent: "center" }}
+          >
+            <Plus size={15} strokeWidth={2.5} />
+          </button>
+          <button title="Supprimer" style={{ width: "30px", height: "30px", borderRadius: "7px", border: "none", cursor: "pointer", background: "#fee2e2", color: "#991b1b", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <Trash2 size={13} strokeWidth={2} />
+          </button>
+        </div>
+
+        <div style={{ width: "30px", height: "30px", borderRadius: "7px", border: "1px solid #e5e7eb", background: "transparent", color: "#6b7280", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "transform 0.3s ease", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}>
+          <ChevronDown size={15} strokeWidth={2} />
+        </div>
+      </div>
+
+      {/* Dropdown */}
+      <div style={{ maxHeight: open ? `${dept.services.length * 56 + 52}px` : "0px", overflow: "hidden", transition: "max-height 0.35s ease", borderTop: open ? "1px solid #f3f4f6" : "none" }}>
+        <div style={{ padding: "10px 16px 16px" }}>
+          <div style={{ fontSize: "10px", fontWeight: "700", color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.08em", padding: "4px 2px 8px", display: "flex", alignItems: "center", gap: "6px" }}>
+            <Layers size={11} color="#9ca3af" />
+            Services rattachés
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            {dept.services.map((service, si) => (
+              <div
+                key={si}
+                style={{ display: "flex", alignItems: "center", gap: "12px", padding: "10px 14px", borderRadius: "9px", background: "#f9fafb", border: "1px solid #f3f4f6", transition: "background 0.15s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "#f0f2f5")}
+                onMouseLeave={(e) => (e.currentTarget.style.background = "#f9fafb")}
+              >
+                <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: dept.iconColor, flexShrink: 0, opacity: 0.65 }} />
+                <span style={{ fontSize: "13px", fontWeight: "500", color: "#1f2937", flex: 1 }}>{service}</span>
+                <span style={{ fontSize: "11px", color: dept.iconColor, background: dept.color, padding: "2px 8px", borderRadius: "20px", fontWeight: "600" }}>S{si + 1}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default function Employes() {
-  const { departements, logements, ajouterDepartement, modifierDepartement, supprimerDepartement, ajouterEmploye, supprimerEmploye } = useApp();
-  const [search, setSearch]         = useState("");
-  const [ouverts, setOuverts]       = useState({});
-  const [detail, setDetail]         = useState(null);
-  const [formDep, setFormDep]       = useState(null);
-  const [isAdding, setIsAdding]     = useState(false);
-  const [addingEmpDep, setAddingEmpDep] = useState(null);
-  const { actif: successActif, trigger: triggerSuccess } = useSuccessMessage();
+/* ─── Main ───────────────────────────────────────────────────────────── */
+export default function DepartementsSPAT() {
+  const [departments, setDepartments] = useState(INITIAL_DEPARTMENTS);
+  const [search, setSearch] = useState("");
 
-  const toggle = (id) => setOuverts(o => ({ ...o, [id]: !o[id] }));
+  // Modal state
+  const [modal, setModal] = useState(null);
+  // modal = { type: "service", deptCode } | { type: "department" }
 
-  const filtered = departements.filter(d =>
-    d.nom.toLowerCase().includes(search.toLowerCase()) ||
-    d.chef.toLowerCase().includes(search.toLowerCase()) ||
-    d.employes.some(e => `${e.nom} ${e.prenom}`.toLowerCase().includes(search.toLowerCase()))
+  // Add service form
+  const [newServiceName, setNewServiceName] = useState("");
+
+  // Add department form
+  const [newDept, setNewDept] = useState({ code: "", name: "", fullName: "", selectedIcon: 0, selectedColor: 0 });
+
+  const openAddService = (deptCode) => {
+    setNewServiceName("");
+    setModal({ type: "service", deptCode });
+  };
+
+  const openAddDepartment = () => {
+    setNewDept({ code: "", name: "", fullName: "", selectedIcon: 0, selectedColor: 0 });
+    setModal({ type: "department" });
+  };
+
+  const closeModal = () => setModal(null);
+
+  const confirmAddService = () => {
+    if (!newServiceName.trim()) return;
+    setDepartments((prev) =>
+      prev.map((d) =>
+        d.code === modal.deptCode
+          ? { ...d, services: [...d.services, newServiceName.trim()] }
+          : d
+      )
+    );
+    closeModal();
+  };
+
+  const confirmAddDepartment = () => {
+    if (!newDept.code.trim() || !newDept.name.trim()) return;
+    const { Icon } = ICON_OPTIONS[newDept.selectedIcon];
+    const { color, iconColor } = COLOR_OPTIONS[newDept.selectedColor];
+    setDepartments((prev) => [
+      ...prev,
+      {
+        code: newDept.code.trim(),
+        name: newDept.name.trim(),
+        fullName: newDept.fullName.trim() || newDept.name.trim(),
+        Icon,
+        color,
+        iconColor,
+        services: [],
+      },
+    ]);
+    closeModal();
+  };
+
+  const filtered = departments.filter(
+    (d) =>
+      d.name.toLowerCase().includes(search.toLowerCase()) ||
+      d.fullName.toLowerCase().includes(search.toLowerCase()) ||
+      d.services.some((s) => s.toLowerCase().includes(search.toLowerCase()))
   );
 
-  const handleSaveDep = (form) => {
-    if (formDep) modifierDepartement(form);
-    else { ajouterDepartement(form); triggerSuccess(); }
-  };
-
-  const handleAddEmploye = (depId, emp) => {
-    ajouterEmploye(depId, emp);
-    triggerSuccess();
-  };
+  const totalServices = departments.reduce((acc, d) => acc + d.services.length, 0);
 
   return (
-    <div className="space-y-5">
-      <MessageEnvoye actif={successActif} />
+    <div style={{ fontFamily: "'Segoe UI', sans-serif", background: "#f3f4f6", minHeight: "100vh", padding: "24px" }}>
+      <div style={{ maxWidth: "860px", margin: "0 auto" }}>
 
-      {detail && <ModalDetailEmploye employe={detail.employe} depNom={detail.depNom} logement={detail.logement} onClose={() => setDetail(null)} />}
-      {(formDep || isAdding) && (
-        <ModalFormDep dep={formDep} logements={logements}
-          onClose={() => { setFormDep(null); setIsAdding(false); }}
-          onSave={handleSaveDep} />
-      )}
-      {addingEmpDep && (
-        <ModalFormEmploye
-          depNom={departements.find(d => d.id === addingEmpDep)?.nom}
-          onClose={() => setAddingEmpDep(null)}
-          onSave={(emp) => handleAddEmploye(addingEmpDep, emp)} />
-      )}
+        {/* Page header */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px", flexWrap: "wrap", gap: "12px" }}>
+          <div>
+            <h1 style={{ fontSize: "22px", fontWeight: "700", color: "#111827", margin: 0 }}>
+              Gestion des départements
+            </h1>
+            <p style={{ fontSize: "13px", color: "#6b7280", marginTop: "4px" }}>
+              {departments.length} directions — {totalServices} services au total
+            </p>
+          </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher département ou employé..."
-            className="border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#0F2D56] w-72" />
-          <span className="text-xs text-gray-400">{filtered.length} département{filtered.length > 1 ? "s" : ""}</span>
-        </div>
-        <button onClick={() => setIsAdding(true)} className="bg-[#0F2D56] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#1a3f75] transition">
-          + Département
-        </button>
-      </div>
-
-      <div className="space-y-4">
-        {filtered.map((dep) => {
-          const ouvert = ouverts[dep.id];
-          const couleur = DEP_COLORS[dep.nom] || "bg-gray-500";
-          const icon    = DEP_ICONS[dep.nom]  || "🏢";
-          const logement = logements.find(l => l.id === dep.logement);
-
-          return (
-            <div key={dep.id} className="bg-[#F7F5F0] dark:bg-gray-900 rounded-2xl border border-[#E0DDD7] dark:border-gray-700 shadow-sm overflow-hidden">
-              <div className="flex items-center justify-between px-5 py-4">
-                <div className="flex items-center gap-4 cursor-pointer flex-1" onClick={() => toggle(dep.id)}>
-                  <div className={`w-10 h-10 ${couleur} rounded-xl flex items-center justify-center text-xl shrink-0`}>{icon}</div>
-                  <div>
-                    <p className="font-black text-[#0F2D56] dark:text-white text-base">{dep.nom}</p>
-                    <p className="text-xs text-gray-400">Chef : {dep.chef} — {dep.employes.length} employé{dep.employes.length > 1 ? "s" : ""}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className={`px-3 py-1 rounded-lg text-xs font-semibold ${dep.logement ? "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400" : "bg-rose-100 dark:bg-rose-900/30 text-rose-500"}`}>
-                    🏠 {logement ? `${dep.logement} — ${logement.type}` : "Non attribué"}
-                  </div>
-                  <BoutonModifier onClick={() => setFormDep(dep)} />
-                  <BoutonAjouter texte="Ajouter un employé" onClick={() => { setOuverts(o => ({ ...o, [dep.id]: true })); setAddingEmpDep(dep.id); }} />
-                  <BoutonSupprimer onClick={() => supprimerDepartement(dep.id)} />
-                  <button onClick={() => toggle(dep.id)}
-                    className="w-8 h-8 rounded-lg bg-[#0F2D56]/10 dark:bg-gray-700 flex items-center justify-center text-[#0F2D56] dark:text-gray-300 hover:bg-[#0F2D56]/20 transition text-xs font-bold">
-                    {ouvert ? "▲" : "▼"}
-                  </button>
-                </div>
-              </div>
-
-              {ouvert && (
-                <div className="border-t border-[#E0DDD7] dark:border-gray-700">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="bg-[#0F2D56]/5 dark:bg-gray-800">
-                        {["Employé","Matricule","Catégorie","Ancienneté","Situation",""].map(h => (
-                          <th key={h} className="text-left px-5 py-2.5 text-xs text-gray-400 font-semibold uppercase tracking-wide">{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {dep.employes.map((e) => (
-                        <tr key={e.id} className="border-t border-[#E0DDD7]/50 dark:border-gray-800 hover:bg-[#0F2D56]/5 dark:hover:bg-gray-800 transition">
-                          <td className="px-5 py-3">
-                            <div className="flex items-center gap-2">
-                              <Avatar nom={e.nom} prenom={e.prenom} size="sm" />
-                              <span className="font-semibold text-[#0F2D56] dark:text-white">{e.prenom} {e.nom}</span>
-                            </div>
-                          </td>
-                          <td className="px-5 py-3 font-mono text-xs text-gray-400">{e.matricule}</td>
-                          <td className="px-5 py-3"><CategorieBadge categorie={e.categorie} /></td>
-                          <td className="px-5 py-3 text-xs text-gray-500 dark:text-gray-400">{e.anciennete} ans</td>
-                          <td className="px-5 py-3 text-xs text-gray-500 dark:text-gray-400">{e.situation}</td>
-                          <td className="px-5 py-3">
-                            <div className="flex items-center gap-2">
-                              <BoutonDetail onClick={() => setDetail({ employe: e, depNom: dep.nom, logement: dep.logement })} />
-                              <BoutonSupprimer onClick={() => supprimerEmploye(dep.id, e.id)} />
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
+          <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
+            {/* Search */}
+            <div style={{ position: "relative" }}>
+              <Search size={14} color="#9ca3af" style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }} />
+              <input
+                type="text"
+                placeholder="Rechercher..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                style={{ padding: "9px 14px 9px 30px", borderRadius: "9px", border: "1px solid #e5e7eb", fontSize: "13px", background: "#ffffff", color: "#111827", outline: "none", width: "220px", fontFamily: "'Segoe UI', sans-serif" }}
+              />
             </div>
-          );
-        })}
+
+            {/* Add department button */}
+            <button
+              onClick={openAddDepartment}
+              style={{ display: "flex", alignItems: "center", gap: "6px", padding: "9px 16px", borderRadius: "9px", border: "none", background: "#1e40af", color: "#ffffff", fontSize: "13px", fontWeight: "600", cursor: "pointer" }}
+            >
+              <Plus size={15} strokeWidth={2.5} />
+              Nouveau département
+            </button>
+          </div>
+        </div>
+
+        {/* List */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          {filtered.length === 0 ? (
+            <div style={{ textAlign: "center", padding: "48px 24px", color: "#9ca3af", fontSize: "14px", background: "#fff", borderRadius: "14px", border: "1px solid #e5e7eb" }}>
+              Aucun résultat pour « {search} »
+            </div>
+          ) : (
+            filtered.map((dept) => (
+              <DepartmentCard key={dept.code} dept={dept} onAddService={openAddService} />
+            ))
+          )}
+        </div>
       </div>
+
+      {/* ── Modal: Add service ── */}
+      {modal?.type === "service" && (
+        <Modal
+          title={`Ajouter un service — ${departments.find((d) => d.code === modal.deptCode)?.name}`}
+          onClose={closeModal}
+          onConfirm={confirmAddService}
+          confirmDisabled={!newServiceName.trim()}
+        >
+          <InputField
+            label="Nom du service"
+            value={newServiceName}
+            onChange={setNewServiceName}
+            placeholder="Ex : Contrôle qualité"
+          />
+        </Modal>
+      )}
+
+      {/* ── Modal: Add department ── */}
+      {modal?.type === "department" && (
+        <Modal
+          title="Nouveau département"
+          onClose={closeModal}
+          onConfirm={confirmAddDepartment}
+          confirmDisabled={!newDept.code.trim() || !newDept.name.trim()}
+        >
+          <InputField label="Code" value={newDept.code} onChange={(v) => setNewDept((p) => ({ ...p, code: v }))} placeholder="Ex : DG" />
+          <InputField label="Nom affiché" value={newDept.name} onChange={(v) => setNewDept((p) => ({ ...p, name: v }))} placeholder="Ex : Direction Générale" />
+          <InputField label="Nom complet (optionnel)" value={newDept.fullName} onChange={(v) => setNewDept((p) => ({ ...p, fullName: v }))} placeholder="Ex : Direction Générale et Stratégie" />
+
+          {/* Icon picker */}
+          <div>
+            <label style={{ fontSize: "12px", fontWeight: "600", color: "#374151", display: "block", marginBottom: "8px" }}>Icône</label>
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+              {ICON_OPTIONS.map(({ label, Icon }, i) => (
+                <button
+                  key={label}
+                  onClick={() => setNewDept((p) => ({ ...p, selectedIcon: i }))}
+                  style={{
+                    width: "38px", height: "38px", borderRadius: "9px", border: newDept.selectedIcon === i ? "2px solid #1e40af" : "1px solid #e5e7eb",
+                    background: newDept.selectedIcon === i ? "#dbeafe" : "#f9fafb",
+                    color: newDept.selectedIcon === i ? "#1e40af" : "#6b7280",
+                    display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer",
+                  }}
+                >
+                  <Icon size={17} strokeWidth={1.8} />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Color picker */}
+          <div>
+            <label style={{ fontSize: "12px", fontWeight: "600", color: "#374151", display: "block", marginBottom: "8px" }}>Couleur</label>
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+              {COLOR_OPTIONS.map(({ color, iconColor }, i) => (
+                <button
+                  key={i}
+                  onClick={() => setNewDept((p) => ({ ...p, selectedColor: i }))}
+                  style={{
+                    width: "32px", height: "32px", borderRadius: "50%",
+                    background: color, border: newDept.selectedColor === i ? `3px solid ${iconColor}` : "2px solid transparent",
+                    cursor: "pointer", outline: "none",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}
+                >
+                  {newDept.selectedColor === i && <Check size={13} color={iconColor} strokeWidth={3} />}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Preview */}
+          {(newDept.name || newDept.code) && (
+            <div style={{ padding: "12px 14px", borderRadius: "10px", background: "#f9fafb", border: "1px solid #f3f4f6", display: "flex", alignItems: "center", gap: "12px" }}>
+              <div style={{ width: "38px", height: "38px", borderRadius: "9px", background: COLOR_OPTIONS[newDept.selectedColor].color, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                {(() => { const { Icon } = ICON_OPTIONS[newDept.selectedIcon]; return <Icon size={18} color={COLOR_OPTIONS[newDept.selectedColor].iconColor} strokeWidth={1.8} />; })()}
+              </div>
+              <div>
+                <div style={{ fontSize: "14px", fontWeight: "700", color: "#111827" }}>{newDept.name || "—"}</div>
+                <div style={{ fontSize: "11px", color: "#6b7280" }}>{newDept.fullName || newDept.code || "—"}</div>
+              </div>
+            </div>
+          )}
+        </Modal>
+      )}
     </div>
   );
 }

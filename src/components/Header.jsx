@@ -2,7 +2,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useApp } from "../context/AppContext";
 import ToggleTheme from "./ToggleTheme";
-import { Bell  } from "lucide-react";
+import { Bell , TriangleAlert , Coins , Axe ,Warehouse} from "lucide-react";
+
 
 function timeAgo() {
   const mins = Math.floor(Math.random() * 59) + 1;
@@ -39,7 +40,7 @@ export default function Header({
       .map((d) => ({
         id: `dep-${d.id}`,
         type: "warning",
-        icon: "💰",
+        icon: Coins,
         titre: "Dépense en attente",
         message: `${d.description} — ${new Intl.NumberFormat("fr-MG").format(d.montant)} Ar`,
         temps: timeAgo(),
@@ -51,7 +52,7 @@ export default function Header({
       .map((m) => ({
         id: `mat-${m.id}`,
         type: "danger",
-        icon: "⚠️",
+        icon: TriangleAlert,
         titre: "Stock bas",
         message: `${m.nom} — ${m.stock} ${m.unite} restants (seuil : ${m.seuil})`,
         temps: timeAgo(),
@@ -63,7 +64,7 @@ export default function Header({
       .map((l) => ({
         id: `log-${l.id}`,
         type: "info",
-        icon: "🔧",
+        icon: Axe,
         titre: "Logement en maintenance",
         message: `${l.id} — ${l.type} — ${l.localisation}`,
         temps: timeAgo(),
@@ -76,7 +77,7 @@ export default function Header({
       .map((a) => ({
         id: `att-${a.id}`,
         type: "success",
-        icon: "🏠",
+        icon: Warehouse,
         titre: "Logement occupé",
         message: `${a.departement} occupe ${a.logement} — ${a.occupants.length} occupant(s)`,
         temps: timeAgo(),
@@ -191,7 +192,9 @@ export default function Header({
                       className={`px-4 py-3 cursor-pointer hover:brightness-95 transition ${typeStyles[n.type]} ${lues[n.id] ? "opacity-50" : ""}`}
                     >
                       <div className="flex items-start gap-3">
-                        <span className="text-lg shrink-0">{n.icon}</span>
+                        <span className="shrink-0">
+                          {typeof n.icon === "string" ? (<span className="text-lg">{n.icon}</span>) : ( <n.icon className="w-5 h-5 text-rose-500" /> )}
+                        </span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-2">
                             <p className="text-xs font-bold text-gray-800 dark:text-white">

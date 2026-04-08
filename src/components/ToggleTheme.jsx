@@ -3,7 +3,7 @@ import { SunMedium ,Moon } from "lucide-react";
 
 export default function ToggleTheme({ darkMode, setDarkMode }) {
   const Actuel = darkMode ? Moon  : SunMedium;
-  const Suivant = darkMode ? SunMedium :Moon;
+  const Suivant = darkMode ? SunMedium : Moon;
 
   return (
     <div className="container-button" onClick={() => setDarkMode(!darkMode)}>
