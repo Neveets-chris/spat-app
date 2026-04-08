@@ -1,102 +1,94 @@
 import { useState } from "react";
 import { useApp } from "../context/AppContext";
-import StatutBadge from "../components/StatutBadge";
-import { BoutonSupprimer, BoutonModifier, BoutonDetail, BoutonAjouter, MessageEnvoye, useSuccessMessage } from "../components/BoutonsAction";
+import {
+  BarChart2, Users, Wallet, Scale, Anchor, Wrench, Building2,
+  ChevronDown, Pencil, Plus, Trash2, Search, Layers, X, Check, Eye,
+  Shield, Laptop, HandCoins, Globe, Truck, FlaskConical, BookOpen,
+  Headphones, Megaphone, Leaf, Cpu, Database, FileText, Star,
+  Zap, Package, Settings, Map, Phone, Camera, Music, Heart,
+} from "lucide-react";
 
-const DEP_ICONS  = { Informatique:"💻", Finance:"💰", RH:"👥", Technique:"🔧", Logistique:"📦", Administration:"🏛", Sécurité:"🔒" };
-const DEP_COLORS = { Informatique:"bg-blue-500", Finance:"bg-emerald-500", RH:"bg-purple-500", Technique:"bg-amber-500", Logistique:"bg-teal-500", Administration:"bg-rose-500", Sécurité:"bg-gray-600" };
+const ICON_OPTIONS = [
+  { label:"BarChart2",    Icon:BarChart2    },{ label:"Users",        Icon:Users        },
+  { label:"Wallet",       Icon:Wallet       },{ label:"Scale",        Icon:Scale        },
+  { label:"Anchor",       Icon:Anchor       },{ label:"Wrench",       Icon:Wrench       },
+  { label:"Building2",    Icon:Building2    },{ label:"Shield",       Icon:Shield       },
+  { label:"Laptop",       Icon:Laptop       },{ label:"HandCoins",    Icon:HandCoins    },
+  { label:"Globe",        Icon:Globe        },{ label:"Truck",        Icon:Truck        },
+  { label:"FlaskConical", Icon:FlaskConical },{ label:"BookOpen",     Icon:BookOpen     },
+  { label:"Headphones",   Icon:Headphones   },{ label:"Megaphone",    Icon:Megaphone    },
+  { label:"Leaf",         Icon:Leaf         },{ label:"Cpu",          Icon:Cpu          },
+  { label:"Database",     Icon:Database     },{ label:"FileText",     Icon:FileText     },
+  { label:"Star",         Icon:Star         },{ label:"Zap",          Icon:Zap          },
+  { label:"Package",      Icon:Package      },{ label:"Settings",     Icon:Settings     },
+  { label:"Map",          Icon:Map          },{ label:"Phone",        Icon:Phone        },
+  { label:"Camera",       Icon:Camera       },{ label:"Music",        Icon:Music        },
+  { label:"Heart",        Icon:Heart        },
+];
 
-function Avatar({ nom, prenom, size = "md" }) {
-  const initiales = `${prenom[0]}${nom[0]}`;
-  const colors = ["bg-blue-500","bg-emerald-500","bg-amber-500","bg-rose-500","bg-purple-500","bg-teal-500"];
-  const color  = colors[(nom.charCodeAt(0) + prenom.charCodeAt(0)) % colors.length];
-  const sz     = size === "lg" ? "w-12 h-12 text-base" : size === "sm" ? "w-7 h-7 text-xs" : "w-9 h-9 text-sm";
-  return <div className={`${sz} ${color} rounded-full flex items-center justify-center text-white font-black shrink-0`}>{initiales}</div>;
+const COLOR_TEINTES = [
+  { label:"Bleu",   bgLight:"#dbeafe", bgDark:"#1e3a5f", iconLight:"#1e40af", iconDark:"#93c5fd" },
+  { label:"Violet", bgLight:"#ede9fe", bgDark:"#3b1f6e", iconLight:"#5b21b6", iconDark:"#c4b5fd" },
+  { label:"Vert",   bgLight:"#d1fae5", bgDark:"#064e3b", iconLight:"#065f46", iconDark:"#6ee7b7" },
+  { label:"Ambre",  bgLight:"#fef3c7", bgDark:"#451a03", iconLight:"#92400e", iconDark:"#fcd34d" },
+  { label:"Cyan",   bgLight:"#cffafe", bgDark:"#083344", iconLight:"#0e7490", iconDark:"#67e8f9" },
+  { label:"Rouge",  bgLight:"#fee2e2", bgDark:"#450a0a", iconLight:"#991b1b", iconDark:"#fca5a5" },
+  { label:"Rose",   bgLight:"#fce7f3", bgDark:"#500724", iconLight:"#9d174d", iconDark:"#f9a8d4" },
+  { label:"Indigo", bgLight:"#e0e7ff", bgDark:"#1e1b4b", iconLight:"#3730a3", iconDark:"#a5b4fc" },
+  { label:"Teal",   bgLight:"#ccfbf1", bgDark:"#042f2e", iconLight:"#0f766e", iconDark:"#5eead4" },
+  { label:"Orange", bgLight:"#ffedd5", bgDark:"#431407", iconLight:"#c2410c", iconDark:"#fdba74" },
+  { label:"Lime",   bgLight:"#ecfccb", bgDark:"#1a2e05", iconLight:"#3f6212", iconDark:"#bef264" },
+  { label:"Gris",   bgLight:"#f3f4f6", bgDark:"#1f2937", iconLight:"#374151", iconDark:"#d1d5db" },
+];
+
+const CATEGORIES = ["Cadre supérieur","Cadre moyen","Agent maîtrise","Agent exécution"];
+const SITUATIONS  = ["Célibataire","Marié","Divorcé","Veuf"];
+const AVATAR_COLORS = ["#3b82f6","#8b5cf6","#10b981","#f59e0b","#ef4444","#ec4899","#0e7490"];
+
+function avatarColor(nom) {
+  let h = 0; for (const c of nom) h += c.charCodeAt(0);
+  return AVATAR_COLORS[h % AVATAR_COLORS.length];
 }
-
-function CategorieBadge({ categorie }) {
-  const styles = {
-    "Cadre supérieur": "bg-purple-100 text-purple-700 border border-purple-200",
-    "Cadre moyen":     "bg-blue-100 text-blue-700 border border-blue-200",
-    "Agent maîtrise":  "bg-amber-100 text-amber-700 border border-amber-200",
-    "Agent exécution": "bg-gray-100 text-gray-600 border border-gray-200",
+function catBadge(cat) {
+  const map = {
+    "Cadre supérieur":"bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300",
+    "Cadre moyen":    "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300",
+    "Agent maîtrise": "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
+    "Agent exécution":"bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300",
   };
-  return <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${styles[categorie] || "bg-gray-100 text-gray-600"}`}>{categorie}</span>;
+  return map[cat] || "bg-gray-100 text-gray-600";
+}
+function useDarkMode() {
+  const [dark, setDark] = useState(() => typeof window !== "undefined" && document.documentElement.classList.contains("dark"));
+  useState(() => {
+    if (typeof window === "undefined") return;
+    const observer = new MutationObserver(() => setDark(document.documentElement.classList.contains("dark")));
+    observer.observe(document.documentElement, { attributes:true, attributeFilter:["class"] });
+    return () => observer.disconnect();
+  });
+  return dark;
 }
 
-function ModalDetailEmploye({ employe, depNom, logement, onClose }) {
-  if (!employe) return null;
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      <div className="bg-[#F7F5F0] dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md p-6 border border-[#E0DDD7] dark:border-gray-700">
-        <div className="flex justify-between items-start mb-5">
-          <div className="flex items-center gap-4">
-            <Avatar nom={employe.nom} prenom={employe.prenom} size="lg" />
-            <div>
-              <p className="font-mono text-xs text-gray-400">{employe.matricule}</p>
-              <h2 className="text-xl font-black text-[#0F2D56] dark:text-white">{employe.prenom} {employe.nom}</h2>
-              <CategorieBadge categorie={employe.categorie} />
-            </div>
-          </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-xl">✕</button>
-        </div>
-        <div className="space-y-0 text-sm">
-          {[
-            ["Département",     depNom],
-            ["Ancienneté",      `${employe.anciennete} ans`],
-            ["Situation",       employe.situation],
-            ["Enfants",         employe.nb_enfants],
-            ["Logement équipe", logement || "Non attribué"],
-          ].map(([label, val]) => (
-            <div key={label} className="flex justify-between py-2.5 border-b border-[#E0DDD7] dark:border-gray-700">
-              <span className="text-gray-400">{label}</span>
-              <span className={`font-semibold ${val === "Non attribué" ? "text-rose-400" : "text-[#0F2D56] dark:text-gray-200"}`}>{val}</span>
-            </div>
-          ))}
-          <div className="flex justify-between py-2.5">
-            <span className="text-gray-400">Éligibilité</span>
-            <StatutBadge statut={employe.anciennete >= 2 ? "Disponible" : "En attente"} />
-          </div>
-        </div>
-        <button onClick={onClose} className="mt-6 w-full py-2 bg-[#0F2D56] dark:bg-gray-700 text-white rounded-xl font-semibold hover:bg-[#1a3f75] transition">Fermer</button>
-      </div>
-    </div>
-  );
+function Avatar({ prenom, nom, size="md" }) {
+  const initials = (prenom[0]||"").toUpperCase()+(nom[0]||"").toUpperCase();
+  const sz = size==="lg"?"w-11 h-11 text-base":size==="sm"?"w-7 h-7 text-xs":"w-8 h-8 text-sm";
+  return <div className={`${sz} rounded-full flex items-center justify-center text-white font-bold shrink-0`} style={{ background:avatarColor(nom) }}>{initials}</div>;
 }
 
-function ModalFormDep({ dep, logements, onClose, onSave }) {
-  const [form, setForm] = useState(dep || { nom: "", chef: "", logement: null, employes: [] });
+function Modal({ title, onClose, onConfirm, confirmLabel="Ajouter", confirmDisabled=false, children }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      <div className="bg-[#F7F5F0] dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md p-6 border border-[#E0DDD7] dark:border-gray-700">
-        <div className="flex justify-between items-center mb-5">
-          <h2 className="text-lg font-black text-[#0F2D56] dark:text-white">{dep ? "Modifier le département" : "Ajouter un département"}</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4" onClick={onClose}>
+      <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md border border-gray-200 dark:border-gray-700 overflow-hidden max-h-[90vh] flex flex-col" onClick={e=>e.stopPropagation()}>
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
+          <span className="text-base font-bold text-gray-900 dark:text-white">{title}</span>
+          <button onClick={onClose} className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"><X size={14}/></button>
         </div>
-        <div className="space-y-3">
-          <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Nom</label>
-            <input value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })}
-              className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
-          </div>
-          <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Chef</label>
-            <input value={form.chef} onChange={e => setForm({ ...form, chef: e.target.value })}
-              className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
-          </div>
-          <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Logement attribué</label>
-            <select value={form.logement || ""} onChange={e => setForm({ ...form, logement: e.target.value || null })}
-              className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]">
-              <option value="">Aucun</option>
-              {logements.map(l => <option key={l.id} value={l.id}>{l.id} — {l.type}</option>)}
-            </select>
-          </div>
-        </div>
-        <div className="flex gap-3 mt-6">
-          <button onClick={onClose} className="flex-1 py-2 border border-[#E0DDD7] dark:border-gray-700 text-gray-500 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition text-sm">Annuler</button>
-          <button onClick={() => { onSave(form); onClose(); }} className="flex-1 py-2 bg-[#0F2D56] text-white rounded-xl font-semibold hover:bg-[#1a3f75] transition text-sm">
-            {dep ? "Enregistrer" : "Ajouter"}
+        <div className="px-6 py-5 flex flex-col gap-4 overflow-y-auto flex-1">{children}</div>
+        <div className="flex gap-3 px-6 py-4 border-t border-gray-100 dark:border-gray-800 justify-end shrink-0">
+          <button onClick={onClose} className="px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">Annuler</button>
+          <button onClick={onConfirm} disabled={confirmDisabled}
+            className={`px-5 py-2 rounded-xl text-white text-sm font-semibold flex items-center gap-2 transition-colors ${confirmDisabled?"bg-gray-300 dark:bg-gray-700 cursor-not-allowed text-gray-400":"bg-[#0F2D56] hover:bg-[#1a3f75] cursor-pointer"}`}>
+            <Check size={13}/>{confirmLabel}
           </button>
         </div>
       </div>
@@ -104,194 +96,400 @@ function ModalFormDep({ dep, logements, onClose, onSave }) {
   );
 }
 
-function ModalFormEmploye({ depNom, onClose, onSave }) {
-  const [form, setForm] = useState({ nom: "", prenom: "", categorie: "Agent exécution", anciennete: 0, situation: "Célibataire", nb_enfants: 0 });
+function Field({ label, children }) {
+  return <div className="flex flex-col gap-1.5"><label className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">{label}</label>{children}</div>;
+}
+const inputCls = "w-full px-3 py-2 rounded-xl border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:outline-none focus:border-[#0F2D56] dark:focus:border-blue-400 transition-colors";
+function InputField({ label, value, onChange, placeholder, type="text" }) {
+  return <Field label={label}><input type={type} value={value} placeholder={placeholder} onChange={e=>onChange(type==="number"?Number(e.target.value):e.target.value)} className={inputCls}/></Field>;
+}
+function SelectField({ label, value, onChange, options }) {
+  return <Field label={label}><select value={value} onChange={e=>onChange(e.target.value)} className={inputCls}>{options.map(o=><option key={o} value={o}>{o}</option>)}</select></Field>;
+}
+function IconPicker({ selected, onChange }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      <div className="bg-[#F7F5F0] dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md p-6 border border-[#E0DDD7] dark:border-gray-700 max-h-[90vh] overflow-y-auto">
-        <div className="flex justify-between items-center mb-2">
-          <div>
-            <h2 className="text-lg font-black text-[#0F2D56] dark:text-white">Ajouter un employé</h2>
-            <p className="text-xs text-gray-400">Département : {depNom}</p>
+    <Field label="Icône (Lucide)">
+      <div className="grid grid-cols-8 gap-1.5 max-h-40 overflow-y-auto p-2 rounded-xl border border-[#E0DDD7] dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60">
+        {ICON_OPTIONS.map(({ label, Icon },i) => (
+          <button key={label} onClick={()=>onChange(i)} title={label}
+            className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all ${selected===i?"bg-[#0F2D56] text-white":"bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600"}`}>
+            <Icon size={16} strokeWidth={1.8}/>
+          </button>
+        ))}
+      </div>
+    </Field>
+  );
+}
+function ColorPicker({ selected, onChange }) {
+  return (
+    <Field label="Teinte de couleur">
+      <div className="flex flex-wrap gap-2.5 p-3 rounded-xl border border-[#E0DDD7] dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60">
+        {COLOR_TEINTES.map((t,i) => (
+          <button key={t.label} onClick={()=>onChange(i)} title={t.label}
+            className="relative w-8 h-8 rounded-full transition-transform hover:scale-110 focus:outline-none shrink-0"
+            style={{ background:t.bgLight, border:selected===i?`3px solid ${t.iconLight}`:"2px solid transparent", boxShadow:selected===i?`0 0 0 1px ${t.iconLight}`:"none" }}>
+            {selected===i && <span className="absolute inset-0 flex items-center justify-center"><Check size={13} color={t.iconLight} strokeWidth={3}/></span>}
+          </button>
+        ))}
+      </div>
+      <p className="text-xs text-gray-400 dark:text-gray-500">Sélectionné : <span className="font-semibold text-gray-700 dark:text-gray-300">{COLOR_TEINTES[selected]?.label}</span></p>
+    </Field>
+  );
+}
+
+function ModalDetailEmploye({ employe, deptName, service, onClose }) {
+  const rows = [
+    ["Département",deptName],["Service",service.name],["Chef de service",service.chef],
+    ["Catégorie",employe.categorie],["Ancienneté",`${employe.anciennete} ans`],
+    ["Situation",employe.situation],["Nb enfants",employe.nb_enfants],["Matricule",employe.matricule],
+  ];
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4" onClick={onClose}>
+      <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-sm border border-gray-200 dark:border-gray-700 overflow-hidden" onClick={e=>e.stopPropagation()}>
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-gray-800">
+          <div className="flex items-center gap-3">
+            <Avatar prenom={employe.prenom} nom={employe.nom} size="lg"/>
+            <div>
+              <p className="font-black text-[#0F2D56] dark:text-white">{employe.prenom} {employe.nom}</p>
+              <p className="text-xs font-mono text-gray-400">{employe.matricule}</p>
+            </div>
           </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+          <button onClick={onClose} className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"><X size={14}/></button>
         </div>
-        <div className="space-y-3 mt-4">
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Prénom</label>
-              <input value={form.prenom} onChange={e => setForm({ ...form, prenom: e.target.value })}
-                className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
+        <div className="px-6 py-4">
+          {rows.map(([label,val]) => (
+            <div key={label} className="flex justify-between items-center py-2.5 border-b border-gray-100 dark:border-gray-800">
+              <span className="text-sm text-gray-400 dark:text-gray-500">{label}</span>
+              <span className="text-sm font-semibold text-[#0F2D56] dark:text-gray-200">{val}</span>
             </div>
-            <div>
-              <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Nom</label>
-              <input value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })}
-                className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
-            </div>
-          </div>
-          <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Catégorie</label>
-            <select value={form.categorie} onChange={e => setForm({ ...form, categorie: e.target.value })}
-              className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]">
-              {["Cadre supérieur","Cadre moyen","Agent maîtrise","Agent exécution"].map(c => <option key={c}>{c}</option>)}
-            </select>
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Ancienneté</label>
-              <input type="number" value={form.anciennete} onChange={e => setForm({ ...form, anciennete: Number(e.target.value) })}
-                className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
-            </div>
-            <div>
-              <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Nb enfants</label>
-              <input type="number" value={form.nb_enfants} onChange={e => setForm({ ...form, nb_enfants: Number(e.target.value) })}
-                className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]" />
-            </div>
-          </div>
-          <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Situation</label>
-            <select value={form.situation} onChange={e => setForm({ ...form, situation: e.target.value })}
-              className="w-full mt-1 px-3 py-2 rounded-lg border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white text-sm focus:outline-none focus:border-[#0F2D56]">
-              {["Célibataire","Marié","Divorcé","Veuf"].map(s => <option key={s}>{s}</option>)}
-            </select>
+          ))}
+          <div className="flex justify-between items-center pt-2.5">
+            <span className="text-sm text-gray-400 dark:text-gray-500">Éligibilité logement</span>
+            <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${employe.anciennete>=2?"bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300":"bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300"}`}>
+              {employe.anciennete>=2?"Éligible":"En attente"}
+            </span>
           </div>
         </div>
-        <div className="flex gap-3 mt-6">
-          <button onClick={onClose} className="flex-1 py-2 border border-[#E0DDD7] dark:border-gray-700 text-gray-500 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition text-sm">Annuler</button>
-          <button onClick={() => { if (!form.nom || !form.prenom) return alert("Nom et prénom requis"); onSave(form); onClose(); }}
-            className="flex-1 py-2 bg-[#0F2D56] text-white rounded-xl font-semibold hover:bg-[#1a3f75] transition text-sm">Ajouter</button>
+        <div className="px-6 py-4 border-t border-gray-100 dark:border-gray-800 flex justify-end">
+          <button onClick={onClose} className="px-5 py-2 rounded-xl bg-[#0F2D56] hover:bg-[#1a3f75] text-white text-sm font-semibold transition-colors">Fermer</button>
         </div>
       </div>
     </div>
   );
 }
 
-export default function Employes() {
-  const { departements, logements, ajouterDepartement, modifierDepartement, supprimerDepartement, ajouterEmploye, supprimerEmploye } = useApp();
-  const [search, setSearch]         = useState("");
-  const [ouverts, setOuverts]       = useState({});
-  const [detail, setDetail]         = useState(null);
-  const [formDep, setFormDep]       = useState(null);
-  const [isAdding, setIsAdding]     = useState(false);
-  const [addingEmpDep, setAddingEmpDep] = useState(null);
-  const { actif: successActif, trigger: triggerSuccess } = useSuccessMessage();
-
-  const toggle = (id) => setOuverts(o => ({ ...o, [id]: !o[id] }));
-
-  const filtered = departements.filter(d =>
-    d.nom.toLowerCase().includes(search.toLowerCase()) ||
-    d.chef.toLowerCase().includes(search.toLowerCase()) ||
-    d.employes.some(e => `${e.nom} ${e.prenom}`.toLowerCase().includes(search.toLowerCase()))
+function ServiceRow({ service, bg, ic, depId, onAddEmploye, onEditService, onDeleteService, onDeleteEmploye, onDetailEmploye }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-gray-100 dark:border-gray-800 last:border-0">
+      <div onClick={()=>setOpen(v=>!v)}
+        className={`flex items-center gap-3 py-3 pl-8 pr-4 cursor-pointer select-none transition-colors ${open?"bg-gray-50 dark:bg-gray-800/60":"hover:bg-gray-50/70 dark:hover:bg-gray-800/30"}`}>
+        <div className="w-2 h-2 rounded-full shrink-0 opacity-60" style={{ background:ic }}/>
+        <div className="flex-1 min-w-0">
+          <span className="text-sm font-semibold text-gray-800 dark:text-gray-100">{service.name}</span>
+          <span className="text-xs text-gray-400 dark:text-gray-500 ml-2">Chef : {service.chef}</span>
+        </div>
+        <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0" style={{ background:bg, color:ic }}>
+          {service.employes.length} emp.
+        </span>
+        <div className="flex gap-1.5 shrink-0" onClick={e=>e.stopPropagation()}>
+          <button title="Ajouter un employé" onClick={()=>onAddEmploye(depId, service.id)}
+            className="w-7 h-7 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors">
+            <Plus size={13} strokeWidth={2.5}/>
+          </button>
+          <button title="Modifier" onClick={()=>onEditService(depId, service)}
+            className="w-7 h-7 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center hover:bg-emerald-100 dark:hover:bg-emerald-800/50 transition-colors">
+            <Pencil size={12} strokeWidth={2}/>
+          </button>
+          <button title="Supprimer" onClick={()=>onDeleteService(depId, service.id)}
+            className="w-7 h-7 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-500 dark:text-red-400 flex items-center justify-center hover:bg-red-100 dark:hover:bg-red-800/50 transition-colors">
+            <Trash2 size={12} strokeWidth={2}/>
+          </button>
+        </div>
+        <div className={`transition-transform duration-300 shrink-0 ${open?"rotate-180":""}`}>
+          <ChevronDown size={14} className="text-gray-400"/>
+        </div>
+      </div>
+      {open && (
+        <div className="border-t border-gray-100 dark:border-gray-800">
+          {service.employes.length===0 ? (
+            <p className="text-xs text-gray-400 dark:text-gray-600 pl-10 py-3 italic">Aucun employé dans ce service.</p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-[#0F2D56]/5 dark:bg-gray-800">
+                    {["Employé","Matricule","Catégorie","Ancienneté","Situation",""].map(h => (
+                      <th key={h} className={`text-left py-2.5 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide ${h==="Employé"?"pl-10 pr-3":"px-3"}`}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {service.employes.map(emp => (
+                    <tr key={emp.id} className="border-t border-[#E0DDD7]/50 dark:border-gray-800 hover:bg-[#0F2D56]/5 dark:hover:bg-gray-800 transition-colors">
+                      <td className="pl-10 pr-3 py-2.5">
+                        <div className="flex items-center gap-2">
+                          <Avatar prenom={emp.prenom} nom={emp.nom} size="sm"/>
+                          <span className="font-semibold text-[#0F2D56] dark:text-white text-xs">{emp.prenom} {emp.nom}</span>
+                        </div>
+                      </td>
+                      <td className="px-3 py-2.5 font-mono text-xs text-gray-400 dark:text-gray-500">{emp.matricule}</td>
+                      <td className="px-3 py-2.5"><span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${catBadge(emp.categorie)}`}>{emp.categorie}</span></td>
+                      <td className="px-3 py-2.5 text-xs text-gray-500 dark:text-gray-400">{emp.anciennete} ans</td>
+                      <td className="px-3 py-2.5 text-xs text-gray-500 dark:text-gray-400">{emp.situation}</td>
+                      <td className="px-3 py-2.5">
+                        <div className="flex gap-1.5">
+                          <button title="Détail" onClick={()=>onDetailEmploye(service, emp)}
+                            className="w-7 h-7 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                            <Eye size={12} strokeWidth={2}/>
+                          </button>
+                          <button title="Supprimer" onClick={()=>onDeleteEmploye(depId, service.id, emp.id)}
+                            className="w-7 h-7 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-500 dark:text-red-400 flex items-center justify-center hover:bg-red-100 dark:hover:bg-red-800/50 transition-colors">
+                            <Trash2 size={12} strokeWidth={2}/>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
+}
 
-  const handleSaveDep = (form) => {
-    if (formDep) modifierDepartement(form);
-    else { ajouterDepartement(form); triggerSuccess(); }
-  };
-
-  const handleAddEmploye = (depId, emp) => {
-    ajouterEmploye(depId, emp);
-    triggerSuccess();
-  };
+function DepartmentCard({ dept, isDark, onAddService, onEditService, onDeleteService, onAddEmploye, onDeleteEmploye, onDetailEmploye, onDeleteDept }) {
+  const [open, setOpen] = useState(false);
+  const { Icon } = ICON_OPTIONS[dept.iconIdx] || ICON_OPTIONS[0];
+  const teinte   = COLOR_TEINTES[dept.colorIdx] || COLOR_TEINTES[0];
+  const bg = isDark ? teinte.bgDark  : teinte.bgLight;
+  const ic = isDark ? teinte.iconDark : teinte.iconLight;
+  const totalEmps = dept.services.reduce((a,s) => a + s.employes.length, 0);
 
   return (
-    <div className="space-y-5">
-      <MessageEnvoye actif={successActif} />
-
-      {detail && <ModalDetailEmploye employe={detail.employe} depNom={detail.depNom} logement={detail.logement} onClose={() => setDetail(null)} />}
-      {(formDep || isAdding) && (
-        <ModalFormDep dep={formDep} logements={logements}
-          onClose={() => { setFormDep(null); setIsAdding(false); }}
-          onSave={handleSaveDep} />
-      )}
-      {addingEmpDep && (
-        <ModalFormEmploye
-          depNom={departements.find(d => d.id === addingEmpDep)?.nom}
-          onClose={() => setAddingEmpDep(null)}
-          onSave={(emp) => handleAddEmploye(addingEmpDep, emp)} />
-      )}
-
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher département ou employé..."
-            className="border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0F2D56] dark:text-white rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#0F2D56] w-72" />
-          <span className="text-xs text-gray-400">{filtered.length} département{filtered.length > 1 ? "s" : ""}</span>
+    <div className={`bg-[#F7F5F0] dark:bg-gray-900 border border-[#E0DDD7] dark:border-gray-700 rounded-2xl overflow-hidden shadow-sm transition-shadow ${open?"shadow-md":""}`}>
+      <div onClick={()=>setOpen(v=>!v)}
+        className={`flex items-center gap-4 px-5 py-4 cursor-pointer select-none transition-colors ${open?"bg-white/60 dark:bg-gray-800/60":"hover:bg-white/40 dark:hover:bg-gray-800/30"}`}>
+        <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background:bg }}>
+          <Icon size={20} color={ic} strokeWidth={1.8}/>
         </div>
-        <button onClick={() => setIsAdding(true)} className="bg-[#0F2D56] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#1a3f75] transition">
-          + Département
-        </button>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-black text-[#0F2D56] dark:text-white text-base">{dept.nom}</span>
+            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full" style={{ background:bg, color:ic }}>
+              {dept.services.length} services · {totalEmps} emp.
+            </span>
+          </div>
+          <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 truncate">{dept.fullName}</p>
+        </div>
+        <div className="flex items-center gap-2 shrink-0" onClick={e=>e.stopPropagation()}>
+          <button title="Ajouter un service" onClick={()=>onAddService(dept.id)}
+            className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors">
+            <Plus size={15} strokeWidth={2.5}/>
+          </button>
+          <button title="Supprimer le département" onClick={()=>onDeleteDept(dept.id)}
+            className="w-8 h-8 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-500 dark:text-red-400 flex items-center justify-center hover:bg-red-100 dark:hover:bg-red-800/50 transition-colors">
+            <Trash2 size={13} strokeWidth={2}/>
+          </button>
+        </div>
+        <div className={`transition-transform duration-300 shrink-0 ${open?"rotate-180":""}`}>
+          <ChevronDown size={15} className="text-gray-400"/>
+        </div>
       </div>
+      {open && (
+        <div className="border-t border-[#E0DDD7] dark:border-gray-700">
+          <div className="flex items-center gap-2 px-5 py-2.5">
+            <Layers size={11} className="text-gray-400"/>
+            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Services rattachés</span>
+          </div>
+          {dept.services.length===0 ? (
+            <p className="text-xs text-gray-400 px-8 pb-4 italic">Aucun service. Cliquez sur + pour en ajouter un.</p>
+          ) : (
+            dept.services.map(service => (
+              <ServiceRow
+                key={service.id}
+                service={service}
+                bg={bg} ic={ic}
+                depId={dept.id}
+                onAddEmploye={onAddEmploye}
+                onEditService={onEditService}
+                onDeleteService={onDeleteService}
+                onDeleteEmploye={onDeleteEmploye}
+                onDetailEmploye={(s,emp)=>onDetailEmploye(dept,s,emp)}
+              />
+            ))
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
-      <div className="space-y-4">
-        {filtered.map((dep) => {
-          const ouvert = ouverts[dep.id];
-          const couleur = DEP_COLORS[dep.nom] || "bg-gray-500";
-          const icon    = DEP_ICONS[dep.nom]  || "🏢";
-          const logement = logements.find(l => l.id === dep.logement);
+export default function Employes() {
+  const { departements, ajouterDepartement, supprimerDepartement, ajouterService, modifierService, supprimerService, ajouterEmployeService, supprimerEmployeService } = useApp();
+  const isDark = useDarkMode();
 
-          return (
-            <div key={dep.id} className="bg-[#F7F5F0] dark:bg-gray-900 rounded-2xl border border-[#E0DDD7] dark:border-gray-700 shadow-sm overflow-hidden">
-              <div className="flex items-center justify-between px-5 py-4">
-                <div className="flex items-center gap-4 cursor-pointer flex-1" onClick={() => toggle(dep.id)}>
-                  <div className={`w-10 h-10 ${couleur} rounded-xl flex items-center justify-center text-xl shrink-0`}>{icon}</div>
-                  <div>
-                    <p className="font-black text-[#0F2D56] dark:text-white text-base">{dep.nom}</p>
-                    <p className="text-xs text-gray-400">Chef : {dep.chef} — {dep.employes.length} employé{dep.employes.length > 1 ? "s" : ""}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className={`px-3 py-1 rounded-lg text-xs font-semibold ${dep.logement ? "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400" : "bg-rose-100 dark:bg-rose-900/30 text-rose-500"}`}>
-                    🏠 {logement ? `${dep.logement} — ${logement.type}` : "Non attribué"}
-                  </div>
-                  <BoutonModifier onClick={() => setFormDep(dep)} />
-                  <BoutonAjouter texte="Ajouter un employé" onClick={() => { setOuverts(o => ({ ...o, [dep.id]: true })); setAddingEmpDep(dep.id); }} />
-                  <BoutonSupprimer onClick={() => supprimerDepartement(dep.id)} />
-                  <button onClick={() => toggle(dep.id)}
-                    className="w-8 h-8 rounded-lg bg-[#0F2D56]/10 dark:bg-gray-700 flex items-center justify-center text-[#0F2D56] dark:text-gray-300 hover:bg-[#0F2D56]/20 transition text-xs font-bold">
-                    {ouvert ? "▲" : "▼"}
-                  </button>
-                </div>
-              </div>
+  const [search, setSearch]   = useState("");
+  const [modal, setModal]     = useState(null);
+  const [deptForm, setDeptForm]       = useState({ code:"", nom:"", fullName:"", iconIdx:0, colorIdx:0 });
+  const [serviceForm, setServiceForm] = useState({ name:"", chef:"" });
+  const [serviceTarget, setServiceTarget] = useState(null);
+  const [empForm, setEmpForm]   = useState({ prenom:"", nom:"", categorie:CATEGORIES[3], anciennete:0, situation:SITUATIONS[0], nb_enfants:0 });
+  const [empTarget, setEmpTarget]   = useState(null);
+  const [detailData, setDetailData] = useState(null);
 
-              {ouvert && (
-                <div className="border-t border-[#E0DDD7] dark:border-gray-700">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="bg-[#0F2D56]/5 dark:bg-gray-800">
-                        {["Employé","Matricule","Catégorie","Ancienneté","Situation",""].map(h => (
-                          <th key={h} className="text-left px-5 py-2.5 text-xs text-gray-400 font-semibold uppercase tracking-wide">{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {dep.employes.map((e) => (
-                        <tr key={e.id} className="border-t border-[#E0DDD7]/50 dark:border-gray-800 hover:bg-[#0F2D56]/5 dark:hover:bg-gray-800 transition">
-                          <td className="px-5 py-3">
-                            <div className="flex items-center gap-2">
-                              <Avatar nom={e.nom} prenom={e.prenom} size="sm" />
-                              <span className="font-semibold text-[#0F2D56] dark:text-white">{e.prenom} {e.nom}</span>
-                            </div>
-                          </td>
-                          <td className="px-5 py-3 font-mono text-xs text-gray-400">{e.matricule}</td>
-                          <td className="px-5 py-3"><CategorieBadge categorie={e.categorie} /></td>
-                          <td className="px-5 py-3 text-xs text-gray-500 dark:text-gray-400">{e.anciennete} ans</td>
-                          <td className="px-5 py-3 text-xs text-gray-500 dark:text-gray-400">{e.situation}</td>
-                          <td className="px-5 py-3">
-                            <div className="flex items-center gap-2">
-                              <BoutonDetail onClick={() => setDetail({ employe: e, depNom: dep.nom, logement: dep.logement })} />
-                              <BoutonSupprimer onClick={() => supprimerEmploye(dep.id, e.id)} />
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
+  const closeModal = () => setModal(null);
+
+  // Département
+  const openAddDept = () => { setDeptForm({ code:"", nom:"", fullName:"", iconIdx:0, colorIdx:0 }); setModal("add-dept"); };
+  const confirmAddDept = () => {
+    if (!deptForm.code.trim() || !deptForm.nom.trim()) return;
+    ajouterDepartement({ code:deptForm.code.trim(), nom:deptForm.nom.trim(), fullName:deptForm.fullName.trim()||deptForm.nom.trim(), iconIdx:deptForm.iconIdx, colorIdx:deptForm.colorIdx });
+    closeModal();
+  };
+
+  // Service
+  const openAddService  = (depId) => { setServiceForm({ name:"", chef:"" }); setServiceTarget({ depId }); setModal("add-service"); };
+  const confirmAddService = () => {
+    if (!serviceForm.name.trim()) return;
+    ajouterService(serviceTarget.depId, { name:serviceForm.name.trim(), chef:serviceForm.chef.trim()||"À définir" });
+    closeModal();
+  };
+  const openEditService = (depId, service) => { setServiceForm({ name:service.name, chef:service.chef }); setServiceTarget({ depId, serviceId:service.id }); setModal("edit-service"); };
+  const confirmEditService = () => {
+    if (!serviceForm.name.trim()) return;
+    modifierService(serviceTarget.depId, { id:serviceTarget.serviceId, name:serviceForm.name.trim(), chef:serviceForm.chef.trim() });
+    closeModal();
+  };
+
+  // Employé
+  const openAddEmploye = (depId, serviceId) => { setEmpForm({ prenom:"", nom:"", categorie:CATEGORIES[3], anciennete:0, situation:SITUATIONS[0], nb_enfants:0 }); setEmpTarget({ depId, serviceId }); setModal("add-employe"); };
+  const confirmAddEmploye = () => {
+    if (!empForm.prenom.trim() || !empForm.nom.trim()) return;
+    ajouterEmployeService(empTarget.depId, empTarget.serviceId, empForm);
+    closeModal();
+  };
+
+  const filtered = departements.filter(d =>
+    (d.nom||"").toLowerCase().includes(search.toLowerCase()) ||
+    (d.fullName||"").toLowerCase().includes(search.toLowerCase()) ||
+    d.services.some(s => s.name.toLowerCase().includes(search.toLowerCase()) ||
+      s.employes.some(e => `${e.prenom} ${e.nom}`.toLowerCase().includes(search.toLowerCase())))
+  );
+
+  const totalServices = departements.reduce((a,d) => a + d.services.length, 0);
+  const totalEmps     = departements.reduce((a,d) => a + d.services.reduce((b,s) => b + s.employes.length, 0), 0);
+  const prevTeinte    = COLOR_TEINTES[deptForm.colorIdx] || COLOR_TEINTES[0];
+  const prevIcon      = ICON_OPTIONS[deptForm.iconIdx]   || ICON_OPTIONS[0];
+
+  return (
+    <div className="min-h-screen p-6">
+      <div className="max-w-4xl mx-auto space-y-5">
+
+        {/* Header */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h1 className="text-xl font-black text-[#0F2D56] dark:text-white">Gestion des départements</h1>
+            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{departements.length} directions · {totalServices} services · {totalEmps} employés</p>
+          </div>
+          <div className="flex gap-2 items-center flex-wrap">
+            <div className="relative">
+              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"/>
+              <input type="text" placeholder="Rechercher..." value={search} onChange={e=>setSearch(e.target.value)}
+                className="pl-9 pr-3 py-2 rounded-xl border border-[#E0DDD7] dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:outline-none focus:border-[#0F2D56] w-56 transition-colors"/>
             </div>
-          );
-        })}
+            <button onClick={openAddDept} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0F2D56] hover:bg-[#1a3f75] text-white text-sm font-semibold transition-colors">
+              <Plus size={15} strokeWidth={2.5}/> Nouveau département
+            </button>
+          </div>
+        </div>
+
+        {/* Liste */}
+        <div className="flex flex-col gap-3">
+          {filtered.length===0 ? (
+            <div className="text-center py-12 text-gray-400 dark:text-gray-600 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700">
+              Aucun résultat pour « {search} »
+            </div>
+          ) : (
+            filtered.map(dept => (
+              <DepartmentCard key={dept.id} dept={dept} isDark={isDark}
+                onAddService={openAddService}
+                onEditService={openEditService}
+                onDeleteService={(depId, srvId) => { if(window.confirm("Supprimer ce service ?")) supprimerService(depId, srvId); }}
+                onAddEmploye={openAddEmploye}
+                onDeleteEmploye={(depId,srvId,empId) => supprimerEmployeService(depId,srvId,empId)}
+                onDetailEmploye={(dept,service,emp) => { setDetailData({dept,service,emp}); setModal("detail-employe"); }}
+                onDeleteDept={(id) => { if(window.confirm("Supprimer ce département ?")) supprimerDepartement(id); }}
+              />
+            ))
+          )}
+        </div>
       </div>
+
+      {/* Modal: Add Dept */}
+      {modal==="add-dept" && (
+        <Modal title="Nouveau département" onClose={closeModal} onConfirm={confirmAddDept} confirmDisabled={!deptForm.code.trim()||!deptForm.nom.trim()}>
+          <div className="grid grid-cols-2 gap-3">
+            <InputField label="Code"        value={deptForm.code}     onChange={v=>setDeptForm(p=>({...p,code:v}))}     placeholder="Ex : DG"/>
+            <InputField label="Nom affiché" value={deptForm.nom}      onChange={v=>setDeptForm(p=>({...p,nom:v}))}      placeholder="Ex : Direction Générale"/>
+          </div>
+          <InputField label="Nom complet (optionnel)" value={deptForm.fullName} onChange={v=>setDeptForm(p=>({...p,fullName:v}))} placeholder="Ex : Direction Générale et Stratégie"/>
+          <IconPicker  selected={deptForm.iconIdx}  onChange={i=>setDeptForm(p=>({...p,iconIdx:i}))}/>
+          <ColorPicker selected={deptForm.colorIdx} onChange={i=>setDeptForm(p=>({...p,colorIdx:i}))}/>
+          {(deptForm.nom||deptForm.code) && (
+            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background:prevTeinte.bgLight }}>
+                <prevIcon.Icon size={18} color={prevTeinte.iconLight} strokeWidth={1.8}/>
+              </div>
+              <div>
+                <p className="text-sm font-bold text-gray-900 dark:text-white">{deptForm.nom||"—"}</p>
+                <p className="text-xs text-gray-400">{deptForm.fullName||deptForm.code||"—"}</p>
+              </div>
+            </div>
+          )}
+        </Modal>
+      )}
+
+      {/* Modal: Add Service */}
+      {modal==="add-service" && (
+        <Modal title={`Ajouter un service — ${departements.find(d=>d.id===serviceTarget?.depId)?.nom}`}
+          onClose={closeModal} onConfirm={confirmAddService} confirmDisabled={!serviceForm.name.trim()}>
+          <InputField label="Nom du service"  value={serviceForm.name} onChange={v=>setServiceForm(p=>({...p,name:v}))} placeholder="Ex : Contrôle qualité"/>
+          <InputField label="Chef de service" value={serviceForm.chef} onChange={v=>setServiceForm(p=>({...p,chef:v}))} placeholder="Ex : Marie Dupont"/>
+        </Modal>
+      )}
+
+      {/* Modal: Edit Service */}
+      {modal==="edit-service" && (
+        <Modal title="Modifier le service" onClose={closeModal} onConfirm={confirmEditService} confirmLabel="Enregistrer" confirmDisabled={!serviceForm.name.trim()}>
+          <InputField label="Nom du service"  value={serviceForm.name} onChange={v=>setServiceForm(p=>({...p,name:v}))} placeholder="Nom du service"/>
+          <InputField label="Chef de service" value={serviceForm.chef} onChange={v=>setServiceForm(p=>({...p,chef:v}))} placeholder="Chef de service"/>
+        </Modal>
+      )}
+
+      {/* Modal: Add Employé */}
+      {modal==="add-employe" && (
+        <Modal title="Ajouter un employé" onClose={closeModal} onConfirm={confirmAddEmploye} confirmDisabled={!empForm.prenom.trim()||!empForm.nom.trim()}>
+          <div className="grid grid-cols-2 gap-3">
+            <InputField label="Prénom" value={empForm.prenom} onChange={v=>setEmpForm(p=>({...p,prenom:v}))} placeholder="Ex : Jean"/>
+            <InputField label="Nom"    value={empForm.nom}    onChange={v=>setEmpForm(p=>({...p,nom:v}))}    placeholder="Ex : Rakoto"/>
+          </div>
+          <SelectField label="Catégorie"         value={empForm.categorie}  onChange={v=>setEmpForm(p=>({...p,categorie:v}))}  options={CATEGORIES}/>
+          <div className="grid grid-cols-2 gap-3">
+            <InputField label="Ancienneté (ans)" type="number" value={empForm.anciennete}  onChange={v=>setEmpForm(p=>({...p,anciennete:v}))}/>
+            <InputField label="Nb enfants"       type="number" value={empForm.nb_enfants}  onChange={v=>setEmpForm(p=>({...p,nb_enfants:v}))}/>
+          </div>
+          <SelectField label="Situation familiale" value={empForm.situation} onChange={v=>setEmpForm(p=>({...p,situation:v}))} options={SITUATIONS}/>
+        </Modal>
+      )}
+
+      {/* Modal: Détail Employé */}
+      {modal==="detail-employe" && detailData && (
+        <ModalDetailEmploye employe={detailData.emp} deptName={detailData.dept.nom} service={detailData.service} onClose={closeModal}/>
+      )}
     </div>
   );
 }
