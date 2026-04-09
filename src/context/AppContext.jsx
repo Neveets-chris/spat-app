@@ -62,227 +62,124 @@ const LOGEMENTS_INIT = [
 const DEPARTEMENTS_INIT = [
   {
     id: "DEP-001",
-    nom: "Informatique",
-    chef: "RAKOTO Herizo",
-    logement: "LOG-001",
-    employes: [
+    code: "DSIA",
+    nom: "DSIA",
+    fullName: "Direction Système d'Information et Audit",
+    iconIdx: 0,
+    colorIdx: 0,
+    services: [
       {
-        id: "EMP-001",
-        matricule: "MAT-001",
-        nom: "RAKOTO",
-        prenom: "Herizo",
-        categorie: "Cadre moyen",
-        anciennete: 5,
-        situation: "Marié",
-        nb_enfants: 2,
+        id: "SRV-001",
+        name: "Contrôle de gestion",
+        chef: "Marie Dupont",
+        employes: [
+          {
+            id: "EMP-001",
+            prenom: "Jean",
+            nom: "Randria",
+            matricule: "MAT-001",
+            categorie: "Cadre moyen",
+            anciennete: 5,
+            situation: "Marié",
+            nb_enfants: 2,
+          },
+        ],
       },
+      { id: "SRV-002", name: "Audit", chef: "Paul Rabe", employes: [] },
+      { id: "SRV-003", name: "Organisation", chef: "Sara Mbola", employes: [] },
       {
-        id: "EMP-002",
-        matricule: "MAT-002",
-        nom: "SOLO",
-        prenom: "Nirina",
-        categorie: "Agent maîtrise",
-        anciennete: 3,
-        situation: "Célibataire",
-        nb_enfants: 0,
-      },
-      {
-        id: "EMP-003",
-        matricule: "MAT-003",
-        nom: "FARA",
-        prenom: "Tiana",
-        categorie: "Agent exécution",
-        anciennete: 2,
-        situation: "Marié",
-        nb_enfants: 1,
+        id: "SRV-004",
+        name: "Informatique et télécom",
+        chef: "Luc Andria",
+        employes: [
+          {
+            id: "EMP-002",
+            prenom: "Alice",
+            nom: "Ratovo",
+            matricule: "MAT-002",
+            categorie: "Cadre supérieur",
+            anciennete: 8,
+            situation: "Célibataire",
+            nb_enfants: 0,
+          },
+        ],
       },
     ],
   },
   {
     id: "DEP-002",
-    nom: "Finance",
-    chef: "VOLA Tantely",
-    logement: "LOG-003",
-    employes: [
+    code: "DRH",
+    nom: "DRH",
+    fullName: "Direction des Ressources Humaines",
+    iconIdx: 1,
+    colorIdx: 1,
+    services: [
       {
-        id: "EMP-004",
-        matricule: "MAT-004",
-        nom: "VOLA",
-        prenom: "Tantely",
-        categorie: "Cadre supérieur",
-        anciennete: 10,
-        situation: "Marié",
-        nb_enfants: 3,
+        id: "SRV-005",
+        name: "Développement des RH",
+        chef: "Emma Razaf",
+        employes: [],
       },
       {
-        id: "EMP-005",
-        matricule: "MAT-005",
-        nom: "HARY",
-        prenom: "Fenitra",
-        categorie: "Agent exécution",
-        anciennete: 1,
-        situation: "Célibataire",
-        nb_enfants: 0,
+        id: "SRV-006",
+        name: "Administration et Paie",
+        chef: "Noël Ravelo",
+        employes: [],
+      },
+      {
+        id: "SRV-007",
+        name: "Centre de perfectionnement",
+        chef: "Haja Tsirim",
+        employes: [],
+      },
+      {
+        id: "SRV-008",
+        name: "Médecine et pharmacie",
+        chef: "Dr. Koto",
+        employes: [],
       },
     ],
   },
   {
     id: "DEP-003",
-    nom: "RH",
-    chef: "RABE Jean",
-    logement: "LOG-001",
-    employes: [
-      {
-        id: "EMP-006",
-        matricule: "MAT-006",
-        nom: "RABE",
-        prenom: "Jean",
-        categorie: "Cadre moyen",
-        anciennete: 7,
-        situation: "Marié",
-        nb_enfants: 1,
-      },
-      {
-        id: "EMP-007",
-        matricule: "MAT-007",
-        nom: "NIRY",
-        prenom: "Zo",
-        categorie: "Agent maîtrise",
-        anciennete: 4,
-        situation: "Marié",
-        nb_enfants: 2,
-      },
+    code: "DAF",
+    nom: "DAF",
+    fullName: "Direction Administrative et Financière",
+    iconIdx: 2,
+    colorIdx: 2,
+    services: [
+      { id: "SRV-009", name: "Finances", chef: "René Raham", employes: [] },
+      { id: "SRV-010", name: "Recouvrement", chef: "Nivo Andr", employes: [] },
+      { id: "SRV-011", name: "Comptabilité", chef: "Aina Rado", employes: [] },
+      { id: "SRV-012", name: "Fiscalité", chef: "Fara Toto", employes: [] },
     ],
   },
   {
     id: "DEP-004",
-    nom: "Technique",
-    chef: "ANDO Paul",
-    logement: "LOG-006",
-    employes: [
+    code: "DT",
+    nom: "DT",
+    fullName: "Direction Technique",
+    iconIdx: 5,
+    colorIdx: 5,
+    services: [
+      { id: "SRV-013", name: "Maintenances", chef: "Ing. Fara", employes: [] },
       {
-        id: "EMP-008",
-        matricule: "MAT-008",
-        nom: "ANDO",
-        prenom: "Paul",
-        categorie: "Cadre supérieur",
-        anciennete: 8,
-        situation: "Marié",
-        nb_enfants: 2,
+        id: "SRV-014",
+        name: "Travaux neufs",
+        chef: "Arch. Rado",
+        employes: [],
       },
       {
-        id: "EMP-009",
-        matricule: "MAT-009",
-        nom: "RAVA",
-        prenom: "Luc",
-        categorie: "Agent maîtrise",
-        anciennete: 3,
-        situation: "Célibataire",
-        nb_enfants: 0,
+        id: "SRV-015",
+        name: "Études et planification",
+        chef: "Ing. Meva",
+        employes: [],
       },
       {
-        id: "EMP-010",
-        matricule: "MAT-010",
-        nom: "TINA",
-        prenom: "Rosa",
-        categorie: "Agent exécution",
-        anciennete: 2,
-        situation: "Marié",
-        nb_enfants: 1,
-      },
-    ],
-  },
-  {
-    id: "DEP-005",
-    nom: "Logistique",
-    chef: "SOLA Marie",
-    logement: null,
-    employes: [
-      {
-        id: "EMP-011",
-        matricule: "MAT-011",
-        nom: "SOLA",
-        prenom: "Marie",
-        categorie: "Cadre moyen",
-        anciennete: 6,
-        situation: "Marié",
-        nb_enfants: 2,
-      },
-      {
-        id: "EMP-012",
-        matricule: "MAT-012",
-        nom: "KOTO",
-        prenom: "Brice",
-        categorie: "Agent exécution",
-        anciennete: 1,
-        situation: "Célibataire",
-        nb_enfants: 0,
-      },
-    ],
-  },
-  {
-    id: "DEP-006",
-    nom: "Administration",
-    chef: "ZARA Mamy",
-    logement: "LOG-002",
-    employes: [
-      {
-        id: "EMP-013",
-        matricule: "MAT-013",
-        nom: "ZARA",
-        prenom: "Mamy",
-        categorie: "Cadre supérieur",
-        anciennete: 12,
-        situation: "Marié",
-        nb_enfants: 4,
-      },
-      {
-        id: "EMP-014",
-        matricule: "MAT-014",
-        nom: "DINA",
-        prenom: "Lova",
-        categorie: "Agent maîtrise",
-        anciennete: 5,
-        situation: "Célibataire",
-        nb_enfants: 0,
-      },
-    ],
-  },
-  {
-    id: "DEP-007",
-    nom: "Sécurité",
-    chef: "MIKA Tsiry",
-    logement: null,
-    employes: [
-      {
-        id: "EMP-015",
-        matricule: "MAT-015",
-        nom: "MIKA",
-        prenom: "Tsiry",
-        categorie: "Cadre moyen",
-        anciennete: 4,
-        situation: "Marié",
-        nb_enfants: 1,
-      },
-      {
-        id: "EMP-016",
-        matricule: "MAT-016",
-        nom: "FIDY",
-        prenom: "Aina",
-        categorie: "Agent exécution",
-        anciennete: 2,
-        situation: "Célibataire",
-        nb_enfants: 0,
-      },
-      {
-        id: "EMP-017",
-        matricule: "MAT-017",
-        nom: "LAZA",
-        prenom: "Haja",
-        categorie: "Agent exécution",
-        anciennete: 1,
-        situation: "Marié",
-        nb_enfants: 1,
+        id: "SRV-016",
+        name: "Installations spécialisées",
+        chef: "Tech. Bodo",
+        employes: [],
       },
     ],
   },
@@ -290,52 +187,32 @@ const DEPARTEMENTS_INIT = [
 
 const ATTRIBUTIONS_INIT = [
   {
-    id: "ATT-001",
-    departement: "Informatique",
-    logement: "LOG-001",
-    date_debut: "2024-01-01",
-    date_fin: "2024-12-31",
-    statut: "Occupé",
-    occupants: ["RAKOTO Herizo", "SOLO Nirina", "FARA Tiana"],
+    id: "ATT-001", departement: "DSIA", logement: "LOG-001",
+    date_debut: "2024-01-01", date_fin: "2024-12-31", statut: "Occupé",
+    occupants: ["Jean Randria", "Alice Ratovo"],
     observations: "Attribution normale",
   },
   {
-    id: "ATT-002",
-    departement: "Finance",
-    logement: "LOG-003",
-    date_debut: "2024-03-15",
-    date_fin: "2025-03-14",
-    statut: "Occupé",
-    occupants: ["VOLA Tantely", "HARY Fenitra"],
-    observations: "Logement villa",
+    id: "ATT-002", departement: "DRH", logement: "LOG-003",
+    date_debut: "2024-03-15", date_fin: "2025-03-14", statut: "Occupé",
+    occupants: ["Emma Razaf", "Noël Ravelo"],
+    observations: "Direction RH",
   },
   {
-    id: "ATT-003",
-    departement: "Technique",
-    logement: "LOG-006",
-    date_debut: "2024-06-01",
-    date_fin: "2025-05-31",
-    statut: "Occupé",
-    occupants: ["ANDO Paul", "RAVA Luc", "TINA Rosa"],
-    observations: "Équipe terrain",
+    id: "ATT-003", departement: "DT", logement: "LOG-006",
+    date_debut: "2024-06-01", date_fin: "2025-05-31", statut: "Occupé",
+    occupants: ["Ing. Fara", "Arch. Rado"],
+    observations: "Équipe technique",
   },
   {
-    id: "ATT-004",
-    departement: "Administration",
-    logement: "LOG-002",
-    date_debut: "2024-09-01",
-    date_fin: "2025-08-31",
-    statut: "Disponible",
-    occupants: ["ZARA Mamy", "DINA Lova"],
-    observations: "En attente",
+    id: "ATT-004", departement: "DAF", logement: "LOG-002",
+    date_debut: "2024-09-01", date_fin: "2025-08-31", statut: "Disponible",
+    occupants: [],
+    observations: "En attente d'occupation",
   },
   {
-    id: "ATT-005",
-    departement: "RH",
-    logement: "LOG-005",
-    date_debut: "2023-01-01",
-    date_fin: "2023-12-31",
-    statut: "Maintenance",
+    id: "ATT-005", departement: "DAJPP", logement: "LOG-005",
+    date_debut: "2023-01-01", date_fin: "2023-12-31", statut: "Maintenance",
     occupants: [],
     observations: "Logement en rénovation",
   },
@@ -539,44 +416,126 @@ export function AppProvider({ children }) {
   const supprimerLogement = (id) =>
     setLogements((prev) => prev.filter((x) => x.id !== id));
 
-  // ── Actions Départements ──────────────────────────────────────────────────
-  const ajouterDepartement = (d) =>
-    setDepartements((prev) => [
-      ...prev,
-      { ...d, id: genId("DEP", prev), employes: [] },
-    ]);
-  const modifierDepartement = (d) =>
+  // ── Actions Départements ──────────────────────────────────────────────────────
+  const ajouterDepartement = (d) => {
+    const newDep = {
+      ...d,
+      id: genId("DEP", departements),
+      services: [],
+    };
+    setDepartements((prev) => [...prev, newDep]);
+    // Crée automatiquement une attribution pour ce nouveau département
+    const newAtt = {
+      id: genId("ATT", attributions),
+      departement: d.nom,
+      logement: null,
+      date_debut: new Date().toISOString().split("T")[0],
+      date_fin: null,
+      statut: "Disponible",
+      occupants: [],
+      observations: "Attribution automatique à la création",
+    };
+    setAttributions((prev) => [...prev, newAtt]);
+  };
+
+  const modifierDepartement = (d) => {
     setDepartements((prev) =>
       prev.map((x) => (x.id === d.id ? { ...x, ...d } : x)),
     );
-  const supprimerDepartement = (id) =>
-    setDepartements((prev) => prev.filter((x) => x.id !== id));
-  const ajouterEmploye = (depId, emp) => {
-    setDepartements((prev) =>
-      prev.map((d) => {
-        if (d.id !== depId) return d;
-        const newId = genId(
-          "EMP",
-          d.employes.map((e) => ({ id: e.id })),
-        );
-        const mat = `MAT-${String(d.employes.length + 1).padStart(3, "0")}`;
-        return {
-          ...d,
-          employes: [...d.employes, { ...emp, id: newId, matricule: mat }],
-        };
-      }),
-    );
-  };
-  const supprimerEmploye = (depId, empId) => {
-    setDepartements((prev) =>
-      prev.map((d) =>
-        d.id === depId
-          ? { ...d, employes: d.employes.filter((e) => e.id !== empId) }
-          : d,
+    // Met à jour le nom dans les attributions
+    setAttributions((prev) =>
+      prev.map((a) =>
+        a.departement === departements.find((x) => x.id === d.id)?.nom
+          ? { ...a, departement: d.nom }
+          : a,
       ),
     );
   };
 
+  const supprimerDepartement = (id) => {
+    const dep = departements.find((d) => d.id === id);
+    setDepartements((prev) => prev.filter((x) => x.id !== id));
+    if (dep)
+      setAttributions((prev) => prev.filter((a) => a.departement !== dep.nom));
+  };
+
+  const ajouterService = (depId, service) => {
+    setDepartements((prev) =>
+      prev.map((d) => {
+        if (d.id !== depId) return d;
+        const newSrv = { ...service, id: `SRV-${Date.now()}`, employes: [] };
+        return { ...d, services: [...d.services, newSrv] };
+      }),
+    );
+  };
+
+  const modifierService = (depId, service) => {
+    setDepartements((prev) =>
+      prev.map((d) =>
+        d.id !== depId
+          ? d
+          : {
+              ...d,
+              services: d.services.map((s) =>
+                s.id === service.id ? { ...s, ...service } : s,
+              ),
+            },
+      ),
+    );
+  };
+
+  const supprimerService = (depId, serviceId) => {
+    setDepartements((prev) =>
+      prev.map((d) =>
+        d.id !== depId
+          ? d
+          : { ...d, services: d.services.filter((s) => s.id !== serviceId) },
+      ),
+    );
+  };
+
+const ajouterEmployeService = (depId, serviceId, emp) => {
+  const dep = departements.find(d => d.id === depId);
+  const matricule = `MAT-${String(Date.now()).slice(-5)}`;
+  setDepartements(prev => prev.map(d =>
+    d.id !== depId ? d : {
+      ...d,
+      services: d.services.map(s =>
+        s.id !== serviceId ? s : {
+          ...s,
+          employes: [...s.employes, { ...emp, id: `EMP-${Date.now()}`, matricule }]
+        }
+      )
+    }
+  ));
+  // Ajoute l'employé dans l'attribution du département
+  if (dep) {
+    setAttributions(prev => prev.map(a =>
+      a.departement === dep.nom
+        ? { ...a, statut: "Occupé", occupants: [...a.occupants, `${emp.prenom} ${emp.nom}`] }
+        : a
+    ));
+  }
+};
+  const supprimerEmployeService = (depId, serviceId, empId) => {
+    setDepartements((prev) =>
+      prev.map((d) =>
+        d.id !== depId
+          ? d
+          : {
+              ...d,
+              services: d.services.map((s) =>
+                s.id !== serviceId
+                  ? s
+                  : {
+                      ...s,
+                      employes: s.employes.filter((e) => e.id !== empId),
+                    },
+              ),
+            },
+      ),
+    );
+  };
   // ── Actions Attributions ──────────────────────────────────────────────────
   const ajouterAttribution = (a) => {
     const newId = genId("ATT", attributions);
@@ -695,19 +654,19 @@ export function AppProvider({ children }) {
     );
 
   // ── Stats pour le dashboard ───────────────────────────────────────────────
-  const stats = {
-    logDisponibles: logements.filter((l) => l.statut === "Disponible").length,
-    logOccupes: logements.filter((l) => l.statut === "Occupé").length,
-    logMaintenance: logements.filter((l) => l.statut === "Maintenance").length,
-    logTotal: logements.length,
-    attEnAttente: attributions.filter((a) => a.statut === "En attente").length,
-    empTotal: departements.reduce((s, d) => s + d.employes.length, 0),
-    alertesStock: materiaux.filter((m) => m.stock <= m.seuil).length,
-    depEnAttente: depenses.filter((d) => d.statut === "En attente"),
-    depTotal: depenses
-      .filter((d) => d.statut === "Validé")
-      .reduce((s, d) => s + d.montant, 0),
-  };
+const stats = {
+  logDisponibles: logements.filter(l => l.statut === "Disponible").length,
+  logOccupes:     logements.filter(l => l.statut === "Occupé").length,
+  logMaintenance: logements.filter(l => l.statut === "Maintenance").length,
+  logTotal:       logements.length,
+  attEnAttente:   attributions.filter(a => a.statut === "En attente").length,
+  empTotal:       departements.reduce((s, d) =>
+    s + (d.services || []).reduce((ss, srv) =>
+      ss + (srv.employes || []).length, 0), 0),
+  alertesStock:   materiaux.filter(m => m.stock <= m.seuil).length,
+  depEnAttente:   depenses.filter(d => d.statut === "En attente"),
+  depTotal:       depenses.filter(d => d.statut === "Validé").reduce((s, d) => s + d.montant, 0),
+};
 
   return (
     <AppContext.Provider
@@ -723,12 +682,16 @@ export function AppProvider({ children }) {
         ajouterLogement,
         modifierLogement,
         supprimerLogement,
+
         // Actions départements
         ajouterDepartement,
         modifierDepartement,
         supprimerDepartement,
-        ajouterEmploye,
-        supprimerEmploye,
+        ajouterService,
+        modifierService,
+        supprimerService,
+        ajouterEmployeService,
+        supprimerEmployeService,
         // Actions attributions
         ajouterAttribution,
         modifierAttribution,
