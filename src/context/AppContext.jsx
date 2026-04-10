@@ -668,6 +668,23 @@ const stats = {
   depTotal:       depenses.filter(d => d.statut === "Validé").reduce((s, d) => s + d.montant, 0),
 };
 
+// Liste complète : départements + leurs services comme sous-départements
+const tousLesDepartements = departements.reduce((acc, dep) => {
+  // Ajoute le département principal
+  acc.push({ id: dep.id, nom: dep.nom, fullName: dep.fullName, type: "departement" });
+  // Ajoute chaque service comme sous-département
+  (dep.services || []).forEach(srv => {
+    acc.push({
+      id:       srv.id,
+      nom:      `${dep.nom} — ${srv.name}`,
+      fullName: srv.name,
+      type:     "service",
+      depNom:   dep.nom,
+    });
+  });
+  return acc;
+}, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -692,6 +709,7 @@ const stats = {
         supprimerService,
         ajouterEmployeService,
         supprimerEmployeService,
+        tousLesDepartements,
         // Actions attributions
         ajouterAttribution,
         modifierAttribution,
