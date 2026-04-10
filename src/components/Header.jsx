@@ -1,9 +1,8 @@
-
 import { useState, useEffect, useRef } from "react";
 import { useApp } from "../context/AppContext";
+import { useAuth } from "../context/AuthContext";
 import ToggleTheme from "./ToggleTheme";
-import { Bell , TriangleAlert , Coins , Axe ,Warehouse} from "lucide-react";
-
+import { Bell, TriangleAlert, Coins, Axe, Warehouse } from "lucide-react";
 
 function timeAgo() {
   const mins = Math.floor(Math.random() * 59) + 1;
@@ -14,16 +13,15 @@ export default function Header({
   titre,
   setSidebarOpen,
   sidebarOpen,
-  nbNotifs,
   darkMode,
   setDarkMode,
 }) {
   const { depenses, materiaux, attributions, logements } = useApp();
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const [lues, setLues] = useState({});
   const ref = useRef(null);
 
-  // Ferme le dropdown si on clique ailleurs
   useEffect(() => {
     const handler = (e) => {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false);
@@ -32,9 +30,7 @@ export default function Header({
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Génère les notifications automatiquement depuis les données
   const notifications = [
-    // Dépenses en attente
     ...depenses
       .filter((d) => d.statut === "En attente")
       .map((d) => ({
@@ -45,8 +41,6 @@ export default function Header({
         message: `${d.description} — ${new Intl.NumberFormat("fr-MG").format(d.montant)} Ar`,
         temps: timeAgo(),
       })),
-
-    // Stock bas
     ...materiaux
       .filter((m) => m.stock <= m.seuil)
       .map((m) => ({
@@ -57,8 +51,6 @@ export default function Header({
         message: `${m.nom} — ${m.stock} ${m.unite} restants (seuil : ${m.seuil})`,
         temps: timeAgo(),
       })),
-
-    // Logements en maintenance
     ...logements
       .filter((l) => l.statut === "Maintenance")
       .map((l) => ({
@@ -69,8 +61,6 @@ export default function Header({
         message: `${l.id} — ${l.type} — ${l.localisation}`,
         temps: timeAgo(),
       })),
-
-    // Attributions occupées récentes
     ...attributions
       .filter((a) => a.statut === "Occupé")
       .slice(0, 2)
@@ -88,9 +78,7 @@ export default function Header({
 
   const marquerToutLu = () => {
     const all = {};
-    notifications.forEach((n) => {
-      all[n.id] = true;
-    });
+    notifications.forEach((n) => { all[n.id] = true; });
     setLues(all);
   };
 
@@ -98,14 +86,18 @@ export default function Header({
 
   const typeStyles = {
     warning: "bg-amber-50  dark:bg-amber-900/20  border-l-4 border-amber-400",
-    danger: "bg-rose-50   dark:bg-rose-900/20   border-l-4 border-rose-400",
-    info: "bg-blue-50   dark:bg-blue-900/20   border-l-4 border-blue-400",
-    success:
-      "bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-400",
+    danger:  "bg-rose-50   dark:bg-rose-900/20   border-l-4 border-rose-400",
+    info:    "bg-blue-50   dark:bg-blue-900/20   border-l-4 border-blue-400",
+    success: "bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-400",
   };
+
+  const initiales = user?.username
+    ? user.username.slice(0, 2).toUpperCase()
+    : "??";
 
   return (
     <header className="bg-[#0F2D56] dark:bg-gray-900 border-b border-[#1a3f75] dark:border-gray-800 px-4 md:px-6 py-3 flex items-center justify-between shrink-0">
+
       {/* Gauche */}
       <div className="flex items-center gap-3">
         <button
@@ -120,9 +112,6 @@ export default function Header({
       </div>
 
       {/* Droite */}
-
-      <div className="flex items-center gap-2 md:gap-3"> 
-
       <div className="flex items-center gap-2 md:gap-3">
 
         {/* Date */}
@@ -134,21 +123,16 @@ export default function Header({
           })}
         </span>
 
-        {/* Toggle */}
+        {/* Toggle thème */}
         <ToggleTheme darkMode={darkMode} setDarkMode={setDarkMode} />
 
-        {/* Cloche */}
-        <div className="relative">
-          {/* <button className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-sm transition">  */}
-            
         {/* Cloche + Dropdown */}
         <div className="relative" ref={ref}>
           <button
             onClick={() => setOpen(!open)}
-            className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-sm transition"
+            className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition"
           >
-            <Bell className="w-8 h-8 text-yellow-400"/>
-
+            <Bell className="w-5 h-5 text-yellow-400" />
           </button>
           {nonLues > 0 && (
             <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#C9A84C] text-white text-xs rounded-full flex items-center justify-center font-bold">
@@ -156,28 +140,18 @@ export default function Header({
             </span>
           )}
 
-          {/* Dropdown */}
           {open && (
             <div className="absolute right-0 top-11 w-80 md:w-96 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 z-50 overflow-hidden">
-              {/* En-tête */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-700">
                 <div>
-                  <p className="font-bold text-[#0F2D56] dark:text-white text-sm">
-                    Notifications
-                  </p>
-                  <p className="text-xs text-gray-400">
-                    {nonLues} non lue{nonLues > 1 ? "s" : ""}
-                  </p>
+                  <p className="font-bold text-[#0F2D56] dark:text-white text-sm">Notifications</p>
+                  <p className="text-xs text-gray-400">{nonLues} non lue{nonLues > 1 ? "s" : ""}</p>
                 </div>
-                <button
-                  onClick={marquerToutLu}
-                  className="text-xs text-[#0F2D56] dark:text-gray-300 hover:underline font-semibold"
-                >
+                <button onClick={marquerToutLu} className="text-xs text-[#0F2D56] dark:text-gray-300 hover:underline font-semibold">
                   Tout marquer lu
                 </button>
               </div>
 
-              {/* Liste */}
               <div className="max-h-96 overflow-y-auto">
                 {notifications.length === 0 ? (
                   <div className="py-10 text-center">
@@ -193,43 +167,39 @@ export default function Header({
                     >
                       <div className="flex items-start gap-3">
                         <span className="shrink-0">
-                          {typeof n.icon === "string" ? (<span className="text-lg">{n.icon}</span>) : ( <n.icon className="w-5 h-5 text-rose-500" /> )}
+                          {typeof n.icon === "string"
+                            ? <span className="text-lg">{n.icon}</span>
+                            : <n.icon className="w-5 h-5 text-rose-500" />
+                          }
                         </span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-2">
-                            <p className="text-xs font-bold text-gray-800 dark:text-white">
-                              {n.titre}
-                            </p>
-                            {!lues[n.id] && (
-                              <span className="w-2 h-2 rounded-full bg-[#C9A84C] shrink-0" />
-                            )}
+                            <p className="text-xs font-bold text-gray-800 dark:text-white">{n.titre}</p>
+                            {!lues[n.id] && <span className="w-2 h-2 rounded-full bg-[#C9A84C] shrink-0" />}
                           </div>
-                          <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5">
-                            {n.message}
-                          </p>
-                          <p className="text-xs text-gray-400 mt-1">
-                            {n.temps}
-                          </p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5">{n.message}</p>
+                          <p className="text-xs text-gray-400 mt-1">{n.temps}</p>
                         </div>
                       </div>
                     </div>
                   ))
                 )}
-                </div>
+              </div>
 
-              {/* Pied */}
               <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                 <p className="text-xs text-center text-gray-400">
-                  {notifications.length} notification
-                  {notifications.length > 1 ? "s" : ""} au total
+                  {notifications.length} notification{notifications.length > 1 ? "s" : ""} au total
                 </p>
               </div>
             </div>
           )}
         </div>
-      </div>
-      </div>
-      
+
+        {/* Avatar (indicateur visuel — profil dans la sidebar) */}
+        <div className="w-8 h-8 rounded-full bg-[#C9A84C] flex items-center justify-center text-white text-xs font-black select-none">
+          {initiales}
+        </div>
+
       </div>
     </header>
   );
