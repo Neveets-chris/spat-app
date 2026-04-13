@@ -187,32 +187,52 @@ const DEPARTEMENTS_INIT = [
 
 const ATTRIBUTIONS_INIT = [
   {
-    id: "ATT-001", departement: "DSIA", logement: "LOG-001",
-    date_debut: "2024-01-01", date_fin: "2024-12-31", statut: "Occupé",
+    id: "ATT-001",
+    departement: "DSIA",
+    logement: "LOG-001",
+    date_debut: "2024-01-01",
+    date_fin: "2024-12-31",
+    statut: "Occupé",
     occupants: ["Jean Randria", "Alice Ratovo"],
     observations: "Attribution normale",
   },
   {
-    id: "ATT-002", departement: "DRH", logement: "LOG-003",
-    date_debut: "2024-03-15", date_fin: "2025-03-14", statut: "Occupé",
+    id: "ATT-002",
+    departement: "DRH",
+    logement: "LOG-003",
+    date_debut: "2024-03-15",
+    date_fin: "2025-03-14",
+    statut: "Occupé",
     occupants: ["Emma Razaf", "Noël Ravelo"],
     observations: "Direction RH",
   },
   {
-    id: "ATT-003", departement: "DT", logement: "LOG-006",
-    date_debut: "2024-06-01", date_fin: "2025-05-31", statut: "Occupé",
+    id: "ATT-003",
+    departement: "DT",
+    logement: "LOG-006",
+    date_debut: "2024-06-01",
+    date_fin: "2025-05-31",
+    statut: "Occupé",
     occupants: ["Ing. Fara", "Arch. Rado"],
     observations: "Équipe technique",
   },
   {
-    id: "ATT-004", departement: "DAF", logement: "LOG-002",
-    date_debut: "2024-09-01", date_fin: "2025-08-31", statut: "Disponible",
+    id: "ATT-004",
+    departement: "DAF",
+    logement: "LOG-002",
+    date_debut: "2024-09-01",
+    date_fin: "2025-08-31",
+    statut: "Disponible",
     occupants: [],
     observations: "En attente d'occupation",
   },
   {
-    id: "ATT-005", departement: "DAJPP", logement: "LOG-005",
-    date_debut: "2023-01-01", date_fin: "2023-12-31", statut: "Maintenance",
+    id: "ATT-005",
+    departement: "DAJPP",
+    logement: "LOG-005",
+    date_debut: "2023-01-01",
+    date_fin: "2023-12-31",
+    statut: "Maintenance",
     occupants: [],
     observations: "Logement en rénovation",
   },
@@ -494,29 +514,44 @@ export function AppProvider({ children }) {
     );
   };
 
-const ajouterEmployeService = (depId, serviceId, emp) => {
-  const dep = departements.find(d => d.id === depId);
-  const matricule = `MAT-${String(Date.now()).slice(-5)}`;
-  setDepartements(prev => prev.map(d =>
-    d.id !== depId ? d : {
-      ...d,
-      services: d.services.map(s =>
-        s.id !== serviceId ? s : {
-          ...s,
-          employes: [...s.employes, { ...emp, id: `EMP-${Date.now()}`, matricule }]
-        }
-      )
+  const ajouterEmployeService = (depId, serviceId, emp) => {
+    const dep = departements.find((d) => d.id === depId);
+    const matricule = `MAT-${String(Date.now()).slice(-5)}`;
+    setDepartements((prev) =>
+      prev.map((d) =>
+        d.id !== depId
+          ? d
+          : {
+              ...d,
+              services: d.services.map((s) =>
+                s.id !== serviceId
+                  ? s
+                  : {
+                      ...s,
+                      employes: [
+                        ...s.employes,
+                        { ...emp, id: `EMP-${Date.now()}`, matricule },
+                      ],
+                    },
+              ),
+            },
+      ),
+    );
+    // Ajoute l'employé dans l'attribution du département
+    if (dep) {
+      setAttributions((prev) =>
+        prev.map((a) =>
+          a.departement === dep.nom
+            ? {
+                ...a,
+                statut: "Occupé",
+                occupants: [...a.occupants, `${emp.prenom} ${emp.nom}`],
+              }
+            : a,
+        ),
+      );
     }
-  ));
-  // Ajoute l'employé dans l'attribution du département
-  if (dep) {
-    setAttributions(prev => prev.map(a =>
-      a.departement === dep.nom
-        ? { ...a, statut: "Occupé", occupants: [...a.occupants, `${emp.prenom} ${emp.nom}`] }
-        : a
-    ));
-  }
-};
+  };
   const supprimerEmployeService = (depId, serviceId, empId) => {
     setDepartements((prev) =>
       prev.map((d) =>
@@ -601,10 +636,31 @@ const ajouterEmployeService = (depId, serviceId, emp) => {
   const supprimerMateriau = (id) =>
     setMateriaux((prev) => prev.filter((x) => x.id !== id));
 
+  const rafraichirMateriaux = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/logi/stock/");
+      const data = await res.json();
+      setMateriaux(
+        data.map((m) => ({
+          id: m.id,
+          nom: m.nom,
+          categorie: m.categorie,
+          stock: m.stock,
+          seuil: m.seuil,
+          unite: m.unite,
+          prix: m.prix,
+        })),
+      );
+    } catch (e) {
+      console.error("Impossible de rafraîchir les matériaux", e);
+    }
+  };
   const ajouterMouvement = (mvt) => {
     const newId = genId("MOV", mouvements);
     const mov = { ...mvt, id: newId };
     setMouvements((prev) => [mov, ...prev]);
+
+    
 
     // Met à jour le stock
     const mat = materiaux.find((m) => m.nom === mvt.materiau);
@@ -654,36 +710,52 @@ const ajouterEmployeService = (depId, serviceId, emp) => {
     );
 
   // ── Stats pour le dashboard ───────────────────────────────────────────────
-const stats = {
-  logDisponibles: logements.filter(l => l.statut === "Disponible").length,
-  logOccupes:     logements.filter(l => l.statut === "Occupé").length,
-  logMaintenance: logements.filter(l => l.statut === "Maintenance").length,
-  logTotal:       logements.length,
-  attEnAttente:   attributions.filter(a => a.statut === "En attente").length,
-  empTotal:       departements.reduce((s, d) =>
-    s + (d.services || []).reduce((ss, srv) =>
-      ss + (srv.employes || []).length, 0), 0),
-  alertesStock:   materiaux.filter(m => m.stock <= m.seuil).length,
-  depEnAttente:   depenses.filter(d => d.statut === "En attente"),
-  depTotal:       depenses.filter(d => d.statut === "Validé").reduce((s, d) => s + d.montant, 0),
-};
+  const stats = {
+    logDisponibles: logements.filter((l) => l.statut === "Disponible").length,
+    logOccupes: logements.filter((l) => l.statut === "Occupé").length,
+    logMaintenance: logements.filter((l) => l.statut === "Maintenance").length,
+    logTotal: logements.length,
+    attEnAttente: attributions.filter((a) => a.statut === "En attente").length,
+    empTotal: departements.reduce(
+      (s, d) =>
+        s +
+        (d.services || []).reduce(
+          (ss, srv) => ss + (srv.employes || []).length,
+          0,
+        ),
+      0,
+    ),
+    alertesStock: materiaux.filter((m) => m.stock <= m.seuil).length,
+    depEnAttente: depenses.filter((d) => d.statut === "En attente"),
+    depTotal: depenses
+      .filter((d) => d.statut === "Validé")
+      .reduce((s, d) => s + d.montant, 0),
+  };
 
-// Liste complète : départements + leurs services comme sous-départements
-const tousLesDepartements = departements.reduce((acc, dep) => {
-  // Ajoute le département principal
-  acc.push({ id: dep.id, nom: dep.nom, fullName: dep.fullName, type: "departement" });
-  // Ajoute chaque service comme sous-département
-  (dep.services || []).forEach(srv => {
+  // Liste complète : départements + leurs services comme sous-départements
+  const tousLesDepartements = departements.reduce((acc, dep) => {
+    // Ajoute le département principal
     acc.push({
-      id:       srv.id,
-      nom:      `${dep.nom} — ${srv.name}`,
-      fullName: srv.name,
-      type:     "service",
-      depNom:   dep.nom,
+      id: dep.id,
+      nom: dep.nom,
+      fullName: dep.fullName,
+      type: "departement",
     });
-  });
-  return acc;
-}, []);
+    // Ajoute chaque service comme sous-département
+    (dep.services || []).forEach((srv) => {
+      acc.push({
+        id: srv.id,
+        nom: `${dep.nom} — ${srv.name}`,
+        fullName: srv.name,
+        type: "service",
+        depNom: dep.nom,
+      });
+    });
+    return acc;
+  }, []);
+
+  // Dans AppContext.jsx, ajoute après les useState :
+  
 
   return (
     <AppContext.Provider
@@ -720,6 +792,7 @@ const tousLesDepartements = departements.reduce((acc, dep) => {
         modifierMateriau,
         supprimerMateriau,
         ajouterMouvement,
+        rafraichirMateriaux,
         // Actions dépenses
         ajouterDepense,
         modifierDepense,

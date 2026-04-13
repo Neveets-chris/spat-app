@@ -9,6 +9,7 @@ import Materiaux from "./pages/Materiaux";
 import Depenses from "./pages/Depense";
 import PageWrapper from "./components/PageWrapper";
 import ThemeTransition from "./components/ThemeTransition";
+import Logi from "./components/Logi";
 
 const TITRES = {
   dashboard:    "Tableau de bord",
@@ -24,6 +25,7 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [darkMode, setDarkMode]       = useState(false);
   const [trigger, setTrigger]         = useState(0);
+  
 
   const handleToggleDark = (val) => {
     setTrigger(t => t + 1);
@@ -45,6 +47,7 @@ export default function App() {
       attributions: <Attributions />,
       materiaux:    <Materiaux />,
       depenses:     <Depenses />,
+      
     };
     return (
       <PageWrapper key={page}>
@@ -70,6 +73,7 @@ export default function App() {
           {renderPage()}
         </main>
       </div>
+      <Logi />
     </div>
   );
 }
