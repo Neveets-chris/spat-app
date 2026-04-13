@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  BarChart2, Users, Wallet, Scale, Anchor, Wrench, Building2,
+  BarChart2, User, Scale, Anchor, Wrench, Landmark,Wallet,
   ChevronDown, Pencil, Plus, Trash2, Search, Layers, X, Check, Eye,
   Shield, Laptop, HandCoins, Globe, Truck, FlaskConical, BookOpen,
   Headphones, Megaphone, Leaf, Cpu, Database, FileText, Star,
@@ -10,15 +10,15 @@ import {
 // ─── Icon options (Lucide) ────────────────────────────────────────────────────
 const ICON_OPTIONS = [
   { label: "BarChart2",    Icon: BarChart2 },
-  { label: "Users",        Icon: Users },
-  { label: "Wallet",       Icon: Wallet },
+  { label: "Users",        Icon: User },
+  { label: "HandCoins",       Icon: HandCoins },
   { label: "Scale",        Icon: Scale },
   { label: "Anchor",       Icon: Anchor },
   { label: "Wrench",       Icon: Wrench },
-  { label: "Building2",    Icon: Building2 },
+  { label: "Landmark",    Icon: Landmark},
   { label: "Shield",       Icon: Shield },
   { label: "Laptop",       Icon: Laptop },
-  { label: "HandCoins",    Icon: HandCoins },
+  { label: "Wallet",    Icon: Wallet },
   { label: "Globe",        Icon: Globe },
   { label: "Truck",        Icon: Truck },
   { label: "FlaskConical", Icon: FlaskConical },

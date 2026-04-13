@@ -1,4 +1,6 @@
+// src/App.js
 import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Dashboard from "./pages/Dashboard";
@@ -10,56 +12,54 @@ import Depenses from "./pages/Depense";
 import PageWrapper from "./components/PageWrapper";
 import ThemeTransition from "./components/ThemeTransition";
 import Logi from "./components/Logi";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import PrivateRoute from "./components/PrivateRoute";
 
 const TITRES = {
-  dashboard:    "Tableau de bord",
-  logements:    "Gestion des logements",
-  employes:     "Gestion des employés",
+  dashboard: "Tableau de bord",
+  logements: "Gestion des logements",
+  employes: "Gestion des employés",
   attributions: "Gestion des attributions",
-  materiaux:    "Gestion des matériaux",
-  depenses:     "Gestion des dépenses",
+  materiaux: "Gestion des matériaux",
+  depenses: "Gestion des dépenses",
 };
 
-export default function App() {
-  const [page, setPage]               = useState("dashboard");
+function AppLayout() {
+  const [page, setPage] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [darkMode, setDarkMode]       = useState(false);
-  const [trigger, setTrigger]         = useState(0);
-  
+  const [darkMode, setDarkMode] = useState(false);
+  const [trigger, setTrigger] = useState(0);
 
   const handleToggleDark = (val) => {
-    setTrigger(t => t + 1);
+    setTrigger((t) => t + 1);
     setTimeout(() => {
       setDarkMode(val);
-      if (val) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
+      document.documentElement.classList.toggle("dark", val);
     }, 350);
   };
 
-  const renderPage = () => {
-    const pages = {
-      dashboard:    <Dashboard />,
-      logements:    <Logements />,
-      employes:     <Employes />,
-      attributions: <Attributions />,
-      materiaux:    <Materiaux />,
-      depenses:     <Depenses />,
-      
-    };
-    return (
-      <PageWrapper key={page}>
-        {pages[page] || <Dashboard />}
-      </PageWrapper>
-    );
+  // ✅ Définir pages ici (accessible partout)
+  const pages = {
+    dashboard: <Dashboard />,
+    logements: <Logements />,
+    employes: <Employes />,
+    attributions: <Attributions />,
+    materiaux: <Materiaux />,
+    depenses: <Depenses />,
   };
 
   return (
     <div className="flex h-screen bg-[#EDEBE6] dark:bg-gray-950 overflow-hidden transition-colors duration-300">
       <ThemeTransition darkMode={darkMode} trigger={trigger} />
-      <Sidebar page={page} setPage={setPage} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
+      <Sidebar
+        page={page}
+        setPage={setPage}
+        open={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
+
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header
           titre={TITRES[page]}
@@ -69,11 +69,34 @@ export default function App() {
           darkMode={darkMode}
           setDarkMode={handleToggleDark}
         />
+
         <main className="flex-1 overflow-y-auto p-6">
-          {renderPage()}
+          <PageWrapper key={page}>
+            {pages[page] || <Dashboard />}
+          </PageWrapper>
         </main>
       </div>
+
       <Logi />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/*"
+          element={
+            <PrivateRoute>
+              <AppLayout />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
