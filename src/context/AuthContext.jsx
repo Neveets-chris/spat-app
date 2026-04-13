@@ -3,7 +3,7 @@ import axios from "axios";
 
 const AuthContext = createContext(null);
 
-const API = "https://spat-backend.onrender.com/api";
+const API = "http://localhost:8000/api";
 
 export function AuthProvider({ children }) {
   const [user, setUser]     = useState(null);

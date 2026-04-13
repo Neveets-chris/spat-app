@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import {
   BrickWall, Building2, KeyRound, LayoutDashboard,
   UsersRound, Wallet, LogOut, Mail, BadgeCheck,
-  Camera, Upload, UserCircle, UserCircle2
+  Camera, Upload, UserCircle
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 

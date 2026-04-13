@@ -156,7 +156,7 @@ function ModalFin({ attribution, onClose, onConfirm }) {
 }
 
 export default function Attributions() {
-  const { attributions, logements, departements, ajouterAttribution, modifierAttribution, terminerAttribution, supprimerAttribution } = useApp();
+  const { attributions, logements,tousLesDepartements: departements, ajouterAttribution, modifierAttribution, terminerAttribution, supprimerAttribution } = useApp();
   const [filtre, setFiltre]     = useState("Tous");
   const [search, setSearch]     = useState("");
   const [detail, setDetail]     = useState(null);
