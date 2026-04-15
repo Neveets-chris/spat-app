@@ -1,8 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import { useApp } from "../context/AppContext";
 import { useAuth } from "../context/AuthContext";
-import ToggleTheme from "./ToggleTheme";
-import { Bell, TriangleAlert, Coins, Axe, Warehouse } from "lucide-react";
+//import ToggleTheme from "./ToggleTheme";
+import { 
+  Bell, 
+  TriangleAlert, 
+  Coins, 
+  Axe, 
+  Warehouse,
+  CheckCheck,
+  X,
+  Sun,
+  Moon
+} from "lucide-react";
 
 function timeAgo() {
   const mins = Math.floor(Math.random() * 59) + 1;
@@ -85,10 +95,30 @@ export default function Header({
   const marquerLu = (id) => setLues((prev) => ({ ...prev, [id]: true }));
 
   const typeStyles = {
-    warning: "bg-amber-50  dark:bg-amber-900/20  border-l-4 border-amber-400",
-    danger:  "bg-rose-50   dark:bg-rose-900/20   border-l-4 border-rose-400",
-    info:    "bg-blue-50   dark:bg-blue-900/20   border-l-4 border-blue-400",
-    success: "bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-400",
+    warning: {
+      bg: "bg-amber-50 dark:bg-amber-900/20",
+      border: "border-l-amber-400",
+      iconBg: "bg-amber-100 dark:bg-amber-900/30",
+      iconColor: "text-amber-600 dark:text-amber-400"
+    },
+    danger: {
+      bg: "bg-rose-50 dark:bg-rose-900/20",
+      border: "border-l-rose-400",
+      iconBg: "bg-rose-100 dark:bg-rose-900/30",
+      iconColor: "text-rose-600 dark:text-rose-400"
+    },
+    info: {
+      bg: "bg-blue-50 dark:bg-blue-900/20",
+      border: "border-l-blue-400",
+      iconBg: "bg-blue-100 dark:bg-blue-900/30",
+      iconColor: "text-blue-600 dark:text-blue-400"
+    },
+    success: {
+      bg: "bg-emerald-50 dark:bg-emerald-900/20",
+      border: "border-l-emerald-400",
+      iconBg: "bg-emerald-100 dark:bg-emerald-900/30",
+      iconColor: "text-emerald-600 dark:text-emerald-400"
+    },
   };
 
   const initiales = user?.username
@@ -123,14 +153,36 @@ export default function Header({
           })}
         </span>
 
-        {/* Toggle thème */}
-        <ToggleTheme darkMode={darkMode} setDarkMode={setDarkMode} />
+        {/* Toggle thème amélioré */}
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="w-12 h-6 rounded-full relative transition-all duration-300 focus:outline-none"
+          style={{
+            background: darkMode 
+              ? "linear-gradient(90deg, #1e293b 0%, #334155 100%)" 
+              : "linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%)",
+            boxShadow: "inset 0 2px 4px rgba(0,0,0,0.2)"
+          }}
+        >
+          <div 
+            className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-all duration-300 flex items-center justify-center"
+            style={{
+              left: darkMode ? "calc(100% - 22px)" : "2px",
+            }}
+          >
+            {darkMode ? (
+              <Moon className="w-3 h-3 text-indigo-600" />
+            ) : (
+              <Sun className="w-3 h-3 text-amber-500" />
+            )}
+          </div>
+        </button>
 
-        {/* Cloche + Dropdown */}
+        {/* Cloche + Dropdown - FONCTIONNEL */}
         <div className="relative" ref={ref}>
           <button
             onClick={() => setOpen(!open)}
-            className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition"
+            className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition relative"
           >
             <Bell className="w-5 h-5 text-yellow-400" />
           </button>
@@ -142,14 +194,32 @@ export default function Header({
 
           {open && (
             <div className="absolute right-0 top-11 w-80 md:w-96 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 z-50 overflow-hidden">
-              <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-700">
-                <div>
-                  <p className="font-bold text-[#0F2D56] dark:text-white text-sm">Notifications</p>
-                  <p className="text-xs text-gray-400">{nonLues} non lue{nonLues > 1 ? "s" : ""}</p>
+              {/* Header style Untitled UI */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/50">
+                <div className="flex items-center gap-2">
+                  <Bell className="w-4 h-4 text-[#0F2D56] dark:text-[#C9A84C]" />
+                  <div>
+                    <p className="font-bold text-[#0F2D56] dark:text-white text-sm">Notifications</p>
+                    <p className="text-xs text-gray-400">{nonLues} non lue{nonLues > 1 ? "s" : ""}</p>
+                  </div>
                 </div>
-                <button onClick={marquerToutLu} className="text-xs text-[#0F2D56] dark:text-gray-300 hover:underline font-semibold">
-                  Tout marquer lu
-                </button>
+                <div className="flex gap-1">
+                  {nonLues > 0 && (
+                    <button 
+                      onClick={marquerToutLu}
+                      className="p-1.5 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition"
+                      title="Tout marquer lu"
+                    >
+                      <CheckCheck className="w-4 h-4" />
+                    </button>
+                  )}
+                  <button 
+                    onClick={() => setOpen(false)}
+                    className="p-1.5 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
 
               <div className="max-h-96 overflow-y-auto">
@@ -159,30 +229,31 @@ export default function Header({
                     <p className="text-sm text-gray-400">Aucune notification</p>
                   </div>
                 ) : (
-                  notifications.map((n) => (
-                    <div
-                      key={n.id}
-                      onClick={() => marquerLu(n.id)}
-                      className={`px-4 py-3 cursor-pointer hover:brightness-95 transition ${typeStyles[n.type]} ${lues[n.id] ? "opacity-50" : ""}`}
-                    >
-                      <div className="flex items-start gap-3">
-                        <span className="shrink-0">
-                          {typeof n.icon === "string"
-                            ? <span className="text-lg">{n.icon}</span>
-                            : <n.icon className="w-5 h-5 text-rose-500" />
-                          }
-                        </span>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between gap-2">
-                            <p className="text-xs font-bold text-gray-800 dark:text-white">{n.titre}</p>
-                            {!lues[n.id] && <span className="w-2 h-2 rounded-full bg-[#C9A84C] shrink-0" />}
+                  notifications.map((n) => {
+                    const styles = typeStyles[n.type];
+                    const Icon = n.icon;
+                    return (
+                      <div
+                        key={n.id}
+                        onClick={() => marquerLu(n.id)}
+                        className={`px-4 py-3 cursor-pointer hover:brightness-95 transition border-b border-gray-100 dark:border-gray-800 last:border-0 ${styles.bg} ${styles.border} border-l-4 ${lues[n.id] ? "opacity-50" : ""}`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className={`shrink-0 w-8 h-8 rounded-full ${styles.iconBg} flex items-center justify-center`}>
+                            <Icon className={`w-4 h-4 ${styles.iconColor}`} />
                           </div>
-                          <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5">{n.message}</p>
-                          <p className="text-xs text-gray-400 mt-1">{n.temps}</p>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-2">
+                              <p className="text-xs font-bold text-gray-800 dark:text-white">{n.titre}</p>
+                              {!lues[n.id] && <span className="w-2 h-2 rounded-full bg-[#C9A84C] shrink-0" />}
+                            </div>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5">{n.message}</p>
+                            <p className="text-xs text-gray-400 mt-1">{n.temps}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))
+                    );
+                  })
                 )}
               </div>
 
@@ -195,7 +266,7 @@ export default function Header({
           )}
         </div>
 
-        {/* Avatar (indicateur visuel — profil dans la sidebar) */}
+        {/* Avatar simple (comme avant) */}
         <div className="w-8 h-8 rounded-full bg-[#C9A84C] flex items-center justify-center text-white text-xs font-black select-none">
           {initiales}
         </div>

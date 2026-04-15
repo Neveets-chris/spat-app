@@ -87,8 +87,8 @@ function ModalForm({ logement, onClose, onSave }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-      <div className="bg-[#F7F5F0] dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-lg p-6 border border-[#E0DDD7] dark:border-gray-700 overflow-y-auto max-h-[90vh]">
+    <div className="fixed inset-0 z-50  bg-black/40 backdrop-blur-sm p-4 flex items-center justify-center">
+      <div className=" relative bg-[#F7F5F0] dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-lg p-6 border border-[#E0DDD7] dark:border-gray-700 overflow-y-auto max-h-[90vh]">
         <div className="flex justify-between items-center mb-5">
           <h2 className="text-lg font-black text-[#0F2D56] dark:text-white">
             {logement ? "Modifier le logement" : "Ajouter un logement"}
