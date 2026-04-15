@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useApp } from "../context/AppContext";
 
-const API_BASE = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
+const API_BASE = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000/api";
 
 const IconBot = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-6 h-6"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 3v5M9 3h6"/><circle cx="9" cy="14" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.5" fill="currentColor" stroke="none"/><path d="M9 18h6"/></svg>;
 const IconSend = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-5 h-5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>;
@@ -43,25 +43,33 @@ export default function Logi() {
 
   // ── Appel Django → Groq ───────────────────────────────────────────────────
   const callClaude = async (userMessage) => {
-    historyRef.current = [...historyRef.current, { role: "user", content: userMessage }];
+  historyRef.current = [...historyRef.current, { role: "user", content: userMessage }];
 
-    const res = await fetch(`${API_BASE}/api/logi/chat/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: historyRef.current }),
-    });
+  const token = localStorage.getItem("access"); // ⚠️ important
 
-    const data = await res.json();
-    const raw = data.content || '{"texte":"Erreur de communication.","action":null,"confirmation":false}';
+  const res = await fetch(`${API_BASE}/logi/chat/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`  // ✅ AJOUT
+    },
+    body: JSON.stringify({ messages: historyRef.current }),
+  });
 
-    let parsed;
-    try { parsed = JSON.parse(raw); }
-    catch { parsed = { texte: raw, action: null, confirmation: false }; }
+  if (!res.ok) {
+    throw new Error("Erreur serveur");
+  }
 
-    historyRef.current = [...historyRef.current, { role: "assistant", content: raw }];
-    return parsed;
-  };
+  const data = await res.json();
+  const raw = data.content || '{"texte":"Erreur de communication.","action":null,"confirmation":false}';
 
+  let parsed;
+  try { parsed = JSON.parse(raw); }
+  catch { parsed = { texte: raw, action: null, confirmation: false }; }
+
+  historyRef.current = [...historyRef.current, { role: "assistant", content: raw }];
+  return parsed;
+};
   // ── Exécuter une action ───────────────────────────────────────────────────
   const executerAction = async (action) => {
     if (!action) return null;
@@ -174,9 +182,14 @@ export default function Logi() {
           ...(resultat ? [{ role: "system", content: resultat }] : []),
         ]);
       }
-    } catch {
-      setMessages((prev) => [...prev, { role: "assistant", content: "❌ Erreur réseau. Vérifiez votre connexion." }]);
-    } finally {
+    }  catch (err) {
+  console.error("ERREUR RÉELLE 👉", err); // 🔥 AJOUT IMPORTANT
+
+  setMessages((prev) => [
+    ...prev,
+    { role: "assistant", content: "❌ Erreur réseau. Vérifiez votre connexion." }
+  ]);
+} finally {
       setLoading(false);
     }
   };
