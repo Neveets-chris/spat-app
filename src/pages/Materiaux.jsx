@@ -27,7 +27,6 @@ import {
   SquareMenu,
   Check,
   ChevronDown,
-  
 } from "lucide-react";
 const CATEGORIES = [
   "Tous",
@@ -792,7 +791,6 @@ function ModalSortie({
       l.statut === "Maintenance" || l.statut === "EN_REPARATION";
     if (!enMaintenance) return false;
 
-   
     const besoins = l.besoinsMaintenance || [];
 
     if (l.statut === "EN_REPARATION") {
@@ -804,7 +802,6 @@ function ModalSortie({
       return besoinsRestants.length > 0;
     }
 
-   
     return true;
   });
   const [form, setForm] = useState({
@@ -882,7 +879,6 @@ function ModalSortie({
       return;
     }
 
-    
     onSave({
       ...form,
       quantite: quantiteDemandee,
@@ -904,7 +900,6 @@ function ModalSortie({
           mounted ? "scale-100 opacity-100" : "scale-95 opacity-0"
         }`}
       >
-        
         <div
           className={`absolute -inset-1 rounded-3xl blur-xl opacity-30 ${
             isDark
@@ -920,7 +915,6 @@ function ModalSortie({
               : "bg-gradient-to-br from-white via-gray-50 to-white border-gray-200"
           } shadow-2xl`}
         >
-          
           <div
             className={`relative px-6 py-5 ${
               isDark
@@ -1072,8 +1066,9 @@ function ModalSortie({
                     <p
                       className={`text-xs mt-2 ${isDark ? "text-rose-400" : "text-rose-600"}`}
                     >
-                      <AlertTriangle className="w-4 h-4 text-yellow-500"/>Aucun logement en maintenance. Passez d'abord un
-                      logement en maintenance.
+                      <AlertTriangle className="w-4 h-4 text-yellow-500" />
+                      Aucun logement en maintenance. Passez d'abord un logement
+                      en maintenance.
                     </p>
                   )}
                 </div>
@@ -1167,8 +1162,8 @@ function ModalSortie({
                 <Ban className="w-5 h-5 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-bold">
-                    <Ban className="w-4 h-4 text-red-500"/> Sortie impossible — Ce matériau n'est demandé par aucun
-                    logement en maintenance
+                    <Ban className="w-4 h-4 text-red-500" /> Sortie impossible —
+                    Ce matériau n'est demandé par aucun logement en maintenance
                   </p>
                   <p
                     className={`text-xs mt-1 ${isDark ? "text-rose-200/60" : "text-rose-600"}`}
@@ -1190,8 +1185,9 @@ function ModalSortie({
                 <AlertTriangle className="w-5 h-5 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-bold">
-                    <AlertTriangle className="w-4 h-4 text-yellow-500"/> Surplus : vous sortez {quantiteDemandee} alors que le
-                    besoin restant est de {quantiteBesoinRestant}
+                    <AlertTriangle className="w-4 h-4 text-yellow-500" />{" "}
+                    Surplus : vous sortez {quantiteDemandee} alors que le besoin
+                    restant est de {quantiteBesoinRestant}
                   </p>
                   <p
                     className={`text-xs mt-1 ${isDark ? "text-amber-200/60" : "text-amber-600"}`}
@@ -1284,7 +1280,7 @@ function ModalSortie({
                   : "bg-gray-400 cursor-not-allowed"
               }`}
             >
-              <Box className="w-4 h-4 text-amber-600"/> Confirmer la sortie
+              <Box className="w-4 h-4 text-amber-600" /> Confirmer la sortie
             </button>
           </div>
         </div>
@@ -1792,7 +1788,8 @@ export default function Materiaux() {
                                   : "bg-emerald-100 text-emerald-700"
                               }`}
                             >
-                              <Check className="w-4 h-4 text-green-500"/>Satisfait
+                              <Check className="w-4 h-4 text-green-500" />
+                              Satisfait
                             </span>
                           )}
                         </div>
@@ -1863,7 +1860,8 @@ export default function Materiaux() {
               </div>
               <div>
                 <h3 className={`text-xl font-bold ${theme.text}`}>
-                  <Box className="w-4 h-4 text-amber-100"/> Réceptions en attente
+                  <Box className="w-4 h-4 text-amber-100" /> Réceptions en
+                  attente
                 </h3>
                 <p className={`text-sm ${theme.textSubtle}`}>
                   {depensesEnAttente.length} matériau
@@ -1941,11 +1939,8 @@ export default function Materiaux() {
         </div>
       )}
 
-    
       <div className="flex flex-col gap-3">
-        
         <div className="flex items-center gap-2 flex-wrap">
-          
           <div className="hidden 1112:block">
             <div
               className={`flex gap-1 p-1.5 rounded-xl border backdrop-blur-sm ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
