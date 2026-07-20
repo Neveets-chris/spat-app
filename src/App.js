@@ -1,5 +1,5 @@
 // src/App.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
@@ -11,7 +11,6 @@ import Materiaux from "./pages/Materiaux";
 import Depenses from "./pages/Depense";
 import PageWrapper from "./components/PageWrapper";
 import ThemeTransition from "./components/ThemeTransition";
-import Logi from "./components/Logi";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PrivateRoute from "./components/PrivateRoute";
@@ -28,18 +27,28 @@ const TITRES = {
 function AppLayout() {
   const [page, setPage] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
   const [trigger, setTrigger] = useState(0);
+
+  // ✅ CHANGEMENT 1 — lire la préférence sauvegardée au démarrage
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem("spat_dark_mode");
+    if (saved !== null) return saved === "true";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
+  // ✅ CHANGEMENT 2 — sauvegarder dans localStorage à chaque changement
+  useEffect(() => {
+    localStorage.setItem("spat_dark_mode", darkMode.toString());
+    document.documentElement.classList.toggle("dark", darkMode);
+  }, [darkMode]);
 
   const handleToggleDark = (val) => {
     setTrigger((t) => t + 1);
     setTimeout(() => {
       setDarkMode(val);
-      document.documentElement.classList.toggle("dark", val);
     }, 350);
   };
 
-  // ✅ Définir pages ici (accessible partout)
   const pages = {
     dashboard: <Dashboard />,
     logements: <Logements />,
@@ -77,7 +86,7 @@ function AppLayout() {
         </main>
       </div>
 
-      <Logi />
+      
     </div>
   );
 }

@@ -33,7 +33,7 @@ export default function ThemeTransition({ darkMode, trigger }) {
       wave.style.transform  = "translateX(-100%)";
     }
 
-    // Efface après
+  
     setTimeout(() => {
       wave.style.opacity = "0";
     }, 800);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// ── Tooltip ───────────────────────────────────────────────────────────────────
+//Type d'outil 
 function Tooltip({ texte, children }) {
   const [visible, setVisible] = useState(false);
   return (
@@ -19,7 +19,7 @@ function Tooltip({ texte, children }) {
   );
 }
 
-// ── Animation poussière ───────────────────────────────────────────────────────
+//Animation mivadika fasika 
 function Particules({ x, y, actif }) {
   if (!actif) return null;
   const particules = Array.from({ length: 10 }, (_, i) => {
@@ -52,7 +52,7 @@ function Particules({ x, y, actif }) {
   );
 }
 
-// ── Animation message envoyé ──────────────────────────────────────────────────
+//Animation message envoyé 
 export function MessageEnvoye({ actif }) {
   if (!actif) return null;
   return (
@@ -79,7 +79,7 @@ export function MessageEnvoye({ actif }) {
   );
 }
 
-// ── Bouton Supprimer ──────────────────────────────────────────────────────────
+//Bouton Supprimer 
 export function BoutonSupprimer({ onClick }) {
   const [particules, setParticules] = useState({ actif: false, x: 0, y: 0 });
 
@@ -109,7 +109,7 @@ export function BoutonSupprimer({ onClick }) {
   );
 }
 
-// ── Bouton Ajouter ────────────────────────────────────────────────────────────
+//Bouton Ajouter
 export function BoutonAjouter({ onClick, texte = "Ajouter" }) {
   const [success] = useState(false);
 
@@ -132,7 +132,7 @@ export function BoutonAjouter({ onClick, texte = "Ajouter" }) {
   );
 }
 
-// ── Bouton Modifier ───────────────────────────────────────────────────────────
+//Bouton Modifier 
 export function BoutonModifier({ onClick }) {
   return (
     <Tooltip texte="Modifier">
@@ -149,7 +149,7 @@ export function BoutonModifier({ onClick }) {
   );
 }
 
-// ── Bouton Détail ─────────────────────────────────────────────────────────────
+//Bouton Détail
 export function BoutonDetail({ onClick }) {
   return (
     <Tooltip texte="Voir le détail">
