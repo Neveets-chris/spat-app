@@ -27,7 +27,7 @@ import {
   SquareMenu,
   Check,
   ChevronDown,
-  AlertWaiting
+  
 } from "lucide-react";
 const CATEGORIES = [
   "Tous",
@@ -1072,7 +1072,7 @@ function ModalSortie({
                     <p
                       className={`text-xs mt-2 ${isDark ? "text-rose-400" : "text-rose-600"}`}
                     >
-                      <AlertWaiting className="w-4 h-4 text-yellow-500"/>Aucun logement en maintenance. Passez d'abord un
+                      <AlertTriangle className="w-4 h-4 text-yellow-500"/>Aucun logement en maintenance. Passez d'abord un
                       logement en maintenance.
                     </p>
                   )}
