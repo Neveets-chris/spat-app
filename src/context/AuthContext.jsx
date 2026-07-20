@@ -6,16 +6,19 @@ const AuthContext = createContext(null);
 const API = "http://localhost:8000/api";
 
 export function AuthProvider({ children }) {
-  const [user, setUser]     = useState(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      axios.get(`${API}/auth/me/`)
-        .then(res => setUser(res.data))
-        .catch(() => { localStorage.removeItem("access_token"); })
+      axios
+        .get(`${API}/auth/me/`)
+        .then((res) => setUser(res.data))
+        .catch(() => {
+          localStorage.removeItem("access_token");
+        })
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
@@ -48,21 +51,23 @@ export function AuthProvider({ children }) {
   const updateProfil = async ({ avatarType, file }) => {
     const formData = new FormData();
     if (avatarType) formData.append("avatar_type", avatarType);
-    if (file)       formData.append("avatar", file);
+    if (file) formData.append("avatar", file);
 
     const res = await axios.patch(`${API}/auth/update-profil/`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     // Met à jour l'utilisateur local
-    setUser(prev => ({
+    setUser((prev) => ({
       ...prev,
-      avatar_url:  res.data.avatar_url,
+      avatar_url: res.data.avatar_url,
       avatar_type: res.data.avatar_type,
     }));
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, updateProfil }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, register, logout, updateProfil }}
+    >
       {children}
     </AuthContext.Provider>
   );

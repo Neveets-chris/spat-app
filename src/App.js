@@ -15,6 +15,7 @@ import Logi from "./components/Logi";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PrivateRoute from "./components/PrivateRoute";
+import useDarkMode from "./hooks/useDarkMode"; // ← NOUVEAU
 
 const TITRES = {
   dashboard: "Tableau de bord",
@@ -28,18 +29,8 @@ const TITRES = {
 function AppLayout() {
   const [page, setPage] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
-  const [trigger, setTrigger] = useState(0);
+  const { darkMode, toggle, trigger } = useDarkMode();
 
-  const handleToggleDark = (val) => {
-    setTrigger((t) => t + 1);
-    setTimeout(() => {
-      setDarkMode(val);
-      document.documentElement.classList.toggle("dark", val);
-    }, 350);
-  };
-
-  // ✅ Définir pages ici (accessible partout)
   const pages = {
     dashboard: <Dashboard />,
     logements: <Logements />,
@@ -67,7 +58,7 @@ function AppLayout() {
           setSidebarOpen={setSidebarOpen}
           nbNotifs={4}
           darkMode={darkMode}
-          setDarkMode={handleToggleDark}
+          setDarkMode={toggle} 
         />
 
         <main className="flex-1 overflow-y-auto p-6">
