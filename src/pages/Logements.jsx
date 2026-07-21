@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import { useApp } from "../context/AppContext";
 //import { useLogements } from "../hooks/useLogements";
@@ -5,6 +6,12 @@ import StatutBadge from "../components/StatutBadge";
 // import {
 
 // } from "../components/BoutonsAction";
+=======
+import { useState, useEffect, useRef } from "react";
+import { useApp } from "../context/AppContext";
+import StatutBadge from "../components/StatutBadge";
+
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 import {
   PencilRuler,
   MapPin,
@@ -41,12 +48,21 @@ const FILTRES = [
   "Disponible",
   "Occupé",
   "Maintenance",
+<<<<<<< HEAD
   "EN_REPARATION",
 ];
 
 // ============================================
 // THÈME CLAIR/SOMBRE - Détection automatique
 // ============================================
+=======
+  "En Reparation",
+];
+
+
+// THÈME CLAIR/SOMBRE - Détection automatique
+
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 const THEMES = {
   dark: {
     bg: "from-gray-900 via-gray-900 to-[#0F2D56]",
@@ -82,7 +98,11 @@ const THEMES = {
   },
 };
 
+<<<<<<< HEAD
 // ─── Hooks d'animation ───────────────────────────────────────────────────────
+=======
+// Hooks d'animation 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function useCountUp(end, duration = 2000) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -141,7 +161,11 @@ function useDarkMode() {
   return isDark;
 }
 
+<<<<<<< HEAD
 // ─── Composant Carte Stat 3D ─────────────────────────────────────────────────
+=======
+// Composant Carte Stat 3D 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function StatCard3D({
   icon: Icon,
   label,
@@ -232,7 +256,11 @@ function StatCard3D({
   );
 }
 
+<<<<<<< HEAD
 // ─── Jauge circulaire 3D ──────────────────────────────────────────────────────
+=======
+// Jauge circulaire 3D 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function CircularGauge({ value, max, size = 100, color = "#10b981", isDark }) {
   const circumference = 2 * Math.PI * (size / 2 - 8);
   const offset = circumference - Math.min(value / max, 1) * circumference;
@@ -276,7 +304,11 @@ function CircularGauge({ value, max, size = 100, color = "#10b981", isDark }) {
   );
 }
 
+<<<<<<< HEAD
 // ─── Barre de progression animée 3D ───────────────────────────────────────────
+=======
+//Barre de progression animée 3D
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function AnimatedProgress({ value, max, color = "#10b981", isDark }) {
   const percentage = Math.min((value / max) * 100, 100);
 
@@ -298,7 +330,11 @@ function AnimatedProgress({ value, max, color = "#10b981", isDark }) {
   );
 }
 
+<<<<<<< HEAD
 // ─── Statut couleur helpers ───────────────────────────────────────────────────
+=======
+// Statut couleur helpers
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function getStatutConfig(statut, isDark) {
   const configs = {
     Disponible: {
@@ -369,10 +405,17 @@ function ModalDetail({
 
   return (
     <div
+<<<<<<< HEAD
       className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm p-4 animate-in fade-in duration-200 ${isDark ? "bg-black/60" : "bg-gray-900/40"}`}
     >
       <div
         className={`rounded-3xl shadow-2xl w-full max-w-lg border overflow-hidden animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto ${isDark ? "bg-gradient-to-br from-gray-900 to-gray-800 border-white/10" : "bg-white border-gray-200"}`}
+=======
+      className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm p-2 sm:p-4 overflow-y-auto animate-in fade-in duration-200 ${isDark ? "bg-black/60" : "bg-gray-900/40"}`}
+    >
+      <div
+        className={`rounded-3xl shadow-2xl  w-full max-w-lg mx-4 border overflow-hidden animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto ${isDark ? "bg-gradient-to-br from-gray-900 to-gray-800 border-white/10" : "bg-white border-gray-200"}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       >
         {/* Header gradient */}
         <div
@@ -662,12 +705,20 @@ function ModalDetail({
   );
 }
 
+<<<<<<< HEAD
 // ─── Modal Form 3D ────────────────────────────────────────────────────────────
+=======
+//Modal Form 3D 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function ModalForm({ logement, onClose, onSave, isDark }) {
   const { materiaux } = useApp();
   const { attributions: attrCtx } = useApp();
 
+<<<<<<< HEAD
   // ─── Table de référence des types de logement ─────────────────────────────────
+=======
+  //Table de référence des types de logement 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const TYPES_LOGEMENT = {
     Studio: {
       minSurface: 20,
@@ -780,7 +831,11 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
     if (!form.localisation?.trim())
       newErrors.localisation = "Localisation requise";
 
+<<<<<<< HEAD
     // 🔥 Vérifier superficie dans les bornes
+=======
+    //  Vérifier superficie dans les bornes
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     if (form.superficie < contraintes.minSurface) {
       newErrors.superficie = `Minimum ${contraintes.minSurface}m² pour un ${form.type}`;
     }
@@ -788,8 +843,12 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
       newErrors.superficie = `Maximum ${contraintes.maxSurface}m² pour un ${form.type}`;
     }
 
+<<<<<<< HEAD
     // Capacité est fixée par le type — toujours valide
     // Max occupants
+=======
+
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     if (!form.nb_occupants_max || form.nb_occupants_max < 1) {
       newErrors.nb_occupants_max = "Minimum 1 occupant";
     }
@@ -797,7 +856,11 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
       newErrors.nb_occupants_max = `Maximum ${contraintes.capacite} pour un ${form.type}`;
     }
 
+<<<<<<< HEAD
     // 🔥 En édition, vérifier qu'on ne réduit pas sous le nombre d'occupants actuels
+=======
+   
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     if (logement) {
       const attActive = attrCtx.find(
         (a) => a.logement === logement.id && a.statut === "Occupé",
@@ -824,10 +887,17 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
         Math.min(prev.superficie, nouvellesContraintes.maxSurface),
       );
 
+<<<<<<< HEAD
       // 🔥 Capacité = max du type (fixe)
       const nouvelleCapacite = nouvellesContraintes.capacite;
 
       // 🔥 Max occupants = valeur par défaut du type (pas 3 fixe)
+=======
+      //  Capacité = max du type (fixe)
+      const nouvelleCapacite = nouvellesContraintes.capacite;
+
+      // Max occupants = valeur par défaut du type 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       const nouveauMaxOccupants = nouvellesContraintes.defaultOccupants;
 
       return {
@@ -835,13 +905,21 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
         type: newType,
         superficie: nouvelleSurface,
         capacite: nouvelleCapacite,
+<<<<<<< HEAD
         nb_occupants_max: nouveauMaxOccupants, // ← VALEUR PAR DÉFAUT DU TYPE
+=======
+        nb_occupants_max: nouveauMaxOccupants, 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       };
     });
   };
   const handleSuperficieChange = (val) => {
     const nombre = Number(val);
+<<<<<<< HEAD
     // 🔥 CLAMP : min <= superficie <= max
+=======
+   
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     const clamped = Math.max(
       contraintes.minSurface,
       Math.min(nombre, contraintes.maxSurface),
@@ -866,7 +944,11 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
 
   const handleSave = () => {
     if (!validateForm()) return;
+<<<<<<< HEAD
     if (isMaintenance && !validateMaintenance()) return; // ← AJOUTER CETTE LIGNE
+=======
+    if (isMaintenance && !validateMaintenance()) return; 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
     setSaving(true);
 
@@ -915,7 +997,11 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
       className={`fixed inset-0 z-50 backdrop-blur-md p-4 flex items-center justify-center animate-in fade-in duration-200 ${isDark ? "bg-black/70" : "bg-gray-900/50"}`}
     >
       <div
+<<<<<<< HEAD
         className={`relative rounded-3xl shadow-2xl w-full max-w-lg border overflow-hidden animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto ${
+=======
+        className={`relative rounded-3xl shadow-2xl w-full max-w-lg mx-4 border overflow-hidden animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto ${
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           isDark
             ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border-white/10"
             : "bg-white border-gray-200"
@@ -982,7 +1068,11 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
                 ))}
               </select>
             </div>
+<<<<<<< HEAD
             {/* 🔥 Info contraintes */}
+=======
+            {/*  Info contraintes */}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <p
               className={`text-[10px] mt-1 ${isDark ? "text-gray-500" : "text-gray-400"}`}
             >
@@ -1014,8 +1104,13 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
             )}
           </div>
 
+<<<<<<< HEAD
           {/* Grille 3 colonnes : Superficie, Capacité, Max Occupants */}
           <div className="grid grid-cols-3 gap-3">
+=======
+         
+          <div className="grid grid-cols-1 min-[527px]:grid-cols-3 gap-3">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <div>
               <label className={labelClass}>Superficie (m²)</label>
               <div className="relative">
@@ -1122,7 +1217,10 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
             </div>
           </div>
 
+<<<<<<< HEAD
           {/* 🔥 SECTION MATÉRIAUX MAINTENANCE - REDESIGN */}
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           {isMaintenance && (
             <div
               className={`space-y-4 pt-4 mt-4 border-t animate-in slide-in-from-top-2 duration-300 ${
@@ -1165,15 +1263,182 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
                 {besoinsMaintenance.map((b, i) => (
                   <div
                     key={i}
+<<<<<<< HEAD
                     className={`p-4 rounded-2xl border transition-all duration-300 ${
+=======
+                    className={`p-4 rounded-2xl border transition-all duration-300  ${
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                       isDark
                         ? "bg-white/[0.03] border-white/10 hover:border-white/20"
                         : "bg-gray-50/80 border-gray-200 hover:border-gray-300"
                     }`}
                   >
+<<<<<<< HEAD
                     <div className="flex items-start gap-3">
                       <div
                         className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-1 text-sm font-bold ${
+=======
+       
+                    <div className="flex min-[477px]:hidden flex-col items-center gap-3">
+                      {/* Numéro centré en haut */}
+                      <div
+                        className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 text-sm font-bold ${
+                          isDark
+                            ? "bg-white/10 text-white/60"
+                            : "bg-gray-200 text-gray-500"
+                        }`}
+                      >
+                        {i + 1}
+                      </div>
+
+                      
+                      <div className="w-full">
+                        <div className="relative">
+                          <Package
+                            className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none ${isDark ? "text-gray-500" : "text-gray-400"}`}
+                          />
+                          <select
+                            value={b.nom}
+                            onChange={(e) =>
+                              updateBesoin(i, "nom", e.target.value)
+                            }
+                            className={`${selectClass} pl-10 w-full text-sm`}
+                          >
+                            <option
+                              value=""
+                              className={isDark ? "bg-gray-800" : "bg-white"}
+                            >
+                              -- Choisir un matériau --
+                            </option>
+                            {materiaux.map((m) => (
+                              <option
+                                key={m.id}
+                                value={m.nom}
+                                className={isDark ? "bg-gray-800" : "bg-white"}
+                              >
+                                {m.nom} (Stock: {m.stock})
+                              </option>
+                            ))}
+                            <option
+                              value="__nouveau__"
+                              className={isDark ? "bg-gray-800" : "bg-white"}
+                            >
+                              + Nouveau matériau
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Input nouveau matériau (si sélectionné) */}
+                      {b.nom === "__nouveau__" && (
+                        <div className="w-full">
+                          <input
+                            type="text"
+                            placeholder="Nom du nouveau matériau"
+                            value={b.nomManuel || ""}
+                            onChange={(e) =>
+                              updateBesoin(i, "nomManuel", e.target.value)
+                            }
+                            className={`${inputClass} w-full text-sm`}
+                            autoFocus
+                          />
+                        </div>
+                      )}
+
+                      {/* Quantité + Unité côte à côte */}
+                      <div className="flex gap-2 w-full">
+                        <div className="relative flex-1">
+                          <Layers
+                            className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none z-10 ${isDark ? "text-gray-500" : "text-gray-400"}`}
+                          />
+                          <input
+                            type="number"
+                            min={1}
+                            value={b.quantite}
+                            onChange={(e) =>
+                              updateBesoin(
+                                i,
+                                "quantite",
+                                Number(e.target.value),
+                              )
+                            }
+                            placeholder="Quantité *"
+                            className={`${inputClass} pl-10 w-full text-sm h-10`}
+                          />
+                        </div>
+                        <div className="relative w-28">
+                          {b.nom === "__nouveau__" ? (
+                            <select
+                              value={b.unite}
+                              onChange={(e) =>
+                                updateBesoin(i, "unite", e.target.value)
+                              }
+                              className={`${selectClass} w-full text-sm h-10`}
+                            >
+                              <option
+                                value=""
+                                className={isDark ? "bg-gray-800" : "bg-white"}
+                              >
+                                unité
+                              </option>
+                              {[
+                                "kg",
+                                "litres",
+                                "m²",
+                                "m³",
+                                "pcs",
+                                "sacs",
+                                "feuilles",
+                                "ml",
+                                "tonnes",
+                              ].map((u) => (
+                                <option
+                                  key={u}
+                                  value={u}
+                                  className={
+                                    isDark ? "bg-gray-800" : "bg-white"
+                                  }
+                                >
+                                  {u}
+                                </option>
+                              ))}
+                            </select>
+                          ) : b.nom && b.nom !== "" ? (
+                            <input
+                              type="text"
+                              value={b.unite}
+                              readOnly
+                              placeholder="unité"
+                              className={`${inputClass} w-full text-sm h-10 opacity-70 cursor-not-allowed`}
+                            />
+                          ) : (
+                            <input
+                              type="text"
+                              value={b.unite}
+                              onChange={(e) =>
+                                updateBesoin(i, "unite", e.target.value)
+                              }
+                              placeholder="unité"
+                              className={`${inputClass} w-full text-sm h-10`}
+                            />
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Poubelle centrée en bas */}
+                      <button
+                        onClick={() => removeBesoin(i)}
+                        className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all hover:scale-110 bg-rose-500/10 text-rose-400 hover:bg-rose-500/20"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* ── DESKTOP (≥477px) : Layout horizontal original ── */}
+                    <div className="hidden min-[477px]:flex items-start gap-3">
+                      <div
+                        className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 text-sm font-bold ${
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                           isDark
                             ? "bg-white/10 text-white/60"
                             : "bg-gray-200 text-gray-500"
@@ -1395,7 +1660,11 @@ function ModalForm({ logement, onClose, onSave, isDark }) {
     </div>
   );
 }
+<<<<<<< HEAD
 // ─── Carte Logement 3D ────────────────────────────────────────────────────────
+=======
+// Carte Logement 3D 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function LogementCard3D({
   logement,
   occupants,
@@ -1415,7 +1684,11 @@ function LogementCard3D({
 
   return (
     <div style={style} className="group relative">
+<<<<<<< HEAD
       {/* Ombre 3D dynamique */}
+=======
+     
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       <div
         className="absolute inset-0 rounded-2xl transform translate-y-3 blur-xl transition-all duration-500 group-hover:translate-y-5 group-hover:blur-2xl opacity-60"
         style={{ background: `${accentColor}${isMaintenance ? "30" : "20"}` }}
@@ -1428,13 +1701,21 @@ function LogementCard3D({
             : "bg-gradient-to-br from-white via-gray-50/80 to-white border-gray-200/60 shadow-xl shadow-gray-200/50"
         }`}
       >
+<<<<<<< HEAD
         {/* Halo lumineux au hover */}
+=======
+        
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <div
           className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700"
           style={{ background: `${accentColor}15` }}
         />
 
+<<<<<<< HEAD
         {/* Ligne lumineuse en haut */}
+=======
+       
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <div
           className="absolute top-0 left-4 right-4 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{
@@ -1442,8 +1723,13 @@ function LogementCard3D({
           }}
         />
 
+<<<<<<< HEAD
         {/* Badge statut flottant */}
         <div className="absolute top-4 right-4 z-20">
+=======
+        
+        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           <div
             className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border backdrop-blur-md transition-all duration-300 group-hover:scale-105 ${
               isDark
@@ -1455,7 +1741,11 @@ function LogementCard3D({
           </div>
         </div>
 
+<<<<<<< HEAD
         {/* Header avec icône */}
+=======
+        
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <div className="flex items-start gap-4 mb-5">
           <div
             className={`relative w-14 h-14 rounded-2xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ${
@@ -1492,7 +1782,11 @@ function LogementCard3D({
           </div>
         </div>
 
+<<<<<<< HEAD
         {/* Infos localisation */}
+=======
+        
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <div
           className="flex items-center gap-2 mb-5 px-3 py-2.5 rounded-xl border transition-colors duration-300"
           style={{
@@ -1582,7 +1876,11 @@ function LogementCard3D({
           />
         </div>
 
+<<<<<<< HEAD
         {/* 🔥 Info attribution si occupé */}
+=======
+        
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         {logement.statut === "Occupé" && (
           <div
             className={`flex items-center gap-2 mb-3 px-3 py-2 rounded-xl border ${
@@ -1596,7 +1894,11 @@ function LogementCard3D({
               className={`text-xs ${isDark ? "text-amber-300" : "text-amber-700"}`}
             >
               {occupants.length === logement.nb_occupants_max
+<<<<<<< HEAD
                 ? "🔒 Logement plein"
+=======
+                ? " Logement plein"
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                 : `${logement.nb_occupants_max - occupants.length} place(s) disponible(s)`}
             </span>
           </div>
@@ -1701,10 +2003,17 @@ function ModalMaintenance({ logement, materiaux, onClose, onConfirm, isDark }) {
 
   return (
     <div
+<<<<<<< HEAD
       className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm p-4 ${isDark ? "bg-black/60" : "bg-gray-900/40"}`}
     >
       <div
         className={`rounded-3xl shadow-2xl w-full max-w-lg border overflow-hidden ${isDark ? "bg-gradient-to-br from-gray-900 to-gray-800 border-white/10" : "bg-white border-gray-200"}`}
+=======
+      className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm p-2 sm:p-4 overflow-y-auto ${isDark ? "bg-black/60" : "bg-gray-900/40"}`}
+    >
+      <div
+        className={`rounded-3xl shadow-2xl w-full max-w-lg mx-4 border overflow-hidden ${isDark ? "bg-gradient-to-br from-gray-900 to-gray-800 border-white/10" : "bg-white border-gray-200"}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       >
         <div
           className="px-6 py-5 border-b flex items-center justify-between"
@@ -1812,7 +2121,11 @@ function ModalMaintenance({ logement, materiaux, onClose, onConfirm, isDark }) {
   );
 }
 
+<<<<<<< HEAD
 // ─── Main ─────────────────────────────────────────────────────────────────────
+=======
+//Main 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 export default function Logements() {
   const {
     logements,
@@ -1826,9 +2139,14 @@ export default function Logements() {
     terminerReparation,
     alertesMaintenanceLog,
     travauxEnCours,
+<<<<<<< HEAD
      logementsLoading, 
   } = useApp();
   const { logementsLoading: loading } = useApp();
+=======
+  } = useApp();
+  const loading = false;
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const isDark = useDarkMode();
 
   const theme = isDark ? THEMES.dark : THEMES.light;
@@ -1840,6 +2158,7 @@ export default function Logements() {
   const [formData, setFormData] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
   const [logMaintenance, setLogMaintenance] = useState(null);
+<<<<<<< HEAD
  
   const [, setNow] = useState(Date.now());
 
@@ -1868,6 +2187,49 @@ export default function Logements() {
       (l.localisation || "").toLowerCase().includes(search.toLowerCase()) ||
       (l.type || "").toLowerCase().includes(search.toLowerCase())),
 );
+=======
+  const [menuMobileOuvert, setMenuMobileOuvert] = useState(false);
+ 
+  useEffect(() => {
+    console.log("[DEBUG] Contexte disponible:", {
+      demarrerMaintenance: typeof demarrerMaintenance,
+      alertesMaintenanceLog: alertesMaintenanceLog,
+      logementsCount: logements.length,
+    });
+  }, [demarrerMaintenance, alertesMaintenanceLog, logements.length]);
+  
+  const [, setNow] = useState(Date.now());
+  const terminerEnCours = useRef(new Set());
+
+  const travauxRef = useRef(travauxEnCours);
+  useEffect(() => {
+    travauxRef.current = travauxEnCours;
+  }, [travauxEnCours]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentTime = Date.now();
+      setNow(currentTime);
+      Object.entries(travauxRef.current || {}).forEach(([logId, travaux]) => {
+        if (currentTime >= travaux.fin && !terminerEnCours.current.has(logId)) {
+          terminerEnCours.current.add(logId);
+          terminerReparation(logId).finally(() => {
+            terminerEnCours.current.delete(logId);
+          });
+        }
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [terminerReparation]); 
+
+  const filtered = logements.filter(
+    (l) =>
+      (filtre === "Tous" || l.statut === filtre) &&
+      (String(l.id).toLowerCase().includes(search.toLowerCase()) ||
+        (l.localisation || "").toLowerCase().includes(search.toLowerCase()) ||
+        (l.type || "").toLowerCase().includes(search.toLowerCase())),
+  );
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
   const getOccupants = (logId) => {
     const att = attributions.find(
@@ -1881,7 +2243,11 @@ export default function Logements() {
       // Mode MODIFICATION
       const ancienLogement = logements.find((l) => l.id === formData.id);
 
+<<<<<<< HEAD
       // 🔒 BLOCAGE 1 : Si en Maintenance et pas réparé, bloquer modification
+=======
+      
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       if (
         ancienLogement?.statut === "Maintenance" &&
         form.statut !== "Disponible"
@@ -1892,7 +2258,11 @@ export default function Logements() {
         return;
       }
 
+<<<<<<< HEAD
       // 🔒 BLOCAGE 2 : Interdiction de passer de "Occupé" à "Disponible" manuellement
+=======
+      
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       if (ancienLogement?.statut === "Occupé" && form.statut === "Disponible") {
         alert(
           "Impossible de remettre un logement occupé en disponible manuellement. Utilisez le module Employés pour libérer le logement.",
@@ -1902,7 +2272,11 @@ export default function Logements() {
         return;
       }
 
+<<<<<<< HEAD
       // 🔒 BLOCAGE 3 : Disponible → Occupé interdit
+=======
+      
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       if (ancienLogement?.statut === "Disponible" && form.statut === "Occupé") {
         alert(
           "Impossible de passer un logement disponible en occupé manuellement. Utilisez le module Attributions.",
@@ -1912,7 +2286,11 @@ export default function Logements() {
         return;
       }
 
+<<<<<<< HEAD
       // 🔒 BLOCAGE 4 : Capacité minimum = nombre d'occupants actuels
+=======
+      
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       const occupants = getOccupants(formData.id);
       if (form.nb_occupants_max < occupants.length) {
         alert(
@@ -1923,6 +2301,7 @@ export default function Logements() {
         return;
       }
 
+<<<<<<< HEAD
       // Mise à jour du logement
       const logementData = {
         ...form,
@@ -1932,6 +2311,21 @@ export default function Logements() {
       };
 
       // 🔥 Ajouter besoinsMaintenance si passage en maintenance
+=======
+      
+      const logementData = {
+        ...form,
+        id: formData.id,
+        statut:
+          ancienLogement?.statut === "Occupé"
+            ? "Occupé"
+            : form.statut === "Maintenance"
+              ? ancienLogement?.statut || "Disponible"
+              : form.statut, 
+      };
+
+      
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       if (form.statut === "Maintenance" && form._maintenanceBesoins) {
         const besoinsFiltres = form._maintenanceBesoins.filter(
           (b) => b.nom && b.nom.trim() !== "" && b.quantite > 0,
@@ -1939,6 +2333,7 @@ export default function Logements() {
         logementData.besoinsMaintenance = besoinsFiltres;
       }
 
+<<<<<<< HEAD
       modifierLogement(logementData);
 
       // 🔥 Si passage en maintenance, démarrer le suivi avec les matériaux
@@ -1951,6 +2346,29 @@ export default function Logements() {
 
       setFormData(null);
       setIsAdding(false);
+=======
+     
+      modifierLogement(logementData)
+        .then((logMaj) => {
+          if (form.statut === "Maintenance" && form._maintenanceBesoins) {
+            const besoinsFiltres = form._maintenanceBesoins.filter(
+              (b) => b.nom && b.nom.trim() !== "" && b.quantite > 0,
+            );
+            demarrerMaintenance(
+              formData.id,
+              besoinsFiltres,
+              logMaj || logementData,
+            );
+          }
+          setFormData(null);
+          setIsAdding(false);
+        })
+        .catch((err) => {
+          console.error("Erreur modification logement", err);
+          setFormData(null);
+          setIsAdding(false);
+        });
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     } else {
       // Mode AJOUT - nouveau logement
       const now = new Date();
@@ -1967,9 +2385,14 @@ export default function Logements() {
           statut: form.statut === "Maintenance" ? "Maintenance" : "Disponible",
         },
       ];
+<<<<<<< HEAD
 
       if (form.statut === "Maintenance" && form._maintenanceBesoins) {
         // 🔥 Vérifier les matériaux avant création en maintenance
+=======
+      // APRÈS
+      if (form.statut === "Maintenance" && form._maintenanceBesoins) {
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         const besoins = form._maintenanceBesoins;
         const besoinsValides = besoins.filter(
           (b) => b.nom && b.nom.trim() !== "" && b.quantite > 0,
@@ -1983,6 +2406,7 @@ export default function Logements() {
           return;
         }
 
+<<<<<<< HEAD
         // Ajout avec maintenance → _statutInitial sera "Disponible" dans ajouterLogement
         const newLog = ajouterLogement({
           ...form,
@@ -2004,6 +2428,39 @@ export default function Logements() {
       }
 
       setIsAdding(false);
+=======
+        ajouterLogement({
+          ...form,
+          statut: "Disponible", 
+          besoinsMaintenance: besoinsValides,
+          historique: nouvelHistorique,
+        })
+          .then((newLog) => {
+            if (newLog && newLog.id) {
+              demarrerMaintenance(newLog.id, besoinsValides, newLog);
+            }
+            setIsAdding(false);
+          })
+          .catch((err) => {
+            console.error("Erreur création logement maintenance", err);
+            setIsAdding(false);
+          });
+      } else {
+        ajouterLogement({
+          ...form,
+          statut: "Disponible",
+          historique: nouvelHistorique,
+        })
+          .then(() => {
+            setIsAdding(false);
+          })
+          .catch((err) => {
+            console.error("Erreur création logement", err);
+            setIsAdding(false);
+          });
+      }
+     
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     }
   };
   // Stats
@@ -2013,7 +2470,11 @@ export default function Logements() {
   const maintenance = logements.filter(
     (l) => l.statut === "Maintenance",
   ).length;
+<<<<<<< HEAD
   //const totalSuperficie = logements.reduce((s, l) => s + (l.superficie || 0), 0);
+=======
+  
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
   if (loading) {
     return (
@@ -2035,11 +2496,23 @@ export default function Logements() {
 
   return (
     <div
+<<<<<<< HEAD
       className={`min-h-screen bg-gradient-to-br p-6 space-y-6 transition-colors duration-500 ${theme.bg}`}
+=======
+      className={`min-h-screen bg-gradient-to-br p-3 sm:p-4 md:p-6 space-y-4 md:space-y-6 transition-colors duration-500 ${theme.bg}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     >
       <style>{`
         @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
         .animate-shimmer { animation: shimmer 2s infinite; }
+<<<<<<< HEAD
+=======
+        
+        /* breakpoint xs personnalisé */
+        @media (min-width: 400px) {
+          .xs\\:inline { display: inline !important; }
+        }
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       `}</style>
 
       {detail && (
@@ -2084,7 +2557,11 @@ export default function Logements() {
       </div>
 
       {/* Stats 3D */}
+<<<<<<< HEAD
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+=======
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <StatCard3D
           icon={Building2}
           label="Total logements"
@@ -2125,12 +2602,24 @@ export default function Logements() {
         />
       </div>
 
+<<<<<<< HEAD
       {/* 🔥🔥🔥 CARTES "COMMENCER À RÉPARER" - STYLE PHOTO 🔥🔥🔥 */}
       {logements.filter(
         (l) =>
           (l.statut === "Maintenance" || l.statut === "EN_REPARATION") &&
           l.materiauxSortis,
       ).length > 0 && (
+=======
+      {logements.filter((l) => {
+        if (l.statut !== "Maintenance" && l.statut !== "EN_REPARATION")
+          return false;
+        const besoins = l.besoinsMaintenance || [];
+        const sortis = l.materiauxSortis || [];
+        if (besoins.length === 0) return false;
+        
+        return sortis.length > 0;
+      }).length > 0 && (
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <div className="space-y-5">
           <div className="flex items-center gap-3">
             <div
@@ -2150,6 +2639,7 @@ export default function Logements() {
                 Les matériaux sont arrivés, vous pouvez commencer les travaux
               </p>
             </div>
+<<<<<<< HEAD
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -2455,17 +2945,393 @@ export default function Logements() {
             <button
               onClick={() => setVue("tableau")}
               className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all flex items-center gap-2 ${
+=======
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+            {logements
+              .filter(
+                (l) =>
+                  (l.statut === "Maintenance" ||
+                    l.statut === "EN_REPARATION") &&
+                  l.materiauxSortis,
+              )
+              .map((logement) => {
+                const travaux = travauxEnCours?.[logement.id];
+                const besoins = logement.besoinsMaintenance || [];
+                const materiauxSortis = logement.materiauxSortis || [];
+                const now = Date.now();
+
+                return (
+                  <div key={logement.id} className="group relative">
+                    {/* Ombre 3D */}
+                    <div
+                      className={`absolute inset-0 rounded-2xl transform translate-y-3 blur-lg transition-all duration-300 ${
+                        isDark ? "bg-emerald-500/20" : "bg-emerald-400/30"
+                      } group-hover:translate-y-4 group-hover:blur-xl`}
+                    />
+
+                    <div
+                      className={`relative bg-gradient-to-br ${
+                        isDark
+                          ? "from-emerald-500/15 to-emerald-600/5 border-emerald-500/30"
+                          : "from-emerald-100 to-emerald-50 border-emerald-300"
+                      } backdrop-blur-xl border rounded-2xl p-5 overflow-hidden transform transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-[1.02] ${
+                        isDark ? "" : "shadow-lg"
+                      }`}
+                    >
+                      {/* Header */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div
+                          className={`w-14 h-14 rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 ${
+                            isDark
+                              ? "bg-emerald-500/20 text-emerald-400"
+                              : "bg-emerald-100 text-emerald-600"
+                          }`}
+                        >
+                          <HardHat className="w-7 h-7" />
+                        </div>
+                        <span
+                          className={`px-3 py-1 rounded-full text-xs font-bold border ${
+                            travaux
+                              ? isDark
+                                ? "bg-amber-500/20 text-amber-400 border-amber-500/30"
+                                : "bg-amber-100 text-amber-600 border-amber-300"
+                              : isDark
+                                ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
+                                : "bg-emerald-100 text-emerald-600 border-emerald-300"
+                          }`}
+                        >
+                          {travaux ? (
+                            <>
+                              <Loader2 className="w-3 h-3 inline animate-spin mr-1" />
+                              En cours
+                            </>
+                          ) : (
+                            "✓ Matériaux reçus"
+                          )}
+                        </span>
+                      </div>
+
+                      {/* Infos logement */}
+                      <div className="space-y-3">
+                        <div>
+                          <p
+                            className={`text-xs font-mono mb-1 ${theme.textLight}`}
+                          >
+                            {logement.id}
+                          </p>
+                          <h3
+                            className={`text-lg font-bold group-hover:text-[#C9A84C] transition-colors ${theme.text}`}
+                          >
+                            {logement.type}
+                          </h3>
+                          <p className={`text-sm ${theme.textMuted}`}>
+                            {logement.localisation}
+                          </p>
+                        </div>
+
+                        {/* Matériaux reçus */}
+                        <div
+                          className={`p-3 rounded-xl border ${
+                            isDark
+                              ? "bg-white/5 border-white/10"
+                              : "bg-white border-gray-200"
+                          }`}
+                        >
+                          <p
+                            className={`text-xs font-bold mb-2 ${theme.textSubtle}`}
+                          >
+                            Matériaux reçus :
+                          </p>
+                          <div className="space-y-1.5">
+                            {materiauxSortis.map((ms, i) => {
+                              const besoin = besoins.find(
+                                (b) => b.nom === ms.nom,
+                              );
+                              const isSurplus =
+                                besoin && ms.quantiteSortie > besoin.quantite;
+
+                              return (
+                                <div
+                                  key={i}
+                                  className="flex items-center justify-between text-sm"
+                                >
+                                  <span className={theme.textMuted}>
+                                    {ms.nom} × {ms.quantiteSortie} {ms.unite}
+                                  </span>
+                                  {isSurplus ? (
+                                    <span
+                                      className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                                        isDark
+                                          ? "bg-amber-500/20 text-amber-400"
+                                          : "bg-amber-100 text-amber-600"
+                                      }`}
+                                    >
+                                      Surplus +
+                                      {ms.quantiteSortie - besoin.quantite}
+                                    </span>
+                                  ) : (
+                                    <span
+                                      className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                                        isDark
+                                          ? "bg-emerald-500/20 text-emerald-400"
+                                          : "bg-emerald-100 text-emerald-600"
+                                      }`}
+                                    >
+                                      ✓ OK
+                                    </span>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* Timer ou bouton */}
+                        {travaux ? (
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-xs">
+                              <span className={theme.textSubtle}>
+                                Progression
+                              </span>
+                              <span
+                                className={`font-bold ${isDark ? "text-amber-400" : "text-amber-600"}`}
+                              >
+                                {Math.max(
+                                  0,
+                                  Math.ceil((travaux.fin - now) / 1000),
+                                )}
+                                s
+                              </span>
+                            </div>
+                            <div
+                              className={`h-2 rounded-full overflow-hidden ${
+                                isDark ? "bg-white/10" : "bg-gray-200"
+                              }`}
+                            >
+                              <div
+                                className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-amber-400 transition-all duration-1000"
+                                style={{
+                                  width: `${Math.min(100, ((now - travaux.debut) / (travaux.fin - travaux.debut)) * 100)}%`,
+                                }}
+                              />
+                            </div>
+                            <p
+                              className={`text-xs text-center ${theme.textLight}`}
+                            >
+                              Le surplus sera retourné au stock automatiquement
+                            </p>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={async () => {
+                              // Vérifier avant de lancer
+                              const besoins = logement.besoinsMaintenance || [];
+                              const sortis = logement.materiauxSortis || [];
+                              const manquants = besoins.filter((b) => {
+                                const s = sortis.find(
+                                  (ms) =>
+                                    ms.nom.toLowerCase() ===
+                                    b.nom.toLowerCase(),
+                                );
+                                return !s || s.quantiteSortie < b.quantite;
+                              });
+
+                              if (manquants.length > 0) {
+                                alert(
+                                  `Matériaux manquants : ${manquants.map((b) => b.nom).join(", ")}\n\nSortez-les d'abord du stock.`,
+                                );
+                                return;
+                              }
+
+                              await commencerReparation(logement.id, 2);
+                            }}
+                            className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 group-hover:shadow-emerald-500/40"
+                          >
+                            <Play className="w-5 h-5" />
+                            Commencer à réparer
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Overlay */}
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      )}
+
+      {/* Alertes maintenance */}
+      {maintenance > 0 && (
+        <div
+          className={`relative overflow-hidden border rounded-2xl p-4 backdrop-blur-sm animate-in slide-in-from-top-4 duration-500 ${
+            isDark
+              ? "bg-gradient-to-r from-rose-500/20 to-amber-500/20 border-rose-500/30"
+              : "bg-gradient-to-r from-rose-100 to-amber-100 border-rose-300"
+          }`}
+        >
+          <div
+            className={`absolute inset-0 animate-pulse ${isDark ? "bg-gradient-to-r from-rose-500/10 to-transparent" : "bg-gradient-to-r from-rose-200/50 to-transparent"}`}
+          />
+          <div className="relative flex items-center gap-3">
+            <div
+              className={`w-10 h-10 rounded-xl flex items-center justify-center animate-bounce ${isDark ? "bg-rose-500/20" : "bg-rose-200"}`}
+            >
+              <AlertTriangle
+                className={`w-5 h-5 ${isDark ? "text-rose-400" : "text-rose-600"}`}
+              />
+            </div>
+            <div className="flex-1">
+              <p
+                className={`text-sm font-bold ${isDark ? "text-rose-200" : "text-rose-700"}`}
+              >
+                ⚠ {maintenance} logement{maintenance > 1 ? "s" : ""} en
+                maintenance
+              </p>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {logements
+                  .filter((l) => l.statut === "Maintenance")
+                  .map((l) => (
+                    <span
+                      key={l.id}
+                      className={`px-3 py-1 rounded-lg text-xs font-semibold ${
+                        isDark
+                          ? "bg-rose-500/20 border border-rose-500/30 text-rose-200"
+                          : "bg-rose-200 border border-rose-300 text-rose-700"
+                      }`}
+                    >
+                      {l.id} — {l.type}
+                    </span>
+                  ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      <div className="flex flex-col gap-3">
+       
+        <div className="flex items-center gap-2 flex-wrap">
+          
+          <div className="hidden sm:block">
+            <div
+              className={`flex gap-1 p-1.5 rounded-xl border backdrop-blur-sm ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
+            >
+              {FILTRES.map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setFiltre(f)}
+                  className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-300 ${
+                    filtre === f
+                      ? "bg-gradient-to-r from-[#C9A84C] to-[#a88a3c] text-white shadow-lg shadow-amber-500/20"
+                      : `${theme.textSubtle} ${isDark ? "hover:bg-white/5" : "hover:bg-gray-100"}`
+                  }`}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Filtres : mobile (dropdown) ── */}
+          <div className="sm:hidden relative flex-1 min-w-0">
+            <button
+              onClick={() => setMenuMobileOuvert(!menuMobileOuvert)}
+              className={`w-full flex items-center justify-between gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border transition-all ${
+                isDark
+                  ? "bg-white/5 border-white/10 text-white hover:bg-white/10"
+                  : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50 shadow-sm"
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <SquareMenu className="w-4 h-4" />
+                <span className="max-[352px]:hidden"> : </span>
+                <span className="text-[#C9A84C] overflow-hidden">{filtre}</span>
+              </span>
+              <ChevronRight
+                className={`w-4 h-4 transition-transform duration-200 ${menuMobileOuvert ? "rotate-90" : ""}`}
+              />
+            </button>
+
+            {menuMobileOuvert && (
+              <div
+                className={`absolute top-full left-0 right-0 mt-1.5 rounded-xl border shadow-xl z-30 overflow-hidden ${
+                  isDark
+                    ? "bg-gray-900 border-white/10"
+                    : "bg-white border-gray-200"
+                }`}
+              >
+                {FILTRES.map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => {
+                      setFiltre(f);
+                      setMenuMobileOuvert(false);
+                    }}
+                    className={`w-full text-left px-4 py-3 text-sm font-medium transition-colors flex items-center gap-3 ${
+                      filtre === f
+                        ? isDark
+                          ? "bg-[#C9A84C]/20 text-[#C9A84C]"
+                          : "bg-amber-50 text-amber-700"
+                        : isDark
+                          ? "text-white/70 hover:bg-white/5"
+                          : "text-gray-600 hover:bg-gray-50"
+                    }`}
+                  >
+                    {filtre === f && <Check className="w-4 h-4" />}
+                    <span className={filtre === f ? "font-bold" : ""}>{f}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* ── Vue Carte/Tableau (compact) ── */}
+          <div
+            className={`flex gap-1 p-1 rounded-xl border backdrop-blur-sm shrink-0 ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
+          >
+            <button
+              onClick={() => setVue("carte")}
+              className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                vue === "carte"
+                  ? "bg-gradient-to-r from-[#0F2D56] to-[#1a4a7a] text-white shadow-lg shadow-blue-500/20"
+                  : `${theme.textSubtle} ${isDark ? "hover:bg-white/5" : "hover:bg-gray-100"}`
+              }`}
+            >
+              <Blocks className="w-3.5 h-3.5" />
+              <span className="hidden xs:inline">Cartes</span>
+            </button>
+            <button
+              onClick={() => setVue("tableau")}
+              className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                 vue === "tableau"
                   ? "bg-gradient-to-r from-[#0F2D56] to-[#1a4a7a] text-white shadow-lg shadow-blue-500/20"
                   : `${theme.textSubtle} ${isDark ? "hover:bg-white/5" : "hover:bg-gray-100"}`
               }`}
             >
+<<<<<<< HEAD
               <SquareMenu className="w-4 h-4" /> Tableau
             </button>
           </div>
         </div>
         <div className="flex gap-3">
           <div className="relative">
+=======
+              <SquareMenu className="w-3.5 h-3.5" />
+              <span className="hidden xs:inline">Tableau</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Ligne 2 : Recherche + Ajouter */}
+        <div className="flex items-center gap-2">
+          <div className="relative flex-1 min-w-0">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <Search
               className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${theme.textLight}`}
             />
@@ -2473,18 +3339,30 @@ export default function Logements() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Rechercher..."
+<<<<<<< HEAD
               className={`pl-10 pr-4 py-2.5 rounded-xl focus:outline-none focus:border-[#C9A84C] transition w-56 ${theme.input} ${theme.text}`}
+=======
+              className={`w-full pl-10 pr-4 py-2.5 rounded-xl focus:outline-none focus:border-[#C9A84C] transition text-sm ${theme.input} ${theme.text}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             />
           </div>
           <button
             onClick={() => setIsAdding(true)}
+<<<<<<< HEAD
             className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#C9A84C] to-[#a88a3c] text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-amber-500/25 transition-all hover:scale-105"
           >
             <CirclePlus className="w-4 h-4" /> Ajouter
+=======
+            className="shrink-0 flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#C9A84C] to-[#a88a3c] text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-amber-500/25 transition-all hover:scale-105"
+          >
+            <CirclePlus className="w-4 h-4" />
+            <span className="hidden sm:inline">Ajouter</span>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           </button>
         </div>
       </div>
 
+<<<<<<< HEAD
       <p className={theme.textLight}>
         {filtered.length} logement{filtered.length > 1 ? "s" : ""} trouvé
         {filtered.length > 1 ? "s" : ""}
@@ -2493,6 +3371,24 @@ export default function Logements() {
       {/* Vue carte 3D */}
       {vue === "carte" && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+=======
+      {/* Fermer le dropdown quand on clique ailleurs */}
+      {menuMobileOuvert && (
+        <div
+          className="fixed inset-0 z-20"
+          onClick={() => setMenuMobileOuvert(false)}
+        />
+      )}
+
+      <p className={theme.textLight}>
+        {filtered.length} logement{filtered.length > 1 ? "s" : ""} trouvé
+        {filtered.length > 1 ? "s" : ""}
+      </p>
+
+      {/* Vue carte 3D */}
+      {vue === "carte" && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           {filtered.map((l, index) => (
             <LogementCard3D
               key={l.id}
@@ -2554,7 +3450,11 @@ export default function Logements() {
                       </div>
                     </th>
                     <th
+<<<<<<< HEAD
                       className={`text-left px-6 py-4 text-[11px] font-bold uppercase tracking-widest ${theme.textLight}`}
+=======
+                      className={`hidden md:table-cell text-left px-6 py-4 text-[11px] font-bold uppercase tracking-widest ${theme.textLight}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                     >
                       <div className="flex items-center gap-2">
                         <div
@@ -2671,7 +3571,11 @@ export default function Logements() {
                         </td>
 
                         {/* Superficie */}
+<<<<<<< HEAD
                         <td className="px-6 py-4">
+=======
+                        <td className="px-6 py-4 hidden md:table-cell text-left ">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                           <div className="flex items-center gap-2">
                             <span
                               className={`text-lg font-black ${theme.text}`}
@@ -2845,11 +3749,19 @@ export default function Logements() {
           )}
         </div>
       )}
+<<<<<<< HEAD
       {/* ── État des logements ── */}
       <div
         className={`backdrop-blur-sm border rounded-3xl p-6 ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
       >
         <div className="flex items-center justify-between mb-6">
+=======
+      {/*État des logements */}
+      <div
+        className={`backdrop-blur-sm border rounded-3xl p-6 ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
+      >
+        <div className="flex items-center justify-between mb-6 max-[1148px]:flex-col max-[1148px]:items-start max-[1148px]:gap-4">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/20 flex items-center justify-center">
               <Activity className="w-5 h-5 text-[#C9A84C]" />
@@ -2863,7 +3775,11 @@ export default function Logements() {
               </p>
             </div>
           </div>
+<<<<<<< HEAD
           <div className="flex gap-4 text-sm">
+=======
+          <div className="flex flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm max-[1148px]:w-full max-[1148px]:justify-start">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             {["Disponible", "Occupé", "Maintenance"].map((s) => {
               const cfg = getStatutConfig(s, isDark);
               const count = logements.filter((l) => l.statut === s).length;
@@ -2908,10 +3824,17 @@ export default function Logements() {
             <tbody>
               {logements
                 .map((l) => ({
+<<<<<<< HEAD
                   logementId: String(l.id),          // ← String() ici
                   logementType: l.type || "",
                   logementLocalisation: l.localisation || "",
                   statut: l.statut || "Disponible",
+=======
+                  logementId: l.id,
+                  logementType: l.type,
+                  logementLocalisation: l.localisation,
+                  statut: l.statut,
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   dernierChangement: l.dernierChangementStatut || null,
                   dateCreation:
                     l.historique?.find((h) => h.type === "creation")?.date ||
@@ -2921,9 +3844,20 @@ export default function Logements() {
                     "-",
                 }))
                 .sort((a, b) => {
+<<<<<<< HEAD
                   if (a.statut === "Maintenance" && b.statut !== "Maintenance") return -1;
                   if (b.statut === "Maintenance" && a.statut !== "Maintenance") return 1;
                   return String(a.logementId).localeCompare(String(b.logementId));
+=======
+                  // Trier par statut Maintenance en premier, puis par ordre alphabétique
+                  if (a.statut === "Maintenance" && b.statut !== "Maintenance")
+                    return -1;
+                  if (b.statut === "Maintenance" && a.statut !== "Maintenance")
+                    return 1;
+                  return String(a.logementId).localeCompare(
+                    String(b.logementId),
+                  );
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                 })
                 .map((l, idx) => {
                   const cfg = getStatutConfig(l.statut, isDark);
@@ -2946,11 +3880,21 @@ export default function Logements() {
                           />
                           <div>
                             <p
+<<<<<<< HEAD
                               className={`text-sm font-semibold group-hover:text-[#C9A84C] transition ${theme.text}`}
                             >
                               {l.logementId}
                             </p>
                             <p className={`text-xs ${theme.textLight}`}>
+=======
+                              className={`text-sm font-semibold group-hover:text-[#C9A84C] transition max-[744px]:text-xs max-[744px]:font-bold ${theme.text}`}
+                            >
+                              {l.logementId}
+                            </p>
+                            <p
+                              className={`text-xs ${theme.textLight} max-[744px]:text-[10px]`}
+                            >
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                               {l.logementType} — {l.logementLocalisation}
                             </p>
                           </div>

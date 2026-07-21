@@ -82,7 +82,7 @@ axios.interceptors.response.use(
 // ─────────────────────────────────────────────────────────────────────────────
 
 export function AuthProvider({ children }) {
-  const [user, setUser]       = useState(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -94,6 +94,7 @@ export function AuthProvider({ children }) {
         .catch(() => {
           localStorage.removeItem("access_token");
           localStorage.removeItem("refresh_token");
+
         })
         .finally(() => setLoading(false));
     } else {
@@ -129,11 +130,12 @@ export function AuthProvider({ children }) {
   const updateProfil = async ({ avatarType, file }) => {
     const formData = new FormData();
     if (avatarType) formData.append("avatar_type", avatarType);
-    if (file)       formData.append("avatar", file);
+    if (file) formData.append("avatar", file);
 
     const res = await axios.patch(`${API}/auth/update-profil/`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
+
 
     const avatarUrl = res.data.avatar_url
       ? `${res.data.avatar_url}?t=${Date.now()}`
@@ -142,12 +144,15 @@ export function AuthProvider({ children }) {
     setUser(prev => ({
       ...prev,
       avatar_url:  avatarUrl,
+
       avatar_type: res.data.avatar_type,
     }));
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, updateProfil }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, register, logout, updateProfil }}
+    >
       {children}
     </AuthContext.Provider>
   );

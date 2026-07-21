@@ -9,8 +9,15 @@ import {
   Wrench,
   Landmark,
   Wallet,
+<<<<<<< HEAD
   ChevronDown,
   Pencil,
+=======
+  ArrowLeftRight,
+  ChevronDown,
+  Pencil,
+  SquareMenu,
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   Plus,
   Trash2,
   Search,
@@ -43,7 +50,10 @@ import {
   TrendingUp,
   TrendingDown,
   Users,
+<<<<<<< HEAD
   
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   Briefcase,
   Mail,
   MapPin,
@@ -52,7 +62,10 @@ import {
   Building,
   Home,
   Sparkles,
+<<<<<<< HEAD
   
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   AlertTriangle,
   Building2,
   UserPlus,
@@ -60,7 +73,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 
-// ─── Icon options (Lucide) ────────────────────────────────────────────────────
+// Icon options
 const ICON_OPTIONS = [
   { label: "BarChart2", Icon: BarChart2 },
   { label: "Users", Icon: User },
@@ -93,7 +106,7 @@ const ICON_OPTIONS = [
   { label: "Heart", Icon: Heart },
 ];
 
-// ─── Color teintes ────────────────────────────────────────────────────────────
+//Color teintes 
 const COLOR_TEINTES = [
   {
     label: "Bleu",
@@ -200,7 +213,11 @@ const CATEGORIES = [
   "Agent exécution",
 ];
 const SITUATIONS = ["Célibataire", "Marié", "Divorcé", "Veuf"];
+<<<<<<< HEAD
 // ─── Motifs de désactivation ─────────────────────────────────────────────────
+=======
+//  Motifs de désactivation 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 const MOTIFS_DEFINITIFS = [
   { label: "Retraite", type: "definitif" },
   { label: "Démission", type: "definitif" },
@@ -208,6 +225,7 @@ const MOTIFS_DEFINITIFS = [
   { label: "Renvoi", type: "definitif" },
   { label: "Autre (définitif)", type: "definitif" },
 ];
+<<<<<<< HEAD
 
 const MOTIFS_TEMPORAIRES = [
   { label: "Congé maladie", type: "temporaire" },
@@ -267,6 +285,65 @@ const THEMES = {
 };
 
 // ─── Hooks d'animation ───────────────────────────────────────────────────────
+=======
+
+const MOTIFS_TEMPORAIRES = [
+  { label: "Congé maladie", type: "temporaire" },
+  { label: "Congé parental", type: "temporaire" },
+  { label: "Congé sans solde", type: "temporaire" },
+  { label: "Mise à pied disciplinaire", type: "temporaire" },
+  { label: "Formation prolongée", type: "temporaire" },
+  { label: "Autre (temporaire)", type: "temporaire" },
+];
+
+const AVATAR_COLORS = [
+  "#3b82f6",
+  "#8b5cf6",
+  "#10b981",
+  "#f59e0b",
+  "#ef4444",
+  "#ec4899",
+  "#0e7490",
+];
+
+
+const THEMES = {
+  dark: {
+    bg: "from-gray-900 via-gray-900 to-[#0F2D56]",
+    card: "from-gray-800/80 to-gray-900/80",
+    text: "text-white",
+    textMuted: "text-white/70",
+    textSubtle: "text-white/50",
+    textLight: "text-white/40",
+    border: "border-white/10",
+    input: "bg-white/5 border-white/10",
+    buttonSecondary: "border-white/20 text-white/70 hover:bg-white/5",
+    statBlue: "from-blue-500/20 to-blue-600/5 border-blue-500/30",
+    statEmerald: "from-emerald-500/20 to-emerald-600/5 border-emerald-500/30",
+    statRose: "from-rose-500/20 to-rose-600/5 border-rose-500/30",
+    statAmber: "from-amber-500/20 to-amber-600/5 border-amber-500/30",
+    statViolet: "from-violet-500/20 to-violet-600/5 border-violet-500/30",
+  },
+  light: {
+    bg: "from-gray-50 via-gray-100 to-blue-50",
+    card: "from-white to-gray-50",
+    text: "text-gray-900",
+    textMuted: "text-gray-700",
+    textSubtle: "text-gray-500",
+    textLight: "text-gray-400",
+    border: "border-gray-200",
+    input: "bg-white border-gray-300",
+    buttonSecondary: "border-gray-300 text-gray-600 hover:bg-gray-100",
+    statBlue: "from-blue-100 to-blue-50 border-blue-200",
+    statEmerald: "from-emerald-100 to-emerald-50 border-emerald-200",
+    statRose: "from-rose-100 to-rose-50 border-rose-200",
+    statAmber: "from-amber-100 to-amber-50 border-amber-200",
+    statViolet: "from-violet-100 to-violet-50 border-violet-200",
+  },
+};
+
+//Hooks d'animation
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function useCountUp(end, duration = 2000) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -325,7 +402,11 @@ function useDarkMode() {
   return isDark;
 }
 
+<<<<<<< HEAD
 // ─── Composant Carte Stat 3D (style materiaux) ───────────────────────────────
+=======
+//Composant Carte Stat 3D ─
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function StatCard3D({
   icon: Icon,
   label,
@@ -416,10 +497,14 @@ function StatCard3D({
   );
 }
 
+<<<<<<< HEAD
 // ─── Jauge circulaire 3D ──────────────────────────────────────────────────────
 
 
 // ─── Barre de progression animée 3D ───────────────────────────────────────────
+=======
+// Barre de progression animée 3D 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function AnimatedProgress({ value, max, color = "emerald", isDark }) {
   const percentage = Math.min((value / max) * 100, 100);
   const theme = isDark ? THEMES.dark : THEMES.light;
@@ -449,17 +534,24 @@ function AnimatedProgress({ value, max, color = "emerald", isDark }) {
   );
 }
 
+<<<<<<< HEAD
 
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
+=======
+//  Helpers
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function avatarColor(nom) {
   let h = 0;
   for (const c of nom) h += c.charCodeAt(0);
   return AVATAR_COLORS[h % AVATAR_COLORS.length];
 }
+<<<<<<< HEAD
 function genId() {
   return "id_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
 }
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function catBadge(cat, isDark) {
   const map = {
     "Cadre supérieur": isDark
@@ -483,10 +575,17 @@ function catBadge(cat, isDark) {
   );
 }
 
+<<<<<<< HEAD
 // ─── Avatar 3D ────────────────────────────────────────────────────────────────
 function Avatar({ prenom = "", nom = "", size = "md", className = "" }) {
   const initials =
     ((prenom || "")[0] || "").toUpperCase() + ((nom || "")[0] || "").toUpperCase();
+=======
+// Avatar 3D 
+function Avatar({ prenom, nom, size = "md", className = "" }) {
+  const initials =
+    (prenom[0] || "").toUpperCase() + (nom[0] || "").toUpperCase();
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const sz =
     size === "lg"
       ? "w-16 h-16 text-xl"
@@ -508,7 +607,11 @@ function Avatar({ prenom = "", nom = "", size = "md", className = "" }) {
   );
 }
 
+<<<<<<< HEAD
 // ─── Modal wrapper 3D ─────────────────────────────────────────────────────────
+=======
+//Modal wrapper 3D 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function Modal({
   title,
   onClose,
@@ -579,7 +682,11 @@ function Modal({
   );
 }
 
+<<<<<<< HEAD
 // ─── Field helpers ────────────────────────────────────────────────────────────
+=======
+// Field helpers
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function Field({ label, children, isDark }) {
   const theme = isDark ? THEMES.dark : THEMES.light;
   return (
@@ -618,7 +725,11 @@ function InputField({
   );
 }
 
+<<<<<<< HEAD
 // ─── Icon Picker 3D ───────────────────────────────────────────────────────────
+=======
+//Icon Picker 3D
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function IconPicker({ selected, onChange, isDark }) {
   return (
     <Field label="Icône (Lucide)" isDark={isDark}>
@@ -644,7 +755,11 @@ function IconPicker({ selected, onChange, isDark }) {
   );
 }
 
+<<<<<<< HEAD
 // ─── Color Picker 3D ─────────────────────────────────────────────────────────
+=======
+// Color Picker 3D 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function ColorPicker({ selected, onChange, isDark }) {
   const theme = isDark ? THEMES.dark : THEMES.light;
   return (
@@ -692,10 +807,16 @@ function ColorPicker({ selected, onChange, isDark }) {
   );
 }
 
+<<<<<<< HEAD
 // ─── Modal Détail Employé ERP Style 3D ────────────────────────────────────────
 
 
  function ModalDetailEmployeERP({
+=======
+// Modal Détail Employé ERP Style 3D 
+
+function ModalDetailEmployeERP({
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   employe,
   dept,
   service,
@@ -709,6 +830,7 @@ function ColorPicker({ selected, onChange, isDark }) {
 
   const ancienneteAnnees = employe.anciennete || 0;
   const estEligibleLogement = ancienneteAnnees >= 2;
+<<<<<<< HEAD
 const { attributions } = useApp();
 
 // Statut logement de cet employé
@@ -740,6 +862,8 @@ useEffect(() => {
   return () => clearInterval(t);
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [simulationReemmenagement?.fin]);
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm p-4 animate-in fade-in duration-300 ${isDark ? "bg-black/60" : "bg-gray-900/40"}`}
@@ -765,7 +889,13 @@ useEffect(() => {
         </div>
 
         {/* Contenu unique centré */}
+<<<<<<< HEAD
         <div className={`flex-1 overflow-y-auto p-6 flex flex-col gap-6 ${isDark ? "bg-white/5" : "bg-gray-50/80"}`}>
+=======
+        <div
+          className={`flex-1 overflow-y-auto p-6 flex flex-col gap-6 ${isDark ? "bg-white/5" : "bg-gray-50/80"}`}
+        >
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           {/* Avatar + Nom */}
           <div className="text-center">
             <div className="relative inline-block -mt-20 mb-4">
@@ -785,9 +915,13 @@ useEffect(() => {
             <h2 className={`text-xl font-bold ${theme.text}`}>
               {employe.prenom} {employe.nom}
             </h2>
+<<<<<<< HEAD
             <p className={`text-sm ${theme.textSubtle}`}>
               {employe.categorie}
             </p>
+=======
+            <p className={`text-sm ${theme.textSubtle}`}>{employe.categorie}</p>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <div className="mt-3 flex justify-center gap-2 flex-wrap">
               <span
                 className={`px-3 py-1 rounded-full text-xs font-semibold ${catBadge(employe.categorie, isDark)}`}
@@ -859,14 +993,26 @@ useEffect(() => {
 
           {/* Contact */}
           <div className="space-y-2">
+<<<<<<< HEAD
             <h4 className={`text-xs font-semibold uppercase tracking-wide ${theme.textLight}`}>
+=======
+            <h4
+              className={`text-xs font-semibold uppercase tracking-wide ${theme.textLight}`}
+            >
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               Contact
             </h4>
             <div className="space-y-2">
               {[
                 {
                   icon: Mail,
+<<<<<<< HEAD
                   value: employe.email || `${(employe.prenom || "").toLowerCase()}.${(employe.nom || "").toLowerCase()}@spat.mg`,
+=======
+                  value:
+                    employe.email ||
+                    `${(employe.prenom || "").toLowerCase()}.${(employe.nom || "").toLowerCase()}@spat.mg`,
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                 },
                 { icon: Phone, value: employe.telephone || "Non renseigné" },
                 { icon: MapPin, value: employe.adresse || "Non renseigné" },
@@ -883,8 +1029,17 @@ useEffect(() => {
           </div>
 
           {/* Situation familiale */}
+<<<<<<< HEAD
           <div className={`border rounded-2xl p-5 ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-lg"}`}>
             <h4 className={`text-sm font-semibold mb-4 flex items-center gap-2 ${theme.text}`}>
+=======
+          <div
+            className={`border rounded-2xl p-5 ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-lg"}`}
+          >
+            <h4
+              className={`text-sm font-semibold mb-4 flex items-center gap-2 ${theme.text}`}
+            >
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               <Heart className="w-4 h-4 text-rose-500" />
               Situation familiale
             </h4>
@@ -908,6 +1063,7 @@ useEffect(() => {
               ))}
             </div>
           </div>
+<<<<<<< HEAD
 {/* Statut logement + simulation réemménagement */}
 {estEligibleLogement && (
   <div className={`border rounded-2xl p-4 ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-lg"}`}>
@@ -959,6 +1115,9 @@ useEffect(() => {
   </div>
 )}
 
+=======
+
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           {/* Actions */}
           <div className="flex gap-2 mt-auto pt-2">
             <button
@@ -981,15 +1140,20 @@ useEffect(() => {
   );
 }
 
+<<<<<<< HEAD
 
 
 // ─── Service Row 3D ───────────────────────────────────────────────────────────
+=======
+//Service Row 3D 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function ServiceRow({
   service,
   bg,
   ic,
   dept,
   deptCode,
+<<<<<<< HEAD
   onAddEmploye,
   onEditService,
   onDeleteService,
@@ -1049,6 +1213,52 @@ const logementRepare = attMaintenance
   : null;
   return (
     
+=======
+  departements,
+  onAddEmploye,
+  onEditService,
+  onDeleteService,
+  onDeleteEmploye,
+  onDesactiverEmploye,
+  onDetailEmploye,
+  onBesoinLogement,
+
+  isDark,
+}) {
+  const [open, setOpen] = useState(false);
+
+  const [voirDesactives, setVoirDesactives] = useState(false);
+
+  const theme = isDark ? THEMES.dark : THEMES.light;
+
+  const { reactiverEmploye, attributions, logements, choisirReemménagement } =
+    useApp();
+
+ 
+  const attMaintenance = attributions?.find(
+    (a) =>
+      String(a.service_id) === String(service.id) &&
+      (a.statut === "Maintenance" ||
+        a.statut === "REPARÉ" ||
+        a._reparationTerminee === true),
+  );
+
+  const attTemporaire = attributions?.find(
+    (a) => a._serviceId === service.id && a._temporaire === true,
+  );
+
+  const logementOrigine = attMaintenance
+    ? logements?.find((l) => l.id === attMaintenance.logement)
+    : null;
+
+  const logementRepare = attMaintenance
+    ? logements?.find(
+        (l) => l.id === attMaintenance.logement && l._reparationTerminee,
+      )
+    : null;
+
+  return (
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     <div
       className={`border-b last:border-0 animate-in slide-in-from-left-2 duration-300 ${isDark ? "border-white/5" : "border-gray-100"}`}
     >
@@ -1076,6 +1286,7 @@ const logementRepare = attMaintenance
             Chef : {service.chef}
           </span>
         </div>
+<<<<<<< HEAD
   <span
   className="text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"
   style={{ background: bg, color: ic }}
@@ -1155,6 +1366,182 @@ const logementRepare = attMaintenance
 })()}
 
 
+=======
+        <span
+          className="text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"
+          style={{ background: bg, color: ic }}
+        >
+          {(() => {
+            const actifs = service.employes.filter((e) => !e.desactive).length;
+            const temporaires = service.employes.filter(
+              (e) => e.desactive && e.typeDesactivation === "temporaire",
+            ).length;
+            const totalCompte = actifs + temporaires;
+            return `${totalCompte} emp.`;
+          })()}
+        </span>
+
+        {(() => {
+          const logementOrigineAtt = attMaintenance
+            ? logements?.find((l) => l.id === attMaintenance.logement)
+            : null;
+          const reparationTerminee =
+            logementOrigineAtt?._reparationTerminee === true;
+        
+          const aLogementTemp =
+            service.logementAttribue &&
+            attMaintenance &&
+            service.logementAttribue !== attMaintenance.logement;
+
+          if (
+            attMaintenance &&
+            reparationTerminee &&
+            service.logementAttribue &&
+            service.logementAttribue !== attMaintenance.logement
+          ) {
+            return (
+              <div
+                className="flex items-center gap-1"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  title={`Réemménager dans ${attMaintenance.logement}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (
+                      window.confirm(
+                        ` RÉEMMÉNAGEMENT\n\nRetourner dans : ${attMaintenance.logement}\nLibérer : ${service.logementAttribue}\n\nLes occupants seront déplacés vers le logement réparé.\nConfirmer ?`,
+                      )
+                    ) {
+                      choisirReemménagement(
+                        attMaintenance.logement,
+                        service.logementAttribue,
+                        String(service.id),
+                        "reemmener",
+                      );
+                    }
+                  }}
+                  className={`flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all hover:scale-105 ${
+                    isDark
+                      ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40 hover:bg-emerald-500/35"
+                      : "bg-emerald-100 text-emerald-700 border-emerald-300 hover:bg-emerald-200"
+                  }`}
+                >
+                  <Home className="w-2.5 h-2.5" />
+                  Réemménager
+                </button>
+
+                <span className={`text-[10px] ${theme.textLight}`}>ou</span>
+
+                <button
+                  title={`Rester dans ${service.logementAttribue}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (
+                      window.confirm(
+                        ` RESTER DANS LE LOGEMENT ACTUEL\n\nConserver : ${service.logementAttribue}\nLibérer : ${attMaintenance.logement}\n\nL'ancien logement sera remis à disposition.\nConfirmer ?`,
+                      )
+                    ) {
+                      choisirReemménagement(
+                        attMaintenance.logement,
+                        service.logementAttribue,
+                        String(service.id),
+                        "rester",
+                      );
+                    }
+                  }}
+                  className={`flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all hover:scale-105 ${
+                    isDark
+                      ? "bg-blue-500/20 text-blue-300 border-blue-500/40 hover:bg-blue-500/35"
+                      : "bg-blue-100 text-blue-700 border-blue-300 hover:bg-blue-200"
+                  }`}
+                >
+                  <Check className="w-2.5 h-2.5" />
+                  Rester
+                </button>
+              </div>
+            );
+          }
+
+          /* 3 Logé normalement (y compris temporaire) */
+          if (service.logementAttribue) {
+            const estTemporaire = aLogementTemp;
+            return (
+              <span
+                className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                  estTemporaire
+                    ? isDark
+                      ? "bg-blue-500/20 text-blue-300 border border-blue-500/30"
+                      : "bg-blue-100 text-blue-600 border border-blue-200"
+                    : isDark
+                      ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                      : "bg-emerald-100 text-emerald-600 border border-emerald-200"
+                }`}
+              >
+                {estTemporaire ? "🏠 Logé (temp.)" : "🏠 Logé"}
+              </span>
+            );
+          }
+
+          /* 4 En maintenance / réparation */
+          if (attMaintenance) {
+            if (logementOrigineAtt?.statut === "EN_REPARATION") {
+              return (
+                <span
+                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 ${
+                    isDark
+                      ? "bg-blue-500/20 text-blue-300 border border-blue-500/30"
+                      : "bg-blue-100 text-blue-600 border border-blue-200"
+                  }`}
+                >
+                  <Wrench className="w-2.5 h-2.5 animate-spin" />
+                  En réparation
+                </span>
+              );
+            }
+            return (
+              <span
+                className={`text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 ${
+                  isDark
+                    ? "bg-rose-500/20 text-rose-300 border border-rose-500/30"
+                    : "bg-rose-100 text-rose-600 border border-rose-200"
+                }`}
+              >
+                <Wrench className="w-2.5 h-2.5 animate-spin" />
+                Non logé (maintenance)
+              </span>
+            );
+          }
+
+          /*  5 Besoin exprimé */
+          if (service.besoinLogementExprime) {
+            return (
+              <span
+                className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                  isDark
+                    ? "bg-amber-500/20 text-amber-300 border border-amber-500/30"
+                    : "bg-amber-100 text-amber-600 border border-amber-200"
+                }`}
+              >
+                ⏳ En attente
+              </span>
+            );
+          }
+
+          /* 6️⃣ Non logé */
+          return (
+            <span
+              className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                isDark
+                  ? "bg-gray-500/20 text-gray-400 border border-gray-500/30"
+                  : "bg-gray-100 text-gray-500 border border-gray-200"
+              }`}
+            >
+              Non logé
+            </span>
+          );
+        })()}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
         <div
           className="flex gap-1.5 shrink-0"
@@ -1167,6 +1554,7 @@ const logementRepare = attMaintenance
           >
             <Plus size={13} strokeWidth={2.5} />
           </button>
+<<<<<<< HEAD
 <button
   title={
     service.logementAttribue
@@ -1199,6 +1587,40 @@ const logementRepare = attMaintenance
   <Home size={13} strokeWidth={2} />
 </button>
 
+=======
+          <button
+            title={
+              service.logementAttribue
+                ? "✓ Ce service dispose déjà d'un logement"
+                : service.besoinLogementExprime
+                  ? "⏳ Demande de logement déjà envoyée"
+                  : "Exprimer un besoin de logement"
+            }
+            onClick={() => {
+              if (!service.logementAttribue && !service.besoinLogementExprime) {
+                onBesoinLogement(deptCode, service);
+              }
+            }}
+            disabled={
+              !!service.logementAttribue || !!service.besoinLogementExprime
+            }
+            className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all ${
+              service.logementAttribue
+                ? isDark
+                  ? "bg-emerald-500/30 text-emerald-300 cursor-not-allowed opacity-80"
+                  : "bg-emerald-100 text-emerald-600 cursor-not-allowed opacity-80"
+                : service.besoinLogementExprime
+                  ? isDark
+                    ? "bg-amber-500/20 text-amber-300 cursor-not-allowed opacity-60"
+                    : "bg-amber-100 text-amber-500 cursor-not-allowed opacity-60"
+                  : isDark
+                    ? "bg-amber-500/30 text-amber-300 hover:scale-110"
+                    : "bg-amber-100 text-amber-600 hover:scale-110"
+            }`}
+          >
+            <Home size={13} strokeWidth={2} />
+          </button>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
           <button
             title="Modifier"
@@ -1222,7 +1644,11 @@ const logementRepare = attMaintenance
         </div>
       </div>
 
+<<<<<<< HEAD
 {open && (
+=======
+      {open && (
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <div
           className={`border-t animate-in slide-in-from-top-2 duration-300 ${isDark ? "border-white/5" : "border-gray-100"}`}
         >
@@ -1259,17 +1685,36 @@ const logementRepare = attMaintenance
                       <tr
                         key={emp.id}
                         className={`border-t transition-all cursor-pointer group ${isDark ? "border-white/5 hover:bg-white/5" : "border-gray-200/50 hover:bg-[#0F2D56]/5"}`}
+<<<<<<< HEAD
                         onClick={(e) => { e.stopPropagation(); onDetailEmploye(dept, service, emp); }}
+=======
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDetailEmploye(dept, service, emp);
+                        }}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                         style={{ animationDelay: `${i * 50}ms` }}
                       >
                         <td className="pl-10 pr-3 py-2.5">
                           <div className="flex items-center gap-2">
+<<<<<<< HEAD
                             <Avatar prenom={emp.prenom} nom={emp.nom} size="sm" />
                             <span className={`font-semibold text-xs group-hover:text-[#C9A84C] transition-colors ${isDark ? "text-white" : "text-[#0F2D56]"}`}>
+=======
+                            <Avatar
+                              prenom={emp.prenom}
+                              nom={emp.nom}
+                              size="sm"
+                            />
+                            <span
+                              className={`font-semibold text-xs group-hover:text-[#C9A84C] transition-colors ${isDark ? "text-white" : "text-[#0F2D56]"}`}
+                            >
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                               {emp.prenom} {emp.nom}
                             </span>
                           </div>
                         </td>
+<<<<<<< HEAD
                         <td className={`px-3 py-2.5 font-mono text-xs ${theme.textLight}`}>{emp.matricule}</td>
                         <td className="px-3 py-2.5">
                           <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${catBadge(emp.categorie, isDark)}`}>
@@ -1278,11 +1723,42 @@ const logementRepare = attMaintenance
                         </td>
                         <td className={`px-3 py-2.5 text-xs ${theme.textSubtle}`}>{emp.anciennete} ans</td>
                         <td className={`px-3 py-2.5 text-xs ${theme.textSubtle}`}>{emp.situation}</td>
+=======
+                        <td
+                          className={`px-3 py-2.5 font-mono text-xs ${theme.textLight}`}
+                        >
+                          {emp.matricule}
+                        </td>
+                        <td className="px-3 py-2.5">
+                          <span
+                            className={`px-2 py-0.5 rounded-full text-xs font-semibold ${catBadge(emp.categorie, isDark)}`}
+                          >
+                            {emp.categorie}
+                          </span>
+                        </td>
+                        <td
+                          className={`px-3 py-2.5 text-xs ${theme.textSubtle}`}
+                        >
+                          {emp.anciennete} ans
+                        </td>
+                        <td
+                          className={`px-3 py-2.5 text-xs ${theme.textSubtle}`}
+                        >
+                          {emp.situation}
+                        </td>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                         <td className="px-3 py-2.5">
                           <div className="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button
                               title="Voir détails"
+<<<<<<< HEAD
                               onClick={(e) => { e.stopPropagation(); onDetailEmploye(dept, service, emp); }}
+=======
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onDetailEmploye(dept, service, emp);
+                              }}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                               className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all hover:scale-110 ${isDark ? "bg-blue-500/20 text-blue-400 hover:bg-blue-500/30" : "bg-[#0F2D56]/10 text-[#0F2D56] hover:bg-[#0F2D56] hover:text-white"}`}
                             >
                               <Eye size={12} strokeWidth={2} />
@@ -1291,7 +1767,15 @@ const logementRepare = attMaintenance
                               title="Désactiver"
                               onClick={(e) => {
                                 e.stopPropagation();
+<<<<<<< HEAD
                                 console.log("CLICK DÉSACTIVER:", { deptCode, serviceId: service.id, emp });
+=======
+                                console.log("CLICK DÉSACTIVER:", {
+                                  deptCode,
+                                  serviceId: service.id,
+                                  emp,
+                                });
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                                 onDesactiverEmploye(deptCode, service.id, emp);
                               }}
                               className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all hover:scale-110 ${isDark ? "bg-rose-500/20 text-rose-400 hover:bg-rose-500/30" : "bg-red-50 text-red-500 hover:bg-red-100"}`}
@@ -1364,6 +1848,227 @@ const logementRepare = attMaintenance
                   </div>
                 )}
               </table>
+
+              {service.employes.some((e) => e.desactive) && (
+                <div className="mt-2">
+                  <button
+                    onClick={() => setVoirDesactives(!voirDesactives)}
+                    className={`text-xs flex items-center gap-1 px-3 py-1.5 rounded-lg transition ${isDark ? "text-white/40 hover:text-white/60 hover:bg-white/5" : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"}`}
+                  >
+                    {voirDesactives ? (
+                      <ChevronUp size={12} />
+                    ) : (
+                      <ChevronDown size={12} />
+                    )}
+                    {service.employes.filter((e) => e.desactive).length}{" "}
+                    employé(s) désactivé(s)
+                  </button>
+                  {voirDesactives && (
+                    <div
+                      className={`mt-2 p-3 rounded-xl border ${isDark ? "bg-rose-500/5 border-rose-500/10" : "bg-rose-50 border-rose-100"}`}
+                    >
+                      <p
+                        className={`text-[10px] font-bold uppercase tracking-wider mb-2 ${isDark ? "text-rose-300/60" : "text-rose-600"}`}
+                      >
+                        Comptes inactifs
+                      </p>
+                      {service.employes
+                        .filter((e) => e.desactive)
+                        .map((emp) => {
+                          const estDefinitif =
+                            emp.typeDesactivation === "definitif" ||
+                            emp.reactivationPossible === false;
+                          return (
+                            <div
+                              key={emp.id}
+                              className={`flex items-center gap-2 py-2 opacity-50 ${isDark ? "border-b border-white/5" : "border-b border-gray-100"}`}
+                            >
+                              <Avatar
+                                prenom={emp.prenom}
+                                nom={emp.nom}
+                                size="sm"
+                              />
+                              <div className="flex-1">
+                                <p className={`text-xs ${theme.textMuted}`}>
+                                  {emp.prenom} {emp.nom}
+                                </p>
+                                <p className={`text-[10px] ${theme.textLight}`}>
+                                  {emp.motifDesactivation} —{" "}
+                                  {emp.dateDesactivation}
+                                  {emp.typeDesactivation && (
+                                    <span
+                                      className={`ml-1 px-1.5 py-0.5 rounded text-[9px] font-bold ${estDefinitif ? (isDark ? "bg-rose-500/30 text-rose-300" : "bg-rose-100 text-rose-600") : isDark ? "bg-amber-500/30 text-amber-300" : "bg-amber-100 text-amber-600"}`}
+                                    >
+                                      {emp.typeDesactivation === "definitif"
+                                        ? "DÉFINITIF"
+                                        : "TEMPORAIRE"}
+                                    </span>
+                                  )}
+                                </p>
+                              </div>
+                              <div className="flex items-center gap-1.5">
+                                <span
+                                  className={`text-[10px] px-2 py-0.5 rounded-full ${estDefinitif ? "bg-rose-500/20 text-rose-400" : "bg-gray-500/20 text-gray-400"}`}
+                                >
+                                  {estDefinitif ? "Inactif (déf.)" : "Inactif"}
+                                </span>
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    if (estDefinitif) {
+                                      alert(
+                                        `❌ Réactivation impossible.\n\n${emp.prenom} ${emp.nom} a été désactivé définitivement (${emp.motifDesactivation}).`,
+                                      );
+                                      return;
+                                    }
+                                    const dep = departements?.find(
+                                      (d) => d.code === deptCode,
+                                    );
+                                    reactiverEmploye(
+                                      dep?.id,
+                                      service.id,
+                                      emp.id,
+                                    );
+                                  }}
+                                  disabled={estDefinitif}
+                                  title={
+                                    estDefinitif
+                                      ? `Désactivation définitive — ${emp.motifDesactivation}`
+                                      : "Réactiver l'employé"
+                                  }
+                                  className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all hover:scale-110 ${estDefinitif ? (isDark ? "bg-gray-700/50 text-gray-600 cursor-not-allowed" : "bg-gray-200 text-gray-400 cursor-not-allowed") : isDark ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30" : "bg-emerald-100 text-emerald-600 hover:bg-emerald-200"}`}
+                                >
+                                  <UserPlus size={12} strokeWidth={2} />
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {attMaintenance && (
+            <div
+              className={`px-10 py-3 border-t ${isDark ? "border-white/5" : "border-gray-100"}`}
+            >
+              {/* ── CAS 1 : Service a déjà un autre logement (déménagement temporaire fait) ── */}
+              {service.logementAttribue &&
+              service.logementAttribue !== attMaintenance.logement ? (
+                <>
+                  {logementRepare ? (
+                    <div
+                      className={`p-3 rounded-xl border ${
+                        isDark
+                          ? "bg-gradient-to-r from-emerald-500/15 to-blue-500/10 border-emerald-500/30"
+                          : "bg-gradient-to-r from-emerald-50 to-blue-50 border-emerald-300"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <div
+                          className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                            isDark
+                              ? "bg-emerald-500/20 text-emerald-400"
+                              : "bg-emerald-100 text-emerald-600"
+                          }`}
+                        >
+                          <Home className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <p
+                            className={`text-xs font-bold ${isDark ? "text-emerald-300" : "text-emerald-700"}`}
+                          >
+                            Logement {attMaintenance.logement} réparé
+                          </p>
+                          <p className={`text-[10px] ${theme.textLight}`}>
+                            Votre service est actuellement dans{" "}
+                            {service.logementAttribue}.
+                            <span className="font-semibold text-[#C9A84C]">
+                              {" "}
+                              Utilisez les boutons dans la ligne du service pour
+                              choisir.
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    /* Logement d'origine PAS encore réparé */
+                    <div
+                      className={`p-3 rounded-xl border ${
+                        isDark
+                          ? "bg-blue-500/10 border-blue-500/20"
+                          : "bg-blue-50 border-blue-200"
+                      }`}
+                    >
+                      <p
+                        className={`text-xs font-semibold ${isDark ? "text-blue-300" : "text-blue-700"}`}
+                      >
+                        <Home className="w-3.5 h-3.5 inline mr-1" />
+                        Service temporairement dans {service.logementAttribue}
+                      </p>
+                      <p className={`text-[10px] mt-1 ${theme.textLight}`}>
+                        En attente de réparation de {attMaintenance.logement}...
+                      </p>
+                    </div>
+                  )}
+                </>
+              ) : (
+                /* ── CAS 2 : Pas encore de déménagement temporaire ── */
+                <>
+                  {!attTemporaire && !logementRepare && (
+                    <div
+                      className={`p-3 rounded-xl border ${
+                        isDark
+                          ? "bg-amber-500/10 border-amber-500/20"
+                          : "bg-amber-50 border-amber-200"
+                      }`}
+                    >
+                      <p
+                        className={`text-xs font-semibold ${isDark ? "text-amber-300" : "text-amber-700"}`}
+                      >
+                        <AlertTriangle className="w-3.5 h-3.5 inline mr-1" />
+                        Logement en maintenance
+                      </p>
+                      <p className={`text-[10px] mt-1 ${theme.textLight}`}>
+                        Ce service nécessite un logement de type{" "}
+                        <strong
+                          className={
+                            isDark ? "text-amber-300" : "text-amber-700"
+                          }
+                        >
+                          {logementOrigine?.type || "F2"}
+                        </strong>{" "}
+                        (même genre que le logement actuellement en
+                        maintenance).
+                      </p>
+                    </div>
+                  )}
+                  {/* ── CAS 3 : Déménagement temporaire fait, en attente réparation ── */}
+                  {attTemporaire && !logementRepare && (
+                    <div
+                      className={`p-3 rounded-xl border ${
+                        isDark
+                          ? "bg-blue-500/10 border-blue-500/20"
+                          : "bg-blue-50 border-blue-200"
+                      }`}
+                    >
+                      <p
+                        className={`text-xs font-semibold ${isDark ? "text-blue-300" : "text-blue-700"}`}
+                      >
+                        <Home className="w-3.5 h-3.5 inline mr-1" />
+                        Service temporairement dans {attTemporaire.logement}
+                      </p>
+                      <p className={`text-[10px] mt-1 ${theme.textLight}`}>
+                        En attente de réparation de {attMaintenance.logement}...
+                      </p>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           )}
 
@@ -1498,7 +2203,11 @@ const logementRepare = attMaintenance
   );
 }
 
+<<<<<<< HEAD
 // ─── Department Card 3D ───────────────────────────────────────────────────────
+=======
+//Department Card 3D 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function DepartmentCard({
   dept,
   isDark,
@@ -1506,24 +2215,43 @@ function DepartmentCard({
   onEditService,
   onDeleteService,
   onAddEmploye,
+<<<<<<< HEAD
   onDeleteEmploye, // 🔥 Ajouté
   onDesactiverEmploye, // 🔥 Ajouté
+=======
+  onDeleteEmploye,
+  onDesactiverEmploye,
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   onDetailEmploye,
   onBesoinLogement,
   onDeleteDept,
   index = 0,
+<<<<<<< HEAD
+=======
+  departements,
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 }) {
   const [open, setOpen] = useState(false);
   const { Icon } = ICON_OPTIONS[dept.iconIdx] || ICON_OPTIONS[0];
   const teinte = COLOR_TEINTES[dept.colorIdx] || COLOR_TEINTES[0];
   const bg = isDark ? teinte.bgDark : teinte.bgLight;
   const ic = isDark ? teinte.iconDark : teinte.iconLight;
+<<<<<<< HEAD
 const totalEmps = dept.services.reduce((a, s) => {
   // 🔥 Compter seulement actifs + temporairement désactivés (pas les définitifs)
   const actifs = (s.employes || []).filter((e) => !e.desactive).length;
   const temporaires = (s.employes || []).filter((e) => e.desactive && e.typeDesactivation === "temporaire").length;
   return a + actifs + temporaires;
 }, 0);
+=======
+  const totalEmps = dept.services.reduce((a, s) => {
+    const actifs = (s.employes || []).filter((e) => !e.desactive).length;
+    const temporaires = (s.employes || []).filter(
+      (e) => e.desactive && e.typeDesactivation === "temporaire",
+    ).length;
+    return a + actifs + temporaires;
+  }, 0);
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const { style } = useReveal(index * 80);
   const theme = isDark ? THEMES.dark : THEMES.light;
 
@@ -1580,7 +2308,11 @@ const totalEmps = dept.services.reduce((a, s) => {
           >
             <button
               title="Ajouter un service"
+<<<<<<< HEAD
               onClick={() => onAddService(dept.code || dept.id)}
+=======
+              onClick={() => onAddService(dept.code)}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all hover:scale-110 hover:rotate-90 ${isDark ? "bg-blue-500/20 text-blue-400 hover:bg-blue-500/30" : "bg-blue-50 text-blue-600 hover:bg-blue-100"}`}
             >
               <Plus size={15} strokeWidth={2.5} />
@@ -1623,15 +2355,26 @@ const totalEmps = dept.services.reduce((a, s) => {
                   service={service}
                   bg={bg}
                   ic={ic}
+<<<<<<< HEAD
                   dept={dept} 
+=======
+                  dept={dept}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   deptCode={dept.code}
                   onAddEmploye={onAddEmploye}
                   onEditService={onEditService}
                   onDeleteService={onDeleteService}
                   onDeleteEmploye={onDeleteEmploye}
+<<<<<<< HEAD
                   onDesactiverEmploye={onDesactiverEmploye} // 🔥 AJOUTÉ
                   onDetailEmploye={onDetailEmploye}
                   onBesoinLogement={onBesoinLogement}
+=======
+                  onDesactiverEmploye={onDesactiverEmploye}
+                  onDetailEmploye={onDetailEmploye}
+                  onBesoinLogement={onBesoinLogement}
+                  departements={departements}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   isDark={isDark}
                 />
               ))
@@ -1646,19 +2389,28 @@ const totalEmps = dept.services.reduce((a, s) => {
   );
 }
 
+<<<<<<< HEAD
 // ─── Main ─────────────────────────────────────────────────────────────────────
 // ─── Main ─────────────────────────────────────────────────────────────────────
+=======
+// Main 
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 export default function DepartementsSPAT() {
   const isDark = useDarkMode();
   const theme = isDark ? THEMES.dark : THEMES.light;
 
+<<<<<<< HEAD
 const {
+=======
+  const {
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     departements: contextDepts,
     setDepartements: setDepartments,
     creerAlerteBesoin,
     attributions,
     getCapaciteLogement,
     logements,
+<<<<<<< HEAD
     historiqueRH,       
     desactiverEmploye, 
     ajouterHistorique,       
@@ -1680,6 +2432,26 @@ const departments = contextDepts.map(d => ({
   name: d.name || d.nom,   // compatibilité : contexte = nom, local = name
   code: d.code || d.id,
 }));
+=======
+    historiqueRH,
+    desactiverEmploye,
+    synchroniserOccupantsAttribution,
+    ajouterDepartement,
+    supprimerDepartement,
+    ajouterService,
+    modifierService,
+    supprimerService,
+    ajouterEmployeService,
+    modifierEmploye,
+  } = useApp();
+
+  // Normaliser les départements : le contexte utilise "nom" mais le reste du code attend "name"
+  const departments = contextDepts.map((d) => ({
+    ...d,
+    name: d.name || d.nom,
+    code: d.code || d.id,
+  }));
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
@@ -1694,6 +2466,7 @@ const departments = contextDepts.map(d => ({
   });
   const [serviceForm, setServiceForm] = useState({ name: "", chef: "" });
   const [serviceTarget, setServiceTarget] = useState(null);
+<<<<<<< HEAD
 const [empTarget, setEmpTarget] = useState(null);
 const [empForm, setEmpForm] = useState({
   prenom: "",
@@ -1765,11 +2538,100 @@ const repartitionCategories = CATEGORIES.map((cat) => ({
     }, 0);
   }, 0),
 }));
+=======
+  const [empTarget, setEmpTarget] = useState(null);
+  const [empForm, setEmpForm] = useState({
+    prenom: "",
+    nom: "",
+    categorie: CATEGORIES[3],
+    anciennete: 0,
+    situation: SITUATIONS[0],
+    nb_enfants: 0,
+    email: "",
+    telephone: "",
+    adresse: "",
+    salaire: 400000,
+  });
+  const [desactiverModal, setDesactiverModal] = useState(null);
+  const [motifDesactivation, setMotifDesactivation] = useState(null);
+  const [typeMotifActif, setTypeMotifActif] = useState("definitif");
+  const [detailData, setDetailData] = useState(null);
+
+  const [besoinModal, setBesoinModal] = useState(null);
+  const [typeLogementRequis, setTypeLogementRequis] = useState("F2");
+  const [serviceLoge, setServiceLoge] = useState(false);
+  const [showHistorique, setShowHistorique] = useState(false);
+  const [filtreHistorique, setFiltreHistorique] = useState("tous");
+  const [menuHistoriqueOuvert, setMenuHistoriqueOuvert] = useState(false);
+  const closeModal = () => setModal(null);
+
+  const totalEmps = departments.reduce((a, d) => {
+    return (
+      a +
+      (d.services || []).reduce((b, s) => {
+        const actifs = (s.employes || []).filter((e) => !e.desactive).length;
+        const temporaires = (s.employes || []).filter(
+          (e) => e.desactive && e.typeDesactivation === "temporaire",
+        ).length;
+        return b + actifs + temporaires;
+      }, 0)
+    );
+  }, 0);
+  const totalServices = departments.reduce((a, d) => a + d.services.length, 0);
+  const eligibleCount = departments.reduce((a, d) => {
+    return (
+      a +
+      (d.services || []).reduce((b, s) => {
+        const eligibles = (s.employes || []).filter((e) => {
+          if (e.desactive && e.typeDesactivation === "definitif") return false;
+          return e.anciennete >= 2;
+        }).length;
+        return b + eligibles;
+      }, 0)
+    );
+  }, 0);
+  const avgAnciennete =
+    totalEmps > 0
+      ? Math.round(
+          departments.reduce((a, d) => {
+            return (
+              a +
+              (d.services || []).reduce((b, s) => {
+                const ancienneteTotale = (s.employes || []).reduce((c, e) => {
+                  if (e.desactive && e.typeDesactivation === "definitif")
+                    return c;
+                  return c + (e.anciennete || 0);
+                }, 0);
+                return b + ancienneteTotale;
+              }, 0)
+            );
+          }, 0) / totalEmps,
+        )
+      : 0;
+
+  const repartitionCategories = CATEGORIES.map((cat) => ({
+    categorie: cat,
+    count: departments.reduce((a, d) => {
+      return (
+        a +
+        (d.services || []).reduce((b, s) => {
+          const countCat = (s.employes || []).filter((e) => {
+            if (e.desactive && e.typeDesactivation === "definitif")
+              return false;
+            return e.categorie === cat;
+          }).length;
+          return b + countCat;
+        }, 0)
+      );
+    }, 0),
+  }));
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
   // Dept
   const openAddDept = () => {
     setDeptForm({ code: "", name: "", fullName: "", iconIdx: 0, colorIdx: 0 });
     setModal("add-dept");
+<<<<<<< HEAD
   };
 
 
@@ -1845,10 +2707,55 @@ const confirmAddService = async () => {
   });
   closeModal();
 };
+=======
+  };
+  const confirmAddDept = async () => {
+    if (!deptForm.code.trim() || !deptForm.name.trim()) return;
+    try {
+      await ajouterDepartement({
+        nom: deptForm.name.trim(),
+        code: deptForm.code.trim(),
+        full_name: deptForm.fullName.trim() || deptForm.name.trim(),
+        icone: ICON_OPTIONS[deptForm.iconIdx]?.label || "BarChart2",
+        couleur: COLOR_TEINTES[deptForm.colorIdx]?.label || "Bleu",
+      });
+      closeModal();
+    } catch (err) {
+      console.error("Erreur ajout département", err);
+    }
+  };
+  const deleteDept = async (code) => {
+    if (window.confirm("Supprimer ce département et tous ses services ?")) {
+      const dep = departments.find((d) => d.code === code);
+      if (dep) await supprimerDepartement(dep.id);
+    }
+  };
+  // Service
+  const openAddService = (deptCode) => {
+    setServiceForm({ name: "", chef: "" });
+    setServiceTarget({ deptCode });
+    setModal("add-service");
+  };
+  const confirmAddService = async () => {
+    if (!serviceForm.name.trim()) return;
+    const dep = departments.find((d) => d.code === serviceTarget.deptCode);
+    if (!dep) return;
+    try {
+      await ajouterService(dep.id, {
+        name: serviceForm.name.trim(),
+        chef: serviceForm.chef.trim() || "À définir",
+      });
+      closeModal();
+    } catch (err) {
+      console.error("Erreur ajout service", err);
+    }
+  };
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const openEditService = (deptCode, service) => {
     setServiceForm({ name: service.name, chef: service.chef });
     setServiceTarget({ deptCode, serviceId: service.id });
     setModal("edit-service");
+<<<<<<< HEAD
   };
   
 const deleteService = async (deptCode, serviceId) => {
@@ -1859,6 +2766,31 @@ const deleteService = async (deptCode, serviceId) => {
 };
   
 
+=======
+  };
+  const confirmEditService = async () => {
+    if (!serviceForm.name.trim()) return;
+    const dep = departments.find((d) => d.code === serviceTarget.deptCode);
+    if (!dep) return;
+    try {
+      await modifierService(dep.id, {
+        id: serviceTarget.serviceId,
+        name: serviceForm.name.trim(),
+        chef: serviceForm.chef.trim() || "À définir",
+      });
+      closeModal();
+    } catch (err) {
+      console.error("Erreur modification service", err);
+    }
+  };
+  const deleteService = async (deptCode, serviceId) => {
+    if (window.confirm("Supprimer ce service et ses employés ?")) {
+      const dep = departments.find((d) => d.code === deptCode);
+      if (!dep) return;
+      await supprimerService(dep.id, serviceId);
+    }
+  };
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   // Employé
   const openAddEmploye = (deptCode, serviceId) => {
     setEmpForm({
@@ -1871,11 +2803,16 @@ const deleteService = async (deptCode, serviceId) => {
       email: "",
       telephone: "",
       adresse: "",
+<<<<<<< HEAD
       salaire: 0,
+=======
+      salaire: 400000,
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     });
     setEmpTarget({ deptCode, serviceId });
     setModal("add-employe");
   };
+<<<<<<< HEAD
 // 🔥 Ouvrir le modal d'édition d'un employé
 const openEditEmploye = (deptCode, serviceId, employe) => {
   setEmpForm({
@@ -1950,6 +2887,238 @@ const confirmEditEmploye = async () => {
       salaire:    empForm.salaire,
     }
   );
+=======
+  const openEditEmploye = (deptCode, serviceId, employe) => {
+    setEmpForm({
+      id: employe.id,
+      prenom: employe.prenom || "",
+      nom: employe.nom || "",
+      categorie: employe.categorie || CATEGORIES[3],
+      anciennete: employe.anciennete || 0,
+      situation: employe.situation || SITUATIONS[0],
+      nb_enfants: employe.nb_enfants || 0,
+      email: employe.email || "",
+      telephone: employe.telephone || "",
+      adresse: employe.adresse || "",
+      salaire: employe.salaire || 0,
+      matricule: employe.matricule || "",
+    });
+    setEmpTarget({ deptCode, serviceId, empId: employe.id });
+    setModal("edit-employe");
+  };
+
+  const confirmAddEmploye = async () => {
+    const erreurs = [];
+    if (!empForm.prenom.trim()) erreurs.push("Prénom requis");
+    if (!empForm.nom.trim()) erreurs.push("Nom requis");
+    if (!empForm.email.trim()) erreurs.push("Email requis");
+    if (!empForm.telephone.trim()) erreurs.push("Téléphone requis");
+    if (!empForm.adresse.trim()) erreurs.push("Adresse requise");
+    if (empForm.anciennete < 0 || empForm.anciennete > 35)
+      erreurs.push("Ancienneté invalide (0-35 ans)");
+    if (empForm.nb_enfants < 0 || empForm.nb_enfants > 5)
+      erreurs.push("Nb enfants invalide (0-5)");
+    if (empForm.salaire < 400000) erreurs.push("Salaire minimum : 400 000 Ar");
+
+    if (erreurs.length > 0) {
+      alert("❌ Champs obligatoires manquants :\n\n• " + erreurs.join("\n• "));
+      return;
+    }
+
+    const dept = departments.find((d) => d.code === empTarget.deptCode);
+    const service = dept?.services.find((s) => s.id === empTarget.serviceId);
+
+    // Vérif capacité logement
+    const attLiee = attributions.find(
+      (a) =>
+        a.logement &&
+        a.statut !== "Terminé" &&
+        a.statut !== "Maintenance" &&
+        String(a.service_id) === String(empTarget.serviceId),
+    );
+    if (attLiee) {
+      const logement = logements.find((l) => l.id === attLiee.logement);
+      if (logement) {
+        const capaciteMax =
+          logement.capacite ||
+          logement.capaciteMax ||
+          getCapaciteLogement(logement.type);
+        const employesActifsCount = (service?.employes || []).filter(
+          (e) => !e.desactive,
+        ).length;
+        if (employesActifsCount + 1 > capaciteMax) {
+          alert(`❌ Capacité maximale atteinte (${capaciteMax} occupants).`);
+          return;
+        }
+      }
+    }
+
+    const result = await ajouterEmployeService(dept.id, empTarget.serviceId, {
+      ...empForm,
+      prenom: empForm.prenom.trim(),
+      nom: empForm.nom.trim(),
+    });
+
+    if (result?.success) {
+      if (attLiee) {
+        const nomComplet = `${empForm.prenom} ${empForm.nom}`.trim();
+        const nouveauxOccupants = [...(attLiee.occupants || []), nomComplet];
+        synchroniserOccupantsAttribution(
+          empTarget.serviceId,
+          nouveauxOccupants,
+        );
+      }
+      closeModal();
+    } else if (result?.error) {
+      alert(result.error);
+    }
+  };
+
+  const confirmEditEmploye = async () => {
+    if (!empForm.prenom.trim() || !empForm.nom.trim()) return;
+    const dep = departments.find((d) => d.code === empTarget.deptCode);
+    if (!dep) return;
+    try {
+      await modifierEmploye(dep.id, empTarget.serviceId, empTarget.empId, {
+        prenom: empForm.prenom.trim(),
+        nom: empForm.nom.trim(),
+        categorie: empForm.categorie,
+        anciennete: empForm.anciennete,
+        situation: empForm.situation,
+        nb_enfants: empForm.nb_enfants,
+        email: empForm.email,
+        telephone: empForm.telephone,
+        adresse: empForm.adresse,
+        salaire: empForm.salaire,
+      });
+      closeModal();
+    } catch (err) {
+      console.error("Erreur modification employé", err);
+    }
+  };
+  const supprimerPhysiquementEmploye = (deptCode, serviceId, empId) => {
+    if (
+      window.confirm(
+        "⚠️ SUPPRESSION DÉFINITIVE — Cette action est irréversible. Continuer ?",
+      )
+    ) {
+      setDepartments((p) =>
+        p.map((d) =>
+          d.code === deptCode
+            ? {
+                ...d,
+                services: d.services.map((s) =>
+                  s.id === serviceId
+                    ? {
+                        ...s,
+                        employes: s.employes.filter((e) => e.id !== empId),
+                      }
+                    : s,
+                ),
+              }
+            : d,
+        ),
+      );
+    }
+  };
+
+  const ouvrirModalBesoin = (deptCode, service) => {
+    if (service.logementAttribue || service.besoinLogementExprime) {
+      return;
+    }
+
+    setServiceLoge(false);
+    setBesoinModal({
+      deptCode,
+      serviceId: service.id,
+      serviceName: service.name,
+      deptName: departments.find((d) => d.code === deptCode)?.name || deptCode,
+    });
+    setTypeLogementRequis(service.typeLogementDemande || "F2");
+  };
+
+  const confirmerBesoin = () => {
+    if (!besoinModal) {
+      setBesoinModal(null);
+      return;
+    }
+    const dept = departments.find((d) => d.code === besoinModal.deptCode);
+    const service = dept?.services.find((s) => s.id === besoinModal.serviceId);
+    if (service?.logementAttribue || service?.besoinLogementExprime) {
+      setBesoinModal(null);
+      return;
+    }
+
+    const employesActifs =
+      service?.employes
+        ?.filter((e) => e && !e.desactive)
+        ?.map((e) => `${e.prenom || ""} ${e.nom || ""}`.trim()) || [];
+
+    if (creerAlerteBesoin) {
+      creerAlerteBesoin(
+        besoinModal.deptName,
+        besoinModal.serviceName,
+        typeLogementRequis,
+        employesActifs,
+        besoinModal.serviceId, // ← passer serviceId pour liaison précise
+      );
+    }
+
+    setDepartments((prev) =>
+      prev.map((d) =>
+        d.code === besoinModal.deptCode
+          ? {
+              ...d,
+              services: d.services.map((s) =>
+                s.id === besoinModal.serviceId
+                  ? {
+                      ...s,
+                      besoinLogementExprime: true,
+                      typeLogementDemande: typeLogementRequis,
+                    }
+                  : s,
+              ),
+            }
+          : d,
+      ),
+    );
+
+    setBesoinModal(null);
+  };
+
+  const annulerBesoin = () => {
+    setBesoinModal(null);
+    setTypeLogementRequis("F2");
+    setServiceLoge(false);
+  };
+  const openDetail = (dept, service, emp) => {
+    setDetailData({ dept, service, emp });
+    setModal("detail-employe");
+  };
+
+  const filtered = departments.filter((d) => {
+    if (!d) return false;
+    const deptMatch =
+      (d.name || "").toLowerCase().includes(search.toLowerCase()) ||
+      (d.fullName || "").toLowerCase().includes(search.toLowerCase());
+
+    const serviceMatch = (d.services || []).some((s) => {
+      if (!s) return false;
+      const serviceNameMatch = (s.name || "")
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      const employeMatch = (s.employes || []).some((e) => {
+        if (!e) return false;
+        const prenom = e.prenom || "";
+        const nom = e.nom || "";
+        return `${prenom} ${nom}`.toLowerCase().includes(search.toLowerCase());
+      });
+      return serviceNameMatch || employeMatch;
+    });
+
+    return deptMatch || serviceMatch;
+  });
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
   closeModal();
 };
@@ -2092,6 +3261,7 @@ const confirmerBesoin = () => {
   const prevTeinte = COLOR_TEINTES[deptForm.colorIdx] || COLOR_TEINTES[0];
   const prevIcon = ICON_OPTIONS[deptForm.iconIdx] || ICON_OPTIONS[0];
 
+<<<<<<< HEAD
   // ─── Helpers Historique ─────────────────────────────────────────────────────
 function getHistoriqueIcon(action) {
   const icons = {
@@ -2137,6 +3307,84 @@ function getHistoriqueLabel(action) {
   };
   return labels[action] || action;
 }
+=======
+  // Helpers Historique 
+  function getHistoriqueIcon(action) {
+    const icons = {
+      desactivation_definitive: UserX,
+      desactivation_temporaire: Clock,
+      reactivation: UserPlus,
+      ajout_employe: UserPlus,
+      modification_employe: Pencil,
+      ajout_departement: Building,
+      suppression_departement: Trash2,
+      ajout_service: Layers,
+      reemménagement: Home,
+      demande_echange: ArrowLeftRight,
+      suppression_service: Trash2,
+    };
+    return icons[action] || FileText;
+  }
+
+  function getHistoriqueColor(action, isDark) {
+    const colors = {
+      desactivation_definitive: isDark
+        ? "text-rose-400 bg-rose-500/20"
+        : "text-rose-600 bg-rose-100",
+      desactivation_temporaire: isDark
+        ? "text-amber-400 bg-amber-500/20"
+        : "text-amber-600 bg-amber-100",
+      reactivation: isDark
+        ? "text-emerald-400 bg-emerald-500/20"
+        : "text-emerald-600 bg-emerald-100",
+      ajout_employe: isDark
+        ? "text-blue-400 bg-blue-500/20"
+        : "text-blue-600 bg-blue-100",
+      modification_employe: isDark
+        ? "text-violet-400 bg-violet-500/20"
+        : "text-violet-600 bg-violet-100",
+      ajout_departement: isDark
+        ? "text-cyan-400 bg-cyan-500/20"
+        : "text-cyan-600 bg-cyan-100",
+      suppression_departement: isDark
+        ? "text-rose-400 bg-rose-500/20"
+        : "text-rose-600 bg-rose-100",
+      ajout_service: isDark
+        ? "text-indigo-400 bg-indigo-500/20"
+        : "text-indigo-600 bg-indigo-100",
+      suppression_service: isDark
+        ? "text-rose-400 bg-rose-500/20"
+        : "text-rose-600 bg-rose-100",
+      reemménagement: isDark
+        ? "text-emerald-400 bg-emerald-500/20"
+        : "text-emerald-600 bg-emerald-100",
+      demande_echange: isDark
+        ? "text-amber-400 bg-amber-500/20"
+        : "text-amber-600 bg-amber-100",
+    };
+    return (
+      colors[action] ||
+      (isDark ? "text-gray-400 bg-gray-500/20" : "text-gray-600 bg-gray-100")
+    );
+  }
+
+  function getHistoriqueLabel(action) {
+    const labels = {
+      desactivation_definitive: "Désactivation définitive",
+      desactivation_temporaire: "Désactivation temporaire",
+      reactivation: "Réactivation",
+      ajout_employe: "Ajout d'employé",
+      modification_employe: "Modification employé",
+      ajout_departement: "Ajout de département",
+      suppression_departement: "Suppression de département",
+      ajout_service: "Ajout de service",
+      suppression_service: "Suppression de service",
+      reemménagement: "Réemménagement",
+      demande_echange: "Demande d'échange",
+    };
+    return labels[action] || action;
+  }
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   return (
     <div
       className={`min-h-screen bg-gradient-to-br p-6 transition-colors duration-500 ${theme.bg}`}
@@ -2328,8 +3576,16 @@ function getHistoriqueLabel(action) {
                         (a, s) => a + s.employes.length,
                         0,
                       );
+<<<<<<< HEAD
                       const DeptIcon = ICON_OPTIONS[dept.iconIdx].Icon;
                       const teinte = COLOR_TEINTES[dept.colorIdx];
+=======
+                      const DeptIcon = (
+                        ICON_OPTIONS[dept.iconIdx] ?? ICON_OPTIONS[0]
+                      ).Icon;
+                      const teinte =
+                        COLOR_TEINTES[dept.colorIdx] ?? COLOR_TEINTES[0];
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                       return (
                         <div
                           key={dept.code}
@@ -2396,14 +3652,30 @@ function getHistoriqueLabel(action) {
                   dept={dept}
                   isDark={isDark}
                   index={i}
+<<<<<<< HEAD
+=======
+                  departements={departments}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   onAddService={openAddService}
                   onEditService={openEditService}
                   onDeleteService={deleteService}
                   onAddEmploye={openAddEmploye}
+<<<<<<< HEAD
                   onDeleteEmploye={supprimerPhysiquementEmploye} // 🔥 Ajouté
                   onDesactiverEmploye={(deptCode, serviceId, emp) => {
                     console.log("DepartmentCard reçoit désactivation:", emp);
                     setDesactiverModal({ deptCode, serviceId, employe: emp });
+=======
+                  onDeleteEmploye={supprimerPhysiquementEmploye}
+                  onDesactiverEmploye={(deptCode, serviceId, emp) => {
+                    const dep = departments.find((d) => d.code === deptCode);
+                    setDesactiverModal({
+                      deptCode,
+                      deptId: dep?.id,
+                      serviceId,
+                      employe: emp,
+                    });
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   }}
                   onDetailEmploye={openDetail}
                   onBesoinLogement={ouvrirModalBesoin}
@@ -2424,7 +3696,10 @@ function getHistoriqueLabel(action) {
           confirmDisabled={!deptForm.code.trim() || !deptForm.name.trim()}
           isDark={isDark}
         >
+<<<<<<< HEAD
           {/* Header visuel */}
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           <div
             className={`p-4 rounded-2xl border mb-4 ${isDark ? "bg-gradient-to-r from-blue-500/10 to-violet-500/10 border-white/10" : "bg-gradient-to-r from-blue-50 to-violet-50 border-gray-200"}`}
           >
@@ -2444,7 +3719,10 @@ function getHistoriqueLabel(action) {
           </div>
 
           <div className="space-y-4">
+<<<<<<< HEAD
             {/* Code + Nom sur 2 colonnes */}
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <div className="grid grid-cols-1 gap-3">
               <div
                 className={`p-3 rounded-xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
@@ -2490,7 +3768,10 @@ function getHistoriqueLabel(action) {
               </div>
             </div>
 
+<<<<<<< HEAD
             {/* Nom complet */}
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <div
               className={`p-3 rounded-xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
             >
@@ -2509,6 +3790,7 @@ function getHistoriqueLabel(action) {
               />
             </div>
 
+<<<<<<< HEAD
             {/* Icône + Couleur côte à côte */}
             <div className="grid grid-cols-2 gap-3">
               <div
@@ -2543,6 +3825,38 @@ function getHistoriqueLabel(action) {
             </div>
 
             {/* Prévisualisation */}
+=======
+            <div
+              className={`p-3 rounded-xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <label
+                className={`text-[10px] font-bold uppercase tracking-wider mb-2 block ${theme.textLight}`}
+              >
+                Icône
+              </label>
+              <IconPicker
+                selected={deptForm.iconIdx}
+                onChange={(i) => setDeptForm((p) => ({ ...p, iconIdx: i }))}
+                isDark={isDark}
+              />
+            </div>
+
+            <div
+              className={`p-3 rounded-xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <label
+                className={`text-[10px] font-bold uppercase tracking-wider mb-2 block ${theme.textLight}`}
+              >
+                Couleur
+              </label>
+              <ColorPicker
+                selected={deptForm.colorIdx}
+                onChange={(i) => setDeptForm((p) => ({ ...p, colorIdx: i }))}
+                isDark={isDark}
+              />
+            </div>
+
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             {(deptForm.name || deptForm.code) && (
               <div
                 className={`p-4 rounded-2xl border ${isDark ? "bg-gradient-to-r from-white/5 to-white/[0.02] border-white/10" : "bg-gradient-to-r from-gray-50 to-white border-gray-200"}`}
@@ -2562,6 +3876,7 @@ function getHistoriqueLabel(action) {
                       boxShadow: `0 4px 15px ${isDark ? prevTeinte.iconDark : prevTeinte.iconLight}30`,
                     }}
                   >
+<<<<<<< HEAD
                     <prevIcon.Icon
                       size={24}
                       color={
@@ -2569,6 +3884,17 @@ function getHistoriqueLabel(action) {
                       }
                       strokeWidth={1.8}
                     />
+=======
+                    {prevIcon?.Icon && (
+                      <prevIcon.Icon
+                        size={24}
+                        color={
+                          isDark ? prevTeinte.iconDark : prevTeinte.iconLight
+                        }
+                        strokeWidth={1.8}
+                      />
+                    )}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   </div>
                   <div>
                     <p className={`text-base font-bold ${theme.text}`}>
@@ -2595,6 +3921,7 @@ function getHistoriqueLabel(action) {
               </div>
             )}
           </div>
+<<<<<<< HEAD
         </Modal>
       )}
 
@@ -3663,6 +4990,1282 @@ function getHistoriqueLabel(action) {
           )}
         </div>
         {/* ═══════════════════════════════════════════════════════════════════ */}
+=======
+        </Modal>
+      )}
+
+      {modal === "add-service" && (
+        <Modal
+          title={`Ajouter un service — ${departments.find((d) => d.code === serviceTarget?.deptCode)?.name}`}
+          onClose={closeModal}
+          onConfirm={confirmAddService}
+          confirmDisabled={!serviceForm.name.trim()}
+          isDark={isDark}
+        >
+          <InputField
+            label="Nom du service"
+            value={serviceForm.name}
+            onChange={(v) => setServiceForm((p) => ({ ...p, name: v }))}
+            placeholder="Ex : Contrôle qualité"
+            isDark={isDark}
+          />
+          <InputField
+            label="Chef de service"
+            value={serviceForm.chef}
+            onChange={(v) => setServiceForm((p) => ({ ...p, chef: v }))}
+            placeholder="Ex : Marie Dupont"
+            isDark={isDark}
+          />
+        </Modal>
+      )}
+
+      {modal === "edit-service" && (
+        <Modal
+          title="Modifier le service"
+          onClose={closeModal}
+          onConfirm={confirmEditService}
+          confirmLabel="Enregistrer"
+          confirmDisabled={!serviceForm.name.trim()}
+          isDark={isDark}
+        >
+          <InputField
+            label="Nom du service"
+            value={serviceForm.name}
+            onChange={(v) => setServiceForm((p) => ({ ...p, name: v }))}
+            placeholder="Nom du service"
+            isDark={isDark}
+          />
+          <InputField
+            label="Chef de service"
+            value={serviceForm.chef}
+            onChange={(v) => setServiceForm((p) => ({ ...p, chef: v }))}
+            placeholder="Chef de service"
+            isDark={isDark}
+          />
+        </Modal>
+      )}
+
+      {modal === "add-employe" && (
+        <Modal
+          title="Ajouter un employé"
+          onClose={closeModal}
+          onConfirm={confirmAddEmploye}
+          confirmDisabled={!empForm.prenom.trim() || !empForm.nom.trim()}
+          isDark={isDark}
+          size="lg"
+        >
+          <div
+            className={`p-4 rounded-2xl border mb-4 ${isDark ? "bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border-white/10" : "bg-gradient-to-r from-emerald-50 to-blue-50 border-gray-200"}`}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-blue-600 flex items-center justify-center shadow-lg">
+                <UserPlus className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <p className={`text-sm font-bold ${theme.text}`}>
+                  Nouvel employé
+                </p>
+                <p className={`text-xs ${theme.textLight}`}>
+                  Tous les champs * sont obligatoires
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div
+              className={`p-4 rounded-2xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <p
+                className={`text-[10px] font-bold uppercase tracking-wider mb-3 flex items-center gap-2 ${theme.textLight}`}
+              >
+                <User className="w-3 h-3" /> Identité *
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Prénom
+                  </label>
+                  <input
+                    value={empForm.prenom}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, prenom: e.target.value }))
+                    }
+                    placeholder="Jean"
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Nom
+                  </label>
+                  <input
+                    value={empForm.nom}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, nom: e.target.value }))
+                    }
+                    placeholder="Rakoto"
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={`p-4 rounded-2xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <p
+                className={`text-[10px] font-bold uppercase tracking-wider mb-3 flex items-center gap-2 ${theme.textLight}`}
+              >
+                <Briefcase className="w-3 h-3" /> Informations professionnelles
+              </p>
+              <div className="grid grid-cols-3 gap-3">
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Catégorie
+                  </label>
+                  <select
+                    value={empForm.categorie}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, categorie: e.target.value }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  >
+                    {CATEGORIES.map((c) => (
+                      <option
+                        key={c}
+                        value={c}
+                        className={isDark ? "bg-gray-900" : "bg-white"}
+                      >
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Ancienneté (ans) <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    value={empForm.anciennete === 0 ? "" : empForm.anciennete}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({
+                        ...p,
+                        anciennete:
+                          e.target.value === ""
+                            ? 0
+                            : Math.min(35, Math.max(0, Number(e.target.value))),
+                      }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                  <p className={`text-[10px] mt-1 ${theme.textLight}`}>
+                    Plafond : 35 ans (retraite d'ancienneté)
+                  </p>
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Nb enfants <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    value={empForm.nb_enfants === 0 ? "" : empForm.nb_enfants}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({
+                        ...p,
+                        nb_enfants:
+                          e.target.value === ""
+                            ? 0
+                            : Math.min(5, Math.max(0, Number(e.target.value))),
+                      }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                  <p className={`text-[10px] mt-1 ${theme.textLight}`}>
+                    Plafond : 5 enfants (allocations familiales)
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={`p-4 rounded-2xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <p
+                className={`text-[10px] font-bold uppercase tracking-wider mb-3 flex items-center gap-2 ${theme.textLight}`}
+              >
+                <Heart className="w-3 h-3" /> Situation familiale
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Situation
+                  </label>
+                  <select
+                    value={empForm.situation}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, situation: e.target.value }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  >
+                    {SITUATIONS.map((s) => (
+                      <option
+                        key={s}
+                        value={s}
+                        className={isDark ? "bg-gray-900" : "bg-white"}
+                      >
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Salaire (Ar) <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    value={empForm.salaire === 0 ? "" : empForm.salaire}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({
+                        ...p,
+                        salaire:
+                          e.target.value === ""
+                            ? 0
+                            : Math.max(0, Number(e.target.value)),
+                      }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${
+                      empForm.salaire > 0 && empForm.salaire < 400000
+                        ? "ring-2 ring-rose-500 border-rose-500"
+                        : ""
+                    } ${theme.input} ${theme.text}`}
+                  />
+                  <p
+                    className={`text-[10px] mt-1 ${
+                      empForm.salaire > 0 && empForm.salaire < 400000
+                        ? "text-rose-500 font-semibold"
+                        : theme.textLight
+                    }`}
+                  >
+                    {empForm.salaire > 0 && empForm.salaire < 400000
+                      ? `⚠️ Minimum 400 000 Ar — manque ${(400000 - empForm.salaire).toLocaleString()} Ar`
+                      : "Minimum : 400 000 Ar (SMIG)"}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={`p-4 rounded-2xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <p
+                className={`text-[10px] font-bold uppercase tracking-wider mb-3 flex items-center gap-2 ${theme.textLight}`}
+              >
+                <Mail className="w-3 h-3" /> Contact
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Email
+                  </label>
+                  <input
+                    value={empForm.email}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, email: e.target.value }))
+                    }
+                    placeholder="email@spat.mg"
+                    type="email"
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Téléphone
+                  </label>
+                  <input
+                    value={empForm.telephone}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, telephone: e.target.value }))
+                    }
+                    placeholder="034 12 345 67"
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                </div>
+              </div>
+              <div className="mt-3">
+                <label
+                  className={`text-[10px] font-semibold ${theme.textLight}`}
+                >
+                  Adresse
+                </label>
+                <input
+                  value={empForm.adresse}
+                  onChange={(e) =>
+                    setEmpForm((p) => ({ ...p, adresse: e.target.value }))
+                  }
+                  placeholder="Antananarivo"
+                  className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                />
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {modal === "edit-employe" && (
+        <Modal
+          title="Modifier un employé"
+          onClose={closeModal}
+          onConfirm={confirmEditEmploye}
+          confirmDisabled={!empForm.prenom.trim() || !empForm.nom.trim()}
+          confirmLabel="Enregistrer les modifications"
+          isDark={isDark}
+          size="lg"
+        >
+          <div
+            className={`p-4 rounded-2xl border mb-4 ${isDark ? "bg-gradient-to-r from-blue-500/10 to-violet-500/10 border-white/10" : "bg-gradient-to-r from-blue-50 to-violet-50 border-gray-200"}`}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0F2D56] to-[#1a4a7a] flex items-center justify-center shadow-lg">
+                <Pencil className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <p className={`text-sm font-bold ${theme.text}`}>
+                  Modifier {empForm.prenom} {empForm.nom}
+                </p>
+                <p className={`text-xs ${theme.textLight}`}>
+                  Matricule : {empForm.matricule}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div
+              className={`p-4 rounded-2xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <p
+                className={`text-[10px] font-bold uppercase tracking-wider mb-3 flex items-center gap-2 ${theme.textLight}`}
+              >
+                <User className="w-3 h-3" /> Identité *
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Prénom
+                  </label>
+                  <input
+                    value={empForm.prenom}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, prenom: e.target.value }))
+                    }
+                    placeholder="Jean"
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Nom
+                  </label>
+                  <input
+                    value={empForm.nom}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, nom: e.target.value }))
+                    }
+                    placeholder="Rakoto"
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={`p-4 rounded-2xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <p
+                className={`text-[10px] font-bold uppercase tracking-wider mb-3 flex items-center gap-2 ${theme.textLight}`}
+              >
+                <Briefcase className="w-3 h-3" /> Informations professionnelles
+              </p>
+              <div className="grid grid-cols-3 gap-3">
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Catégorie
+                  </label>
+                  <select
+                    value={empForm.categorie}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, categorie: e.target.value }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  >
+                    {CATEGORIES.map((c) => (
+                      <option
+                        key={c}
+                        value={c}
+                        className={isDark ? "bg-gray-900" : "bg-white"}
+                      >
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Ancienneté (ans)
+                  </label>
+                  <input
+                    type="number"
+                    value={empForm.anciennete === 0 ? "" : empForm.anciennete}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({
+                        ...p,
+                        anciennete:
+                          e.target.value === ""
+                            ? 0
+                            : Math.min(35, Math.max(0, Number(e.target.value))),
+                      }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Nb enfants
+                  </label>
+                  <input
+                    type="number"
+                    value={empForm.nb_enfants === 0 ? "" : empForm.nb_enfants}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({
+                        ...p,
+                        nb_enfants:
+                          e.target.value === ""
+                            ? 0
+                            : Math.min(5, Math.max(0, Number(e.target.value))),
+                      }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={`p-4 rounded-2xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <p
+                className={`text-[10px] font-bold uppercase tracking-wider mb-3 flex items-center gap-2 ${theme.textLight}`}
+              >
+                <Heart className="w-3 h-3" /> Situation familiale
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Situation
+                  </label>
+                  <select
+                    value={empForm.situation}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, situation: e.target.value }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  >
+                    {SITUATIONS.map((s) => (
+                      <option
+                        key={s}
+                        value={s}
+                        className={isDark ? "bg-gray-900" : "bg-white"}
+                      >
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Salaire (Ar)
+                  </label>
+                  <input
+                    type="number"
+                    min={0}
+                    value={empForm.salaire}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({
+                        ...p,
+                        salaire: Math.max(0, Number(e.target.value)),
+                      }))
+                    }
+                    placeholder="400000"
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={`p-4 rounded-2xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <p
+                className={`text-[10px] font-bold uppercase tracking-wider mb-3 flex items-center gap-2 ${theme.textLight}`}
+              >
+                <Mail className="w-3 h-3" /> Contact
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Email
+                  </label>
+                  <input
+                    value={empForm.email}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, email: e.target.value }))
+                    }
+                    placeholder="email@spat.mg"
+                    type="email"
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Téléphone
+                  </label>
+                  <input
+                    value={empForm.telephone}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, telephone: e.target.value }))
+                    }
+                    placeholder="034 12 345 67"
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  />
+                </div>
+              </div>
+              <div className="mt-3">
+                <label
+                  className={`text-[10px] font-semibold ${theme.textLight}`}
+                >
+                  Adresse
+                </label>
+                <input
+                  value={empForm.adresse}
+                  onChange={(e) =>
+                    setEmpForm((p) => ({ ...p, adresse: e.target.value }))
+                  }
+                  placeholder="Antananarivo"
+                  className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                />
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {modal === "detail-employe" && detailData && (
+        <ModalDetailEmployeERP
+          employe={detailData.emp}
+          dept={detailData.dept}
+          service={detailData.service}
+          onClose={closeModal}
+          onEdit={() => {
+            closeModal();
+            setTimeout(() => {
+              openEditEmploye(
+                detailData.dept.code,
+                detailData.service.id,
+                detailData.emp,
+              );
+            }, 150);
+          }}
+          onDelete={() => {
+            setDesactiverModal({
+              deptCode: detailData.dept.code,
+              serviceId: detailData.service.id,
+              employe: detailData.emp,
+            });
+            closeModal();
+          }}
+          isDark={isDark}
+        />
+      )}
+
+      {besoinModal && (
+        <Modal
+          title={`Besoin logement — ${besoinModal.serviceName}`}
+          onClose={annulerBesoin}
+          onConfirm={confirmerBesoin}
+          confirmLabel={serviceLoge ? "Fermer" : "Envoyer la demande"}
+          confirmDisabled={serviceLoge}
+          isDark={isDark}
+        >
+          {serviceLoge ? (
+            <div
+              className={`p-4 rounded-xl border ${isDark ? "bg-emerald-500/10 border-emerald-500/20" : "bg-emerald-50 border-emerald-200"}`}
+            >
+              <div className="flex items-center gap-3">
+                <Home
+                  className={`w-5 h-5 ${isDark ? "text-emerald-400" : "text-emerald-600"}`}
+                />
+                <div>
+                  <p
+                    className={`text-sm font-semibold ${isDark ? "text-emerald-300" : "text-emerald-700"}`}
+                  >
+                    Ce service dispose déjà d'un logement
+                  </p>
+                  <p
+                    className={`text-xs ${isDark ? "text-emerald-200/60" : "text-emerald-600"}`}
+                  >
+                    Aucune action requise.
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div
+                className={`p-3 rounded-xl border ${isDark ? "bg-amber-500/10 border-amber-500/20" : "bg-amber-50 border-amber-200"}`}
+              >
+                <p
+                  className={`text-sm ${isDark ? "text-amber-300" : "text-amber-700"}`}
+                >
+                  <AlertTriangle className="w-4 h-4 inline mr-1" />
+                  Département : <strong>{besoinModal.deptName}</strong>
+                </p>
+                <p
+                  className={`text-xs mt-1 ${isDark ? "text-amber-200/60" : "text-amber-600"}`}
+                >
+                  Service : {besoinModal.serviceName}
+                </p>
+              </div>
+
+              <div>
+                <label
+                  className={`text-xs font-semibold uppercase tracking-wide ${theme.textSubtle}`}
+                >
+                  Type de logement requis
+                </label>
+                <select
+                  value={typeLogementRequis}
+                  onChange={(e) => setTypeLogementRequis(e.target.value)}
+                  className={`w-full px-3 py-2.5 rounded-xl mt-1 focus:outline-none focus:border-[#C9A84C] transition-all ${theme.input} ${theme.text}`}
+                >
+                  {["Studio", "F2", "F3", "F4"].map((t) => (
+                    <option
+                      key={t}
+                      value={t}
+                      className={isDark ? "bg-gray-900" : "bg-white"}
+                    >
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <p className={`text-xs ${theme.textLight}`}>
+                Une alerte sera envoyée au module Attributions pour traitement.
+              </p>
+            </div>
+          )}
+        </Modal>
+      )}
+
+      {desactiverModal && desactiverModal.employe && (
+        <Modal
+          title="Désactiver l'employé"
+          onClose={() => {
+            setDesactiverModal(null);
+            setMotifDesactivation(null);
+            setTypeMotifActif("definitif");
+          }}
+          onConfirm={async () => {
+            if (!motifDesactivation) {
+              alert("Veuillez sélectionner un motif de désactivation.");
+              return;
+            }
+
+            const emp = desactiverModal.employe;
+
+            await desactiverEmploye(
+              desactiverModal.deptId,
+              desactiverModal.serviceId,
+              emp?.id ?? emp,
+              motifDesactivation?.label,
+              motifDesactivation?.type,
+            );
+
+            // Retire l'employé des occupants du logement
+            const attLiee = attributions.find(
+              (a) =>
+                String(a.service_id) === String(desactiverModal.serviceId) &&
+                a.statut !== "Terminé" &&
+                a.statut !== "Maintenance",
+            );
+            if (attLiee) {
+              const nomComplet = `${emp?.prenom} ${emp?.nom}`.trim();
+              const nouveauxOccupants = (attLiee.occupants || []).filter(
+                (o) => o !== nomComplet,
+              );
+              await synchroniserOccupantsAttribution(
+                desactiverModal.serviceId,
+                nouveauxOccupants,
+              );
+            }
+
+            setDesactiverModal(null);
+            setMotifDesactivation(null);
+            setTypeMotifActif("definitif");
+          }}
+          confirmDisabled={!motifDesactivation}
+          confirmLabel={
+            motifDesactivation?.type === "definitif"
+              ? "Confirmer la désactivation définitive"
+              : "Confirmer la désactivation temporaire"
+          }
+          isDark={isDark}
+        >
+          <div
+            className={`p-4 rounded-2xl border mb-4 ${isDark ? "bg-rose-500/10 border-rose-500/20" : "bg-rose-50 border-rose-200"}`}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-500 to-red-600 flex items-center justify-center shadow-lg">
+                <UserX className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <p
+                  className={`text-sm font-bold ${isDark ? "text-rose-300" : "text-rose-700"}`}
+                >
+                  {desactiverModal.employe.prenom} {desactiverModal.employe.nom}
+                </p>
+                <p className={`text-xs ${theme.textLight}`}>
+                  Matricule: {desactiverModal.employe.matricule}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div
+              className={`p-3 rounded-xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <label
+                className={`text-[10px] font-bold uppercase tracking-wider mb-3 block ${theme.textLight}`}
+              >
+                Type de désactivation *
+              </label>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => {
+                    setTypeMotifActif("definitif");
+                    setMotifDesactivation(null);
+                  }}
+                  className={`py-3 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+                    typeMotifActif === "definitif"
+                      ? "bg-gradient-to-r from-rose-500 to-red-600 text-white shadow-lg"
+                      : isDark
+                        ? "bg-white/5 text-white/60 hover:bg-white/10"
+                        : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
+                  }`}
+                >
+                  <AlertTriangle className="w-4 h-4" />
+                  Définitive
+                </button>
+                <button
+                  onClick={() => {
+                    setTypeMotifActif("temporaire");
+                    setMotifDesactivation(null);
+                  }}
+                  className={`py-3 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+                    typeMotifActif === "temporaire"
+                      ? "bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-lg"
+                      : isDark
+                        ? "bg-white/5 text-white/60 hover:bg-white/10"
+                        : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
+                  }`}
+                >
+                  <Clock className="w-4 h-4" />
+                  Temporaire
+                </button>
+              </div>
+            </div>
+
+            <div
+              className={`p-3 rounded-xl border ${isDark ? "bg-white/5 border-white/10" : "bg-gray-50 border-gray-200"}`}
+            >
+              <label
+                className={`text-[10px] font-bold uppercase tracking-wider mb-2 block ${theme.textLight}`}
+              >
+                {typeMotifActif === "definitif"
+                  ? "Motif définitif *"
+                  : "Motif temporaire *"}
+              </label>
+              <div className="grid grid-cols-2 gap-2">
+                {(typeMotifActif === "definitif"
+                  ? MOTIFS_DEFINITIFS
+                  : MOTIFS_TEMPORAIRES
+                ).map((motif) => (
+                  <button
+                    key={motif.label}
+                    onClick={() => setMotifDesactivation(motif)}
+                    className={`py-2.5 px-3 rounded-lg text-xs font-semibold transition-all ${
+                      motifDesactivation?.label === motif.label
+                        ? typeMotifActif === "definitif"
+                          ? "bg-gradient-to-r from-rose-500 to-red-600 text-white shadow-lg"
+                          : "bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-lg"
+                        : isDark
+                          ? "bg-white/5 text-white/60 hover:bg-white/10"
+                          : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
+                    }`}
+                  >
+                    {motif.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {motifDesactivation && (
+              <div
+                className={`p-3 rounded-xl border ${
+                  motifDesactivation.type === "definitif"
+                    ? isDark
+                      ? "bg-rose-500/10 border-rose-500/20"
+                      : "bg-rose-50 border-rose-200"
+                    : isDark
+                      ? "bg-amber-500/10 border-amber-500/20"
+                      : "bg-amber-50 border-amber-200"
+                }`}
+              >
+                <p
+                  className={`text-xs flex items-start gap-2 ${
+                    motifDesactivation.type === "definitif"
+                      ? isDark
+                        ? "text-rose-300"
+                        : "text-rose-700"
+                      : isDark
+                        ? "text-amber-300"
+                        : "text-amber-700"
+                  }`}
+                >
+                  {motifDesactivation.type === "definitif" ? (
+                    <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
+                  ) : (
+                    <Clock className="w-4 h-4 shrink-0 mt-0.5" />
+                  )}
+                  <span>
+                    <strong>{motifDesactivation.label}</strong> —{" "}
+                    {motifDesactivation.type === "definitif"
+                      ? "Cette désactivation est irréversible. L'employé ne pourra pas être réactivé."
+                      : "Cette désactivation est réversible. L'employé pourra être réactivé ultérieurement."}
+                  </span>
+                </p>
+              </div>
+            )}
+          </div>
+        </Modal>
+      )}
+
+      
+      {/* SECTION HISTORIQUE RH */}
+     
+      <div className="mt-8">
+        <div
+          onClick={() => setShowHistorique((v) => !v)}
+          className={`flex items-center justify-between p-4 rounded-2xl border cursor-pointer transition-all hover:scale-[1.01] ${
+            isDark
+              ? "bg-gradient-to-r from-gray-800/80 to-gray-900/80 border-white/10 hover:bg-white/5"
+              : "bg-gradient-to-r from-white to-gray-50 border-gray-200 shadow-lg hover:shadow-xl"
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <div
+              className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                isDark ? "bg-[#C9A84C]/20" : "bg-[#C9A84C]/10"
+              }`}
+            >
+              <FileText
+                className={`w-5 h-5 ${isDark ? "text-[#C9A84C]" : "text-[#a88a3c]"}`}
+              />
+            </div>
+            <div>
+              <h3 className={`text-base font-bold ${theme.text}`}>
+                Historique des actions RH
+              </h3>
+              <p className={`text-xs ${theme.textLight}`}>
+                {historiqueRH.length} événement
+                {historiqueRH.length > 1 ? "s" : ""} enregistré
+                {historiqueRH.length > 1 ? "s" : ""}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            {showHistorique && (
+              <>
+                <div className="hidden md:flex gap-1.5 mr-3">
+                  {[
+                    { key: "tous", label: "Tous" },
+                    { key: "desactivation", label: "Désactivations" },
+                    { key: "reactivation", label: "Réactivations" },
+                    { key: "ajout", label: "Ajouts" },
+                    { key: "suppression", label: "Suppressions" },
+                    { key: "modification", label: "Modifications" },
+                  ].map((f) => (
+                    <button
+                      key={f.key}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setFiltreHistorique(f.key);
+                      }}
+                      className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold transition-all ${
+                        filtreHistorique === f.key
+                          ? "bg-gradient-to-r from-[#0F2D56] to-[#1a4a7a] text-white"
+                          : isDark
+                            ? "bg-white/5 text-white/50 hover:bg-white/10"
+                            : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+                      }`}
+                    >
+                      {f.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="md:hidden relative mr-2">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMenuHistoriqueOuvert(!menuHistoriqueOuvert);
+                    }}
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[10px] font-semibold border transition-all ${
+                      isDark
+                        ? "bg-white/5 border-white/10 text-white hover:bg-white/10"
+                        : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    <SquareMenu className="w-3 h-3" />
+                    {(() => {
+                      const labels = {
+                        tous: "Tous",
+                        desactivation: "Désactivations",
+                        reactivation: "Réactivations",
+                        ajout: "Ajouts",
+                        suppression: "Suppressions",
+                        modification: "Modifications",
+                      };
+                      return labels[filtreHistorique];
+                    })()}
+                    <ChevronDown
+                      size={12}
+                      className={`transition-transform duration-200 ${menuHistoriqueOuvert ? "rotate-180" : ""}`}
+                    />
+                  </button>
+
+                  {menuHistoriqueOuvert && (
+                    <div
+                      className={`absolute top-full right-0 mt-1.5 w-44 rounded-xl border shadow-xl z-30 overflow-hidden ${
+                        isDark
+                          ? "bg-gray-900 border-white/10"
+                          : "bg-white border-gray-200"
+                      }`}
+                    >
+                      {[
+                        { key: "tous", label: "Tous" },
+                        { key: "desactivation", label: "Désactivations" },
+                        { key: "reactivation", label: "Réactivations" },
+                        { key: "ajout", label: "Ajouts" },
+                        { key: "suppression", label: "Suppressions" },
+                        { key: "modification", label: "Modifications" },
+                      ].map((f) => (
+                        <button
+                          key={f.key}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setFiltreHistorique(f.key);
+                            setMenuHistoriqueOuvert(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 text-xs font-medium transition-colors flex items-center gap-2 ${
+                            filtreHistorique === f.key
+                              ? isDark
+                                ? "bg-[#C9A84C]/20 text-[#C9A84C]"
+                                : "bg-amber-50 text-amber-700"
+                              : isDark
+                                ? "text-white/70 hover:bg-white/5"
+                                : "text-gray-600 hover:bg-gray-50"
+                          }`}
+                        >
+                          {filtreHistorique === f.key && (
+                            <Check className="w-3 h-3" />
+                          )}
+                          <span
+                            className={
+                              filtreHistorique === f.key ? "font-bold" : ""
+                            }
+                          >
+                            {f.label}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+            <div
+              className={`transition-transform duration-300 ${showHistorique ? "rotate-180" : ""}`}
+            >
+              <ChevronDown size={16} className={theme.textLight} />
+            </div>
+          </div>
+        </div>
+
+        {menuHistoriqueOuvert && (
+          <div
+            className="fixed inset-0 z-20"
+            onClick={() => setMenuHistoriqueOuvert(false)}
+          />
+        )}
+
+        {showHistorique && (
+          <div
+            className={`mt-3 rounded-2xl border overflow-hidden max-h-[500px] overflow-y-auto ${
+              isDark
+                ? "bg-gradient-to-br from-gray-900/80 to-gray-800/80 border-white/10"
+                : "bg-white border-gray-200 shadow-lg"
+            }`}
+          >
+            {historiqueRH.length === 0 ? (
+              <div className={`p-8 text-center ${theme.textLight}`}>
+                <FileText className="w-10 h-10 mx-auto mb-2 opacity-30" />
+                <p className="text-sm">Aucun événement enregistré</p>
+              </div>
+            ) : (
+              <div className="divide-y divide-gray-100 dark:divide-white/5">
+                {historiqueRH
+                  .filter((h) => {
+                    if (filtreHistorique === "tous") return true;
+                    if (filtreHistorique === "desactivation")
+                      return h.action.includes("desactivation");
+                    if (filtreHistorique === "reactivation")
+                      return h.action === "reactivation";
+                    if (filtreHistorique === "ajout")
+                      return h.action.includes("ajout");
+                    if (filtreHistorique === "suppression")
+                      return h.action.includes("suppression");
+                    if (filtreHistorique === "modification")
+                      return h.action.includes("modification");
+                    return true;
+                  })
+                  .map((h) => {
+                    const Icon = getHistoriqueIcon(h.action);
+                    const colorClass = getHistoriqueColor(h.action, isDark);
+                    return (
+                      <div
+                        key={h.id}
+                        className={`flex items-start gap-3 p-4 transition-all hover:bg-white/5 ${
+                          isDark ? "hover:bg-white/5" : "hover:bg-gray-50"
+                        }`}
+                      >
+                        <div
+                          className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${colorClass}`}
+                        >
+                          <Icon size={16} strokeWidth={2} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className={`text-sm font-bold ${theme.text}`}>
+                              {getHistoriqueLabel(h.action)}
+                            </span>
+                            <span
+                              className={`text-[10px] px-2 py-0.5 rounded-full ${colorClass}`}
+                            >
+                              {h.heure}
+                            </span>
+                          </div>
+
+                          <div className={`mt-1 text-xs ${theme.textSubtle}`}>
+                            {h.action.includes("employe") && h.employe && (
+                              <p>
+                                <span className={theme.textMuted}>
+                                  Employé :{" "}
+                                </span>
+                                <strong className={theme.text}>
+                                  {h.employe}
+                                </strong>
+                                {h.matricule && (
+                                  <span className={theme.textLight}>
+                                    {" "}
+                                    ({h.matricule})
+                                  </span>
+                                )}
+                              </p>
+                            )}
+
+                            {h.action.includes("departement") &&
+                              h.departement && (
+                                <p>
+                                  <span className={theme.textMuted}>
+                                    Département :{" "}
+                                  </span>
+                                  <strong className={theme.text}>
+                                    {h.departement}
+                                  </strong>
+                                  {h.departementCode && (
+                                    <span className={theme.textLight}>
+                                      {" "}
+                                      ({h.departementCode})
+                                    </span>
+                                  )}
+                                </p>
+                              )}
+
+                            {h.action.includes("service") && h.service && (
+                              <p>
+                                <span className={theme.textMuted}>
+                                  Service :{" "}
+                                </span>
+                                <strong className={theme.text}>
+                                  {h.service}
+                                </strong>
+                                {h.chef && (
+                                  <span className={theme.textLight}>
+                                    {" "}
+                                    — Chef : {h.chef}
+                                  </span>
+                                )}
+                              </p>
+                            )}
+
+                            {h.motif && (
+                              <p>
+                                <span className={theme.textMuted}>
+                                  Motif :{" "}
+                                </span>
+                                <span
+                                  className={
+                                    h.action.includes("definitive")
+                                      ? "text-rose-500 font-semibold"
+                                      : "text-amber-500 font-semibold"
+                                  }
+                                >
+                                  {h.motif}
+                                </span>
+                              </p>
+                            )}
+
+                            {h.champsModifies && (
+                              <p>
+                                <span className={theme.textMuted}>
+                                  Champs modifiés :{" "}
+                                </span>
+                                <span className="text-violet-500">
+                                  {h.champsModifies}
+                                </span>
+                              </p>
+                            )}
+
+                            {h.nbEmployes !== undefined &&
+                              h.nbEmployes !== null && (
+                                <p>
+                                  <span className={theme.textMuted}>
+                                    Employés concernés :{" "}
+                                  </span>
+                                  <span>{h.nbEmployes}</span>
+                                </p>
+                              )}
+
+                            {h.nbServices !== undefined &&
+                              h.nbServices !== null && (
+                                <p>
+                                  <span className={theme.textMuted}>
+                                    Services :{" "}
+                                  </span>
+                                  <span>{h.nbServices}</span>
+                                </p>
+                              )}
+
+                            {h.occupantsRestants !== undefined &&
+                              h.occupantsRestants !== null && (
+                                <p>
+                                  <span className={theme.textMuted}>
+                                    Occupants restants :{" "}
+                                  </span>
+                                  <span>{h.occupantsRestants}</span>
+                                </p>
+                              )}
+
+                            {h.occupantsApres !== undefined &&
+                              h.occupantsApres !== null && (
+                                <p>
+                                  <span className={theme.textMuted}>
+                                    Occupants après :{" "}
+                                  </span>
+                                  <span className="text-emerald-500">
+                                    {h.occupantsApres}
+                                  </span>
+                                </p>
+                              )}
+
+                            {h.logementId && (
+                              <p>
+                                <span className={theme.textMuted}>
+                                  Logement :{" "}
+                                </span>
+                                <span className={theme.textLight}>
+                                  {h.logementId}
+                                </span>
+                              </p>
+                            )}
+
+                            <p
+                              className={`text-[10px] mt-1 ${theme.textLight}`}
+                            >
+                              {h.date} à {h.heure}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     </div>
   );
 }

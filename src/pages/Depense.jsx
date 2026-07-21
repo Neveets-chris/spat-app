@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { useApp } from "../context/AppContext";
 import { MessageEnvoye, useSuccessMessage } from "../components/BoutonsAction";
+<<<<<<< HEAD
+=======
+
+import { api } from "../api";
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 import {
   Wallet,
   TrendingUp,
@@ -11,7 +16,11 @@ import {
   Activity,
   Search,
   Plus,
+<<<<<<< HEAD
   Building2,
+=======
+  Wrench,
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   Eye,
   Pencil,
   Trash2,
@@ -19,7 +28,6 @@ import {
   X,
   FileText,
   Calendar,
-  User,
   Package,
   BarChart3,
   PieChart,
@@ -28,6 +36,10 @@ import {
   History,
   CheckCircle2,
   Truck,
+<<<<<<< HEAD
+=======
+  Lock
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 } from "lucide-react";
 
 const CATEGORIES = [
@@ -54,9 +66,12 @@ function fmt(n) {
     .replace("MGA", "Ar");
 }
 
+<<<<<<< HEAD
 // ============================================
 // HOOKS D'ANIMATION
 // ============================================
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function useCountUp(end, duration = 2000) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -89,9 +104,12 @@ function useReveal(delay = 0) {
   };
 }
 
+<<<<<<< HEAD
 // ============================================
 // DÉTECTION DU THÈME
 // ============================================
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function useDarkMode() {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -113,9 +131,7 @@ function useDarkMode() {
   return isDark;
 }
 
-// ============================================
-// CONFIGURATION DES COULEURS PAR THÈME
-// ============================================
+//theme ntsika
 const THEMES = {
   dark: {
     bg: "from-gray-900 via-gray-900 to-[#0F2D56]",
@@ -155,9 +171,13 @@ const THEMES = {
   },
 };
 
+<<<<<<< HEAD
 // ============================================
 // CARTE STATISTIQUE 3D
 // ============================================
+=======
+//carte statistique 3D
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function StatCard3D({
   icon: Icon,
   label,
@@ -248,9 +268,12 @@ function StatCard3D({
   );
 }
 
+<<<<<<< HEAD
 // ============================================
 // JAUGE CIRCULAIRE 3D
 // ============================================
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function CircularGauge({
   value,
   max,
@@ -320,9 +343,13 @@ function CircularGauge({
   );
 }
 
+<<<<<<< HEAD
 // ============================================
 // BARRE DE PROGRESSION ANIMÉE
 // ============================================
+=======
+//barre de progression
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function AnimatedProgress({
   value,
   max,
@@ -361,9 +388,13 @@ function AnimatedProgress({
   );
 }
 
+<<<<<<< HEAD
 // ============================================
 // CARTE DÉPENSE 3D
 // ============================================
+=======
+// carte de depense
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function DepenseCard3D({
   depense,
   onDetail,
@@ -376,7 +407,10 @@ function DepenseCard3D({
 }) {
   const { style } = useReveal(index * 100);
   const theme = isDark ? THEMES.dark : THEMES.light;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const statutConfig = {
     Validé: {
       bg: isDark
@@ -645,7 +679,11 @@ function Graphique3D({ depenses, isDark }) {
 }
 
 function SuiviBudget3D({ depenses, isDark, budgetGlobal, onEditBudget }) {
+<<<<<<< HEAD
     const BUDGET_GLOBAL = budgetGlobal || 20000000;
+=======
+  const BUDGET_GLOBAL = budgetGlobal || 20000000;
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const valides = depenses.filter((d) => d.statut === "Validé");
   const total = valides.reduce((s, d) => s + d.montant, 0);
   const pctGlobal = Math.min((total / BUDGET_GLOBAL) * 100, 100);
@@ -688,12 +726,21 @@ function SuiviBudget3D({ depenses, isDark, budgetGlobal, onEditBudget }) {
             label="Budget global"
             isDark={isDark}
           />
+<<<<<<< HEAD
           <div className="flex-1">
             <div className="flex justify-between text-sm mb-2">
               <span className={`font-semibold ${theme.text}`}>
                 Budget global annuel
               </span>
               <span className={theme.textMuted}>
+=======
+          <div className="flex-1 max-[440px]:w-full">
+            <div className="flex justify-between text-sm mb-2 max-[864px]:flex-col max-[864px]:gap-1">
+              <span className={`font-semibold ${theme.text}`}>
+                Budget global annuel
+              </span>
+              <span className={`${theme.textMuted} max-[864px]:text-right`}>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                 {fmt(total)} / {fmt(budgetGlobal)}
               </span>
             </div>
@@ -847,11 +894,18 @@ function ModalDetail3D({ depense, onClose, isDark }) {
               ),
               DollarSign,
             ],
+<<<<<<< HEAD
             ["Logement", depense.logement, Building2],
             ["Catégorie", depense.categorie, Layers],
             ["Fournisseur", depense.fournisseur, Package],
             ["Date", depense.date, Calendar],
             ["Département", depense.departement, User],
+=======
+
+            ["Catégorie", depense.categorie, Layers],
+            ["Fournisseur", depense.fournisseur, Package],
+            ["Date", depense.date, Calendar],
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           ].map(([label, value, Icon]) => (
             <div
               key={label}
@@ -920,9 +974,23 @@ function ModalDetail3D({ depense, onClose, isDark }) {
   );
 }
 
+<<<<<<< HEAD
 function ModalForm3D({ depense, onClose, onSave, isDark }) {
   const [form, setForm] = useState(
     depense || {
+=======
+function ModalForm3D({ depense, onClose, onSave, isDark, depenses }) {
+  const depenseNorm = depense
+    ? {
+        ...depense,
+        prixUnitaire: depense.prixUnitaire ?? depense.prix_unitaire ?? 0,
+        logement: depense.logement ?? depense.logement_ref ?? "",
+      }
+    : null;
+
+  const [form, setForm] = useState(
+    depenseNorm || {
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       description: "",
       quantite: 1,
       prixUnitaire: 0,
@@ -935,6 +1003,80 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
     },
   );
 
+<<<<<<< HEAD
+=======
+  const [modeManuel, setModeManuel] = useState(false);
+  const [besoinsMaintenance, setBesoinsMaintenance] = useState([]);
+  useEffect(() => {
+    if (!depense) {
+      api
+        .getBesoinsMaintenanceDepense()
+        .then((data) => {
+          setBesoinsMaintenance(
+            (data || [])
+              .map((b) => ({
+                nom: b.materiau_nom,
+                quantiteTotale: b.quantite,
+                quantiteRestante: b.quantite_restante,
+                unite: b.unite,
+                logementId: b.logement_ref,
+                logementType: b.logement_type,
+                quantiteSortie: b.quantite - b.quantite_restante,
+                label: b.label,
+              }))
+              
+              .filter(
+                (b) =>
+                  !depenses.some(
+                    (d) =>
+                      d.description === b.nom &&
+                      (d.statut === "Validé" || d.statut === "Réceptionné"),
+                  ),
+              ),
+          );
+        })
+        .catch(console.error);
+    }
+  }, [depense, depenses]); 
+
+  const handleDescriptionChange = (val) => {
+    if (val === "__nouveau__") {
+      setModeManuel(true);
+      setForm((prev) => ({
+        ...prev,
+        description: "",
+        quantite: 1,
+        unite: "unités",
+        logement_ref: "",
+      }));
+    } else {
+      const besoin = besoinsMaintenance.find((b) => b.nom === val);
+      if (besoin) {
+        setModeManuel(false);
+        setForm((prev) => ({
+          ...prev,
+          description: besoin.nom,
+          quantite: besoin.quantiteRestante,
+          unite: besoin.unite,
+        }));
+      }
+    }
+  };
+
+  const handleQuantiteChange = (e) => {
+    const val = Number(e.target.value);
+    const besoin = besoinsMaintenance.find((b) => b.nom === form.description);
+    if (!modeManuel && besoin) {
+      setForm((prev) => ({
+        ...prev,
+        quantite: Math.max(besoin.quantiteRestante, val),
+      }));
+    } else {
+      setForm((prev) => ({ ...prev, quantite: Math.max(1, val) }));
+    }
+  };
+
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   useEffect(() => {
     const total = form.quantite * form.prixUnitaire;
     setForm((prev) => ({ ...prev, montant: total }));
@@ -942,13 +1084,23 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
 
   const theme = isDark ? THEMES.dark : THEMES.light;
 
+<<<<<<< HEAD
   // Animation d'entrée
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setTimeout(() => setMounted(true), 50);
     return () => setMounted(false);
   }, []);
 
+<<<<<<< HEAD
+=======
+  const besoinActuel = besoinsMaintenance.find(
+    (b) => b.nom === form.description,
+  );
+  const estVerrouille = !modeManuel && !!besoinActuel;
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300 ${
@@ -960,7 +1112,10 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
           mounted ? "scale-100 opacity-100" : "scale-95 opacity-0"
         }`}
       >
+<<<<<<< HEAD
         {/* Glow effect */}
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <div
           className={`absolute -inset-1 rounded-3xl blur-xl opacity-30 ${
             isDark
@@ -976,7 +1131,11 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
               : "bg-gradient-to-br from-white via-gray-50 to-white border-gray-200"
           } shadow-2xl`}
         >
+<<<<<<< HEAD
           {/* Header avec gradient */}
+=======
+          {/* Header */}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           <div
             className={`relative px-6 py-5 ${
               isDark
@@ -1018,7 +1177,11 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
           </div>
 
           <div className="p-6 space-y-5">
+<<<<<<< HEAD
             {/* Description - Full width */}
+=======
+            {/*  DESCRIPTION : Select avec matériaux de maintenance (quantité RESTANTE) */}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <div className="relative">
               <label
                 className={`text-xs font-bold uppercase tracking-wider mb-2 block ${
@@ -1027,6 +1190,7 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
               >
                 Description (Nom du matériau) *
               </label>
+<<<<<<< HEAD
               <div className="relative">
                 <Package
                   className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 ${theme.textSubtle}`}
@@ -1044,6 +1208,146 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
                   placeholder="Ex: tôle ondulée, ciment Portland, fer à béton..."
                 />
               </div>
+=======
+
+             
+              {!depense && besoinsMaintenance.length > 0 ? (
+                <div className="space-y-3">
+                  {/* Menu déroulant des matériaux requis (quantité RESTANTE) */}
+                  <div className="relative">
+                    <Package
+                      className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 ${theme.textSubtle}`}
+                    />
+                    <select
+                      value={
+                        besoinsMaintenance.some(
+                          (b) => b.nom === form.description,
+                        )
+                          ? form.description
+                          : "__nouveau__"
+                      }
+                      onChange={(e) => handleDescriptionChange(e.target.value)}
+                      className={`w-full pl-12 pr-10 py-4 rounded-xl border-2 focus:outline-none transition-all duration-300 appearance-none ${
+                        isDark
+                          ? "bg-white/5 border-white/10 focus:border-[#C9A84C] focus:bg-white/10 text-white"
+                          : "bg-gray-50 border-gray-200 focus:border-[#C9A84C] focus:bg-white text-gray-900"
+                      }`}
+                    >
+                      <option
+                        value="__nouveau__"
+                        className={isDark ? "bg-gray-800" : "bg-white"}
+                      >
+                        <Pencil className="h-4 w-4"/> Nouvelle dépense manuelle...
+                      </option>
+                      <option
+                        disabled
+                        className={
+                          isDark
+                            ? "bg-gray-800 text-gray-500"
+                            : "bg-gray-100 text-gray-400"
+                        }
+                      >
+                        ─── Matériaux requis (reste à acheter) ───
+                      </option>
+                      {besoinsMaintenance.map((b, i) => (
+                        <option
+                          key={`${b.logementId}-${b.nom}-${i}`}
+                          value={b.nom}
+                          className={isDark ? "bg-gray-800" : "bg-white"}
+                        >
+                          {b.label}
+                        </option>
+                      ))}
+                    </select>
+                    {/* Icône flèche du select */}
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                      <svg
+                        className={`w-4 h-4 ${theme.textSubtle}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Input manuel si "Nouvelle dépense" est choisi */}
+                  {modeManuel && (
+                    <div className="relative mt-3 animate-in slide-in-from-top-2 duration-300">
+                      <input
+                        value={form.description}
+                        onChange={(e) =>
+                          setForm((prev) => ({
+                            ...prev,
+                            description: e.target.value,
+                          }))
+                        }
+                        placeholder="Ex: tôle ondulée, ciment Portland, fer à béton..."
+                        className={`w-full pl-4 pr-4 py-3 rounded-xl border-2 focus:outline-none transition-all duration-300 ${
+                          isDark
+                            ? "bg-white/5 border-white/10 focus:border-[#C9A84C] text-white placeholder-white/30"
+                            : "bg-gray-50 border-gray-200 focus:border-[#C9A84C] text-gray-900 placeholder-gray-400"
+                        }`}
+                      />
+                    </div>
+                  )}
+
+                  {/* Badge info si matériau de maintenance choisi */}
+                  {estVerrouille && besoinActuel && (
+                    <div
+                      className={`mt-3 p-3 rounded-xl border flex items-center gap-2 ${
+                        isDark
+                          ? "bg-amber-500/10 border-amber-500/30"
+                          : "bg-amber-50 border-amber-200"
+                      }`}
+                    >
+                      <Wrench
+                        className={`w-4 h-4 ${isDark ? "text-amber-400" : "text-amber-600"}`}
+                      />
+                      <div className="flex-1">
+                        <span
+                          className={`text-xs font-bold ${isDark ? "text-amber-300" : "text-amber-700"}`}
+                        >
+                          Besoin maintenance — {besoinActuel.logementId}
+                        </span>
+                        <span
+                          className={`text-xs ml-2 ${isDark ? "text-amber-200/60" : "text-amber-600"}`}
+                        >
+                          (Total: {besoinActuel.quantiteTotale}, Déjà sorti:{" "}
+                          {besoinActuel.quantiteSortie}, Reste:{" "}
+                          {besoinActuel.quantiteRestante})
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                /* Mode édition ou aucun besoin de maintenance : input classique */
+                <div className="relative">
+                  <Package
+                    className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 ${theme.textSubtle}`}
+                  />
+                  <input
+                    value={form.description}
+                    onChange={(e) =>
+                      setForm({ ...form, description: e.target.value })
+                    }
+                    className={`w-full pl-12 pr-4 py-4 rounded-xl border-2 focus:outline-none transition-all duration-300 ${
+                      isDark
+                        ? "bg-white/5 border-white/10 focus:border-[#C9A84C] focus:bg-white/10 text-white placeholder-white/30"
+                        : "bg-gray-50 border-gray-200 focus:border-[#C9A84C] focus:bg-white text-gray-900 placeholder-gray-400"
+                    }`}
+                    placeholder="Ex: tôle ondulée, ciment Portland, fer à béton..."
+                  />
+                </div>
+              )}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             </div>
 
             {/* Quantité et Unité côte à côte */}
@@ -1055,6 +1359,16 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
                   }`}
                 >
                   Quantité *
+<<<<<<< HEAD
+=======
+                  {estVerrouille && besoinActuel && (
+                    <span
+                      className={`ml-2 text-[10px] font-normal ${isDark ? "text-amber-400" : "text-amber-600"}`}
+                    >
+                      (min: {besoinActuel.quantiteRestante})
+                    </span>
+                  )}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                 </label>
                 <div className="relative">
                   <Layers
@@ -1062,6 +1376,7 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
                   />
                   <input
                     type="number"
+<<<<<<< HEAD
                     min="1"
                     value={form.quantite}
                     onChange={(e) =>
@@ -1074,6 +1389,35 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
                     }`}
                   />
                 </div>
+=======
+                    min={
+                      estVerrouille && besoinActuel
+                        ? besoinActuel.quantiteRestante
+                        : 1
+                    }
+                    value={form.quantite}
+                    onChange={handleQuantiteChange} // ← NOUVEAU handler avec minimum
+                    className={`w-full pl-10 pr-4 py-3 rounded-xl border-2 focus:outline-none transition-all ${
+                      estVerrouille
+                        ? isDark
+                          ? "bg-[#C9A84C]/5 border-[#C9A84C]/30 text-white cursor-default"
+                          : "bg-amber-50 border-amber-200 text-gray-900 cursor-default"
+                        : isDark
+                          ? "bg-white/5 border-white/10 focus:border-[#C9A84C] text-white"
+                          : "bg-gray-50 border-gray-200 focus:border-[#C9A84C] text-gray-900"
+                    }`}
+                  />
+                </div>
+                {/* Message si quantité verrouillée */}
+                {estVerrouille && besoinActuel && (
+                  <p
+                    className={`text-[10px] mt-1 ${isDark ? "text-amber-400/60" : "text-amber-600/60"}`}
+                  >
+                    Quantité minimum: {besoinActuel.quantiteRestante}{" "}
+                    {besoinActuel.unite} (reste du besoin)
+                  </p>
+                )}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               </div>
               <div>
                 <label
@@ -1083,6 +1427,7 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
                 >
                   Unité
                 </label>
+<<<<<<< HEAD
                 <select
                   value={form.unite}
                   onChange={(e) => setForm({ ...form, unite: e.target.value })}
@@ -1112,6 +1457,62 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
                     </option>
                   ))}
                 </select>
+=======
+                {estVerrouille && besoinActuel ? (
+                  // UNITÉ VERROUILLÉE : affichage en lecture seule
+                  <div
+                    className={`w-full px-4 py-3 rounded-xl border-2 font-semibold flex items-center justify-between ${
+                      isDark
+                        ? "bg-white/5 border-white/10 text-white/70"
+                        : "bg-gray-100 border-gray-200 text-gray-500"
+                    }`}
+                  >
+                    <span>{form.unite}</span>
+                    <span
+                      className={`text-[10px] px-2 py-0.5 rounded-full ${
+                        isDark
+                          ? "bg-white/10 text-white/40"
+                          : "bg-gray-200 text-gray-400"
+                      }`}
+                    >
+                      <Lock className="w-4 h-4 text-yellow-400"/> Verrouillé
+                    </span>
+                  </div>
+                ) : (
+                  
+                  <select
+                    value={form.unite}
+                    onChange={(e) =>
+                      setForm({ ...form, unite: e.target.value })
+                    }
+                    className={`w-full px-4 py-3 rounded-xl border-2 focus:outline-none transition-all appearance-none ${
+                      isDark
+                        ? "bg-white/5 border-white/10 focus:border-[#C9A84C] text-white"
+                        : "bg-gray-50 border-gray-200 focus:border-[#C9A84C] text-gray-900"
+                    }`}
+                  >
+                    {[
+                      "unités",
+                      "kg",
+                      "litres",
+                      "m²",
+                      "m³",
+                      "pcs",
+                      "sacs",
+                      "feuilles",
+                      "ml",
+                      "tonnes",
+                    ].map((u) => (
+                      <option
+                        key={u}
+                        className={isDark ? "bg-gray-800" : "bg-white"}
+                      >
+                        {u}
+                      </option>
+                    ))}
+                  </select>
+                )}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               </div>
             </div>
 
@@ -1227,9 +1628,14 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
                 </select>
               </div>
             </div>
+<<<<<<< HEAD
            
 
             {/* Statut avec boutons style toggle */}
+=======
+
+            {/* Statut */}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <div>
               <label
                 className={`text-xs font-bold uppercase tracking-wider mb-3 block ${
@@ -1245,11 +1651,15 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
                     onClick={() => setForm({ ...form, statut: s })}
                     className={`py-2.5 rounded-lg text-xs font-bold transition-all duration-300 transform ${
                       form.statut === s
+<<<<<<< HEAD
                         ? s === "Validé"
                           ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30 scale-105"
                           : s === "Rejeté"
                             ? "bg-rose-500 text-white shadow-lg shadow-rose-500/30 scale-105"
                             : "bg-amber-500 text-white shadow-lg shadow-amber-500/30 scale-105"
+=======
+                        ? "bg-amber-500 text-white shadow-lg shadow-amber-500/30 scale-105"
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                         : isDark
                           ? "bg-transparent text-white/50 hover:text-white hover:bg-white/5"
                           : "bg-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-100"
@@ -1262,7 +1672,11 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
             </div>
           </div>
 
+<<<<<<< HEAD
           {/* Footer avec boutons */}
+=======
+          {/* Footer */}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           <div
             className={`px-6 py-5 border-t flex gap-3 ${
               isDark
@@ -1305,7 +1719,11 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
               }}
               className="flex-1 py-3.5 rounded-xl font-bold text-white transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl bg-gradient-to-r from-[#C9A84C] via-[#b8963f] to-[#C9A84C] hover:from-[#d4b55a] hover:via-[#c9a84c] hover:to-[#d4b55a]"
             >
+<<<<<<< HEAD
               {depense ? "💾 Enregistrer" : "✨ Ajouter"}
+=======
+              {depense ? " Enregistrer" : " Ajouter"}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             </button>
           </div>
         </div>
@@ -1314,6 +1732,7 @@ function ModalForm3D({ depense, onClose, onSave, isDark }) {
   );
 }
 
+<<<<<<< HEAD
 // PAGE PRINCIPALE
 
 export default function Depenses() {
@@ -1321,6 +1740,11 @@ export default function Depenses() {
     depenses,
     //logements,
     //tousLesDepartements,
+=======
+export default function Depenses() {
+  const {
+    depenses,
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     ajouterDepense,
     modifierDepense,
     supprimerDepense,
@@ -1328,9 +1752,14 @@ export default function Depenses() {
     rejeterDepense,
     budgetGlobal,
     modifierBudgetGlobal,
+<<<<<<< HEAD
     // ajouterMouvement,
   } = useApp();
   const [filtreCat, setFiltreCat] = useState("Tous");
+=======
+  } = useApp();
+  const [filtreCat] = useState("Tous");
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const [filtreStatut, setFiltreStatut] = useState("Tous");
   const [search, setSearch] = useState("");
   const [detail, setDetail] = useState(null);
@@ -1363,6 +1792,7 @@ export default function Depenses() {
     (d) =>
       (filtreCat === "Tous" || d.categorie === filtreCat) &&
       (filtreStatut === "Tous" || d.statut === filtreStatut) &&
+<<<<<<< HEAD
       (d.description.toLowerCase().includes(search.toLowerCase()) ||
         d.fournisseur.toLowerCase().includes(search.toLowerCase()) ||
         d.logement.toLowerCase().includes(search.toLowerCase())),
@@ -1400,6 +1830,29 @@ export default function Depenses() {
   //   triggerSuccess();
   // };
 
+=======
+      ((d.description || "").toLowerCase().includes(search.toLowerCase()) ||
+        (d.fournisseur || "").toLowerCase().includes(search.toLowerCase()) ||
+        (d.logement_ref || d.logement || "")
+          .toLowerCase()
+          .includes(search.toLowerCase())),
+  );
+
+  const handleSave = async (form) => {
+    if (!form.description || form.description.trim() === "") {
+      alert("Veuillez saisir une description.");
+      return;
+    }
+    if (formData) {
+      await modifierDepense({ ...form, id: formData.id });
+    } else {
+      await ajouterDepense(form);
+      triggerSuccess();
+    }
+    setFormData(null);
+    setIsAdding(false);
+  };
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const handleExport = () => {
     const lignes = [
       [
@@ -1456,7 +1909,11 @@ export default function Depenses() {
 
   return (
     <div
+<<<<<<< HEAD
       className={`min-h-screen bg-gradient-to-br p-6 space-y-6 transition-colors duration-500 ${theme.bg}`}
+=======
+      className={`min-h-screen bg-gradient-to-br p-3 sm:p-4 md:p-6 space-y-4 md:space-y-6 transition-colors duration-500 ${theme.bg}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     >
       <style>{`
         @keyframes shimmer {
@@ -1549,6 +2006,7 @@ export default function Depenses() {
         <ModalDetail3D
           depense={detail}
           onClose={() => setDetail(null)}
+<<<<<<< HEAD
           isDark={isDark}
         />
       )}
@@ -1562,11 +2020,30 @@ export default function Depenses() {
             setIsAdding(false);
           }}
           onSave={handleSave}
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           isDark={isDark}
         />
       )}
+      {(formData || isAdding) && (
+       
+        <ModalForm3D
+          depense={formData}
+          onClose={() => {
+            setFormData(null);
+            setIsAdding(false);
+          }}
+          onSave={handleSave}
+          isDark={isDark}
+          depenses={depenses}
+        />
+      )}
 
+<<<<<<< HEAD
       <div className="flex items-center justify-between">
+=======
+      <div className="flex items-center justify-between max-[860px]:flex-col max-[860px]:items-start max-[860px]:gap-4">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <div>
           <h1 className={`text-3xl font-black ${theme.text}`}>
             Gestion des Dépenses
@@ -1574,6 +2051,7 @@ export default function Depenses() {
           <p className={theme.textSubtle}>
             Suivi budgétaire et validation des achats de matériaux
           </p>
+<<<<<<< HEAD
         </div>
        <div className="flex gap-3">
   <button
@@ -1589,6 +2067,28 @@ export default function Depenses() {
     Nouvelle dépense
   </button>
 </div>
+=======
+        </div>
+        <div className="flex gap-3 max-[860px]:w-full max-[860px]:justify-start">
+          <button
+            onClick={() => {
+              setNewBudget(budgetGlobal);
+              setShowBudget(true);
+            }}
+            className={`flex items-center gap-2 px-4 py-3 rounded-xl font-semibold transition hover:scale-105 max-[860px]:flex-1 max-[860px]:justify-center ${isDark ? "border border-white/20 text-white/70 hover:bg-white/10" : "border border-gray-300 text-gray-700 hover:bg-gray-100 bg-white"}`}
+          >
+            <Target className="w-5 h-5 text-[#C9A84C]" />
+            <span className="max-[352px]:hidden">Budget</span>
+          </button>
+          <button
+            onClick={() => setIsAdding(true)}
+            className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-[#C9A84C] to-[#a88a3c] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-amber-500/25 transition-all hover:scale-105 max-[860px]:flex-1 max-[860px]:justify-center"
+          >
+            <Plus className="w-5 h-5" />
+            <span className="max-[352px]:hidden">Nouvelle dépense</span>
+          </button>
+        </div>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       </div>
 
       {attenteReception > 0 && (
@@ -1611,6 +2111,7 @@ export default function Depenses() {
               <p
                 className={`text-sm font-bold ${isDark ? "text-amber-200" : "text-amber-700"}`}
               >
+<<<<<<< HEAD
                 📦 {attenteReception} matériau{attenteReception > 1 ? "x" : ""}{" "}
                 en attente de réception
               </p>
@@ -1618,12 +2119,22 @@ export default function Depenses() {
                 Les dépenses validées doivent être réceptionnées dans la section
                 Matériaux pour mettre à jour le stock.
               </p>
+=======
+                {attenteReception} matériau{attenteReception > 1 ? "x" : ""} en
+                attente de réception
+              </p>
+              <p className={`text-xs ${theme.textSubtle}`}></p>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             </div>
           </div>
         </div>
       )}
 
+<<<<<<< HEAD
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+=======
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <StatCard3D
           icon={Wallet}
           label="Total général"
@@ -1664,7 +2175,11 @@ export default function Depenses() {
         />
       </div>
 
+<<<<<<< HEAD
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+=======
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 dark:text-white">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         {[
           { label: "Moyenne/dépense", value: moyenneDepense, icon: PieChart },
           {
@@ -1682,6 +2197,7 @@ export default function Depenses() {
         ].map((stat) => (
           <div
             key={stat.label}
+<<<<<<< HEAD
             className={`relative rounded-xl border backdrop-blur-sm p-4 overflow-hidden ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200"}`}
           >
             <div className="flex items-center gap-3">
@@ -1692,6 +2208,20 @@ export default function Depenses() {
               </div>
               <div>
                 <p className="text-lg font-bold">
+=======
+            className={`relative rounded-xl border backdrop-blur-sm p-3 md:p-4 overflow-hidden ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200"}`}
+          >
+            <div className="flex items-center gap-3">
+              <div
+                className={`w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center ${isDark ? "bg-white/10" : "bg-gray-100"}`}
+              >
+                <stat.icon
+                  className={`w-4 h-4 md:w-5 md:h-5 ${theme.textSubtle}`}
+                />
+              </div>
+              <div className="min-w-0">
+                <p className="text-base md:text-lg font-bold truncate">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   {stat.isText
                     ? stat.value
                     : stat.label === "Attente réception" ||
@@ -1699,19 +2229,30 @@ export default function Depenses() {
                       ? stat.value
                       : fmt(stat.value)}
                 </p>
+<<<<<<< HEAD
                 <p className={`text-xs ${theme.textSubtle}`}>{stat.label}</p>
+=======
+                <p className={`text-[10px] md:text-xs ${theme.textSubtle}`}>
+                  {stat.label}
+                </p>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               </div>
             </div>
           </div>
         ))}
       </div>
 
+<<<<<<< HEAD
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+=======
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <Graphique3D depenses={depenses} isDark={isDark} />
         <SuiviBudget3D
           depenses={depenses}
           isDark={isDark}
           budgetGlobal={budgetGlobal}
+<<<<<<< HEAD
           // onEditBudget={() => {
           //   setTempBudget(budgetGlobal);
           //   setEditBudget(true);
@@ -1737,13 +2278,82 @@ export default function Depenses() {
                         ? "bg-amber-500 text-white shadow-lg"
                         : "bg-[#0F2D56] text-white shadow-lg"
                   : `${theme.textSubtle} hover:${theme.text} ${isDark ? "hover:bg-white/5" : "hover:bg-gray-100"}`
+=======
+        />
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div
+            className={`hidden min-[401px]:flex gap-1 p-1.5 rounded-xl border backdrop-blur-sm overflow-x-auto ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
+          >
+            {STATUTS.map((s) => (
+              <button
+                key={s}
+                onClick={() => setFiltreStatut(s)}
+                className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-300 whitespace-nowrap ${
+                  filtreStatut === s
+                    ? s === "Validé"
+                      ? "bg-emerald-500 text-white shadow-lg"
+                      : s === "Rejeté"
+                        ? "bg-rose-500 text-white shadow-lg"
+                        : s === "En attente"
+                          ? "bg-amber-500 text-white shadow-lg"
+                          : "bg-[#0F2D56] text-white shadow-lg"
+                    : `${theme.textSubtle} hover:${theme.text} ${isDark ? "hover:bg-white/5" : "hover:bg-gray-100"}`
+                }`}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+
+          <div className="min-[401px]:hidden relative flex-1">
+            <select
+              value={filtreStatut}
+              onChange={(e) => setFiltreStatut(e.target.value)}
+              className={`w-full px-4 py-3 rounded-xl border-2 focus:outline-none focus:border-[#C9A84C] transition-all appearance-none cursor-pointer text-sm font-semibold ${
+                isDark
+                  ? "bg-gray-800/80 border-white/10 text-white"
+                  : "bg-white border-gray-200 text-gray-900"
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               }`}
             >
-              {s}
-            </button>
-          ))}
+              {STATUTS.map((s) => (
+                <option
+                  key={s}
+                  value={s}
+                  className={isDark ? "bg-gray-800" : "bg-white"}
+                >
+                  {s === "Tous"
+                    ? " Tous "
+                    : s === "Validé"
+                      ? " Validé"
+                      : s === "Rejeté"
+                        ? " Rejeté"
+                        : "En attente"}
+                </option>
+              ))}
+            </select>
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+              <svg
+                className="w-4 h-4 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
 
+<<<<<<< HEAD
         <div
           className={`flex gap-1 p-1.5 rounded-xl border backdrop-blur-sm ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
         >
@@ -1764,6 +2374,11 @@ export default function Depenses() {
 
         <div className="flex gap-3">
           <div className="relative">
+=======
+        {/* Ligne 2: Recherche + Export */}
+        <div className="flex items-center gap-3">
+          <div className="relative flex-1 min-w-0">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <Search
               className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${theme.textLight}`}
             />
@@ -1771,15 +2386,19 @@ export default function Depenses() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Rechercher..."
+<<<<<<< HEAD
               className={`pl-10 pr-4 py-2.5 rounded-xl focus:outline-none focus:border-[#C9A84C] transition w-56 ${theme.input} ${theme.text}`}
+=======
+              className={`w-full pl-10 pr-4 py-2.5 rounded-xl focus:outline-none focus:border-[#C9A84C] transition ${theme.input} ${theme.text}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             />
           </div>
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-emerald-500/25 transition hover:scale-105"
+            className="shrink-0 flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-emerald-500/25 transition hover:scale-105"
           >
             <FileText className="w-4 h-4" />
-            Export CSV
+            <span className="max-[352px]:hidden">Export CSV</span>
           </button>
         </div>
       </div>
@@ -1789,20 +2408,36 @@ export default function Depenses() {
         {filtered.length > 1 ? "s" : ""}
       </p>
 
+<<<<<<< HEAD
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {filtered.map((d, index) => (
           <DepenseCard3D
             key={d.id}
+=======
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+        {filtered.map((d, index) => (
+          <DepenseCard3D
+            key={d.id || `depense-${index}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             depense={d}
             onDetail={() => setDetail(d)}
             onEdit={() => setFormData(d)}
             onDelete={() => supprimerDepense(d.id)}
+<<<<<<< HEAD
             onValider={() => {
               validerDepense(d.id);
               triggerSuccess();
             }}
             onRejeter={() => {
               rejeterDepense(d.id);
+=======
+            onValider={async () => {
+              await validerDepense(d.id);
+              triggerSuccess();
+            }}
+            onRejeter={async () => {
+              await rejeterDepense(d.id);
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               triggerSuccess();
             }}
             index={index}
@@ -1813,10 +2448,17 @@ export default function Depenses() {
 
       {dernieresTransactions.length > 0 && (
         <div
+<<<<<<< HEAD
           className={`backdrop-blur-sm border rounded-3xl p-6 overflow-hidden ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
         >
           <h3
             className={`text-lg font-bold mb-4 flex items-center gap-2 ${theme.text}`}
+=======
+          className={`backdrop-blur-sm border rounded-3xl p-4 md:p-6 overflow-hidden ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
+        >
+          <h3
+            className={`text-base md:text-lg font-bold mb-4 flex items-center gap-2 ${theme.text}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           >
             <Activity className="w-5 h-5 text-[#C9A84C]" />
             Dernières transactions validées ({dernieresTransactions.length})
@@ -1828,6 +2470,7 @@ export default function Depenses() {
                   className={`border-b ${isDark ? "border-white/10" : "border-gray-200"}`}
                 >
                   {[
+<<<<<<< HEAD
                     "Réf",
                     "Description",
                     "Qté",
@@ -1841,6 +2484,21 @@ export default function Depenses() {
                       className={`text-left py-3 px-4 text-xs font-semibold uppercase tracking-wide ${theme.textLight}`}
                     >
                       {h}
+=======
+                    { label: "Réf", hideMobile: true },
+                    { label: "Description", hideMobile: false },
+                    { label: "Qté", hideMobile: false },
+                    { label: "Montant", hideMobile: false },
+                    { label: "Fournisseur", hideMobile: true },
+                    { label: "Réception", hideMobile: false },
+                    { label: "Date", hideMobile: true },
+                  ].map((h) => (
+                    <th
+                      key={h.label}
+                      className={`text-left py-3 px-4 text-xs font-semibold uppercase tracking-wide ${theme.textLight} ${h.hideMobile ? "hidden sm:table-cell" : ""}`}
+                    >
+                      {h.label}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                     </th>
                   ))}
                 </tr>
@@ -1852,7 +2510,11 @@ export default function Depenses() {
                     className={`border-b transition group ${isDark ? "border-white/5 hover:bg-white/5" : "border-gray-100 hover:bg-gray-50"}`}
                   >
                     <td
+<<<<<<< HEAD
                       className={`py-3 px-4 font-mono text-xs ${theme.textLight}`}
+=======
+                      className={`py-3 px-4 font-mono text-xs ${theme.textLight} hidden sm:table-cell`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                     >
                       {d.id}
                     </td>
@@ -1865,7 +2527,13 @@ export default function Depenses() {
                     <td className="py-3 px-4 font-black text-[#C9A84C]">
                       {fmt(d.montant)}
                     </td>
+<<<<<<< HEAD
                     <td className={`py-3 px-4 text-xs ${theme.textSubtle}`}>
+=======
+                    <td
+                      className={`py-3 px-4 text-xs ${theme.textSubtle} hidden sm:table-cell`}
+                    >
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                       {d.fournisseur}
                     </td>
                     <td className="py-3 px-4">
@@ -1882,16 +2550,32 @@ export default function Depenses() {
                       >
                         {d.receptionne ? (
                           <>
+<<<<<<< HEAD
                             <CheckCircle2 className="w-3 h-3" /> Reçu
                           </>
                         ) : (
                           <>
                             <Clock className="w-3 h-3" /> Attente
+=======
+                            <CheckCircle2 className="w-3 h-3" />{" "}
+                            <span className="max-[352px]:hidden">Reçu</span>
+                          </>
+                        ) : (
+                          <>
+                            <Clock className="w-3 h-3" />{" "}
+                            <span className="max-[352px]:hidden">Attente</span>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                           </>
                         )}
                       </span>
                     </td>
+<<<<<<< HEAD
                     <td className={`py-3 px-4 text-xs ${theme.textSubtle}`}>
+=======
+                    <td
+                      className={`py-3 px-4 text-xs ${theme.textSubtle} hidden sm:table-cell`}
+                    >
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                       {d.date}
                     </td>
                   </tr>

@@ -24,9 +24,16 @@ import {
   History,
   Truck,
   Wrench,
+<<<<<<< HEAD
  
 } from "lucide-react";
 
+=======
+  SquareMenu,
+  Check,
+  ChevronDown,
+} from "lucide-react";
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 const CATEGORIES = [
   "Tous",
   "Couverture",
@@ -180,7 +187,11 @@ function StatCard3D({
         className={`absolute inset-0 rounded-2xl transform translate-y-2 blur-sm group-hover:translate-y-3 transition-transform duration-300 ${isDark ? "bg-black/20" : "bg-gray-400/20"}`}
       />
       <div
+<<<<<<< HEAD
         className={`relative bg-gradient-to-br ${gradients[color]} backdrop-blur-sm border rounded-2xl p-5 overflow-hidden transform transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-[1.02] ${isDark ? "border-opacity-30" : "shadow-lg"}`}
+=======
+        className={`relative bg-gradient-to-br ${gradients[color]} backdrop-blur-sm border rounded-2xl p-3 sm:p-5 overflow-hidden transform transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-[1.02] ${isDark ? "border-opacity-30" : "shadow-lg"}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       >
         <div
           className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl group-hover:opacity-100 transition-all duration-500 ${isDark ? "bg-white/10" : "bg-white/50"}`}
@@ -215,7 +226,11 @@ function StatCard3D({
           </div>
           <div className="space-y-1">
             <p
+<<<<<<< HEAD
               className={`text-3xl font-black tracking-tight drop-shadow-lg ${theme.text}`}
+=======
+              className={`text-2xl sm:text-3xl font-black tracking-tight drop-shadow-lg ${theme.text}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             >
               {animatedValue.toLocaleString()}
             </p>
@@ -288,7 +303,13 @@ function CircularGauge({
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
+<<<<<<< HEAD
           <span className={`text-2xl font-black drop-shadow-lg ${theme.text}`}>
+=======
+          <span
+            className={`text-xl sm:text-2xl font-black drop-shadow-lg ${theme.text}`}
+          >
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             {percentage}%
           </span>
         </div>
@@ -411,7 +432,11 @@ function MateriauCard({ materiau, onDetail, onDelete, index, isDark }) {
               {materiau.id}
             </p>
             <h3
+<<<<<<< HEAD
               className={`text-lg font-bold group-hover:text-[#C9A84C] transition-colors line-clamp-1 ${theme.text}`}
+=======
+              className={`text-base sm:text-lg font-bold group-hover:text-[#C9A84C] transition-colors line-clamp-1 ${theme.text}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             >
               {materiau.nom}
             </h3>
@@ -425,7 +450,11 @@ function MateriauCard({ materiau, onDetail, onDelete, index, isDark }) {
             <div>
               <p className={`text-xs mb-1 ${theme.textSubtle}`}>Stock</p>
               <p
+<<<<<<< HEAD
                 className={`text-2xl font-black ${
+=======
+                className={`text-xl sm:text-2xl font-black ${
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   alerte
                     ? isDark
                       ? "text-rose-400"
@@ -488,6 +517,7 @@ function MateriauCard({ materiau, onDetail, onDelete, index, isDark }) {
   );
 }
 
+<<<<<<< HEAD
 // function EntreeAttenteCard({ mouvement, depense, onReception, index, isDark }) {
 //   const { style } = useReveal(index * 100);
 //   const theme = isDark ? THEMES.dark : THEMES.light;
@@ -546,6 +576,13 @@ function MateriauCard({ materiau, onDetail, onDelete, index, isDark }) {
 function ModalDetail({ materiau, mouvements, onClose, isDark }) {
   if (!materiau) return null;
   const mvts = mouvements.filter((m) => m.materiau === materiau.nom);
+=======
+function ModalDetail({ materiau, mouvements, onClose, isDark }) {
+  if (!materiau) return null;
+  const mvts = mouvements.filter(
+    (m) => m.materiau_nom === materiau.nom || m.materiau === materiau.nom,
+  );
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const totalEntrees = mvts
     .filter((m) => m.type === "Entrée")
     .reduce((s, m) => s + m.quantite, 0);
@@ -596,7 +633,11 @@ function ModalDetail({ materiau, mouvements, onClose, isDark }) {
                 <p className={`font-mono text-xs mb-1 ${theme.textLight}`}>
                   {materiau.id}
                 </p>
+<<<<<<< HEAD
                 <h2 className={`text-2xl font-black ${theme.text}`}>
+=======
+                <h2 className={`text-xl sm:text-2xl font-black ${theme.text}`}>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   {materiau.nom}
                 </h2>
                 <span
@@ -616,7 +657,11 @@ function ModalDetail({ materiau, mouvements, onClose, isDark }) {
         </div>
 
         <div className="p-6 space-y-6">
+<<<<<<< HEAD
           <div className="grid grid-cols-3 gap-4">
+=======
+          <div className="grid grid-cols-3 gap-2 sm:gap-4">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <div
               className={`border rounded-2xl p-4 text-center ${isDark ? "bg-emerald-500/10 border-emerald-500/20" : "bg-emerald-50 border-emerald-200"}`}
             >
@@ -628,7 +673,11 @@ function ModalDetail({ materiau, mouvements, onClose, isDark }) {
                 />
               </div>
               <p
+<<<<<<< HEAD
                 className={`text-2xl font-black ${isDark ? "text-emerald-400" : "text-emerald-600"}`}
+=======
+                className={`text-xl sm:text-2xl font-black ${isDark ? "text-emerald-400" : "text-emerald-600"}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               >
                 +{totalEntrees}
               </p>
@@ -645,7 +694,11 @@ function ModalDetail({ materiau, mouvements, onClose, isDark }) {
                 />
               </div>
               <p
+<<<<<<< HEAD
                 className={`text-2xl font-black ${isDark ? "text-rose-500" : "text-rose-600"}`}
+=======
+                className={`text-xl sm:text-2xl font-black ${isDark ? "text-rose-500" : "text-rose-600"}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               >
                 -{totalSorties}
               </p>
@@ -686,7 +739,11 @@ function ModalDetail({ materiau, mouvements, onClose, isDark }) {
                 />
               </div>
               <p
+<<<<<<< HEAD
                 className={`text-2xl font-black ${
+=======
+                className={`text-xl sm:text-2xl font-black ${
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   alerte
                     ? isDark
                       ? "text-rose-400"
@@ -706,14 +763,22 @@ function ModalDetail({ materiau, mouvements, onClose, isDark }) {
             <CircularGauge
               value={materiau.stock}
               max={materiau.seuil * 3}
+<<<<<<< HEAD
               size={140}
+=======
+              size={120}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               color={alerte ? "#f43f5e" : "#10b981"}
               label="Niveau de stock"
               isDark={isDark}
             />
           </div>
 
+<<<<<<< HEAD
           <div className="grid grid-cols-2 gap-4">
+=======
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             {[
               ["Unité", materiau.unite],
               ["Seuil d'alerte", `${materiau.seuil} ${materiau.unite}`],
@@ -826,6 +891,7 @@ function ModalDetail({ materiau, mouvements, onClose, isDark }) {
   );
 }
 
+<<<<<<< HEAD
 function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, onClose, onSave, isDark }) {
   // 🔥 FILTRER uniquement les logements en maintenance
  const logementsMaintenance = logements.filter((l) => {
@@ -845,11 +911,45 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
     return hasAlertes && hasBesoins;
   });
 
+=======
+function ModalSortie({
+  materiaux,
+  logements,
+  initialLogement,
+  initialMateriau,
+  onClose,
+  onSave,
+  isDark,
+}) {
+  //  FILTRER uniquement les logements en maintenance
+  const logementsMaintenance = logements.filter((l) => {
+    const enMaintenance =
+      l.statut === "Maintenance" || l.statut === "EN_REPARATION";
+    if (!enMaintenance) return false;
+
+    const besoins = l.besoinsMaintenance || [];
+
+    if (l.statut === "EN_REPARATION") {
+      const sortis = l.materiauxSortis || [];
+      const besoinsRestants = besoins.filter((b) => {
+        const s = sortis.find((ms) => ms.nom === b.nom);
+        return !s || s.quantiteSortie < b.quantite;
+      });
+      return besoinsRestants.length > 0;
+    }
+
+    return true;
+  });
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const [form, setForm] = useState({
     materiau: initialMateriau || materiaux[0]?.nom || "",
     quantite: 1,
     date: new Date().toLocaleDateString("fr-FR"),
+<<<<<<< HEAD
     logement: logementsMaintenance[0]?.id || "",
+=======
+    logement: String(logementsMaintenance[0]?.id || ""),
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     motif: "",
   });
 
@@ -863,6 +963,7 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
 
   const theme = isDark ? THEMES.dark : THEMES.light;
   const materiauSelected = materiaux.find((m) => m.nom === form.materiau);
+<<<<<<< HEAD
   const logementSelected = logements.find((l) => l.id === form.logement);
   
   // ✅ Sécurité : toujours vérifier que c'est un tableau
@@ -904,30 +1005,104 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
     }
     if (quantiteDemandee > stockDisponible) {
       setError(`Stock insuffisant. Disponible: ${stockDisponible} ${materiauSelected?.unite || "unités"}`);
+=======
+  const logementSelected = logements.find(
+    (l) => String(l.id) === String(form.logement),
+  );
+
+  // Sécurité : toujours vérifier que c'est un tableau
+  const besoinsArr = Array.isArray(logementSelected?.besoinsMaintenance)
+    ? logementSelected.besoinsMaintenance
+    : [];
+  const materiauxSortisArr = Array.isArray(logementSelected?.materiauxSortis)
+    ? logementSelected.materiauxSortis
+    : [];
+
+  const besoinReel = besoinsArr.find((b) => b.nom === form.materiau);
+  const dejaSorti =
+    materiauxSortisArr.find((ms) => ms.nom === form.materiau)?.quantiteSortie ||
+    0;
+
+  //  Surplus autorisé : la limite est le stock disponible, pas le besoin
+  const quantiteBesoinRestant = besoinReel
+    ? Math.max(0, besoinReel.quantite - dejaSorti)
+    : 0;
+
+  const stockDisponible = materiauSelected?.stock || 0;
+  const isSurplus = besoinReel && form.quantite > quantiteBesoinRestant;
+  const isHorsBesoin = !besoinReel;
+  const quantiteSaisie = Number(form.quantite) || 0;
+  const quantiteDemandee = Math.min(
+    Math.max(quantiteSaisie, 0),
+    stockDisponible,
+  );
+  const pourcentage =
+    stockDisponible > 0 ? (quantiteDemandee / stockDisponible) * 100 : 0;
+
+  const canSubmit =
+    logementsMaintenance.length > 0 &&
+    quantiteDemandee > 0 &&
+    quantiteDemandee <= stockDisponible &&
+    !isHorsBesoin &&
+    quantiteDemandee >= quantiteBesoinRestant;
+  const handleSubmit = () => {
+    if (isHorsBesoin) {
+      setError(
+        "Sortie impossible : ce matériau n'est demandé par aucun logement en maintenance",
+      );
+      return;
+    }
+    if (quantiteDemandee > stockDisponible) {
+      setError(
+        `Stock insuffisant. Disponible: ${stockDisponible} ${materiauSelected?.unite || "unités"}`,
+      );
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       return;
     }
     if (quantiteDemandee <= 0) {
       setError("La quantité doit être supérieure à 0");
       return;
     }
+<<<<<<< HEAD
     
     // 🔥 PASSER le matériau pour suppression ciblée de l'alerte
     onSave({ ...form, quantite: quantiteDemandee, _materiauNom: form.materiau, _isSurplus: isSurplus, _isHorsBesoin: isHorsBesoin });
+=======
+
+    onSave({
+      ...form,
+      quantite: quantiteDemandee,
+      _materiauNom: form.materiau,
+      _isSurplus: isSurplus,
+      _isHorsBesoin: isHorsBesoin,
+    });
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     onClose();
   };
 
   return (
     <div
+<<<<<<< HEAD
       className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300 ${
+=======
+      className={`fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 transition-all duration-300 ${
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         isDark ? "bg-black/80" : "bg-gray-900/60"
       } backdrop-blur-sm`}
     >
       <div
+<<<<<<< HEAD
         className={`relative w-full max-w-md transform transition-all duration-500 ${
           mounted ? "scale-100 opacity-100" : "scale-95 opacity-0"
         }`}
       >
         {/* Glow rouge pour sortie */}
+=======
+        className={`relative w-full sm:max-w-md transform transition-all duration-500 max-h-[95vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl ${
+          mounted ? "scale-100 opacity-100" : "scale-95 opacity-0"
+        }`}
+      >
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <div
           className={`absolute -inset-1 rounded-3xl blur-xl opacity-30 ${
             isDark
@@ -943,7 +1118,10 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
               : "bg-gradient-to-br from-white via-gray-50 to-white border-gray-200"
           } shadow-2xl`}
         >
+<<<<<<< HEAD
           {/* Header avec gradient rouge */}
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           <div
             className={`relative px-6 py-5 ${
               isDark
@@ -1025,7 +1203,11 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
             </div>
 
             {/* Quantité et Logement */}
+<<<<<<< HEAD
             <div className="grid grid-cols-2 gap-4">
+=======
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               <div>
                 <label
                   className={`text-xs font-bold uppercase tracking-wider mb-2 block ${
@@ -1044,7 +1226,12 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
                     max={stockDisponible}
                     value={form.quantite}
                     onChange={(e) => {
+<<<<<<< HEAD
                       setForm({ ...form, quantite: Number(e.target.value) });
+=======
+                      const val = Number(e.target.value);
+                      setForm({ ...form, quantite: val > 0 ? val : 0 });
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                       setError("");
                     }}
                     className={`w-full pl-10 pr-4 py-3 rounded-xl border-2 focus:outline-none transition-all ${
@@ -1064,9 +1251,12 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
                   Destination (Logement)
                 </label>
                 <div className="relative">
+<<<<<<< HEAD
                   <Warehouse
                     className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${theme.textSubtle}`}
                   />
+=======
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   <div className="relative">
                     <Warehouse
                       className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${theme.textSubtle}`}
@@ -1097,8 +1287,14 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
                     <p
                       className={`text-xs mt-2 ${isDark ? "text-rose-400" : "text-rose-600"}`}
                     >
+<<<<<<< HEAD
                       ⚠️ Aucun logement en maintenance. Passez d'abord un
                       logement en maintenance.
+=======
+                      <AlertTriangle className="w-4 h-4 text-yellow-500" />
+                      Aucun logement en maintenance. Passez d'abord un logement
+                      en maintenance.
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                     </p>
                   )}
                 </div>
@@ -1180,7 +1376,11 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
               )}
             </div>
 
+<<<<<<< HEAD
             {/* 🔥 Alerte surplus */}
+=======
+            {/*  Alerte surplus */}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             {isHorsBesoin && quantiteDemandee > 0 && (
               <div
                 className={`p-4 rounded-xl flex items-center gap-3 ${
@@ -1192,10 +1392,21 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
                 <Ban className="w-5 h-5 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-bold">
+<<<<<<< HEAD
                     🚫 Sortie impossible — Ce matériau n'est demandé par aucun logement en maintenance
                   </p>
                   <p className={`text-xs mt-1 ${isDark ? "text-rose-200/60" : "text-rose-600"}`}>
                     Seuls les matériaux nécessaires aux logements en maintenance peuvent être sortis
+=======
+                    <Ban className="w-4 h-4 text-red-500" /> Sortie impossible —
+                    Ce matériau n'est demandé par aucun logement en maintenance
+                  </p>
+                  <p
+                    className={`text-xs mt-1 ${isDark ? "text-rose-200/60" : "text-rose-600"}`}
+                  >
+                    Seuls les matériaux nécessaires aux logements en maintenance
+                    peuvent être sortis
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   </p>
                 </div>
               </div>
@@ -1211,10 +1422,22 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
                 <AlertTriangle className="w-5 h-5 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-bold">
+<<<<<<< HEAD
                     ⚠️ Surplus : vous sortez {quantiteDemandee} alors que le besoin restant est de {quantiteBesoinRestant}
                   </p>
                   <p className={`text-xs mt-1 ${isDark ? "text-amber-200/60" : "text-amber-600"}`}>
                     L'excédent sera retourné automatiquement au stock à la fin de la réparation
+=======
+                    <AlertTriangle className="w-4 h-4 text-yellow-500" />{" "}
+                    Surplus : vous sortez {quantiteDemandee} alors que le besoin
+                    restant est de {quantiteBesoinRestant}
+                  </p>
+                  <p
+                    className={`text-xs mt-1 ${isDark ? "text-amber-200/60" : "text-amber-600"}`}
+                  >
+                    L'excédent sera retourné automatiquement au stock à la fin
+                    de la réparation
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   </p>
                 </div>
               </div>
@@ -1231,7 +1454,13 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
               >
                 <Package className="w-4 h-4 flex-shrink-0" />
                 <span className="text-xs font-semibold">
+<<<<<<< HEAD
                   Besoin restant : {quantiteBesoinRestant} {materiauSelected?.unite || "unités"} — Déjà sorti : {dejaSorti}
+=======
+                  Besoin restant : {quantiteBesoinRestant}{" "}
+                  {materiauSelected?.unite || "unités"} — Déjà sorti :{" "}
+                  {dejaSorti}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                 </span>
               </div>
             )}
@@ -1299,7 +1528,11 @@ function ModalSortie({ materiaux, logements, initialLogement, initialMateriau, o
                   : "bg-gray-400 cursor-not-allowed"
               }`}
             >
+<<<<<<< HEAD
               📦 Confirmer la sortie
+=======
+              <Box className="w-4 h-4 text-amber-600" /> Confirmer la sortie
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             </button>
           </div>
         </div>
@@ -1439,6 +1672,7 @@ export default function Materiaux() {
     effacerAlerteLogement,
     alertesMaintenanceLog,
   } = useApp();
+<<<<<<< HEAD
 
   const depensesEnAttente = depenses.filter(
     (d) => d.statut === "Validé" && !d.receptionne,
@@ -1494,6 +1728,63 @@ export default function Materiaux() {
     triggerSuccess();
   };
 
+=======
+
+  const depensesEnAttente = depenses.filter(
+    (d) => d.statut === "Validé" && !d.receptionne,
+  );
+
+  const handleReceptionComplete = (depense) => {
+    receptionnerDepense(depense.id);
+
+    triggerSuccess();
+  };
+  const [filtre, setFiltre] = useState("Tous");
+  const [search, setSearch] = useState("");
+  const [menuMobileOuvert, setMenuMobileOuvert] = useState(false);
+  const [detail, setDetail] = useState(null);
+  const [showSortie, setShowSortie] = useState(false);
+
+  const isDark = useDarkMode();
+  const { actif: successActif, trigger: triggerSuccess } = useSuccessMessage();
+
+  const alertes = materiaux.filter((m) => m.stock <= m.seuil);
+  const valeurTotale = materiaux.reduce((s, m) => s + m.stock * m.prix, 0);
+
+  const totalMouvements = mouvements.length;
+  const totalEntreesGlobal = mouvements
+    .filter((m) => m.type === "Entrée")
+    .reduce((s, m) => s + m.quantite, 0);
+  const totalSortiesGlobal = mouvements
+    .filter((m) => m.type === "Sortie")
+    .reduce((s, m) => s + m.quantite, 0);
+
+  //filtre ny materiaux
+
+  const filtered = materiaux.filter(
+    (m) =>
+      (filtre === "Tous" || m.categorie === filtre) &&
+      m.nom.toLowerCase().includes(search.toLowerCase()),
+  );
+
+  const handleSortie = (form) => {
+    //  Récupérer l'unité du matériau pour traçabilité
+    const materiauSelected = materiaux.find((m) => m.nom === form.materiau);
+    ajouterMouvement({
+      ...form,
+      type: "Sortie",
+      source: form.logement,
+      unite: materiauSelected?.unite || "unités",
+    });
+
+    // SUPPRESSION CIBLÉE de l'alerte (uniquement le matériau sorti)
+    if (form.logement && form._materiauNom) {
+      effacerAlerteLogement(form.logement, form._materiauNom, form.quantite);
+    }
+
+    triggerSuccess();
+  };
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
   const theme = isDark ? THEMES.dark : THEMES.light;
 
@@ -1520,6 +1811,24 @@ export default function Materiaux() {
           onClose={() => setDetail(null)}
           isDark={isDark}
         />
+<<<<<<< HEAD
+=======
+      )}
+      {showSortie && (
+        <ModalSortie
+          materiaux={materiaux}
+          logements={logements}
+          initialLogement={
+            typeof showSortie === "object" ? showSortie.logementId : null
+          }
+          initialMateriau={
+            typeof showSortie === "object" ? showSortie.materiauNom : null
+          }
+          onClose={() => setShowSortie(false)}
+          onSave={handleSortie}
+          isDark={isDark}
+        />
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       )}
      {showSortie && (
   <ModalSortie
@@ -1536,14 +1845,22 @@ export default function Materiaux() {
 
       <div className="flex items-center justify-between">
         <div>
+<<<<<<< HEAD
           <h1 className={`text-3xl font-black ${theme.text}`}>
+=======
+          <h1 className={`text-2xl sm:text-3xl font-black ${theme.text}`}>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             Gestion des Matériaux
           </h1>
           <p className={theme.textSubtle}>Suivi des stocks et mouvements</p>
         </div>
       </div>
 
+<<<<<<< HEAD
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+=======
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <StatCard3D
           icon={Package}
           label="Types de matériaux"
@@ -1584,6 +1901,7 @@ export default function Materiaux() {
         />
       </div>
 
+<<<<<<< HEAD
 
 {Object.keys(alertesMaintenanceLog).length > 0 && (
   <div className={`border rounded-2xl p-5 backdrop-blur-sm mb-6 ${
@@ -1750,6 +2068,271 @@ export default function Materiaux() {
     </div>
   </div>
 )}
+=======
+      {Object.keys(alertesMaintenanceLog).length > 0 && (
+        <div
+          className={`border rounded-2xl p-5 backdrop-blur-sm mb-6 ${
+            isDark
+              ? "bg-gradient-to-r from-amber-500/10 to-rose-500/10 border-amber-500/30"
+              : "bg-gradient-to-r from-amber-50 to-rose-50 border-amber-300"
+          }`}
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <div
+              className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
+                isDark ? "bg-amber-500/20" : "bg-amber-200"
+              }`}
+            >
+              <Wrench
+                className={`w-6 h-6 ${isDark ? "text-amber-400" : "text-amber-600"}`}
+              />
+            </div>
+            <div>
+              <p
+                className={`text-base font-bold ${isDark ? "text-amber-200" : "text-amber-800"}`}
+              >
+                🔧 Besoins matériaux — Maintenance
+              </p>
+              <p
+                className={`text-xs ${isDark ? "text-white/50" : "text-gray-500"}`}
+              >
+                {Object.keys(alertesMaintenanceLog).length} logement(s) en
+                attente
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {Object.entries(alertesMaintenanceLog).map(([logId, alertes]) => {
+              const logement = logements.find((l) => l.id === logId);
+              const sortis = logement?.materiauxSortis || [];
+
+              return (
+                <div
+                  key={logId}
+                  className={`p-4 rounded-xl border ${
+                    isDark
+                      ? "bg-white/5 border-white/10"
+                      : "bg-white border-gray-200"
+                  }`}
+                >
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <Home
+                        className={`w-4 h-4 ${isDark ? "text-amber-400" : "text-amber-600"}`}
+                      />
+                      <span className={`text-sm font-bold ${theme.text}`}>
+                        {logId} — {logement?.type || "Logement"}
+                      </span>
+                    </div>
+                    <span
+                      className={`text-xs px-2 py-1 rounded-full font-medium ${
+                        isDark
+                          ? "bg-rose-500/20 text-rose-400"
+                          : "bg-rose-100 text-rose-600"
+                      }`}
+                    >
+                      En attente
+                    </span>
+                  </div>
+
+                  {/* Liste des matériaux avec statut DYNAMIQUE */}
+                  <div className="space-y-2">
+                    {alertes.map((a, i) => {
+                      const mat = materiaux.find(
+                        (m) => m.nom.toLowerCase() === a.nom.toLowerCase(),
+                      );
+                      const stockActuel = mat?.stock || 0;
+
+                      // Vérifier si déjà sorti
+                      const sorti = sortis.find((s) => s.nom === a.nom);
+                      const quantiteDejaSortie = sorti?.quantiteSortie || 0;
+                      const quantiteRestante = Math.max(
+                        0,
+                        a.quantite - quantiteDejaSortie,
+                      );
+                      const estComplet = quantiteRestante === 0;
+
+                      //  NOUVEAU : Déterminer le statut DYNAMIQUEMENT
+                      let statutDynamique = a.statut; // fallback sur le statut initial
+
+                      if (estComplet) {
+                        statutDynamique = "complet"; // Tout est sorti
+                      } else if (stockActuel >= quantiteRestante) {
+                        statutDynamique = "ok"; // Stock suffisant pour le reste
+                      } else if (stockActuel > 0) {
+                        statutDynamique = "manque"; // Stock partiel
+                      } else {
+                        statutDynamique = "achat"; // Rien en stock
+                      }
+
+                      //  Configuration visuelle selon le statut DYNAMIQUE
+                      const statutConfig = {
+                        complet: {
+                          label: "✓ Satisfait",
+                          tooltip: "Quantité complète sortie du stock",
+                          bg: isDark
+                            ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+                            : "bg-emerald-100 text-emerald-700 border-emerald-300",
+                          dot: "bg-emerald-500",
+                        },
+                        ok: {
+                          label: "✓ OK",
+                          tooltip: `Stock suffisant (${stockActuel} dispo / ${quantiteRestante} requis)`,
+                          bg: isDark
+                            ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+                            : "bg-emerald-100 text-emerald-700 border-emerald-300",
+                          dot: "bg-emerald-500",
+                        },
+                        manque: {
+                          label: "⚠ Insuffisant",
+                          tooltip: `Stock partiel (${stockActuel} dispo / ${quantiteRestante} requis)`,
+                          bg: isDark
+                            ? "bg-amber-500/15 text-amber-400 border-amber-500/30"
+                            : "bg-amber-100 text-amber-700 border-amber-300",
+                          dot: "bg-amber-500",
+                        },
+                        achat: {
+                          label: " À acheter",
+                          tooltip:
+                            "Matériau absent du stock — commande requise",
+                          bg: isDark
+                            ? "bg-rose-500/15 text-rose-400 border-rose-500/30"
+                            : "bg-rose-100 text-rose-700 border-rose-300",
+                          dot: "bg-rose-500",
+                        },
+                      };
+                      const cfg =
+                        statutConfig[statutDynamique] || statutConfig.achat;
+
+                      return (
+                        <div
+                          key={i}
+                          className={`flex items-start sm:items-center gap-2 sm:gap-3 py-2 px-3 rounded-lg flex-wrap transition ${
+                            estComplet
+                              ? isDark
+                                ? "bg-emerald-500/10"
+                                : "bg-emerald-50"
+                              : "hover:bg-white/5"
+                          }`}
+                        >
+                          {/* Pastille statut dynamique */}
+                          <div
+                            className={`w-2.5 h-2.5 rounded-full shrink-0 ${
+                              estComplet
+                                ? "bg-emerald-500"
+                                : `${cfg.dot} animate-pulse`
+                            }`}
+                          />
+
+                          <Package
+                            className={`w-4 h-4 shrink-0 ${
+                              isDark ? "text-amber-400/60" : "text-amber-600/60"
+                            }`}
+                          />
+
+                          <span
+                            className={`text-sm flex-1 min-w-0 ${
+                              estComplet
+                                ? isDark
+                                  ? "text-white/40 line-through"
+                                  : "text-gray-400 line-through"
+                                : isDark
+                                  ? "text-white/80"
+                                  : "text-gray-700"
+                            }`}
+                          >
+                            <span className="font-semibold">{a.nom}</span>
+                            {sorti && (
+                              <span
+                                className={`text-xs ml-2 ${
+                                  isDark
+                                    ? "text-emerald-400"
+                                    : "text-emerald-600"
+                                }`}
+                              >
+                                ({quantiteDejaSortie}/{a.quantite} sortis)
+                              </span>
+                            )}
+                          </span>
+
+                          {/*  Badge statut DYNAMIQUE */}
+                          {!estComplet && (
+                            <span
+                              title={cfg.tooltip}
+                              className={`text-xs font-bold px-2 py-1 rounded-md border ${cfg.bg}`}
+                            >
+                              {cfg.label}
+                            </span>
+                          )}
+
+                          {/* Badge quantité restante */}
+                          {!estComplet && (
+                            <span
+                              className={`text-xs font-bold px-2.5 py-1 rounded-md ${
+                                isDark
+                                  ? "bg-white/5 text-white/70 border border-white/10"
+                                  : "bg-gray-100 text-gray-700 border border-gray-200"
+                              }`}
+                            >
+                              {quantiteRestante} {a.unite}
+                            </span>
+                          )}
+
+                          {/* Badge complété */}
+                          {estComplet && (
+                            <span
+                              className={`text-xs font-bold px-2.5 py-1 rounded-md ${
+                                isDark
+                                  ? "bg-emerald-500/20 text-emerald-400"
+                                  : "bg-emerald-100 text-emerald-700"
+                              }`}
+                            >
+                              <Check className="w-4 h-4 text-green-500" />
+                              Satisfait
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Footer action */}
+                  <div
+                    className="mt-3 pt-3 border-t border-dashed flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-0 justify-between"
+                    style={{
+                      borderColor: isDark
+                        ? "rgba(255,255,255,0.1)"
+                        : "rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    <span className={`text-xs ${theme.textLight}`}>
+                      Cliquez sur "Sortie" pour réserver les matériaux
+                    </span>
+                    <button
+                      onClick={() => {
+                        setShowSortie({
+                          logementId: logId,
+                          materiauNom: alertes[0]?.nom,
+                        });
+                      }}
+                      className={`text-xs font-bold px-3 py-1.5 rounded-lg transition hover:scale-105 ${
+                        isDark
+                          ? "bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 border border-amber-500/30"
+                          : "bg-amber-100 text-amber-700 hover:bg-amber-200 border border-amber-300"
+                      }`}
+                    >
+                      Sortie →
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
       {depensesEnAttente.length > 0 && (
         <div
@@ -1767,7 +2350,11 @@ export default function Materiaux() {
           />
 
           <div className="relative">
+<<<<<<< HEAD
             <div className="flex items-center gap-4 mb-6">
+=======
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               <div
                 className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
                   isDark ? "bg-blue-500/20" : "bg-blue-200"
@@ -1779,7 +2366,12 @@ export default function Materiaux() {
               </div>
               <div>
                 <h3 className={`text-xl font-bold ${theme.text}`}>
+<<<<<<< HEAD
                   📦 Réceptions en attente
+=======
+                  <Box className="w-4 h-4 text-amber-100" /> Réceptions en
+                  attente
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                 </h3>
                 <p className={`text-sm ${theme.textSubtle}`}>
                   {depensesEnAttente.length} matériau
@@ -1787,7 +2379,11 @@ export default function Materiaux() {
                 </p>
               </div>
               <div
+<<<<<<< HEAD
                 className={`ml-auto px-4 py-2 rounded-full text-sm font-bold ${
+=======
+                className={`ml-auto sm:ml-0 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold ${
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   isDark
                     ? "bg-blue-500/20 text-blue-300 border border-blue-500/30"
                     : "bg-blue-200 text-blue-700 border border-blue-300"
@@ -1857,6 +2453,7 @@ export default function Materiaux() {
         </div>
       )}
 
+<<<<<<< HEAD
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div
           className={`flex gap-1 p-1.5 rounded-xl border backdrop-blur-sm ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
@@ -1872,12 +2469,91 @@ export default function Materiaux() {
               }`}
             >
               {c}
+=======
+      <div className="flex flex-col gap-3">
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="hidden 1112:block">
+            <div
+              className={`flex gap-1 p-1.5 rounded-xl border backdrop-blur-sm ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
+            >
+              {CATEGORIES.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setFiltre(c)}
+                  className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-300 ${
+                    filtre === c
+                      ? "bg-gradient-to-r from-[#C9A84C] to-[#a88a3c] text-white shadow-lg shadow-amber-500/20"
+                      : `${theme.textSubtle} ${isDark ? "hover:bg-white/5" : "hover:bg-gray-100"}`
+                  }`}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Filtres : mobile (dropdown) ── */}
+          <div className="1112:hidden relative flex-1 min-w-0">
+            <button
+              onClick={() => setMenuMobileOuvert(!menuMobileOuvert)}
+              className={`w-full flex items-center justify-between gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border transition-all ${
+                isDark
+                  ? "bg-white/5 border-white/10 text-white hover:bg-white/10"
+                  : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50 shadow-sm"
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <SquareMenu className="w-4 h-4" />
+                Filtre : <span className="text-[#C9A84C]">{filtre}</span>
+              </span>
+              <ChevronDown
+                className={`w-4 h-4 transition-transform duration-200 ${menuMobileOuvert ? "rotate-180" : ""}`}
+              />
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             </button>
-          ))}
+
+            {menuMobileOuvert && (
+              <div
+                className={`absolute top-full left-0 right-0 mt-1.5 rounded-xl border shadow-xl z-30 overflow-hidden ${
+                  isDark
+                    ? "bg-gray-900 border-white/10"
+                    : "bg-white border-gray-200"
+                }`}
+              >
+                {CATEGORIES.map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => {
+                      setFiltre(c);
+                      setMenuMobileOuvert(false);
+                    }}
+                    className={`w-full text-left px-4 py-3 text-sm font-medium transition-colors flex items-center gap-3 ${
+                      filtre === c
+                        ? isDark
+                          ? "bg-[#C9A84C]/20 text-[#C9A84C]"
+                          : "bg-amber-50 text-amber-700"
+                        : isDark
+                          ? "text-white/70 hover:bg-white/5"
+                          : "text-gray-600 hover:bg-gray-50"
+                    }`}
+                  >
+                    {filtre === c && <Check className="w-4 h-4" />}
+                    <span className={filtre === c ? "font-bold" : ""}>{c}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
+<<<<<<< HEAD
         <div className="flex gap-3">
           <div className="relative">
+=======
+        {/* Recherche + Sortie */}
+        <div className="flex items-center gap-2">
+          <div className="relative flex-1 min-w-0">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <Search
               className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${theme.textLight}`}
             />
@@ -1885,19 +2561,41 @@ export default function Materiaux() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Rechercher..."
+<<<<<<< HEAD
               className={`pl-10 pr-4 py-2.5 rounded-xl focus:outline-none focus:border-[#C9A84C] transition w-56 ${theme.input} ${theme.text}`}
+=======
+              className={`w-full pl-10 pr-4 py-2.5 rounded-xl focus:outline-none focus:border-[#C9A84C] transition text-sm ${theme.input} ${theme.text}`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             />
           </div>
           <button
             onClick={() => setShowSortie(true)}
+<<<<<<< HEAD
             className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-rose-500/25 transition hover:scale-105"
           >
             <TrendingDown className="w-4 h-4" />
             Sortie
+=======
+            className="shrink-0 flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-rose-500/25 transition-all hover:scale-105"
+          >
+            <TrendingDown className="w-4 h-4" />
+            <span className="hidden sm:inline">Sortie</span>
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           </button>
         </div>
       </div>
 
+<<<<<<< HEAD
+=======
+      {/* Fermer le dropdown quand on clique ailleurs */}
+      {menuMobileOuvert && (
+        <div
+          className="fixed inset-0 z-20"
+          onClick={() => setMenuMobileOuvert(false)}
+        />
+      )}
+
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       <p className={theme.textLight}>
         {filtered.length} matériau{filtered.length > 1 ? "x" : ""} trouvé
         {filtered.length > 1 ? "s" : ""}
@@ -1919,7 +2617,11 @@ export default function Materiaux() {
       <div
         className={`backdrop-blur-sm border rounded-3xl p-6 ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
       >
+<<<<<<< HEAD
         <div className="flex items-center justify-between mb-6">
+=======
+        <div className="flex items-center justify-between mb-6 max-[524px]:flex-col max-[524px]:items-start max-[524px]:gap-4">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/20 flex items-center justify-center">
               <Warehouse className="w-5 h-5 text-[#C9A84C]" />
@@ -1933,7 +2635,11 @@ export default function Materiaux() {
               </p>
             </div>
           </div>
+<<<<<<< HEAD
           <div className="flex gap-4 text-sm">
+=======
+          <div className="flex gap-2 sm:gap-4 text-sm max-[524px]:w-full max-[524px]:justify-start flex-wrap">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <span
               className={`flex items-center gap-2 font-semibold px-3 py-1.5 rounded-lg ${isDark ? "text-emerald-400 bg-emerald-500/10" : "text-emerald-600 bg-emerald-100"}`}
             >
@@ -1956,6 +2662,7 @@ export default function Materiaux() {
                 className={`border-b ${isDark ? "border-white/10" : "border-gray-200"}`}
               >
                 {[
+<<<<<<< HEAD
                   "Réf",
                   "Matériau",
                   "Type",
@@ -1969,6 +2676,21 @@ export default function Materiaux() {
                     className={`text-left py-3 px-4 text-xs font-semibold uppercase tracking-wide ${theme.textLight}`}
                   >
                     {h}
+=======
+                  { label: "Réf", hideMobile: true },
+                  { label: "Matériau", hideMobile: false },
+                  { label: "Type", hideMobile: false },
+                  { label: "Quantité", hideMobile: false },
+                  { label: "Source/Dest.", hideMobile: true },
+                  { label: "Statut", hideMobile: true },
+                  { label: "Date", hideMobile: false },
+                ].map((h) => (
+                  <th
+                    key={h.label}
+                    className={`text-left py-3 px-4 text-xs font-semibold uppercase tracking-wide ${theme.textLight} ${h.hideMobile ? "hidden sm:table-cell" : ""}`}
+                  >
+                    {h.label}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   </th>
                 ))}
               </tr>
@@ -1980,7 +2702,11 @@ export default function Materiaux() {
                   className={`border-b transition group ${isDark ? "border-white/5 hover:bg-white/5" : "border-gray-100 hover:bg-gray-50"}`}
                 >
                   <td
+<<<<<<< HEAD
                     className={`py-3 px-4 font-mono text-xs ${theme.textLight}`}
+=======
+                    className={`py-3 px-4 font-mono text-xs ${theme.textLight} hidden sm:table-cell`}
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   >
                     {m.id}
                   </td>
@@ -2012,10 +2738,19 @@ export default function Materiaux() {
                   <td className={`py-3 px-4 font-black ${theme.text}`}>
                     {m.quantite}
                   </td>
+<<<<<<< HEAD
                   <td className={`py-3 px-4 text-xs ${theme.textSubtle}`}>
                     {m.source || m.logement}
                   </td>
                   <td className="py-3 px-4">
+=======
+                  <td
+                    className={`py-3 px-4 text-xs ${theme.textSubtle} hidden sm:table-cell`}
+                  >
+                    {m.source || m.logement}
+                  </td>
+                  <td className="py-3 px-4 hidden sm:table-cell">
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                     {m.type === "Entrée" && m.depenseId && (
                       <span
                         className={`text-xs ${m.receptionne ? "text-emerald-500" : "text-amber-500"}`}

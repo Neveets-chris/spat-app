@@ -14,6 +14,7 @@ import ThemeTransition from "./components/ThemeTransition";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PrivateRoute from "./components/PrivateRoute";
+import useDarkMode from "./hooks/useDarkMode"; // ← NOUVEAU
 
 const TITRES = {
   dashboard: "Tableau de bord",
@@ -27,6 +28,7 @@ const TITRES = {
 function AppLayout() {
   const [page, setPage] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
+<<<<<<< HEAD
   const [trigger, setTrigger] = useState(0);
 
   // ✅ CHANGEMENT 1 — lire la préférence sauvegardée au démarrage
@@ -49,6 +51,10 @@ function AppLayout() {
     }, 350);
   };
 
+=======
+  const { darkMode, toggle, trigger } = useDarkMode();
+
+>>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   const pages = {
     dashboard: <Dashboard />,
     logements: <Logements />,
@@ -76,7 +82,7 @@ function AppLayout() {
           setSidebarOpen={setSidebarOpen}
           nbNotifs={4}
           darkMode={darkMode}
-          setDarkMode={handleToggleDark}
+          setDarkMode={toggle} 
         />
 
         <main className="flex-1 overflow-y-auto p-6">
