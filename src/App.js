@@ -15,7 +15,10 @@ import Logi from "./components/Logi";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PrivateRoute from "./components/PrivateRoute";
-import useDarkMode from "./hooks/useDarkMode"; // ← NOUVEAU
+import useDarkMode from "./hooks/useDarkMode"; 
+import { useLocation } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import SpalshScreen from "./components/SpalshScreen";
 
 const TITRES = {
   dashboard: "Tableau de bord",
@@ -27,7 +30,18 @@ const TITRES = {
 };
 
 function AppLayout() {
-  const [page, setPage] = useState("dashboard");
+  const location = useLocation();
+const [page, setPage] = useState(() => {
+  const map = {
+    "/dashboard": "dashboard",
+    "/logements": "logements",
+    "/employes": "employes",
+    "/attributions": "attributions",
+    "/materiaux": "materiaux",
+    "/depenses": "depenses",
+  };
+  return map[location.pathname] || "dashboard";
+});
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { darkMode, toggle, trigger } = useDarkMode();
 
@@ -75,8 +89,10 @@ function AppLayout() {
 
 export default function App() {
   return (
+    <SpalshScreen>
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
@@ -89,5 +105,6 @@ export default function App() {
         />
       </Routes>
     </BrowserRouter>
+    </SpalshScreen>
   );
 }

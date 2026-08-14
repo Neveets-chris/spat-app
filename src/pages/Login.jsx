@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
 
-import SpalshScreen from "../components/SpalshScreen";
+
 import { useNavigate, Link } from "react-router-dom";
 import {
   User,
@@ -18,9 +18,7 @@ import {
   Square,
 } from "lucide-react";
 
-// ============================================
-// COMPOSANT D'ANIMATION BACKGROUND BLEU
-// ============================================
+
 function AnimatedBackground({ isDark }) {
   const canvasRef = useRef(null);
 
@@ -143,9 +141,7 @@ function AnimatedBackground({ isDark }) {
   );
 }
 
-// ============================================
-// FORMES GÉOMÉTRIQUES BLEUES ANIMÉES
-// ============================================
+
 function FloatingShapes({ isDark }) {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -207,9 +203,7 @@ function FloatingShapes({ isDark }) {
   );
 }
 
-// ============================================
-// HOOK POUR DÉTECTION DU THÈME
-// ============================================
+
 function useDarkMode() {
   // Mode sombre permanent
   return true;
@@ -245,7 +239,7 @@ export default function Login() {
     setLoading(true);
     try {
       await login(form.username, form.password);
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       setError("Identifiants incorrects. Veuillez réessayer.");
     } finally {
@@ -254,7 +248,7 @@ export default function Login() {
   };
 
   return (
-    <SpalshScreen>
+    
       <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
         {/* Background animé */}
         <AnimatedBackground isDark={isDark} />
@@ -494,6 +488,6 @@ export default function Login() {
         .perspective-1000 { perspective: 1000px; }
       `}</style>
       </div>
-    </SpalshScreen>
+    
   );
 }

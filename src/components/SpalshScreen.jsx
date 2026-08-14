@@ -21,9 +21,7 @@ export default function SplashScreen({ children }) {
       setTimeout(() => setPhase("lettersOut"), 2400),
       setTimeout(() => setPhase("explosion"), 3200),
       setTimeout(() => setPhase("paintRoll"), 3800),
-      // Rouleau fini vers ~6.5s (vitesse augmentée)
       setTimeout(() => setPhase("textBounce"), 7200),
-      // Barre 1.8s après le texte
       setTimeout(() => setPhase("progressBar"), 9200),
       setTimeout(() => setPhase("fadeOut"), 12400),
       setTimeout(() => {

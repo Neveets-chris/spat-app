@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { api } from "../api";
+import { useAuth } from "./AuthContext";
 const ALERTES_BESOONS_INIT = [];
 
 const MATERIAUX_INIT = [];
@@ -12,6 +13,8 @@ const DEPENSES_INIT = [];
 const AppContext = createContext(null);
 
 export function AppProvider({ children }) {
+  const { user, loading: authLoading } = useAuth();
+
   const [logements, setLogements] = useState([]);
 
   const [departements, setDepartements] = useState([]);
@@ -21,6 +24,11 @@ export function AppProvider({ children }) {
 
 
   useEffect(() => {
+    // Ne rien charger tant qu'on ne sait pas si l'utilisateur est authentifié,
+    // et ne rien charger du tout s'il ne l'est pas (évite les 401 au montage,
+    // sur "/", "/login", etc., avant même que PrivateRoute n'intervienne).
+    if (authLoading || !user) return;
+
     Promise.all([
       api.getLogements(),
       api.getAttributions(),
@@ -147,7 +155,7 @@ export function AppProvider({ children }) {
         },
       )
       .catch(console.error);
-  }, []);
+  }, [authLoading, user]);
 
   const [materiaux, setMateriaux] = useState(MATERIAUX_INIT);
   const [mouvements, setMouvements] = useState(MOUVEMENTS_INIT);
