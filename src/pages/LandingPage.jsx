@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring, useInView, useMotionTemplate, useMotionValue } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import {
-  Home, Users, KeyRound, Package, Wallet, Bot, BarChart3, Bell,
+  Home, Users, KeyRound, Package, Wallet, Bot, Bell,
   ArrowRight, Sparkles, Shield, Brain, Building2, TrendingUp, Anchor,
   Database, Landmark, Settings, Search, CheckCircle2
 } from "lucide-react";
