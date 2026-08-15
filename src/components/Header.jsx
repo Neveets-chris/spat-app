@@ -1,21 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useApp } from "../context/AppContext";
 import { useAuth } from "../context/AuthContext";
-<<<<<<< HEAD
-import { 
-  Bell, 
-  TriangleAlert, 
-  Coins, 
-  Axe, 
-  Warehouse,
-=======
 import {
   Bell,
   TriangleAlert,
   Coins,
   Axe,
   Wrench,
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   CheckCheck,
   X,
   Sun,
@@ -146,7 +137,9 @@ export default function Header({
     },
   };
 
-  
+  const initiales = user?.username
+    ? user.username.slice(0, 2).toUpperCase()
+    : "??";
 
   return (
     <header className="bg-[#0F2D56] dark:bg-gray-900 border-b border-[#1a3f75] dark:border-gray-800 px-4 md:px-6 py-3 flex items-center justify-between shrink-0">
@@ -174,6 +167,7 @@ export default function Header({
           })}
         </span>
 
+        {/* Toggle thème amélioré */}
         <button
           onClick={setDarkMode}
           className="w-12 h-6 rounded-full relative transition-all duration-300 focus:outline-none"
@@ -324,14 +318,10 @@ export default function Header({
           )}
         </div>
 
-<<<<<<< HEAD
-        
-=======
         {/* Avatar simple  */}
         <div className="w-8 h-8 rounded-full bg-[#C9A84C] flex items-center justify-center text-white text-xs font-black select-none">
           {initiales}
         </div>
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       </div>
     </header>
   );

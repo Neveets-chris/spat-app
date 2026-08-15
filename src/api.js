@@ -10,24 +10,40 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
+let refreshPromise = null;
+
+function performRefresh() {
+  if (!refreshPromise) {
+    const refresh = localStorage.getItem("refresh_token");
+    if (!refresh) {
+      return Promise.reject(new Error("no_refresh_token"));
+    }
+    refreshPromise = axios
+      .post(`${BASE_URL}/auth/token/refresh/`, { refresh })
+      .then((res) => {
+        const newAccess = res.data.access;
+        localStorage.setItem("access_token", newAccess);
+        if (res.data.refresh) {
+          localStorage.setItem("refresh_token", res.data.refresh);
+        }
+        axios.defaults.headers.common["Authorization"] = `Bearer ${newAccess}`;
+        return newAccess;
+      })
+      .finally(() => {
+        refreshPromise = null;
+      });
+  }
+  return refreshPromise;
+}
+
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const original = error.config;
     if (error.response?.status === 401 && !original._retry) {
       original._retry = true;
-      const refresh = localStorage.getItem("refresh_token");
-      if (!refresh) {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
-        window.location.href = "/login";
-        return Promise.reject(error);
-      }
       try {
-        const res = await axios.post(`${BASE_URL}/auth/token/refresh/`, { refresh });
-        const newAccess = res.data.access;
-        localStorage.setItem("access_token", newAccess);
-        axios.defaults.headers.common["Authorization"] = `Bearer ${newAccess}`;
+        const newAccess = await performRefresh();
         original.headers.Authorization = `Bearer ${newAccess}`;
         return axiosInstance(original);
       } catch (refreshError) {
@@ -49,19 +65,19 @@ const request = async (method, endpoint, body = null) => {
 };
 
 export const api = {
-  // ── Départements ────────────────────────────────────────────
+  // Départements
   getDepartements: () => request("GET", "/employes/departements/"),
   creerDepartement: (data) => request("POST", "/employes/departements/", data),
   modifierDepartement: (id, data) => request("PUT", `/employes/departements/${id}/`, data),
   supprimerDepartement: (id) => request("DELETE", `/employes/departements/${id}/`),
 
-  // ── Services ────────────────────────────────────────────────
+  //Services 
   getServices: (departementId) => request("GET", `/employes/services/?departement=${departementId}`),
   creerService: (data) => request("POST", "/employes/services/", data),
   modifierService: (id, data) => request("PUT", `/employes/services/${id}/`, data),
   supprimerService: (id) => request("DELETE", `/employes/services/${id}/`),
 
-  // ── Employés ────────────────────────────────────────────────
+  // Employés
   getEmployes: (serviceId) => request("GET", `/employes/employes/?service=${serviceId}`),
   creerEmploye: (data) => request("POST", "/employes/employes/", data),
   modifierEmploye: (id, data) => request("PUT", `/employes/employes/${id}/`, data),
@@ -70,7 +86,7 @@ export const api = {
     request("POST", `/employes/employes/${id}/desactiver/`, { motif_label: motifLabel, motif_type: motifType }),
   reactiverEmploye: (id) => request("POST", `/employes/employes/${id}/reactiver/`),
 
-  // ── Logements ───────────────────────────────────────────────
+  // Logements 
   getLogements: (params = "") => request("GET", `/logi/logements/${params}`),
   creerLogement: (data) => request("POST", "/logi/logements/", data),
   modifierLogement: (id, data) => request("PUT", `/logi/logements/${id}/`, data),
@@ -80,7 +96,7 @@ export const api = {
   terminerReparation: (id) => request("POST", `/logi/logements/${id}/terminer_reparation/`),
   getStatsLogements: () => request("GET", "/logi/logements/stats/"),
 
-  // ── Attributions ────────────────────────────────────────────
+  // Attributions
   getAttributions: (params = "") => request("GET", `/logi/attributions/${params}`),
   creerAttribution: (data) => request("POST", "/logi/attributions/", data),
   modifierAttribution: (id, data) => request("PUT", `/logi/attributions/${id}/`, data),
@@ -93,7 +109,7 @@ export const api = {
   demenagementTemporaire: (data) => request("POST", "/logi/attributions/demenagement_temporaire/", data),
   getStatsAttributions: () => request("GET", "/logi/attributions/stats/"),
 
-  // ── Alertes de Besoins ───────────────────────────────────────
+  //  Alertes de Besoins 
   getAlertes: (params = "") => request("GET", `/logi/alertes/${params}`),
   creerAlerte: (data) => request("POST", "/logi/alertes/", data),
   modifierAlerte: (id, data) => request("PUT", `/logi/alertes/${id}/`, data),
@@ -103,12 +119,12 @@ export const api = {
   mettreAJourEmployesAlerte: (id, employesActifs) =>
     request("POST", `/logi/alertes/${id}/mettre_a_jour_employes/`, { employes_actifs: employesActifs }),
 
-  // ── Historique RH ────────────────────────────────────────────
+  //Historique RH 
   getHistorique: (action = "") =>
     request("GET", `/employes/historique-rh/${action ? `?action=${action}` : ""}`),
   ajouterHistorique: (payload) => request("POST", "/employes/historique-rh/", payload),
 
-  // ── Matériaux (Stock) ────────────────────────────────────────────────────────
+  // Matériaux (Stock)
 getMateriaux:       (params = "") => request("GET",    `/stock/materiaux/${params}`),
 creerMateriau:      (data)        => request("POST",   "/stock/materiaux/", data),
 modifierMateriau:   (id, data)    => request("PUT",    `/stock/materiaux/${id}/`, data),
@@ -116,23 +132,22 @@ supprimerMateriau:  (id)          => request("DELETE", `/stock/materiaux/${id}/`
 sortieStock:        (id, data)    => request("POST",   `/stock/materiaux/${id}/sortie/`, data),
 getStatsMateriaux:  ()            => request("GET",    "/stock/materiaux/stats/"),
  
-// ── Mouvements de stock ──────────────────────────────────────────────────────
+//Mouvements de stock 
 getMouvements:         (params = "") => request("GET",  `/stock/mouvements/${params}`),
 creerMouvement:        (data)        => request("POST", "/stock/mouvements/", data),
 receptionnerMouvement: (id)          => request("POST", `/stock/mouvements/${id}/receptionner/`),
  
-// ── Besoins de maintenance ───────────────────────────────────────────────────
+//Besoins de maintenance 
 getBesoins:              (params = "") => request("GET",    `/stock/besoins/${params}`),
 supprimerBesoin:         (id)          => request("DELETE", `/stock/besoins/${id}/`),
-// Appelé depuis Logements.jsx lors du passage en maintenance :
+
 creerBesoinsParLogement: (data)        => request("POST",   "/stock/besoins/par_logement/", data),
-// Appelé à la fin de la maintenance :
 effacerBesoinsLogement:  (logementRef) => request("POST",   "/stock/besoins/effacer_logement/", { logement_ref: logementRef }),
 // Dropdown pour Depense.jsx :
 getBesoinsDropdown:      (logement = "") =>
   request("GET", `/stock/besoins/dropdown_depense/${logement ? `?logement=${logement}` : ""}`),
  
-// ── Dépenses ─────────────────────────────────────────────────────────────────
+//Dépenses
 getDepenses:          (params = "") => request("GET",    `/depense/depenses/${params}`),
 creerDepense:         (data)        => request("POST",   "/depense/depenses/", data),
 modifierDepense:      (id, data)    => request("PUT",    `/depense/depenses/${id}/`, data),

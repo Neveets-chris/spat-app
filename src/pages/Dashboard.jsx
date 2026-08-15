@@ -295,16 +295,11 @@ export default function Dashboard() {
       : 0;
 
   // Valeur totale du stock
-<<<<<<< HEAD
-  const valeurStock = materiaux.reduce((acc, m) => acc + (m.stock * (m.prix || 0)), 0);
-  
-=======
   const valeurStock = materiaux.reduce(
     (acc, m) => acc + m.stock * (m.prix || 0),
     0,
   );
 
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   // Greed Index (indice santé du parc) basé sur occupation et maintenance
   const greedIndex = Math.max(
     0,

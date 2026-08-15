@@ -168,18 +168,6 @@ function NavItem({ item, isActive, isOpen, onClick }) {
 
 export default function Sidebar({ page, setPage, open, onClose }) {
   const { user, logout, updateProfil } = useAuth();
-<<<<<<< HEAD
-  const [profilOpen, setProfilOpen]   = useState(false);
-  const [avatarOpen, setAvatarOpen]   = useState(false);
-  const [uploading, setUploading]     = useState(false);
-  const profilRef  = useRef(null);
-  const fileRef    = useRef(null);
-  const cameraRef  = useRef(null);
-  
-  useEffect(() => {
-    console.log("user changé →", user?.avatar_type, user?.avatar_url);
-  }, [user]);
-=======
   const [profilOpen, setProfilOpen] = useState(false);
   const [avatarOpen, setAvatarOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -187,7 +175,6 @@ export default function Sidebar({ page, setPage, open, onClose }) {
   const fileRef = useRef(null);
   const cameraRef = useRef(null);
 
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   useEffect(() => {
     const handler = (e) => {
       if (profilRef.current && !profilRef.current.contains(e.target)) {
@@ -213,24 +200,15 @@ export default function Sidebar({ page, setPage, open, onClose }) {
     }
   };
 
- const importerPhoto = async (e) => {
+  const importerPhoto = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
     setUploading(true);
-<<<<<<< HEAD
-    try { 
-      await updateProfil({ file });
-      console.log("Résultat upload → avatar_url:", user?.avatar_url, "| avatar_type:", user?.avatar_type);
-    } finally { 
-      setUploading(false); 
-      setAvatarOpen(false); 
-=======
     try {
       await updateProfil({ file });
     } finally {
       setUploading(false);
       setAvatarOpen(false);
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     }
   };
 
@@ -246,32 +224,32 @@ export default function Sidebar({ page, setPage, open, onClose }) {
     }
   };
 
-const renderAvatar = (size = 32, className = "") => {
-  console.log("renderAvatar →", user?.avatar_type, user?.avatar_url); 
-
-  if (user?.avatar_type === "photo" && user?.avatar_url) {
+  const renderAvatar = (size = 32, className = "") => {
+    if (user?.avatar_type === "photo" && user?.avatar_url) {
+      return (
+        <img
+          src={user.avatar_url}
+          alt="profil"
+          className={`rounded-full object-cover ring-2 ring-white/20 ${className}`}
+          style={{ width: size, height: size }}
+        />
+      );
+    }
+    if (user?.avatar_type === "homme") {
+      return <AvatarHomme size={size} />;
+    }
+    if (user?.avatar_type === "femme") {
+      return <AvatarFemme size={size} />;
+    }
     return (
-      <img
-        key={user.avatar_url} 
-        src={user.avatar_url}
-        alt="profil"
-        className={`rounded-full object-cover ring-2 ring-white/20 ${className}`}
-        style={{ width: size, height: size }}
-        onError={(e) => console.log("Image erreur :", e.target.src)}
-      />
+      <div
+        className={`rounded-full bg-gradient-to-br from-[#C9A84C] to-[#a88a3c] flex items-center justify-center text-white font-black ring-2 ring-white/20 ${className}`}
+        style={{ width: size, height: size, fontSize: size * 0.35 }}
+      >
+        {initiales}
+      </div>
     );
-  }
-  if (user?.avatar_type === "homme") return <AvatarHomme size={size} />;
-  if (user?.avatar_type === "femme") return <AvatarFemme size={size} />;
-  return (
-    <div
-      className={`rounded-full bg-gradient-to-br from-[#C9A84C] to-[#a88a3c] flex items-center justify-center text-white font-black ring-2 ring-white/20 ${className}`}
-      style={{ width: size, height: size, fontSize: size * 0.35 }}
-    >
-      {initiales}
-    </div>
-  );
-};
+  };
 
   return (
     <>

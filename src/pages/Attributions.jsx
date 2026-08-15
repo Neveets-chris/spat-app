@@ -1,13 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useApp } from "../context/AppContext";
-<<<<<<< HEAD
-import {
-  MessageEnvoye,
-  useSuccessMessage
-} from "../components/BoutonsAction";
-=======
 import { MessageEnvoye, useSuccessMessage } from "../components/BoutonsAction";
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 import {
   Home,
   Info,
@@ -26,10 +19,6 @@ import {
   Trash2,
   X,
   MapPin,
-<<<<<<< HEAD
-
-=======
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   PieChart,
   Activity,
   BedDouble,
@@ -43,27 +32,6 @@ import {
   CalendarCheck2,
   CalendarClock,
   Users2,
-<<<<<<< HEAD
-  Bell
-} from "lucide-react";
-
-const FILTRES = ["Tous", "Occupé", "Disponible", "Maintenance", "Demandes"];
-const CAPACITE_TYPES = { "Studio": 3, "F2": 6, "F3": 10, "F4": 15};
-
-// ============================================
-// UTILS DATE — leap-year safe (années bissextiles)
-// ============================================
-function formatDateISO(d) {
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${y}-${m}-${day}`;
-}
-function getTodayISO() {
-  return formatDateISO(new Date());
-}
-
-=======
   Bell,
 } from "lucide-react";
 
@@ -76,7 +44,6 @@ const FILTRES = [
   "Demandes",
 ];
 const CAPACITE_TYPES = { Studio: 3, F2: 6, F3: 10, F4: 15 };
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
 function formatDateISO(d) {
   const y = d.getFullYear();
@@ -237,12 +204,6 @@ function StatCard3D({
               <Icon className="w-6 h-6" />
             </div>
             {trend && (
-<<<<<<< HEAD
-              <div className={`flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full ${trend === 'up'
-                ? (isDark ? 'bg-emerald-100 text-emerald-600' : 'bg-emerald-500 text-white')
-                : (isDark ? 'bg-rose-100 text-rose-600' : 'bg-rose-500 text-white')}`}>
-                {trend === 'up' ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
-=======
               <div
                 className={`flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full ${
                   trend === "up"
@@ -259,7 +220,6 @@ function StatCard3D({
                 ) : (
                   <TrendingDown className="w-3 h-3" />
                 )}
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                 {trendValue}%
               </div>
             )}
@@ -369,11 +329,7 @@ function AttributionCard3D({
   const theme = isDark ? THEMES.dark : THEMES.light;
 
   const statutConfig = {
-<<<<<<< HEAD
-    "Occupé": {
-=======
     Occupé: {
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       bg: theme.cardOccupied,
       icon: isDark
         ? "bg-emerald-500/20 text-emerald-400"
@@ -383,11 +339,7 @@ function AttributionCard3D({
         : "bg-emerald-100 text-emerald-600 border-emerald-300",
       iconType: BedDouble,
     },
-<<<<<<< HEAD
-    "Disponible": {
-=======
     Disponible: {
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       bg: theme.cardAvailable,
       icon: isDark
         ? "bg-blue-500/20 text-blue-400"
@@ -397,11 +349,7 @@ function AttributionCard3D({
         : "bg-blue-100 text-blue-600 border-blue-300",
       iconType: Home,
     },
-<<<<<<< HEAD
-    "Maintenance": {
-=======
     Maintenance: {
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       bg: theme.cardMaintenance,
       icon: isDark
         ? "bg-amber-500/20 text-amber-400"
@@ -438,18 +386,12 @@ function AttributionCard3D({
 
   return (
     <div style={style} className="group relative">
-<<<<<<< HEAD
-      <div className={`absolute inset-0 rounded-2xl transform translate-y-3 blur-lg transition-all duration-300 ${isDark ? 'bg-blue-500/10' : 'bg-blue-400/20'} group-hover:translate-y-4 group-hover:blur-xl`} />
-      <div className={`relative bg-gradient-to-br ${config.bg} backdrop-blur-xl border rounded-2xl p-5 overflow-hidden transform transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-[1.02] ${isDark ? '' : 'shadow-lg'}`}>
-
-=======
       <div
         className={`absolute inset-0 rounded-2xl transform translate-y-3 blur-lg transition-all duration-300 ${isDark ? "bg-blue-500/10" : "bg-blue-400/20"} group-hover:translate-y-4 group-hover:blur-xl`}
       />
       <div
         className={`relative bg-gradient-to-br ${config.bg} backdrop-blur-xl border rounded-2xl p-5 overflow-hidden transform transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-[1.02] ${isDark ? "" : "shadow-lg"}`}
       >
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div
@@ -462,34 +404,22 @@ function AttributionCard3D({
             <button
               onClick={onDetail}
               title="Voir détails"
-<<<<<<< HEAD
-              className={`w-8 h-8 rounded-lg flex items-center justify-center transition ${isDark
-                ? 'bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 hover:text-blue-300'
-                : 'bg-blue-100 hover:bg-blue-200 text-blue-600 hover:text-blue-700'}`}
-=======
               className={`w-8 h-8 rounded-lg flex items-center justify-center transition ${
                 isDark
                   ? "bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 hover:text-blue-300"
                   : "bg-blue-100 hover:bg-blue-200 text-blue-600 hover:text-blue-700"
               }`}
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             >
               <Eye className="w-4 h-4" />
             </button>
             <button
               onClick={onEdit}
               title="Modifier"
-<<<<<<< HEAD
-              className={`w-8 h-8 rounded-lg flex items-center justify-center transition ${isDark
-                ? 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 hover:text-amber-300'
-                : 'bg-amber-100 hover:bg-amber-200 text-amber-600 hover:text-amber-700'}`}
-=======
               className={`w-8 h-8 rounded-lg flex items-center justify-center transition ${
                 isDark
                   ? "bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 hover:text-amber-300"
                   : "bg-amber-100 hover:bg-amber-200 text-amber-600 hover:text-amber-700"
               }`}
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             >
               <Pencil className="w-4 h-4" />
             </button>
@@ -498,17 +428,11 @@ function AttributionCard3D({
               <button
                 onClick={onDelete}
                 title="Supprimer"
-<<<<<<< HEAD
-                className={`w-8 h-8 rounded-lg flex items-center justify-center transition ${isDark
-                  ? 'bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 hover:text-rose-300'
-                  : 'bg-rose-100 hover:bg-rose-200 text-rose-600 hover:text-rose-700'}`}
-=======
                 className={`w-8 h-8 rounded-lg flex items-center justify-center transition ${
                   isDark
                     ? "bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 hover:text-rose-300"
                     : "bg-rose-100 hover:bg-rose-200 text-rose-600 hover:text-rose-700"
                 }`}
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               >
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -619,11 +543,6 @@ function AttributionCard3D({
               )}
             </div>
           </div>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         </div>
 
         <div
@@ -657,15 +576,6 @@ function GraphiqueOccupation({ attributions, isDark }) {
       parMois[key] = { entrants: 0, sortants: 0 };
     }
 
-<<<<<<< HEAD
-    attributions.forEach(a => {
-      const dateDebut = new Date(a.date_debut.split('/').reverse().join('-'));
-      const dateFin = a.date_fin ? new Date(a.date_fin.split('/').reverse().join('-')) : null;
-
-      moisLabels.forEach(mois => {
-        const [monthStr, yearStr] = mois.split(' ');
-        const monthIndex = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'].indexOf(monthStr);
-=======
     attributions.forEach((a) => {
       const dateDebut = new Date(a.date_debut.split("/").reverse().join("-"));
       const dateFin = a.date_fin
@@ -688,7 +598,6 @@ function GraphiqueOccupation({ attributions, isDark }) {
           "nov.",
           "déc.",
         ].indexOf(monthStr);
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         const year = 2000 + parseInt(yearStr);
 
         if (monthIndex !== -1) {
@@ -716,30 +625,21 @@ function GraphiqueOccupation({ attributions, isDark }) {
   const max = Math.max(...data.map((d) => Math.max(d.entrants, d.sortants)), 1);
 
   return (
-<<<<<<< HEAD
-    <div className={`relative rounded-2xl border backdrop-blur-sm p-6 overflow-hidden ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-lg'}`}>
-      <div className={`absolute inset-0 bg-gradient-to-br ${isDark ? 'from-violet-500/5 to-transparent' : 'from-violet-50 to-transparent'} opacity-50`} />
-=======
     <div
       className={`relative rounded-2xl border backdrop-blur-sm p-6 overflow-hidden ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-lg"}`}
     >
       <div
         className={`absolute inset-0 bg-gradient-to-br ${isDark ? "from-violet-500/5 to-transparent" : "from-violet-50 to-transparent"} opacity-50`}
       />
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
       <div className="relative z-10">
         <h3 className={`font-bold mb-1 flex items-center gap-2 ${theme.text}`}>
           <Activity className="w-5 h-5 text-[#C9A84C]" />
           Flux d'occupation
         </h3>
-<<<<<<< HEAD
-        <p className={`text-xs mb-5 ${theme.textSubtle}`}>Entrées et sorties par mois</p>
-=======
         <p className={`text-xs mb-5 ${theme.textSubtle}`}>
           Entrées et sorties par mois
         </p>
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
         <div className="flex items-end gap-2 h-40">
           {data.map((item, i) => (
@@ -748,10 +648,6 @@ function GraphiqueOccupation({ attributions, isDark }) {
               className="flex-1 flex flex-col items-center gap-1"
             >
               <div className="relative w-full flex items-end justify-center gap-1 h-32">
-<<<<<<< HEAD
-                <div className="w-3 rounded-t bg-emerald-500 transition-all duration-1000" style={{ height: `${(item.entrants/max)*100}%` }} />
-                <div className="w-3 rounded-t bg-rose-500 transition-all duration-1000" style={{ height: `${(item.sortants/max)*100}%` }} />
-=======
                 <div
                   className="w-3 rounded-t bg-emerald-500 transition-all duration-1000"
                   style={{ height: `${(item.entrants / max) * 100}%` }}
@@ -760,7 +656,6 @@ function GraphiqueOccupation({ attributions, isDark }) {
                   className="w-3 rounded-t bg-rose-500 transition-all duration-1000"
                   style={{ height: `${(item.sortants / max) * 100}%` }}
                 />
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               </div>
               <span className={`text-xs ${theme.textLight}`}>{item.mois}</span>
             </div>
@@ -800,17 +695,12 @@ function RepartitionDepartements({ attributions, departements, isDark }) {
   const max = Math.max(...data.map(([, count]) => count), 1);
 
   return (
-<<<<<<< HEAD
-    <div className={`relative rounded-2xl border backdrop-blur-sm p-6 overflow-hidden ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-lg'}`}>
-      <div className={`absolute inset-0 bg-gradient-to-br ${isDark ? 'from-blue-500/5 to-transparent' : 'from-blue-50 to-transparent'} opacity-50`} />
-=======
     <div
       className={`relative rounded-2xl border backdrop-blur-sm p-6 overflow-hidden ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-lg"}`}
     >
       <div
         className={`absolute inset-0 bg-gradient-to-br ${isDark ? "from-blue-500/5 to-transparent" : "from-blue-50 to-transparent"} opacity-50`}
       />
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
       <div className="relative z-10">
         <h3 className={`font-bold mb-4 flex items-center gap-2 ${theme.text}`}>
@@ -883,13 +773,6 @@ function ModalDetail3D({ attribution, onClose, isDark }) {
   };
 
   return (
-<<<<<<< HEAD
-    <div className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm p-4 animate-in fade-in duration-200 ${isDark ? 'bg-black/60' : 'bg-gray-900/40'}`}>
-      <div className={`rounded-3xl shadow-2xl w-full max-w-md border overflow-hidden animate-in zoom-in-95 duration-300 ${isDark ? 'bg-gradient-to-br from-gray-900 to-gray-800 border-white/10' : 'bg-white border-gray-200'}`}>
-
-        <div className={`relative px-6 py-6 border-b ${isDark ? 'bg-gradient-to-r from-emerald-600/20 to-emerald-500/10 border-white/10' : 'bg-gradient-to-r from-emerald-100 to-emerald-50 border-emerald-200'}`}>
-          <div className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl ${isDark ? 'bg-white/5' : 'bg-emerald-200/50'}`} />
-=======
     <div
       className={`fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in duration-200 ${isDark ? "bg-black/60" : "bg-gray-900/40"}`}
     >
@@ -902,7 +785,6 @@ function ModalDetail3D({ attribution, onClose, isDark }) {
           <div
             className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl ${isDark ? "bg-white/5" : "bg-emerald-200/50"}`}
           />
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           <div className="relative flex items-start justify-between">
             <div>
               <p className={`font-mono text-xs mb-1 ${theme.textLight}`}>
@@ -990,24 +872,7 @@ function ModalDetail3D({ attribution, onClose, isDark }) {
     </div>
   );
 }
-// ============================================
-// MODAL FORMULAIRE 3D — MODIFIÉ
-// ============================================
-function ModalForm3D({ attribution, logements, departements, onClose, onSave, isDark, alerteBesoin = null }) {
-  // ── MODIFICATION : déterminer vraiment le mode édition ──
-  const isEdition = !!attribution?.id;
 
-<<<<<<< HEAD
-  // Déterminer le type de logement requis (depuis l'alerte ou manuel)
-  const typeRequis = alerteBesoin?.typeLogementRequis || attribution?._typeLogementRequis;
-
-
-
-  // CONSTRUIRE la liste des services avec besoin depuis les VRAIS départements
-  const servicesAvecBesoin = [];
-
-  (departements || []).forEach(dep => {
-=======
 function ModalForm3D({
   attribution,
   logements,
@@ -1027,26 +892,17 @@ function ModalForm3D({
   const servicesAvecBesoin = [];
 
   (departements || []).forEach((dep) => {
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     if (!dep) return;
 
     const deptNom = dep.nom || dep.name || "";
     const deptCode = dep.code || dep.id || "";
 
-<<<<<<< HEAD
-    (dep.services || []).forEach(srv => {
-      if (!srv) return;
-
-      const aBesoin = srv.besoinLogementExprime === true;
-      const estLoge = srv.logementAttribue != null && srv.logementAttribue !== "";
-=======
     (dep.services || []).forEach((srv) => {
       if (!srv) return;
 
       const aBesoin = srv.besoinLogementExprime === true;
       const estLoge =
         srv.logementAttribue != null && srv.logementAttribue !== "";
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
       if (aBesoin && !estLoge) {
         servicesAvecBesoin.push({
@@ -1055,28 +911,14 @@ function ModalForm3D({
           departementNom: deptNom,
           departementCode: deptCode,
           typeLogement: srv.typeLogementDemande || "F2",
-<<<<<<< HEAD
-          employesActifs: (srv.employes || []).filter(e => e && !e.desactive).map(e => `${e.prenom || ""} ${e.nom || ""}`.trim())
-=======
           employesActifs: (srv.employes || [])
             .filter((e) => e && !e.desactive)
             .map((e) => `${e.prenom || ""} ${e.nom || ""}`.trim()),
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         });
       }
     });
   });
 
-<<<<<<< HEAD
-  const {attributions} = useApp();
-
-  // Calcul des places restantes pour chaque logement
-  const getPlacesRestantes = (logement) => {
-    const capaciteMax =  CAPACITE_TYPES[logement.type] || 1;
-    const occupantsActuels = attributions.filter(a =>
-      a.logement === logement.id && a.statut === "Occupé"
-    ).reduce((sum, a) => sum + (a.occupants?.length || 0), 0);
-=======
   const { attributions } = useApp();
 
   // Calcul des places restantes pour chaque logement
@@ -1085,51 +927,18 @@ function ModalForm3D({
     const occupantsActuels = attributions
       .filter((a) => a.logement === logement.id && a.statut === "Occupé")
       .reduce((sum, a) => sum + (a.occupants?.length || 0), 0);
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     return Math.max(0, capaciteMax - occupantsActuels);
   };
 
   // ── MODIFICATION : logements disponibles conformes au type requis ──
-<<<<<<< HEAD
-  const logementsDisponibles = logements.filter(l => {
-    if (l.statut !== "Disponible") return false;
-    if (!typeRequis) return true;
-    return ( CAPACITE_TYPES[l.type] || 0) >= ( CAPACITE_TYPES[typeRequis] || 0);
-=======
   const logementsDisponibles = logements.filter((l) => {
     if (l.statut !== "Disponible") return false;
     if (!typeRequis) return true;
     return (CAPACITE_TYPES[l.type] || 0) >= (CAPACITE_TYPES[typeRequis] || 0);
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   });
 
   // En mode édition, inclure aussi le logement actuel
   const logementsSelectionnables = isEdition
-<<<<<<< HEAD
-    ? logements.filter(l => l.statut === "Disponible" || l.id === attribution.logement)
-    : logementsDisponibles;
-
-  // Date début auto-remplie avec aujourd'hui
-  const today = new Date().toISOString().split('T')[0];
-
-  // ── État initial : SI alerteBesoin ou création pré-remplie ──
-  const [form, setForm] = useState(() => {
-    const initial = isEdition ? attribution : {
-      departement: "",
-      logement: "",
-      date_debut: today,
-      date_fin: "",
-      statut: "Occupé",
-      occupants: [],
-      observations: "",
-    };
-
-    // SI on vient d'une alerte ou d'une création pré-remplie, pré-remplir
-    if (alerteBesoin) {
-      const serviceMatch = servicesAvecBesoin.find(s =>
-        s.departementNom === alerteBesoin.departement &&
-        s.nom === alerteBesoin.service
-=======
     ? logements.filter(
         (l) => l.statut === "Disponible" || l.id === attribution.logement,
       )
@@ -1157,7 +966,6 @@ function ModalForm3D({
         (s) =>
           s.departementNom === alerteBesoin.departement &&
           s.nom === alerteBesoin.service,
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       );
 
       if (serviceMatch) {
@@ -1166,20 +974,12 @@ function ModalForm3D({
           departement: `${serviceMatch.departementNom} — ${serviceMatch.nom}`,
           _serviceId: serviceMatch.id,
           _alerteId: alerteBesoin.id,
-<<<<<<< HEAD
-          occupants: alerteBesoin.employesActifs || []
-=======
           occupants: alerteBesoin.employesActifs || [],
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         };
       }
     }
 
-<<<<<<< HEAD
-    // Création pré-remplie sans alerte (depuis le clic alerte de la page)
-=======
     // Création pré-remplie sans alerte
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
     if (!isEdition && attribution?._serviceId) {
       return {
         ...initial,
@@ -1197,13 +997,6 @@ function ModalForm3D({
   const [error, setError] = useState("");
   const [dateDebutError, setDateDebutError] = useState("");
   const [dateFinError, setDateFinError] = useState("");
-<<<<<<< HEAD
-  const theme = isDark ? THEMES.dark : THEMES.light;
-
-  // Info bissextile pour l'année de la date de début
-  const debutYear = form.date_debut ? parseInt((form.date_debut.split("-")[0] || "0"), 10) : new Date().getFullYear();
-  const bisextile = ((debutYear % 4 === 0) && (debutYear % 100 !== 0)) || (debutYear % 400 === 0);
-=======
 
   const theme = isDark ? THEMES.dark : THEMES.light;
 
@@ -1213,26 +1006,11 @@ function ModalForm3D({
     : new Date().getFullYear();
   const bisextile =
     (debutYear % 4 === 0 && debutYear % 100 !== 0) || debutYear % 400 === 0;
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
   // Handler commun pour les champs date
   const handleDateChange = (field, value, setFieldError) => {
     const err = validateDateISO(value);
     setFieldError(err);
-<<<<<<< HEAD
-    setForm(prev => ({ ...prev, [field]: value }));
-  };
-
-  // ── MODIFICATION : vérifier conformité du logement sélectionné ──
-// APRÈS :
-// APRÈS :
-const isLogementConforme = useMemo(() => {
-  if (!typeRequis || !form.logement) return true;
-  const log = logementsSelectionnables.find(l => l.id === form.logement);
-  if (!log) return false;
-  return (CAPACITE_TYPES[log.type] || 0) >= (CAPACITE_TYPES[typeRequis] || 0);
-}, [form.logement, typeRequis, logementsSelectionnables]);
-=======
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -1244,16 +1022,11 @@ const isLogementConforme = useMemo(() => {
     if (!log) return false;
     return (CAPACITE_TYPES[log.type] || 0) >= (CAPACITE_TYPES[typeRequis] || 0);
   }, [form.logement, typeRequis, logementsSelectionnables]);
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
   const conformiteError = useMemo(() => {
     if (!typeRequis || !form.logement) return "";
     if (!isLogementConforme) {
-<<<<<<< HEAD
-      const log = logementsSelectionnables.find(l => l.id === form.logement);
-=======
       const log = logementsSelectionnables.find((l) => l.id === form.logement);
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       return `Logement non conforme : ${log?.type || "Inconnu"} ne satisfait pas la demande ${typeRequis}`;
     }
     return "";
@@ -1269,11 +1042,6 @@ const isLogementConforme = useMemo(() => {
     const day = parseInt(match[3], 10);
     if (year < 1900 || year > 2200) return `Année invalide (${year})`;
     if (month < 1 || month > 12) return `Mois invalide (${month})`;
-<<<<<<< HEAD
-    const maxDays = [31, bisextile ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    if (day < 1 || day > maxDays[month - 1]) {
-      if (month === 2 && day === 29 && !bisextile) return `${year} n'est pas bissextile`;
-=======
     const maxDays = [
       31,
       bisextile ? 29 : 28,
@@ -1291,19 +1059,12 @@ const isLogementConforme = useMemo(() => {
     if (day < 1 || day > maxDays[month - 1]) {
       if (month === 2 && day === 29 && !bisextile)
         return `${year} n'est pas bissextile`;
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       return `Jour invalide pour ce mois`;
     }
     return "";
   };
 
   return (
-<<<<<<< HEAD
-    <div className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md p-4 animate-in fade-in duration-200 ${isDark ? 'bg-black/60' : 'bg-gray-900/40'}`}>
-      <div className={`rounded-3xl shadow-2xl w-full max-w-2xl border overflow-hidden animate-in zoom-in-95 duration-300 max-h-[92vh] flex flex-col ${isDark ? 'bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950 border-white/10' : 'bg-white border-gray-200'}`}>
-
-        {/* ======== Gradient Header ======== */}
-=======
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md p-4 animate-in fade-in duration-200 ${isDark ? "bg-black/60" : "bg-gray-900/40"}`}
     >
@@ -1311,7 +1072,6 @@ const isLogementConforme = useMemo(() => {
         className={`rounded-3xl shadow-2xl w-full max-w-2xl border overflow-hidden animate-in zoom-in-95 duration-300 max-h-[92vh] flex flex-col ${isDark ? "bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950 border-white/10" : "bg-white border-gray-200"}`}
       >
         
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <div className="relative px-8 py-6 bg-gradient-to-r from-[#0F2D56] via-indigo-700 to-[#C9A84C] overflow-hidden">
           <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-white/10 blur-3xl" />
           <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-amber-400/20 blur-3xl" />
@@ -1325,13 +1085,9 @@ const isLogementConforme = useMemo(() => {
                   {isEdition ? "Modification" : "Création"}
                 </p>
                 <h2 className="text-2xl font-black text-white drop-shadow">
-<<<<<<< HEAD
-                  {isEdition ? "Modifier l'attribution" : "Nouvelle Attribution"}
-=======
                   {isEdition
                     ? "Modifier l'attribution"
                     : "Nouvelle Attribution"}
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                 </h2>
               </div>
             </div>
@@ -1342,438 +1098,6 @@ const isLogementConforme = useMemo(() => {
               <X className="w-5 h-5" />
             </button>
           </div>
-<<<<<<< HEAD
-        </div>
-
-        {/* ======== Body ======== */}
-        <div className="p-6 overflow-y-auto space-y-5">
-
-          {/* Section: Localisation */}
-          <section className={`rounded-2xl border p-5 space-y-4 ${isDark ? 'border-white/10 bg-white/5' : 'border-gray-200 bg-gray-50'}`}>
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#C9A84C]">
-              <Building2 className="w-4 h-4" />
-              Localisation
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-              <div>
-                <label className={`text-xs font-semibold flex items-center gap-1.5 mb-1.5 ${theme.textMuted}`}>
-                  <Users2 className="w-3.5 h-3.5" />
-                  {isEdition ? "Service concerné" : "Service demandeur *"}
-                </label>
-
-                {!isEdition ? (
-                  // MODE CRÉATION : menu déroulant normal
-                  <select
-                    value={form.departement}
-                    onChange={e => {
-                      const valeur = e.target.value;
-                      const svcTrouve = servicesAvecBesoin.find(
-                        s => `${s.departementNom} — ${s.nom}` === valeur
-                      );
-                      setForm({
-                        ...form,
-                        departement: valeur,
-                        _serviceId: svcTrouve?.id || null,
-                      });
-                    }}
-                    className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all appearance-none ${isDark ? "bg-gray-800/80 border-white/10 text-white" : "bg-white border-gray-200 text-gray-900"}`}
-                  >
-                    <option value="" className={isDark ? "bg-gray-900" : "bg-white"}>
-                      -- Choisir un service --
-                    </option>
-                    {servicesAvecBesoin.map(svc => (
-                      <option
-                        key={svc.id}
-                        value={`${svc.departementNom} — ${svc.nom}`}
-                        className={isDark ? "bg-gray-900" : "bg-white"}
-                      >
-                        {svc.departementNom} — {svc.nom} ({svc.typeLogement})
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  // MODE ÉDITION : affichage texte désactivé
-                  <div className={`w-full px-4 py-3 rounded-xl border ${isDark ? "bg-gray-800/50 border-white/10 text-white/70" : "bg-gray-100 border-gray-200 text-gray-600"} flex items-center gap-2`}>
-                    <Building2 className="w-4 h-4 opacity-50" />
-                    <span className="font-semibold">{form.departement || "Non défini"}</span>
-                  </div>
-                )}
-
-                {/* Message si aucun service en mode création */}
-                {!isEdition && servicesAvecBesoin.length === 0 && (
-                  <div className={`mt-2 p-3 rounded-xl border ${isDark ? 'bg-amber-500/10 border-amber-500/20' : 'bg-amber-50 border-amber-200'}`}>
-                    <p className={`text-xs font-semibold ${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
-                      <AlertTriangle className="w-3 h-3 inline mr-1" />
-                      Aucun service n'a exprimé de besoin de logement
-                    </p>
-                  </div>
-                )}
-
-                {/* Info employés en mode création */}
-                {!isEdition && form.departement && (() => {
-                  const svcTrouve = servicesAvecBesoin.find(
-                    s => `${s.departementNom} — ${s.nom}` === form.departement
-                  );
-                  if (!svcTrouve) return null;
-                  const nbActifs = svcTrouve.employesActifs?.length || 0;
-                  return (
-                    <div className={`mt-3 p-3 rounded-xl border ${isDark ? 'bg-blue-500/10 border-blue-500/20' : 'bg-blue-50 border-blue-200'}`}>
-                      <p className={`text-sm font-semibold ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>
-                        <Users2 className="w-4 h-4 inline mr-1" />
-                        {nbActifs} employé{nbActifs > 1 ? 's' : ''} actif{nbActifs > 1 ? 's' : ''}
-                      </p>
-                    </div>
-                  );
-                })()}
-              </div>
-
-              {/* Logement */}
-              <div>
-                <label className={`text-xs font-semibold flex items-center gap-1.5 mb-1.5 ${theme.textMuted}`}>
-                  <Home className="w-3.5 h-3.5" />
-                  {isEdition ? "Logement concerné" : "Logement"}
-                </label>
-
-                {!isEdition ? (
-                  // MODE CRÉATION : menu déroulant normal
-                  <select
-                    value={form.logement}
-                    onChange={e => {
-                      setForm({ ...form, logement: e.target.value });
-                      setError("");
-                    }}
-                    className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all appearance-none ${isDark ? "bg-gray-800/80 border-white/10 text-white" : "bg-white border-gray-200 text-gray-900"}`}
-                  >
-                    <option value="" className={isDark ? "bg-gray-900" : "bg-white"}>-- Choisir un logement --</option>
-                    {logementsSelectionnables.map(l => {
-                      const places = getPlacesRestantes(l);
-                      const placesText = places > 0 ? `(${places} place${places > 1 ? 's' : ''} libre${places > 1 ? 's' : ''})` : '(COMPLET)';
-                      return (
-                        <option key={l.id} value={l.id} disabled={places === 0} className={isDark ? "bg-gray-900" : "bg-white"}>
-                          {l.id} — {l.type} {placesText}
-                        </option>
-                      );
-                    })}
-                  </select>
-                ) : (
-                  // MODE ÉDITION : affichage texte désactivé
-                  <div className={`w-full px-4 py-3 rounded-xl border ${isDark ? "bg-gray-800/50 border-white/10 text-white/70" : "bg-gray-100 border-gray-200 text-gray-600"} flex items-center gap-2`}>
-                    <Home className="w-4 h-4 opacity-50" />
-                    <span className="font-semibold">
-                      {(() => {
-                        const log = logements.find(l => l.id === form.logement);
-                        return log ? `${log.id} — ${log.type}` : (form.logement || "Non défini");
-                      })()}
-                    </span>
-                  </div>
-                )}
-
-                {/* Message si aucun logement conforme en mode création */}
-                {!isEdition && logementsSelectionnables.length === 0 && (
-                  <div className={`mt-2 p-3 rounded-xl flex items-center gap-2 ${isDark ? "bg-rose-500/15 text-rose-300 border border-rose-500/30" : "bg-rose-100 text-rose-700 border border-rose-300"}`}>
-                    <AlertTriangle className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-xs font-semibold">Aucun logement disponible conforme au besoin {typeRequis ? `(${typeRequis} requis)` : ""}</span>
-                  </div>
-                )}
-
-                {/* ── MODIFICATION : message si logement non conforme ── */}
-                {!isEdition && conformiteError && (
-                  <div className={`mt-2 p-3 rounded-xl flex items-center gap-2 ${isDark ? "bg-rose-500/15 text-rose-300 border border-rose-500/30" : "bg-rose-100 text-rose-700 border border-rose-300"}`}>
-                    <AlertTriangle className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-xs font-semibold">{conformiteError}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </section>
-
-          {/* Section: Période */}
-          <section className={`rounded-2xl border p-5 space-y-4 ${isDark ? 'border-emerald-400/20 bg-gradient-to-br from-emerald-500/10 to-transparent' : 'border-emerald-300 bg-gradient-to-br from-emerald-50 to-white'}`}>
-            <div className="flex items-center justify-between">
-              <div className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest ${isDark ? 'text-emerald-300' : 'text-emerald-700'}`}>
-                <CalendarClock className="w-4 h-4" />
-                Période d'attribution
-              </div>
-              {!isEdition && (  // CACHÉ EN MODE ÉDITION
-                <button
-                  type="button"
-                  onClick={() => setForm({ ...form, date_debut: today })}
-                  className={`text-[10px] font-semibold px-2.5 py-1 rounded-full transition flex items-center gap-1 ${isDark ? 'bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30' : 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200'}`}
-                >
-                  <CalendarCheck2 className="w-3 h-3" /> Aujourd'hui
-                </button>
-              )}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className={`text-xs font-semibold flex items-center gap-1.5 mb-1.5 ${theme.textMuted}`}>
-                  <Calendar className="w-3.5 h-3.5" /> Date de début
-                  <span className={`ml-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${isDark ? 'bg-emerald-500/20 text-emerald-300' : 'bg-emerald-100 text-emerald-700'}`}>
-                    Auto
-                  </span>
-                </label>
-                <input
-                  type="date"
-                  value={form.date_debut}
-                  min="1900-01-01"
-                  max="2200-12-31"
-                  onChange={e => {
-                    if (isEdition) return; // BLOQUÉ EN MODE ÉDITION
-                    handleDateChange("date_debut", e.target.value, setDateDebutError);
-                  }}
-                  onBlur={e => {
-                    if (isEdition) return;
-                    setDateDebutError(validateDateISO(e.target.value));
-                  }}
-                  disabled={isEdition}  // DÉSACTIVÉ SI ÉDITION
-                  className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition ${theme.input} ${theme.text} ${isDark ? '[color-scheme:dark]' : ''} ${dateDebutError ? 'border-rose-500 focus:border-rose-500 focus:ring-rose-500/30' : 'focus:border-[#C9A84C] focus:ring-[#C9A84C]/30'} ${isEdition ? "opacity-50 cursor-not-allowed" : ""}`}
-                />
-                {dateDebutError ? (
-                  <p className={`mt-1.5 text-[11px] font-semibold flex items-center gap-1 ${isDark ? 'text-rose-300' : 'text-rose-600'}`}>
-                    <AlertTriangle className="w-3 h-3 flex-shrink-0" />
-                    {dateDebutError}
-                  </p>
-                ) : (
-                  <p className={`mt-1.5 text-[10px] flex items-center gap-1 ${theme.textSubtle}`}>
-                    <CheckCircle2 className={`w-3 h-3 ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`} />
-                    Remplie automatiquement avec la date du jour.
-                    {bisextile && (
-                      <span className={`font-semibold ${isDark ? 'text-amber-300' : 'text-amber-700'}`}>
-                        · {debutYear} est bissextile
-                      </span>
-                    )}
-                  </p>
-                )}
-              </div>
-              <div>
-                <label className={`text-xs font-semibold flex items-center gap-1.5 mb-1.5 ${theme.textMuted}`}>
-                  <Calendar className="w-3.5 h-3.5" /> Date de fin
-                </label>
-                <input
-                  type="date"
-                  value={form.date_fin || ""}
-                  min={form.date_debut || "1900-01-01"}
-                  max="2200-12-31"
-                  onChange={e => handleDateChange("date_fin", e.target.value, setDateFinError)}
-                  onBlur={e => setDateFinError(validateDateISO(e.target.value))}
-                  className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition ${theme.input} ${theme.text} ${isDark ? '[color-scheme:dark]' : ''} ${dateFinError ? 'border-rose-500 focus:border-rose-500 focus:ring-rose-500/30' : 'focus:border-[#C9A84C] focus:ring-[#C9A84C]/30'}`}
-                />
-                {dateFinError ? (
-                  <p className={`mt-1.5 text-[11px] font-semibold flex items-center gap-1 ${isDark ? 'text-rose-300' : 'text-rose-600'}`}>
-                    <AlertTriangle className="w-3 h-3 flex-shrink-0" />
-                    {dateFinError}
-                  </p>
-                ) : (
-                  <p className={`mt-1.5 text-[10px] ${theme.textLight}`}>Optionnel — laissez vide si indéterminée.</p>
-                )}
-              </div>
-            </div>
-          </section>
-
-          {/* Section: Statut + Écriteau capacité */}
-          <section className={`rounded-2xl border p-5 space-y-3 ${isDark ? 'border-white/10 bg-white/5' : 'border-gray-200 bg-gray-50'}`}>
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#C9A84C]">
-              <Activity className="w-4 h-4" />
-              Statut
-            </div>
-
-            {/* STATUT — Création vs Édition */}
-            {!isEdition ? (
-              <div className="space-y-3">
-                <div className={`p-3 rounded-xl flex items-center gap-2 ${isDark ? "bg-blue-500/10 border border-blue-500/20" : "bg-blue-50 border border-blue-200"}`}>
-                  <CheckCircle2 className={`w-4 h-4 ${isDark ? "text-blue-400" : "text-blue-600"}`} />
-                  <span className={`text-sm font-semibold ${isDark ? "text-blue-300" : "text-blue-700"}`}>
-                    Attribution verrouillée — Le statut sera "Occupé" dès la création
-                  </span>
-                </div>
-
-                {/* ÉCRITEAU CAPACITÉ */}
-                {form.logement && form.departement && (() => {
-                  const log = logementsSelectionnables.find(l => l.id === form.logement);
-                  if (!log) return null;
-
-                  const svcTrouve = servicesAvecBesoin.find(
-                    s => `${s.departementNom} — ${s.nom}` === form.departement
-                  );
-                  const nbFutursOccupants = svcTrouve?.employesActifs?.length || 0;
-                  const capaciteMax =  CAPACITE_TYPES[log.type] || 1;
-
-                  if (nbFutursOccupants > capaciteMax) {
-                    return (
-                      <div className={`p-3 rounded-xl border ${isDark ? 'bg-rose-500/10 border-rose-500/20' : 'bg-rose-50 border-rose-200'}`}>
-                        <p className={`text-sm font-bold flex items-center gap-2 ${isDark ? 'text-rose-400' : 'text-rose-600'}`}>
-                          <AlertTriangle className="w-4 h-4" />
-                          ⚠️ Capacité insuffisante : {nbFutursOccupants} employés pour {capaciteMax} places max
-                        </p>
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <div className={`p-3 rounded-xl border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-emerald-50 border-emerald-200'}`}>
-                      <p className={`text-sm font-semibold ${isDark ? 'text-emerald-300' : 'text-emerald-700'}`}>
-                        <Home className="w-4 h-4 inline mr-1" />
-                        {nbFutursOccupants} futur{nbFutursOccupants > 1 ? 's' : ''} occupant{nbFutursOccupants > 1 ? 's' : ''} / {capaciteMax} places max
-                      </p>
-                    </div>
-                  );
-                })()}
-              </div>
-            ) : (
-              // MODE ÉDITION : Tout est verrouillé sauf date_fin
-              <div className="space-y-3">
-                <div className={`p-3 rounded-xl flex items-center gap-2 ${isDark ? "bg-amber-500/10 border border-amber-500/20" : "bg-amber-50 border border-amber-200"}`}>
-                  <AlertTriangle className={`w-4 h-4 ${isDark ? "text-amber-400" : "text-amber-600"}`} />
-                  <span className={`text-sm font-semibold ${isDark ? "text-amber-300" : "text-amber-700"}`}>
-                    Attribution verrouillée — Seule la date de fin peut être modifiée
-                  </span>
-                </div>
-
-                {/* Info blocage */}
-                <div className={`p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-gray-100 border-gray-200'}`}>
-                  <p className={`text-xs ${theme.textLight}`}>
-                    <Info className="w-3 h-3 inline mr-1" />
-                    Les champs Service, Logement, Statut et Occupants sont verrouillés car l'attribution est en cours.
-                  </p>
-                </div>
-              </div>
-            )}
-          </section>
-
-          {/* Section: Occupants */}
-          {!isEdition && (  // CACHÉE EN MODE ÉDITION
-            <section className={`rounded-2xl border p-5 space-y-3 ${isDark ? 'border-white/10 bg-white/5' : 'border-gray-200 bg-gray-50'}`}>
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#C9A84C]">
-                <UserPlus className="w-4 h-4" />
-                Occupants
-              </div>
-              {form.occupants && form.occupants.length > 0 ? (
-                <div className="flex flex-wrap gap-2">
-                  {form.occupants.map((o, i) => (
-                    <span key={i} className={`px-3 py-1.5 rounded-lg text-xs font-medium ${isDark ? 'bg-emerald-500/20 text-emerald-400' : 'bg-emerald-100 text-emerald-700'}`}>
-                      {o}
-                    </span>
-                  ))}
-                </div>
-              ) : (
-                <div className={`p-3 rounded-xl border ${isDark ? 'bg-blue-500/10 border-blue-500/20' : 'bg-blue-50 border-blue-200'}`}>
-                  <p className={`text-sm ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>
-                    <Info className="w-4 h-4 inline mr-1" />
-                    Les employés seront synchronisés depuis le module Employés.
-                  </p>
-                </div>
-              )}
-            </section>
-          )}
-
-          {/* EN MODE ÉDITION : Affichage simple des occupants (lecture seule) */}
-          {isEdition && (
-            <section className={`rounded-2xl border p-5 space-y-3 ${isDark ? 'border-white/10 bg-white/5' : 'border-gray-200 bg-gray-50'}`}>
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#C9A84C]">
-                <Users className="w-4 h-4" />
-                Occupants actuels
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {form.occupants && form.occupants.length > 0 ? (
-                  form.occupants.map((o, i) => (
-                    <span key={i} className={`px-3 py-1.5 rounded-lg text-xs font-medium ${isDark ? 'bg-emerald-500/20 text-emerald-400' : 'bg-emerald-100 text-emerald-700'}`}>
-                      {o}
-                    </span>
-                  ))
-                ) : (
-                  <span className={`text-xs ${theme.textLight}`}>Aucun occupant</span>
-                )}
-              </div>
-            </section>
-          )}
-
-          {/* Section: Observations */}
-          <section className={`rounded-2xl border p-5 space-y-3 ${isDark ? 'border-white/10 bg-white/5' : 'border-gray-200 bg-gray-50'}`}>
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#C9A84C]">
-              <FileText className="w-4 h-4" />
-              Observations
-            </div>
-            <textarea
-              value={form.observations || ""}
-              onChange={e => {
-                if (isEdition) return; // BLOQUÉ EN MODE ÉDITION
-                setForm({ ...form, observations: e.target.value });
-              }}
-              readOnly={isEdition}  // LECTURE SEULE SI ÉDITION
-              placeholder="Observations éventuelles..."
-              rows={3}
-              className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition resize-none ${theme.input} ${theme.text} ${isDark ? '[color-scheme:dark]' : ''} ${isEdition ? "opacity-50 cursor-not-allowed" : ""}`}
-            />
-          </section>
-
-          {error && (
-            <div className={`p-3 rounded-xl flex items-center gap-2 ${isDark ? "bg-rose-500/15 text-rose-300 border border-rose-500/30" : "bg-rose-100 text-rose-700 border border-rose-300"}`}>
-              <AlertTriangle className="w-4 h-4 flex-shrink-0" />
-              <span className="text-sm font-semibold">{error}</span>
-            </div>
-          )}
-        </div>
-
-        {/* ======== Footer ======== */}
-        <div className={`px-6 py-4 border-t flex gap-3 ${isDark ? 'border-white/10 bg-black/30' : 'border-gray-200 bg-gray-50'}`}>
-          <button onClick={onClose} className={`flex-1 py-3 rounded-xl transition font-semibold ${theme.buttonSecondary}`}>Annuler</button>
-          <button
-            onClick={() => {
-              if (!isEdition) {
-                // Mode création : validation complète
-                if (!form.departement) { setError("Veuillez sélectionner un service"); return; }
-                if (!form.logement) { setError("Veuillez sélectionner un logement"); return; }
-                if (!form.date_debut) { setError("Veuillez renseigner la date de début"); return; }
-                const errDebut = validateDateISO(form.date_debut);
-                if (errDebut) { setDateDebutError(errDebut); setError(errDebut); return; }
-              }
-
-              // Mode édition : validation date_fin uniquement
-              const errFin = validateDateISO(form.date_fin);
-              if (errFin) { setDateFinError(errFin); setError(errFin); return; }
-
-              if (form.date_fin && form.date_fin < form.date_debut) {
-                setError("La date de fin doit être postérieure à la date de début");
-                return;
-              }
-
-              if (!isEdition) {
-                const log = logementsSelectionnables.find(l => l.id === form.logement);
-                if (log) {
-                  const places = getPlacesRestantes(log);
-                  if (places === 0) {
-                    setError("Ce logement est plein");
-                    return;
-                  }
-                }
-                // ── MODIFICATION : bloquer si logement non conforme ──
-                if (!isLogementConforme) {
-                  setError(conformiteError || "Le logement sélectionné ne satisfait pas la demande du service");
-                  return;
-                }
-              }
-
-              setError("");
-              onSave(form);
-              onClose();
-            }}
-            // ── MODIFICATION : désactiver si logement non conforme ──
-            disabled={!isEdition && (
-              servicesAvecBesoin.length === 0 ||
-              !!dateDebutError ||
-              !!dateFinError ||
-              !isLogementConforme
-            )}
-            className={`flex-1 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2 ${
-              (!isEdition && (servicesAvecBesoin.length === 0 || !!dateDebutError || !!dateFinError || !isLogementConforme))
-                ? "bg-gray-400 text-white cursor-not-allowed opacity-60"
-                : "bg-gradient-to-r from-[#C9A84C] via-amber-500 to-amber-600 text-white hover:shadow-lg hover:shadow-amber-500/40"
-            }`}
-          >
-=======
         </div>
         <div className="p-6 overflow-y-auto space-y-5">
           {/* Section: Localisation */}
@@ -2380,7 +1704,6 @@ const isLogementConforme = useMemo(() => {
                 : "bg-gradient-to-r from-[#C9A84C] via-amber-500 to-amber-600 text-white hover:shadow-lg hover:shadow-amber-500/40"
             }`}
           >
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <CheckCircle2 className="w-5 h-5" />
             {isEdition ? "Enregistrer la date de fin" : "Créer l'attribution"}
           </button>
@@ -2389,13 +1712,7 @@ const isLogementConforme = useMemo(() => {
     </div>
   );
 }
-<<<<<<< HEAD
-// ============================================
-// MODAL FIN 3D
-// ============================================
-=======
 
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 function ModalFin3D({ attribution, onClose, onConfirm, isDark }) {
   if (!attribution) return null;
   const theme = isDark ? THEMES.dark : THEMES.light;
@@ -2433,11 +1750,6 @@ function ModalFin3D({ attribution, onClose, onConfirm, isDark }) {
           </p>
         </div>
         <div className="flex gap-3">
-<<<<<<< HEAD
-          <button onClick={onClose} className={`flex-1 py-3 rounded-xl transition ${theme.buttonSecondary}`}>Annuler</button>
-          <button
-            onClick={() => { onConfirm(attribution.id); onClose(); }}
-=======
           <button
             onClick={onClose}
             className={`flex-1 py-3 rounded-xl transition ${theme.buttonSecondary}`}
@@ -2449,7 +1761,6 @@ function ModalFin3D({ attribution, onClose, onConfirm, isDark }) {
               onConfirm(attribution.id);
               onClose();
             }}
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-amber-500/25 transition"
           >
             Confirmer
@@ -2472,11 +1783,7 @@ export default function Attributions() {
     terminerAttribution,
     supprimerAttribution,
     alertesBesoins,
-<<<<<<< HEAD
-
-=======
     resoudreAlerte,
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
   } = useApp();
 
   const [filtre, setFiltre] = useState("Tous");
@@ -2486,10 +1793,7 @@ export default function Attributions() {
   const [isAdding, setIsAdding] = useState(false);
   const [finData, setFinData] = useState(null);
   const [viewMode, setViewMode] = useState("grid");
-<<<<<<< HEAD
-=======
   const [menuMobileOuvert, setMenuMobileOuvert] = useState(false);
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
 
   const alertesRef = useRef(null);
 
@@ -2512,29 +1816,6 @@ export default function Attributions() {
     );
     const tauxOccupation = total > 0 ? Math.round((occupes / total) * 100) : 0;
 
-<<<<<<< HEAD
-    return { total, occupes, disponibles, maintenance, totalOccupants, tauxOccupation };
-  }, [attributions]);
-
-  const nbAlertesEnAttente = useMemo(() => {
-    return alertesBesoins.filter(a => a.statut === "En attente").length;
-  }, [alertesBesoins]);
-
-  const filtered = useMemo(() => {
-    return attributions.filter(a =>
-      (filtre === "Tous" || a.statut === filtre || (filtre === "Demandes" && a._alerteId)) &&
-      (a.departement.toLowerCase().includes(search.toLowerCase()) ||
-       a.logement.toLowerCase().includes(search.toLowerCase()) ||
-       a.id.toLowerCase().includes(search.toLowerCase()))
-    );
-  }, [attributions, filtre, search]);
-
-  const handleSave = (form) => {
-    const isEdition = formData && formData.id;
-
-    if (isEdition) {
-      const existante = attributions.find(a => a.id === formData.id);
-=======
     return {
       total,
       occupes,
@@ -2566,7 +1847,6 @@ export default function Attributions() {
 
     if (isEdition) {
       const existante = attributions.find((a) => a.id === formData.id);
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       if (existante?._verrouille) {
         modifierAttribution({
           ...existante,
@@ -2578,9 +1858,6 @@ export default function Attributions() {
         triggerSuccess();
       }
     } else {
-<<<<<<< HEAD
-      ajouterAttribution(form);
-=======
       const nouvelleAtt = await ajouterAttribution(form);
       // Résout l'alerte liée si elle existe
       if (form._alerteId && nouvelleAtt?.id) {
@@ -2590,7 +1867,6 @@ export default function Attributions() {
           console.error("Erreur résolution alerte", err);
         }
       }
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
       triggerSuccess();
     }
     setFormData(null);
@@ -2635,12 +1911,6 @@ export default function Attributions() {
           attribution={formData}
           logements={logements}
           departements={departementsBruts}
-<<<<<<< HEAD
-          onClose={() => { setFormData(null); setIsAdding(false); }}
-          onSave={handleSave}
-          isDark={isDark}
-          alerteBesoin={alertesBesoins?.find(a => a.id === formData?._alerteId)}
-=======
           onClose={() => {
             setFormData(null);
             setIsAdding(false);
@@ -2650,7 +1920,6 @@ export default function Attributions() {
           alerteBesoin={alertesBesoins?.find(
             (a) => a.id === formData?._alerteId,
           )}
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         />
       )}
 
@@ -2672,11 +1941,7 @@ export default function Attributions() {
       </div>
 
       {/* Stats 3D Premium */}
-<<<<<<< HEAD
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-=======
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
         <StatCard3D
           icon={Home}
           label="Total attributions"
@@ -2715,15 +1980,6 @@ export default function Attributions() {
           value={nbAlertesEnAttente}
           color="amber"
           delay={300}
-<<<<<<< HEAD
-          subValue={nbAlertesEnAttente > 0
-            ? `${nbAlertesEnAttente} demande${nbAlertesEnAttente > 1 ? 's' : ''} en attente`
-            : "Aucune alerte"}
-          isDark={isDark}
-          onClick={() => {
-            if (alertesRef.current) {
-              alertesRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-=======
           subValue={
             nbAlertesEnAttente > 0
               ? `${nbAlertesEnAttente} demande${nbAlertesEnAttente > 1 ? "s" : ""} en attente`
@@ -2736,7 +1992,6 @@ export default function Attributions() {
                 behavior: "smooth",
                 block: "center",
               });
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             }
           }}
         />
@@ -2750,21 +2005,6 @@ export default function Attributions() {
             ? "bg-gradient-to-r from-amber-500/20 to-rose-500/20 border-amber-500/30"
             : "bg-gradient-to-r from-amber-100 to-rose-100 border-amber-300"
         }`}
-<<<<<<< HEAD
-        style={{ display: alertesBesoins && alertesBesoins.filter(a => a.statut === "En attente").length > 0 ? 'block' : 'none' }}
-      >
-        <div className={`absolute inset-0 animate-pulse ${isDark ? "bg-gradient-to-r from-amber-500/10 to-transparent" : "bg-gradient-to-r from-amber-200/50 to-transparent"}`} />
-        <div className="relative flex items-start gap-4">
-          <div className={`w-12 h-12 rounded-xl flex items-center justify-center animate-bounce ${isDark ? "bg-amber-500/20" : "bg-amber-200"}`}>
-            <Bell className={`w-6 h-6 ${isDark ? "text-amber-400" : "text-amber-600"}`} />
-          </div>
-          <div className="flex-1">
-            {(() => {
-              const nbEnAttente = alertesBesoins.filter(a => a.statut === "En attente").length;
-              return (
-                <p className={`text-sm font-bold ${isDark ? "text-amber-200" : "text-amber-700"}`}>
-                  {nbEnAttente} demande{nbEnAttente > 1 ? "s" : ""} de logement en attente
-=======
         style={{
           display:
             alertesBesoins &&
@@ -2795,61 +2035,10 @@ export default function Attributions() {
                 >
                   {nbEnAttente} demande{nbEnAttente > 1 ? "s" : ""} de logement
                   en attente
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                 </p>
               );
             })()}
             <div className="flex flex-wrap gap-2 mt-3">
-<<<<<<< HEAD
-              {alertesBesoins.filter(a => a.statut === "En attente").map((alerte) => (
-                <button
-                  key={alerte.id}
-                  onClick={() => {
-                    let serviceId = null;
-                    departementsBruts.forEach((d) => {
-                      const deptMatch =
-                        d.nom === alerte.departement ||
-                        d.code === alerte.departement ||
-                        d.name === alerte.departement;
-                      if (deptMatch) {
-                        d.services?.forEach((s) => {
-                          if (s.name === alerte.service || s.nom === alerte.service) {
-                            serviceId = s.id;
-                          }
-                        });
-                      }
-                    });
-
-                    // ── MODIFICATION : ouvrir en mode création (formData sans id) ──
-                    setIsAdding(true);
-                    setFormData({
-                      departement: `${alerte.departement} — ${alerte.service}`,
-                      logement: "",
-                      date_debut: getTodayISO(),
-                      date_fin: "",
-                      statut: "Occupé",
-                      occupants: alerte.employesActifs || [],
-                      observations: `Attribution automatique — ${alerte.service} demande ${alerte.typeLogementRequis}`,
-                      _alerteId: alerte.id,
-                      _serviceId: serviceId,
-                      _typeLogementRequis: alerte.typeLogementRequis
-                    });
-                  }}
-                  className={`px-3 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-2 ${
-                    isDark
-                      ? 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30'
-                      : 'bg-white hover:bg-amber-50 text-amber-700 border border-amber-300'
-                  }`}
-                >
-                  <Home className="w-3 h-3" />
-                  <span>{alerte.departement} — {alerte.service}</span>
-                  <span className="opacity-70">({alerte.typeLogementRequis})</span>
-                  <Plus className="w-3 h-3" />
-                </button>
-              ))}
-            </div>
-            <p className={`text-xs mt-2 ${isDark ? "text-white/50" : "text-gray-500"}`}>
-=======
               {alertesBesoins
                 .filter((a) => a.statut === "En attente")
                 .map((alerte) => (
@@ -2909,7 +2098,6 @@ export default function Attributions() {
             <p
               className={`text-xs mt-2 ${isDark ? "text-white/50" : "text-gray-500"}`}
             >
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
               Cliquez sur une alerte pour créer l'attribution correspondante
             </p>
           </div>
@@ -2918,17 +2106,12 @@ export default function Attributions() {
 
       {/* Message quand aucune alerte */}
       {nbAlertesEnAttente === 0 && (
-<<<<<<< HEAD
-        <div className={`rounded-2xl border p-4 text-center ${isDark ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-emerald-50 border-emerald-200'}`}>
-          <p className={`text-sm font-semibold ${isDark ? 'text-emerald-300' : 'text-emerald-700'}`}>
-=======
         <div
           className={`rounded-2xl border p-4 text-center ${isDark ? "bg-emerald-500/10 border-emerald-500/20" : "bg-emerald-50 border-emerald-200"}`}
         >
           <p
             className={`text-sm font-semibold ${isDark ? "text-emerald-300" : "text-emerald-700"}`}
           >
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <CheckCircle2 className="w-4 h-4 inline mr-1" />
             Aucune demande de logement en attente — Tous les services sont logés
           </p>
@@ -2946,22 +2129,14 @@ export default function Attributions() {
       </div>
 
       {/* Jauge d'occupation */}
-<<<<<<< HEAD
-      <div className={`relative rounded-2xl border backdrop-blur-sm p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-lg'}`}>
-        <div className="flex items-center gap-8">
-=======
       <div
         className={`relative rounded-2xl border backdrop-blur-sm p-6 ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-lg"}`}
       >
         <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           <CircularGauge
             value={stats.occupes}
             max={stats.total || 1}
             size={120}
-<<<<<<< HEAD
-            color={stats.tauxOccupation >= 80 ? "#f43f5e" : stats.tauxOccupation >= 50 ? "#f59e0b" : "#10b981"}
-=======
             color={
               stats.tauxOccupation >= 80
                 ? "#f43f5e"
@@ -2969,7 +2144,6 @@ export default function Attributions() {
                   ? "#f59e0b"
                   : "#10b981"
             }
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             label="Taux global"
             isDark={isDark}
           />
@@ -3038,17 +2212,6 @@ export default function Attributions() {
       </div>
 
       {/* Filtres et recherche */}
-<<<<<<< HEAD
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className={`flex gap-1 p-1.5 rounded-xl border backdrop-blur-sm ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
-          {FILTRES.map(f => (
-            <button
-              key={f}
-              onClick={() => setFiltre(f)}
-              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-300 ${filtre === f
-                ? f === "Occupé" ? "bg-emerald-500 text-white shadow-lg" : f === "Disponible" ? "bg-blue-500 text-white shadow-lg" : f === "Maintenance" ? "bg-amber-500 text-white shadow-lg" : "bg-[#0F2D56] text-white shadow-lg"
-                : `${theme.textSubtle} hover:${theme.text} ${isDark ? 'hover:bg-white/5' : 'hover:bg-gray-100'}`}`}
-=======
       <div className="flex flex-col gap-3">
         {/* Ligne 1 : Filtres desktop + dropdown mobile */}
         <div className="flex items-center gap-2">
@@ -3056,7 +2219,6 @@ export default function Attributions() {
           <div className="hidden 1112:block">
             <div
               className={`flex gap-1 p-1.5 rounded-xl border backdrop-blur-sm ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-sm"}`}
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             >
               {FILTRES.map((f) => (
                 <button
@@ -3133,20 +2295,6 @@ export default function Attributions() {
           </div>
         </div>
 
-<<<<<<< HEAD
-        <div className="flex gap-3">
-          <div className="relative">
-            <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${theme.textLight}`} />
-            <input
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              placeholder="Rechercher..."
-              className={`pl-10 pr-4 py-2.5 rounded-xl focus:outline-none focus:border-[#C9A84C] transition w-56 ${theme.input} ${theme.text}`}
-            />
-          </div>
-
-          <div className={`flex rounded-xl overflow-hidden border ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
-=======
         {/* Ligne 2 : Recherche + toggle vue */}
         <div className="flex items-center gap-2">
           <div className="relative flex-1 min-w-0">
@@ -3164,7 +2312,6 @@ export default function Attributions() {
           <div
             className={`flex rounded-xl overflow-hidden border shrink-0 ${isDark ? "border-white/10" : "border-gray-200"}`}
           >
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
             <button
               onClick={() => setViewMode("grid")}
               className={`px-3 py-2 transition ${viewMode === "grid" ? (isDark ? "bg-white/10 text-white" : "bg-gray-200 text-gray-900") : theme.textSubtle}`}
@@ -3320,14 +2467,10 @@ export default function Attributions() {
                       </button>
                       {/* ── MODIFICATION : cacher suppression si verrouillée ── */}
                       {!a._verrouille && (
-<<<<<<< HEAD
-                        <button onClick={() => supprimerAttribution(a.id)} className={`p-1.5 rounded-lg transition ${isDark ? 'hover:bg-rose-500/20 text-rose-400' : 'hover:bg-rose-100 text-rose-600'}`}>
-=======
                         <button
                           onClick={() => supprimerAttribution(a.id)}
                           className={`p-1.5 rounded-lg transition ${isDark ? "hover:bg-rose-500/20 text-rose-400" : "hover:bg-rose-100 text-rose-600"}`}
                         >
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                           <Trash2 className="w-4 h-4" />
                         </button>
                       )}
@@ -3341,55 +2484,24 @@ export default function Attributions() {
       )}
 
       {/* ========== HISTORIQUE DES ATTRIBUTIONS ========== */}
-<<<<<<< HEAD
-      <div className={`mt-10 rounded-2xl border backdrop-blur-sm p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-lg'}`}>
-        <h3 className={`text-lg font-bold mb-5 flex items-center gap-2 ${theme.text}`}>
-=======
       <div
         className={`mt-10 rounded-2xl border backdrop-blur-sm p-6 ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-lg"}`}
       >
         <h3
           className={`text-lg font-bold mb-5 flex items-center gap-2 ${theme.text}`}
         >
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           <Clock className="w-5 h-5 text-[#C9A84C]" />
           Historique des attributions
         </h3>
         <div className="space-y-2">
           {attributions.length === 0 ? (
-<<<<<<< HEAD
-            <p className={`text-sm ${theme.textSubtle} text-center py-6`}>Aucune attribution enregistrée</p>
-=======
             <p className={`text-sm ${theme.textSubtle} text-center py-6`}>
               Aucune attribution enregistrée
             </p>
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
           ) : (
             attributions.map((a) => (
               <div
                 key={`hist-${a.id}`}
-<<<<<<< HEAD
-                className={`flex items-center justify-between p-3 rounded-xl border ${isDark ? 'border-white/5 bg-white/5' : 'border-gray-100 bg-gray-50'}`}
-              >
-                <div className="flex items-center gap-3 flex-1 min-w-0">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${isDark ? 'bg-[#C9A84C]/20 text-[#C9A84C]' : 'bg-amber-100 text-amber-700'}`}>
-                    <Home className="w-4 h-4" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className={`text-sm font-semibold truncate ${theme.text}`}>
-                      Logement <span className="font-mono text-xs">{a.logement}</span> attribué à {a.departement}
-                    </p>
-                    <p className={`text-xs ${theme.textLight}`}>
-                      Du {a.date_debut} {a.date_fin ? `au ${a.date_fin}` : "à une date indéterminée"}
-                    </p>
-                  </div>
-                </div>
-                <span className={`px-2 py-1 rounded-full text-xs font-semibold border shrink-0 ml-2 ${
-                  a.statut === "Occupé" ? (isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-100 text-emerald-600 border-emerald-300') :
-                  a.statut === "Disponible" ? (isDark ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : 'bg-blue-100 text-blue-600 border-blue-300') :
-                  (isDark ? 'bg-amber-500/20 text-amber-400 border-amber-500/30' : 'bg-amber-100 text-amber-600 border-amber-300')
-                }`}>
-=======
                 className={`flex items-start sm:items-center justify-between gap-2 p-3 rounded-xl border ${isDark ? "border-white/5 bg-white/5" : "border-gray-100 bg-gray-50"}`}
               >
                 <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -3429,7 +2541,6 @@ export default function Attributions() {
                           : "bg-amber-100 text-amber-600 border-amber-300"
                   }`}
                 >
->>>>>>> 670e4d0787ab6a11494c74c41e809c5f1aa4d553
                   {a.statut}
                 </span>
               </div>
