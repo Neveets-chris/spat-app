@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { api } from "../api";
 
 const AuthContext = createContext(null);
 
@@ -25,6 +26,25 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
+  // Statut "en ligne" (façon Facebook) : tant que l'utilisateur a l'app
+  // ouverte, on envoie un ping toutes les 20s pour marquer sa présence.
+  // Pas de websocket : quand les pings s'arrêtent (fermeture d'onglet,
+  // déconnexion...), les autres le voient redevenir "hors ligne" au fur
+  // et à mesure que son dernier ping vieillit — calculé côté frontend.
+  // Important : on passe par api.heartbeat() (donc par axiosInstance,
+  // cf. api.js), qui rafraîchit automatiquement le token expiré — un
+  // axios.post() brut ici resterait bloqué en 401 en boucle sans jamais
+  // se reconnecter.
+  useEffect(() => {
+    if (!user) return;
+    const envoyerHeartbeat = () => {
+      api.heartbeat().catch(() => {});
+    };
+    envoyerHeartbeat();
+    const interval = setInterval(envoyerHeartbeat, 20000);
+    return () => clearInterval(interval);
+  }, [user]);
+
   const login = async (username, password) => {
     const res = await axios.post(`${API}/auth/token/`, { username, password });
     const { access, refresh } = res.data;
@@ -33,10 +53,21 @@ export function AuthProvider({ children }) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${access}`;
     const me = await axios.get(`${API}/auth/me/`);
     setUser(me.data);
+    return me.data;
   };
 
   const register = async (username, email, password) => {
     await axios.post(`${API}/auth/register/`, { username, email, password });
+    await login(username, password);
+  };
+
+  const registerEmploye = async (matricule, codeInscription, username, password) => {
+    await axios.post(`${API}/auth/register-employe/`, {
+      matricule,
+      code_inscription: codeInscription,
+      username,
+      password,
+    });
     await login(username, password);
   };
 
@@ -66,7 +97,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, login, register, logout, updateProfil }}
+      value={{ user, loading, login, register, registerEmploye, logout, updateProfil }}
     >
       {children}
     </AuthContext.Provider>

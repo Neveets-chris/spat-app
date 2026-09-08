@@ -17,6 +17,9 @@ import {
   Triangle,
   Square,
   Waves,
+  IdCard,
+  KeyRound,
+  Building2,
 } from "lucide-react";
 
 
@@ -203,11 +206,18 @@ function useDarkMode() {
 }
 
 export default function Register() {
-  const { register } = useAuth();
+  const { register, registerEmploye } = useAuth();
   const navigate = useNavigate();
+
+  // "employe" = auto-inscription SPAT (matricule + code) — mode par défaut
+  // "backoffice" = inscription générique (admin/gestionnaire/RH...)
+  const [mode, setMode] = useState("employe");
+
   const [form, setForm] = useState({
     username: "",
     email: "",
+    matricule: "",
+    codeInscription: "",
     password: "",
     confirm: "",
   });
@@ -241,7 +251,21 @@ export default function Register() {
     setError("");
     setLoading(true);
     try {
-      await register(form.username, form.email, form.password);
+      if (mode === "employe") {
+        if (!form.matricule.trim() || !form.codeInscription.trim()) {
+          setError("Matricule et code d'inscription requis.");
+          setLoading(false);
+          return;
+        }
+        await registerEmploye(
+          form.matricule.trim(),
+          form.codeInscription.trim(),
+          form.username,
+          form.password
+        );
+      } else {
+        await register(form.username, form.email, form.password);
+      }
       navigate("/");
     } catch (err) {
       setError(err.response?.data?.detail || "Erreur lors de l'inscription.");
@@ -279,7 +303,7 @@ export default function Register() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#1a4a7a]/30 to-transparent rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#0F2D56]/50 to-transparent rounded-full blur-2xl" />
 
-          <div className="relative p-8 text-center">
+          <div className="relative p-8 pb-4 text-center">
             <div className="relative inline-flex items-center justify-center w-20 h-20 mb-4">
               <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#1a4a7a]/50 animate-spin-slow" />
               <div className="absolute inset-2 rounded-full border border-[#C9A84C]/30 animate-spin-reverse" />
@@ -297,6 +321,41 @@ export default function Register() {
             </p>
           </div>
 
+          {/* Toggle employé SPAT / back-office */}
+          <div className="px-8 pb-2">
+            <div className="grid grid-cols-2 gap-1.5 p-1 rounded-xl bg-[#0F2D56]/60 border border-[#1a4a7a]/50">
+              <button
+                type="button"
+                onClick={() => setMode("employe")}
+                className={`flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all ${
+                  mode === "employe"
+                    ? "bg-gradient-to-r from-[#C9A84C] to-[#b8923a] text-[#0F2D56] shadow-md"
+                    : "text-blue-200/70 hover:text-white"
+                }`}
+              >
+                <IdCard className="w-3.5 h-3.5" />
+                Employé SPAT
+              </button>
+              <button
+                type="button"
+                onClick={() => setMode("backoffice")}
+                className={`flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all ${
+                  mode === "backoffice"
+                    ? "bg-gradient-to-r from-[#C9A84C] to-[#b8923a] text-[#0F2D56] shadow-md"
+                    : "text-blue-200/70 hover:text-white"
+                }`}
+              >
+                <Building2 className="w-3.5 h-3.5" />
+                Back-office
+              </button>
+            </div>
+            {mode === "employe" && (
+              <p className="text-[11px] text-blue-200/60 text-center mt-2 px-2">
+                Utilise le matricule et le code d'inscription remis par le service RH.
+              </p>
+            )}
+          </div>
+
           <div className="px-8 pb-8 space-y-5">
             {error && (
               <div className="relative overflow-hidden rounded-xl bg-rose-500/20 border border-rose-500/40 p-3 animate-shake backdrop-blur-sm">
@@ -308,6 +367,65 @@ export default function Register() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Champs spécifiques au mode "employé" : matricule + code */}
+              {mode === "employe" && (
+                <>
+                  <div className="relative group">
+                    <div
+                      className={`absolute -inset-0.5 bg-gradient-to-r from-[#1a4a7a] to-[#C9A84C] rounded-xl opacity-0 group-focus-within:opacity-50 blur transition duration-500 ${focusedField === "matricule" ? "opacity-50" : ""}`}
+                    />
+                    <div className="relative flex items-center">
+                      <div
+                        className={`absolute left-3 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 z-10 ${
+                          focusedField === "matricule"
+                            ? "bg-gradient-to-br from-[#C9A84C] to-[#1a4a7a] text-white shadow-lg"
+                            : "bg-[#1a4a7a]/50 text-blue-200"
+                        }`}
+                      >
+                        <IdCard className="w-5 h-5" />
+                      </div>
+                      <input
+                        type="text"
+                        value={form.matricule}
+                        onChange={(e) => setForm({ ...form, matricule: e.target.value })}
+                        onFocus={() => setFocusedField("matricule")}
+                        onBlur={() => setFocusedField(null)}
+                        placeholder="Matricule (ex: EMP-0128)"
+                        className="w-full bg-[#0F2D56]/50 border-2 border-[#1a4a7a]/50 rounded-xl pl-16 pr-4 py-3.5 text-white placeholder:text-blue-300/50 focus:border-[#C9A84C] focus:bg-[#0F2D56]/70 focus:outline-none transition-all duration-300"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="relative group">
+                    <div
+                      className={`absolute -inset-0.5 bg-gradient-to-r from-[#1a4a7a] to-[#C9A84C] rounded-xl opacity-0 group-focus-within:opacity-50 blur transition duration-500 ${focusedField === "code" ? "opacity-50" : ""}`}
+                    />
+                    <div className="relative flex items-center">
+                      <div
+                        className={`absolute left-3 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 z-10 ${
+                          focusedField === "code"
+                            ? "bg-gradient-to-br from-[#C9A84C] to-[#1a4a7a] text-white shadow-lg"
+                            : "bg-[#1a4a7a]/50 text-blue-200"
+                        }`}
+                      >
+                        <KeyRound className="w-5 h-5" />
+                      </div>
+                      <input
+                        type="text"
+                        value={form.codeInscription}
+                        onChange={(e) => setForm({ ...form, codeInscription: e.target.value })}
+                        onFocus={() => setFocusedField("code")}
+                        onBlur={() => setFocusedField(null)}
+                        placeholder="Code d'inscription (ex: SPAT-7K2M9X)"
+                        className="w-full bg-[#0F2D56]/50 border-2 border-[#1a4a7a]/50 rounded-xl pl-16 pr-4 py-3.5 text-white placeholder:text-blue-300/50 focus:border-[#C9A84C] focus:bg-[#0F2D56]/70 focus:outline-none transition-all duration-300 uppercase"
+                        required
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
+
               {/* Username */}
               <div className="relative group">
                 <div
@@ -340,37 +458,39 @@ export default function Register() {
                 </div>
               </div>
 
-              {/* Email */}
-              <div className="relative group">
-                <div
-                  className={`absolute -inset-0.5 bg-gradient-to-r from-[#1a4a7a] to-[#C9A84C] rounded-xl opacity-0 group-focus-within:opacity-50 blur transition duration-500 ${focusedField === "email" ? "opacity-50" : ""}`}
-                />
-
-                <div className="relative flex items-center">
+              {/* Email — uniquement en mode back-office (l'email employé vient de sa fiche RH) */}
+              {mode === "backoffice" && (
+                <div className="relative group">
                   <div
-                    className={`absolute left-3 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 z-10 ${
-                      focusedField === "email"
-                        ? "bg-gradient-to-br from-[#C9A84C] to-[#1a4a7a] text-white shadow-lg"
-                        : "bg-[#1a4a7a]/50 text-blue-200"
-                    }`}
-                  >
-                    <Mail className="w-5 h-5" />
-                  </div>
-
-                  <input
-                    type="email"
-                    value={form.email}
-                    onChange={(e) =>
-                      setForm({ ...form, email: e.target.value })
-                    }
-                    onFocus={() => setFocusedField("email")}
-                    onBlur={() => setFocusedField(null)}
-                    placeholder="Email"
-                    className="w-full bg-[#0F2D56]/50 border-2 border-[#1a4a7a]/50 rounded-xl pl-16 pr-4 py-3.5 text-white placeholder:text-blue-300/50 focus:border-[#C9A84C] focus:bg-[#0F2D56]/70 focus:outline-none transition-all duration-300"
-                    required
+                    className={`absolute -inset-0.5 bg-gradient-to-r from-[#1a4a7a] to-[#C9A84C] rounded-xl opacity-0 group-focus-within:opacity-50 blur transition duration-500 ${focusedField === "email" ? "opacity-50" : ""}`}
                   />
+
+                  <div className="relative flex items-center">
+                    <div
+                      className={`absolute left-3 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 z-10 ${
+                        focusedField === "email"
+                          ? "bg-gradient-to-br from-[#C9A84C] to-[#1a4a7a] text-white shadow-lg"
+                          : "bg-[#1a4a7a]/50 text-blue-200"
+                      }`}
+                    >
+                      <Mail className="w-5 h-5" />
+                    </div>
+
+                    <input
+                      type="email"
+                      value={form.email}
+                      onChange={(e) =>
+                        setForm({ ...form, email: e.target.value })
+                      }
+                      onFocus={() => setFocusedField("email")}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder="Email"
+                      className="w-full bg-[#0F2D56]/50 border-2 border-[#1a4a7a]/50 rounded-xl pl-16 pr-4 py-3.5 text-white placeholder:text-blue-300/50 focus:border-[#C9A84C] focus:bg-[#0F2D56]/70 focus:outline-none transition-all duration-300"
+                      required
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Password */}
               <div className="relative group">

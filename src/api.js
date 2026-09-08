@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "http://127.0.0.1:8000/api";
+
 const axiosInstance = axios.create({ baseURL: BASE_URL });
 
 axiosInstance.interceptors.request.use((config) => {
@@ -73,17 +74,35 @@ export const api = {
   //Services 
   getServices: (departementId) => request("GET", `/employes/services/?departement=${departementId}`),
   creerService: (data) => request("POST", "/employes/services/", data),
-  modifierService: (id, data) => request("PUT", `/employes/services/${id}/`, data),
+  modifierService: (id, data) => request("PATCH", `/employes/services/${id}/`, data),
   supprimerService: (id) => request("DELETE", `/employes/services/${id}/`),
+  retrograderChef: (id) => request("POST", `/employes/services/${id}/retrograder-chef/`),
 
   // Employés
   getEmployes: (serviceId) => request("GET", `/employes/employes/?service=${serviceId}`),
   creerEmploye: (data) => request("POST", "/employes/employes/", data),
-  modifierEmploye: (id, data) => request("PUT", `/employes/employes/${id}/`, data),
+  modifierEmploye: (id, data) => request("PATCH", `/employes/employes/${id}/`, data),
   supprimerEmploye: (id) => request("DELETE", `/employes/employes/${id}/`),
   desactiverEmploye: (id, motifLabel, motifType) =>
     request("POST", `/employes/employes/${id}/desactiver/`, { motif_label: motifLabel, motif_type: motifType }),
   reactiverEmploye: (id) => request("POST", `/employes/employes/${id}/reactiver/`),
+  regenererCodeInscription: (id) =>
+    request("POST", `/employes/employes/${id}/regenerer-code/`),
+
+  // ── Espace employé ──────────────────────────────────────────────────────
+  getMonService: () => request("GET", "/employes/mon-service/"),
+  getMesDemandesLogement: () => request("GET", "/logi/alertes/"),
+  creerDemandeLogementService: (data) => request("POST", "/logi/alertes/", data),
+  getAnnuaireEmployes: (q = "") =>
+    request("GET", `/employes/annuaire/${q ? `?q=${encodeURIComponent(q)}` : ""}`),
+  getProfilEmploye: (id) => request("GET", `/employes/annuaire/${id}/`),
+  heartbeat: () => request("POST", "/auth/heartbeat/"),
+
+  // Chat interne (polling, pas de websocket)
+  getConversations: () => request("GET", "/chat/conversations/"),
+  getMessagesAvec: (userId) => request("GET", `/chat/messages/${userId}/`),
+  envoyerMessage: (userId, contenu) => request("POST", `/chat/messages/${userId}/`, { contenu }),
+  getNonLusCount: () => request("GET", "/chat/non-lus/"),
 
   // Logements 
   getLogements: (params = "") => request("GET", `/logi/logements/${params}`),

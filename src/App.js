@@ -19,6 +19,7 @@ import useDarkMode from "./hooks/useDarkMode";
 import { useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import SpalshScreen from "./components/SpalshScreen";
+import EspaceEmploye from "./pages/EspaceEmploye";
 
 const TITRES = {
   dashboard: "Tableau de bord",
@@ -96,9 +97,17 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
+          path="/espace-employe"
+          element={
+            <PrivateRoute onlyRole="employe">
+              <EspaceEmploye />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/*"
           element={
-            <PrivateRoute>
+            <PrivateRoute onlyRole="backoffice">
               <AppLayout />
             </PrivateRoute>
           }

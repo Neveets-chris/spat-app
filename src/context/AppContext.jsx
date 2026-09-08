@@ -132,11 +132,13 @@ export function AppProvider({ children }) {
           const departementsSync = departementsData.map((dep) => ({
             ...dep,
             services: (dep.services || []).map((service) => {
+              // "Logé" ne doit être vrai que pour une attribution réellement
+              // occupée (statut "Occupé"). Les autres statuts (Disponible,
+              // Maintenance, Terminé, REPARÉ) ne comptent pas comme logé.
               const attActive = attributionsData.find(
                 (a) =>
                   String(a.service_id) === String(service.id) &&
-                  a.statut !== "Terminé" &&
-                  a.statut !== "Maintenance" &&
+                  a.statut === "Occupé" &&
                   a.logement,
               );
               return {
@@ -1236,7 +1238,7 @@ export function AppProvider({ children }) {
       ajouterHistorique("ajout_service", {
         service: nouveau.name,
         serviceId: nouveau.id,
-        chef: nouveau.chef || "À définir",
+        chef: nouveau.chef_nom || "À définir",
         departement: dep?.nom,
         departementId: depId,
         departementCode: dep?.code,
@@ -1255,14 +1257,55 @@ export function AppProvider({ children }) {
             ? d
             : {
                 ...d,
+                services: d.services.map((s) => {
+                  if (s.id !== maj.id) return s;
+                  // Filet de sécurité : si le backend ne renvoie pas
+                  // chef_nom (ex: valeur vide/obsolète), on le recalcule
+                  // localement à partir de la liste des employés du
+                  // service, déjà connue, pour que l'affichage soit
+                  // toujours cohérent avec le chef réellement sélectionné.
+                  let chefNom = maj.chef_nom;
+                  if (!chefNom && maj.chef) {
+                    const chefEmp = (s.employes || []).find(
+                      (e) => String(e.id) === String(maj.chef),
+                    );
+                    if (chefEmp) chefNom = `${chefEmp.prenom} ${chefEmp.nom}`;
+                  }
+                  return { ...maj, chef_nom: chefNom, employes: s.employes };
+                }),
+              },
+        ),
+      );
+      return maj;
+    } catch (err) {
+      console.error("Erreur modification service", err.response?.data);
+      throw err;
+    }
+  };
+
+  const retrograderChef = async (depId, service) => {
+    try {
+      const maj = await api.retrograderChef(service.id);
+      setDepartements((prev) =>
+        prev.map((d) =>
+          d.id !== depId
+            ? d
+            : {
+                ...d,
                 services: d.services.map((s) =>
                   s.id === maj.id ? { ...maj, employes: s.employes } : s,
                 ),
               },
         ),
       );
+      ajouterHistorique("retrogradation_chef", {
+        service: service.name,
+        departementId: depId,
+        ancienChef: service.chef_nom,
+      });
+      return maj;
     } catch (err) {
-      console.error("Erreur modification service", err.response?.data);
+      console.error("Erreur rétrogradation chef", err.response?.data);
     }
   };
 
@@ -1285,7 +1328,7 @@ export function AppProvider({ children }) {
         ajouterHistorique("suppression_service", {
           service: srv.name,
           serviceId,
-          chef: srv.chef,
+          chef: srv.chef_nom || "Non défini",
           departement: dep?.nom,
           departementId: depId,
           departementCode: dep?.code,
@@ -1388,9 +1431,9 @@ export function AppProvider({ children }) {
     );
   };
 
-  const modifierEmploye = async (depId, serviceId, emp) => {
+  const modifierEmploye = async (depId, serviceId, empId, updates) => {
     try {
-      const maj = await api.modifierEmploye(emp.id, emp);
+      const maj = await api.modifierEmploye(empId, updates);
       setDepartements((prev) =>
         prev.map((d) =>
           d.id !== depId
@@ -1473,6 +1516,35 @@ export function AppProvider({ children }) {
       );
     } catch (err) {
       console.error("Erreur réactivation employé", err.response?.data);
+    }
+  };
+
+  const regenererCodeInscription = async (depId, serviceId, empId) => {
+    try {
+      const { code_inscription } = await api.regenererCodeInscription(empId);
+      setDepartements((prev) =>
+        prev.map((d) =>
+          d.id !== depId
+            ? d
+            : {
+                ...d,
+                services: d.services.map((s) =>
+                  s.id !== serviceId
+                    ? s
+                    : {
+                        ...s,
+                        employes: (s.employes || []).map((e) =>
+                          e.id === empId ? { ...e, code_inscription } : e,
+                        ),
+                      },
+                ),
+              },
+        ),
+      );
+      return code_inscription;
+    } catch (err) {
+      console.error("Erreur régénération code d'inscription", err.response?.data);
+      throw err;
     }
   };
 
@@ -2189,11 +2261,11 @@ export function AppProvider({ children }) {
   };
 
   const getStatutLogementService = (depNomOuCode, serviceId) => {
+    // Idem : seul le statut "Occupé" signifie réellement "logé".
     const att = attributions.find(
       (a) =>
         a.logement &&
-        a.statut !== "Maintenance" &&
-        a.statut !== "Terminé" &&
+        a.statut === "Occupé" &&
         (a.departement === depNomOuCode ||
           a.departement?.startsWith(`${depNomOuCode} —`) ||
           String(a.service_id) === String(serviceId)),
@@ -2257,12 +2329,14 @@ export function AppProvider({ children }) {
         supprimerDepartement,
         ajouterService,
         modifierService,
+        retrograderChef,
         supprimerService,
         ajouterEmployeService,
         supprimerEmployeService,
         modifierEmploye,
         desactiverEmploye,
         reactiverEmploye,
+        regenererCodeInscription,
         tousLesDepartements,
 
         // Historique RH

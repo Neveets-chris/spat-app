@@ -2,10 +2,43 @@
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring, useInView, useMotionTemplate, useMotionValue } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import {Home, Users, KeyRound, Package, Wallet, Bot, BarChart3, Bell,ArrowRight, Sparkles, Shield, Brain, Building2, TrendingUp, Anchor,
-Database, Landmark, Settings, Search, CheckCircle2
+import {
+  Home, Users, KeyRound, Package, Wallet, Bot, Bell,
+  ArrowRight, Sparkles, Shield, Brain, Building2, TrendingUp, Anchor,
+  Database, Landmark, Settings, Search, CheckCircle2
 } from "lucide-react";
 import ParticleBackground from "../components/ParticleBackground";
+import { api } from "../api";
+
+// Recupere les vraies statistiques de l'application (endpoint public, sans
+// authentification) pour que la landing page affiche des chiffres reels
+// plutot que des exemples fictifs. En cas d'echec (API indisponible, etc.),
+// on garde des valeurs neutres et on affiche simplement rien plutot que
+// d'inventer des chiffres.
+function usePublicStats() {
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    api
+      .getPublicStats()
+      .then((data) => {
+        if (!cancelled) setStats(data);
+      })
+      .catch(() => {
+        if (!cancelled) setStats(null);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return { stats, loading };
+}
 
 // Le logo est servi depuis public/ (voir note ci-dessous) : /SpatLogelogo.png
 // correspond au fichier public/SpatLogelogo.png, pas a un import src/.
@@ -16,8 +49,8 @@ const modules = [
     id: "logements",
     title: "Gestion des Logements",
     subtitle: "Parc immobilier complet",
-    desc: "Centralisez tous vos logements de fonction. Suivez leur etat, leur disponibilite et leur historique d'occupation en temps reel.",
-    features: ["Types : F2, F3, F4, villas, studios","Etats : Neuf, bon, a renover, en maintenance","Photos et documents attaches","Historique complet des occupants"],
+    desc: "Centralisez tous vos logements de fonction. Le statut d'un logement suit automatiquement les attributions et les maintenances en cours.",
+    features: ["Types : Studio, F1, F2, F3, F4, Villa avec capacite max definie a la creation","Statuts : Disponible, Occupe, Maintenance, En Reparation","Occupe uniquement si attribue a un service avec au moins un occupant","Passage en maintenance avec liste des materiaux necessaires"],
     icon: Home,
     color: "#10b981",
     colorClass: "emerald",
@@ -28,9 +61,9 @@ const modules = [
   {
     id: "employes",
     title: "Gestion des Employes",
-    subtitle: "Profils et eligibilite",
-    desc: "Gerez les fiches employes, leurs categories, anciennete et situation familiale pour une attribution equitable.",
-    features: ["Categories : Cadre, Agent de maitrise, Execution","Verification automatique d'eligibilite","Situation familiale et nombre d'enfants","Historique des demandes de logement"],
+    subtitle: "Fiches et services",
+    desc: "Gerez les fiches employes, leur service et leur situation familiale. Chaque employe recoit un code d'inscription a usage unique pour activer son compte.",
+    features: ["Categories : Cadre superieur, Cadre moyen, Agent maitrise, Agent execution","Un service par employe, rattache a un departement, avec un chef unique","Code d'inscription a usage unique + matricule pour creer son compte","Journal RH des creations, modifications et desactivations"],
     icon: Users,
     color: "#06b6d4",
     colorClass: "cyan",
@@ -41,9 +74,9 @@ const modules = [
   {
     id: "attributions",
     title: "Attributions & Resiliations",
-    subtitle: "Attribution intelligente",
-    desc: "Attribuez automatiquement les logements selon le profil de l'employe. Generez les documents officiels en un clic.",
-    features: ["Attribution selon categorie et anciennete","Generation de documents officiels","Resiliation avec motifs et dates","Alertes de fin de contrat"],
+    subtitle: "Demande, alerte, attribution",
+    desc: "Un service (ou son chef) envoie une demande de logement precisant le type souhaite. L'admin attribue alors un logement disponible correspondant.",
+    features: ["Demande de logement envoyee par le chef de service concerne","Seuls les logements disponibles apparaissent pour l'attribution","Logement temporaire pendant une maintenance, avec choix Reemenager ou Rester","Attribution non supprimable : seule la date de fin est modifiable"],
     icon: KeyRound,
     color: "#3b82f6",
     colorClass: "blue",
@@ -55,8 +88,8 @@ const modules = [
     id: "materiaux",
     title: "Gestion des Materiaux",
     subtitle: "Stock et approvisionnement",
-    desc: "Suivez le stock de materiaux de construction et maintenance. Recevez des alertes avant la rupture de stock.",
-    features: ["Catalogue : Tole, ciment, peinture, carreaux","Entrees et sorties de stock","Alertes automatiques de seuil minimum","Gestion des fournisseurs"],
+    desc: "Suivez le stock de materiaux de construction et maintenance. Une alerte se declenche automatiquement des qu'un article passe sous son seuil.",
+    features: ["Categories : Couverture, Maconnerie, Electricite, Plomberie et plus","Entrees et sorties de stock tracees a chaque mouvement","Seuil d'alerte personnalisable (10 par defaut)","Fournisseur enregistre a chaque entree de stock"],
     icon: Package,
     color: "#f59e0b",
     colorClass: "amber",
@@ -68,8 +101,8 @@ const modules = [
     id: "depenses",
     title: "Depenses & Budget",
     subtitle: "Controle financier",
-    desc: "Suivez les depenses par logement et globalement. Gerez les budgets avec des alertes a 80% et 100%.",
-    features: ["Budget alloue vs depenses reelles","Alertes a 80% et 100% du budget","Validation par le responsable financier","Rapports PDF et Excel"],
+    desc: "Suivez les depenses par logement et globalement, avec un budget annuel configurable et des alertes visuelles selon son utilisation.",
+    features: ["Budget global annuel modifiable a tout moment","Alertes visuelles a 70% (attention) et 90% (critique) du budget","Validation ou rejet par le responsable financier","Export CSV des depenses"],
     icon: Wallet,
     color: "#a855f7",
     colorClass: "purple",
@@ -210,7 +243,13 @@ function MiniCard3D({ icon: Icon, label, color, delay = 0 }) {
 // ═══════════════════════════════════════════════════════════════
 //  DASHBOARD CENTRAL
 // ═══════════════════════════════════════════════════════════════
-function CentralDashboard() {
+function CentralDashboard({ stats }) {
+  // Tant que les vraies donnees n'ont pas encore ete chargees depuis l'API,
+  // on affiche des valeurs neutres (0) plutot que des chiffres inventes.
+  const taux = stats?.taux_occupation ?? 0;
+  const disponibles = stats?.logements_disponibles ?? 0;
+  const occupes = stats?.logements_occupes ?? 0;
+  const dashOffset = 264 - (264 * Math.min(100, Math.max(0, taux))) / 100;
   return (
     <motion.div initial={{ opacity: 0, scale: 0.7, rotateX: 20 }} animate={{ opacity: 1, scale: 1, rotateX: 5 }} transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
       className="absolute left-[58%] top-[32%] z-20" style={{ perspective: 1200 }}>
@@ -229,11 +268,11 @@ function CentralDashboard() {
               <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="8" />
                 <motion.circle cx="50" cy="50" r="42" fill="none" stroke="url(#circleGrad)" strokeWidth="8" strokeLinecap="round" strokeDasharray="264"
-                  initial={{ strokeDashoffset: 264 }} animate={{ strokeDashoffset: 264 - (264 * 0.85) }} transition={{ delay: 1, duration: 1.5, ease: "easeOut" }} />
+                  initial={{ strokeDashoffset: 264 }} animate={{ strokeDashoffset: dashOffset }} transition={{ delay: 1, duration: 1.5, ease: "easeOut" }} />
                 <defs><linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#10b981" /><stop offset="100%" stopColor="#06b6d4" /></linearGradient></defs>
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-lg font-bold text-white">85%</span>
+                <span className="text-lg font-bold text-white">{taux}%</span>
               </div>
             </div>
             <div className="flex-1 space-y-3">
@@ -255,11 +294,11 @@ function CentralDashboard() {
           <div className="flex gap-2 mt-3">
             <div className="flex-1 p-2 rounded-lg bg-white/[0.02] border border-white/5">
               <div className="text-[8px] text-gray-500">Disponibles</div>
-              <div className="text-xs text-emerald-400 font-semibold">12</div>
+              <div className="text-xs text-emerald-400 font-semibold">{disponibles}</div>
             </div>
             <div className="flex-1 p-2 rounded-lg bg-white/[0.02] border border-white/5">
               <div className="text-[8px] text-gray-500">Occupes</div>
-              <div className="text-xs text-cyan-400 font-semibold">8</div>
+              <div className="text-xs text-cyan-400 font-semibold">{occupes}</div>
             </div>
           </div>
         </div>
@@ -272,7 +311,7 @@ function CentralDashboard() {
 // ═══════════════════════════════════════════════════════════════
 //  HERO
 // ═══════════════════════════════════════════════════════════════
-function HeroSection() {
+function HeroSection({ stats }) {
   const heroChips = [
     { icon: Building2, color: "#10b981", label: "Logements" },
     { icon: Users, color: "#06b6d4", label: "Employes" },
@@ -318,10 +357,49 @@ function HeroSection() {
         <FloatingCard icon={Building2} label="Gestion Logements" color="#10b981" className="left-[52%] top-[18%]" delay={0.2} rotateX={8} rotateY={-15} width={150} />
         <FloatingCard icon={TrendingUp} label="Suivi des Stocks" color="#06b6d4" className="left-[74%] top-[14%]" delay={0.35} rotateX={5} rotateY={-20} width={150} />
         <FloatingCard icon={Anchor} label="Attribution Employes" color="#3b82f6" className="left-[46%] top-[40%]" delay={0.5} rotateX={12} rotateY={-8} width={155} />
-        <CentralDashboard />
+        <CentralDashboard stats={stats} />
         <FloatingCard icon={Database} label="Tableau de Bord
 Temps Reel" color="#f59e0b" className="left-[78%] top-[42%]" delay={0.65} rotateX={6} rotateY={-18} width={155} />
         <FloatingCard icon={Landmark} label="Depenses & Budget" color="#a855f7" className="left-[50%] top-[66%]" delay={0.8} rotateX={10} rotateY={-12} width={155} />
+      </div>
+    </section>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  BANDE DE STATISTIQUES REELLES (donnees issues de l'API, pas d'exemples)
+// ═══════════════════════════════════════════════════════════════
+function StatsStrip({ stats }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
+
+  // On n'affiche que les chiffres reellement recus de l'API. Si l'appel a
+  // echoue ou n'a pas encore repondu, cette section ne s'affiche pas du
+  // tout — plutot que de montrer un exemple qui ne correspond pas a
+  // l'application.
+  if (!stats) return null;
+
+  const items = [
+    { label: "Logements geres", value: stats.logements_total },
+    { label: "Taux d'occupation", value: `${stats.taux_occupation}%` },
+    { label: "Employes actifs", value: stats.employes_actifs },
+    { label: "Materiaux suivis", value: stats.materiaux_references },
+  ];
+
+  return (
+    <section ref={ref} className="relative z-20 px-6 py-10 md:py-14 bg-[#070b10] border-y border-white/5">
+      <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
+        {items.map((item, i) => (
+          <motion.div key={item.label}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: i * 0.1, duration: 0.6 }}>
+            <div className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+              {item.value}
+            </div>
+            <div className="text-xs sm:text-sm text-gray-500 mt-1">{item.label}</div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
@@ -808,6 +886,7 @@ export default function LandingPage() {
   const targetRefs = useRef({});
   const registerTarget = (id, node) => { if (node) targetRefs.current[id] = node; };
   const getTargetRect = (id) => () => targetRefs.current[id]?.getBoundingClientRect() ?? null;
+  const { stats } = usePublicStats();
 
   return (
     <div ref={containerRef} className="relative w-full bg-[#030508] font-sans text-white overflow-x-hidden">
@@ -844,7 +923,8 @@ export default function LandingPage() {
         </div>
       </motion.nav>
 
-      <HeroSection />
+      <HeroSection stats={stats} />
+      <StatsStrip stats={stats} />
       <LogiSection smoothProgress={smoothProgress} registerTarget={registerTarget} />
 
       <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none w-[420px] h-[420px] sm:w-[700px] sm:h-[700px] md:w-[900px] md:h-[900px] opacity-10 sm:opacity-15 md:opacity-30">

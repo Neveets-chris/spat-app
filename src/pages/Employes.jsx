@@ -53,6 +53,10 @@ import {
   Building,
   Home,
   Sparkles,
+  KeyRound,
+  Copy,
+  RefreshCw,
+  CheckCircle2,
   AlertTriangle,
   Building2,
   UserPlus,
@@ -200,6 +204,7 @@ const CATEGORIES = [
   "Agent exécution",
 ];
 const SITUATIONS = ["Célibataire", "Marié", "Divorcé", "Veuf"];
+const SEXES = ["Homme", "Femme"];
 //  Motifs de désactivation 
 const MOTIFS_DEFINITIFS = [
   { label: "Retraite", type: "definitif" },
@@ -695,6 +700,26 @@ function ModalDetailEmployeERP({
 }) {
   const { style } = useReveal();
   const theme = isDark ? THEMES.dark : THEMES.light;
+  const { regenererCodeInscription } = useApp();
+  const [codeCopie, setCodeCopie] = useState(false);
+  const [regenerationEnCours, setRegenerationEnCours] = useState(false);
+
+  const copierCode = () => {
+    if (!employe.code_inscription) return;
+    navigator.clipboard.writeText(employe.code_inscription);
+    setCodeCopie(true);
+    setTimeout(() => setCodeCopie(false), 2000);
+  };
+
+  const regenererCode = async () => {
+    if (!window.confirm("L'ancien code sera invalidé. Continuer ?")) return;
+    setRegenerationEnCours(true);
+    try {
+      await regenererCodeInscription(dept.id, service.id, employe.id);
+    } finally {
+      setRegenerationEnCours(false);
+    }
+  };
 
   const ancienneteAnnees = employe.anciennete || 0;
   const estEligibleLogement = ancienneteAnnees >= 2;
@@ -790,7 +815,7 @@ function ModalDetailEmployeERP({
               {
                 icon: User,
                 label: "Chef de service",
-                value: service.chef,
+                value: service.chef_nom || "Non défini",
                 color: isDark
                   ? "bg-amber-500/20 text-amber-400"
                   : "bg-amber-100 text-amber-600",
@@ -856,6 +881,7 @@ function ModalDetailEmployeERP({
             </h4>
             <div className="space-y-3">
               {[
+                { label: "Sexe", value: employe.sexe || "Homme" },
                 { label: "Statut", value: employe.situation },
                 { label: "Enfants à charge", value: employe.nb_enfants },
                 { label: "Ancienneté", value: `${employe.anciennete} ans` },
@@ -873,6 +899,63 @@ function ModalDetailEmployeERP({
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Compte de connexion / code d'inscription */}
+          <div
+            className={`border rounded-2xl p-5 ${isDark ? "bg-white/5 border-white/10" : "bg-white border-gray-200 shadow-lg"}`}
+          >
+            <h4
+              className={`text-sm font-semibold mb-4 flex items-center gap-2 ${theme.text}`}
+            >
+              <KeyRound className="w-4 h-4 text-[#C9A84C]" />
+              Compte de connexion
+            </h4>
+
+            {employe.user ? (
+              <div
+                className={`flex items-center gap-2 p-3 rounded-xl text-sm ${isDark ? "bg-emerald-500/10 text-emerald-300" : "bg-emerald-50 text-emerald-700"}`}
+              >
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+                Compte déjà créé et lié à cette fiche.
+              </div>
+            ) : (
+              <>
+                <p className={`text-xs ${theme.textLight} mb-3`}>
+                  Communique ce code à l'employé : il lui permettra de créer
+                  lui-même son compte (avec son matricule) sur la page
+                  d'inscription.
+                </p>
+                <div className="flex items-center gap-2">
+                  <code
+                    className={`flex-1 px-3 py-2.5 rounded-xl text-sm font-mono font-bold tracking-wide ${isDark ? "bg-white/10 text-[#C9A84C]" : "bg-gray-100 text-[#0F2D56]"}`}
+                  >
+                    {employe.code_inscription || "—"}
+                  </code>
+                  <button
+                    onClick={copierCode}
+                    title="Copier le code"
+                    className={`w-10 h-10 shrink-0 rounded-xl flex items-center justify-center transition-all ${isDark ? "bg-white/10 hover:bg-white/20 text-white" : "bg-gray-100 hover:bg-gray-200 text-gray-700"}`}
+                  >
+                    {codeCopie ? (
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                  </button>
+                  <button
+                    onClick={regenererCode}
+                    disabled={regenerationEnCours}
+                    title="Régénérer le code (invalide l'ancien)"
+                    className={`w-10 h-10 shrink-0 rounded-xl flex items-center justify-center transition-all disabled:opacity-50 ${isDark ? "bg-amber-500/20 hover:bg-amber-500/30 text-amber-300" : "bg-amber-100 hover:bg-amber-200 text-amber-700"}`}
+                  >
+                    <RefreshCw
+                      className={`w-4 h-4 ${regenerationEnCours ? "animate-spin" : ""}`}
+                    />
+                  </button>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Actions */}
@@ -972,7 +1055,7 @@ function ServiceRow({
             {service.name}
           </span>
           <span className={`text-xs ml-2 ${theme.textLight}`}>
-            Chef : {service.chef}
+            Chef : {service.chef_nom || "Non défini"}
           </span>
         </div>
         <span
@@ -1727,6 +1810,7 @@ export default function DepartementsSPAT() {
     supprimerDepartement,
     ajouterService,
     modifierService,
+    retrograderChef,
     supprimerService,
     ajouterEmployeService,
     modifierEmploye,
@@ -1751,12 +1835,14 @@ export default function DepartementsSPAT() {
     colorIdx: 0,
   });
   const [serviceForm, setServiceForm] = useState({ name: "", chef: "" });
+  const [serviceFormError, setServiceFormError] = useState("");
   const [serviceTarget, setServiceTarget] = useState(null);
   const [empTarget, setEmpTarget] = useState(null);
   const [empForm, setEmpForm] = useState({
     prenom: "",
     nom: "",
     categorie: CATEGORIES[3],
+    sexe: SEXES[0],
     anciennete: 0,
     situation: SITUATIONS[0],
     nb_enfants: 0,
@@ -1876,9 +1962,10 @@ export default function DepartementsSPAT() {
     const dep = departments.find((d) => d.code === serviceTarget.deptCode);
     if (!dep) return;
     try {
+      // Un nouveau service n'a pas encore d'employés : pas de chef possible
+      // à la création, il sera désigné plus tard depuis la fiche du service.
       await ajouterService(dep.id, {
         name: serviceForm.name.trim(),
-        chef: serviceForm.chef.trim() || "À définir",
       });
       closeModal();
     } catch (err) {
@@ -1886,7 +1973,8 @@ export default function DepartementsSPAT() {
     }
   };
   const openEditService = (deptCode, service) => {
-    setServiceForm({ name: service.name, chef: service.chef });
+    setServiceForm({ name: service.name, chef: service.chef || "" });
+    setServiceFormError("");
     setServiceTarget({ deptCode, serviceId: service.id });
     setModal("edit-service");
   };
@@ -1898,11 +1986,26 @@ export default function DepartementsSPAT() {
       await modifierService(dep.id, {
         id: serviceTarget.serviceId,
         name: serviceForm.name.trim(),
-        chef: serviceForm.chef.trim() || "À définir",
+        chef: serviceForm.chef || null,
       });
       closeModal();
     } catch (err) {
+      const detail = err.response?.data?.chef?.[0] || err.response?.data?.chef;
+      setServiceFormError(detail || "Erreur lors de la modification du service.");
       console.error("Erreur modification service", err);
+    }
+  };
+  const confirmerRetrogradation = async () => {
+    const dep = departments.find((d) => d.code === serviceTarget?.deptCode);
+    const service = dep?.services.find((s) => s.id === serviceTarget?.serviceId);
+    if (!dep || !service) return;
+    if (!window.confirm(`Rétrograder ${service.chef_nom || "le chef actuel"} de son poste de chef de service ?`)) return;
+    try {
+      await retrograderChef(dep.id, service);
+      setServiceForm((p) => ({ ...p, chef: "" }));
+      setServiceFormError("");
+    } catch (err) {
+      console.error("Erreur rétrogradation chef", err);
     }
   };
   const deleteService = async (deptCode, serviceId) => {
@@ -1918,6 +2021,7 @@ export default function DepartementsSPAT() {
       prenom: "",
       nom: "",
       categorie: CATEGORIES[3],
+      sexe: SEXES[0],
       anciennete: 0,
       situation: SITUATIONS[0],
       nb_enfants: 0,
@@ -1935,6 +2039,7 @@ export default function DepartementsSPAT() {
       prenom: employe.prenom || "",
       nom: employe.nom || "",
       categorie: employe.categorie || CATEGORIES[3],
+      sexe: employe.sexe || SEXES[0],
       anciennete: employe.anciennete || 0,
       situation: employe.situation || SITUATIONS[0],
       nb_enfants: employe.nb_enfants || 0,
@@ -1953,6 +2058,8 @@ export default function DepartementsSPAT() {
     if (!empForm.prenom.trim()) erreurs.push("Prénom requis");
     if (!empForm.nom.trim()) erreurs.push("Nom requis");
     if (!empForm.email.trim()) erreurs.push("Email requis");
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empForm.email.trim()))
+      erreurs.push("Format d'email invalide (ex: nom@spat.mg)");
     if (!empForm.telephone.trim()) erreurs.push("Téléphone requis");
     if (!empForm.adresse.trim()) erreurs.push("Adresse requise");
     if (empForm.anciennete < 0 || empForm.anciennete > 35)
@@ -2017,6 +2124,14 @@ export default function DepartementsSPAT() {
 
   const confirmEditEmploye = async () => {
     if (!empForm.prenom.trim() || !empForm.nom.trim()) return;
+    if (
+      empForm.email &&
+      empForm.email.trim() &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empForm.email.trim())
+    ) {
+      alert("❌ Format d'email invalide (ex: nom@spat.mg)");
+      return;
+    }
     const dep = departments.find((d) => d.code === empTarget.deptCode);
     if (!dep) return;
     try {
@@ -2024,6 +2139,7 @@ export default function DepartementsSPAT() {
         prenom: empForm.prenom.trim(),
         nom: empForm.nom.trim(),
         categorie: empForm.categorie,
+        sexe: empForm.sexe,
         anciennete: empForm.anciennete,
         situation: empForm.situation,
         nb_enfants: empForm.nb_enfants,
@@ -2719,13 +2835,9 @@ export default function DepartementsSPAT() {
             placeholder="Ex : Contrôle qualité"
             isDark={isDark}
           />
-          <InputField
-            label="Chef de service"
-            value={serviceForm.chef}
-            onChange={(v) => setServiceForm((p) => ({ ...p, chef: v }))}
-            placeholder="Ex : Marie Dupont"
-            isDark={isDark}
-          />
+          <p className={`text-xs mt-2 ${theme.textLight}`}>
+            Le chef de service pourra être désigné une fois des employés ajoutés à ce service.
+          </p>
         </Modal>
       )}
 
@@ -2745,13 +2857,73 @@ export default function DepartementsSPAT() {
             placeholder="Nom du service"
             isDark={isDark}
           />
-          <InputField
-            label="Chef de service"
-            value={serviceForm.chef}
-            onChange={(v) => setServiceForm((p) => ({ ...p, chef: v }))}
-            placeholder="Chef de service"
-            isDark={isDark}
-          />
+          {(() => {
+            const service = departments
+              .find((d) => d.code === serviceTarget?.deptCode)
+              ?.services.find((s) => s.id === serviceTarget?.serviceId);
+            const employesService = service?.employes || [];
+            const chefActuel = employesService.find((e) => e.id === service?.chef);
+            const chefBloque = !!service?.chef && chefActuel && !chefActuel.desactive;
+
+            return (
+              <div className="mt-3">
+                <label className={`text-[10px] font-semibold ${theme.textLight}`}>
+                  Chef de service
+                </label>
+
+                {chefBloque ? (
+                  <div className={`mt-1 p-3 rounded-lg border ${theme.input}`}>
+                    <p className={`text-sm ${theme.text}`}>
+                      {chefActuel.prenom} {chefActuel.nom} est actuellement chef de ce service.
+                    </p>
+                    <p className={`text-xs mt-1 ${theme.textLight}`}>
+                      Pour désigner quelqu'un d'autre, désactivez cet employé ou rétrogradez-le d'abord.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={confirmerRetrogradation}
+                      className="mt-2 px-3 py-1.5 rounded-lg text-xs font-semibold text-red-600 border border-red-300 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors"
+                    >
+                      Rétrograder ce chef
+                    </button>
+                  </div>
+                ) : (
+                  <select
+                    value={serviceForm.chef}
+                    onChange={(e) =>
+                      setServiceForm((p) => ({ ...p, chef: e.target.value }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  >
+                    <option value="" className={isDark ? "bg-gray-900" : "bg-white"}>
+                      Aucun chef désigné
+                    </option>
+                    {employesService
+                      .filter((e) => !e.desactive)
+                      .map((e) => (
+                        <option
+                          key={e.id}
+                          value={e.id}
+                          className={isDark ? "bg-gray-900" : "bg-white"}
+                        >
+                          {e.prenom} {e.nom}
+                        </option>
+                      ))}
+                  </select>
+                )}
+
+                {!chefBloque && employesService.length === 0 && (
+                  <p className={`text-xs mt-1.5 ${theme.textLight}`}>
+                    Aucun employé dans ce service pour l'instant — ajoutez-en un pour pouvoir le désigner chef.
+                  </p>
+                )}
+
+                {serviceFormError && (
+                  <p className="text-xs mt-2 text-red-600">{serviceFormError}</p>
+                )}
+              </div>
+            );
+          })()}
         </Modal>
       )}
 
@@ -2791,7 +2963,7 @@ export default function DepartementsSPAT() {
               >
                 <User className="w-3 h-3" /> Identité *
               </p>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-3">
                 <div>
                   <label
                     className={`text-[10px] font-semibold ${theme.textLight}`}
@@ -2821,6 +2993,30 @@ export default function DepartementsSPAT() {
                     placeholder="Rakoto"
                     className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
                   />
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Sexe
+                  </label>
+                  <select
+                    value={empForm.sexe}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, sexe: e.target.value }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  >
+                    {SEXES.map((s) => (
+                      <option
+                        key={s}
+                        value={s}
+                        className={isDark ? "bg-gray-900" : "bg-white"}
+                      >
+                        {s}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
             </div>
@@ -3079,7 +3275,7 @@ export default function DepartementsSPAT() {
               >
                 <User className="w-3 h-3" /> Identité *
               </p>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-3">
                 <div>
                   <label
                     className={`text-[10px] font-semibold ${theme.textLight}`}
@@ -3109,6 +3305,30 @@ export default function DepartementsSPAT() {
                     placeholder="Rakoto"
                     className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
                   />
+                </div>
+                <div>
+                  <label
+                    className={`text-[10px] font-semibold ${theme.textLight}`}
+                  >
+                    Sexe
+                  </label>
+                  <select
+                    value={empForm.sexe}
+                    onChange={(e) =>
+                      setEmpForm((p) => ({ ...p, sexe: e.target.value }))
+                    }
+                    className={`w-full mt-1 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 transition-all ${theme.input} ${theme.text}`}
+                  >
+                    {SEXES.map((s) => (
+                      <option
+                        key={s}
+                        value={s}
+                        className={isDark ? "bg-gray-900" : "bg-white"}
+                      >
+                        {s}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
             </div>
